@@ -9,10 +9,10 @@ module Protos
 
       private
 
-      def css
-        @css ||= build_theme(
+      def style
+        {
           container: tokens("collapse-content")
-        )
+        }
       end
     end
   end

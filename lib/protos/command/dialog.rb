@@ -14,18 +14,18 @@ module Protos
 
       private
 
-      def attrs
-        @attrs ||= build_attrs(
+      def default_attrs
+        {
           data: { "protos--modal-target": "modal" }
-        )
+        }
       end
 
-      def css
-        @css ||= build_theme(
+      def style
+        {
           container: tokens("modal", "modal-bottom", "sm:modal-middle"),
           modal: tokens("modal-box", "p-0"),
           form: tokens("modal-backdrop")
-        )
+        }
       end
     end
   end

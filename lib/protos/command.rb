@@ -40,10 +40,10 @@ module Protos
 
     private
 
-    def attrs
-      @attrs ||= build_attrs(
+    def default_attrs
+      {
         data: { controller: "protos--command protos--modal" }
-      )
+      }
     end
   end
 end

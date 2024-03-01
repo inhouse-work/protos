@@ -9,13 +9,13 @@ module Protos
 
       private
 
-      def css
-        @css ||= build_theme(
+      def style
+        {
           container: tokens(
             "join-item",
             "[&:not(:first-child)]:border-t-0"
           )
-        )
+        }
       end
     end
   end

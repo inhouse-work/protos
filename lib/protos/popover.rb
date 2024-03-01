@@ -45,10 +45,10 @@ module Protos
       }.fetch(@position)
     end
 
-    def css
-      @css ||= build_theme(
+    def style
+      {
         container: tokens("dropdown", position)
-      )
+      }
     end
   end
 end

@@ -11,6 +11,8 @@ module Protos
     end
 
     def merge(hash)
+      hash ||= {}
+
       tap do
         hash.each_key do |key|
           if @theme.key?(key)

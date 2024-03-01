@@ -11,10 +11,10 @@ module Protos
 
       private
 
-      def css
-        @css ||= build_theme(
+      def style
+        {
           container: tokens("drawer-button")
-        )
+        }
       end
     end
   end

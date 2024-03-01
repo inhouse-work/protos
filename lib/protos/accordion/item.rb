@@ -20,10 +20,10 @@ module Protos
         Collapse.new(theme: { container: css[:collapse] })
       end
 
-      def css
-        @css ||= build_theme(
+      def style
+        {
           container: tokens("join-item")
-        )
+        }
       end
     end
   end

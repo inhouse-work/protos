@@ -2,6 +2,7 @@
 
 TestComponent = Class.new(Protos::Component) do
   css_method :custom_style
+  attrs_method :options
 
   def template(&block)
     div(**attrs) do
@@ -12,6 +13,12 @@ TestComponent = Class.new(Protos::Component) do
   end
 
   private
+
+  def options
+    {
+      data: { "test-component": "true" }
+    }
+  end
 
   def custom_style
     {
@@ -41,7 +48,8 @@ RSpec.describe Protos::Component do
     expect(page).to have_css(".test-component-deeply-nested")
   end
 
-  it "applies the undefined html options" do
+  it "applies the html options" do
     expect(page).to have_css("[role='test']")
+    expect(page).to have_css("[data-test-component='true']")
   end
 end

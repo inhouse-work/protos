@@ -18,6 +18,13 @@ RSpec.describe Protos::Attributes do
   end
 
   describe "#merge" do
+    it "handles a nil value" do
+      attrs = described_class.new(foo: "bar")
+      attrs.merge(nil)
+
+      expect(attrs[:foo]).to eq("bar")
+    end
+
     it "merges the attributes" do
       attrs = described_class.new(string: "bar", array: [1, 2], hash: { a: 1 })
       attrs.merge(string: "baz", array: [3], hash: { a: 2, b: 3 })

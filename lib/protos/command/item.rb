@@ -9,10 +9,10 @@ module Protos
 
       private
 
-      def attrs
-        @attrs ||= build_attrs(
+      def default_attrs
+        {
           data: { "protos--command-target": "item" }
-        )
+        }
       end
     end
   end

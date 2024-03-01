@@ -9,10 +9,10 @@ module Protos
 
       private
 
-      def css
-        @css ||= build_theme(
+      def style
+        {
           container: tokens("caption-bottom", "p-sm")
-        )
+        }
       end
     end
   end

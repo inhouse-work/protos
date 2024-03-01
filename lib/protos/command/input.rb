@@ -25,8 +25,8 @@ module Protos
 
       private
 
-      def css
-        @css ||= build_theme(
+      def style
+        {
           container: tokens("form-control"),
           label: tokens(
             "input",
@@ -37,7 +37,7 @@ module Protos
           ),
           input: tokens("grow", "bg-transparent"),
           icon: tokens("flex", "place-items-center")
-        )
+        }
       end
     end
   end

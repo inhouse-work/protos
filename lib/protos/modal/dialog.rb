@@ -11,11 +11,11 @@ module Protos
 
       private
 
-      def css
-        @css ||= build_theme(
+      def style
+        {
           container: tokens("modal", "modal-bottom", "sm:modal-middle"),
           modal: tokens("modal-box", "flex", "flex-col", "gap-xs")
-        )
+        }
       end
 
       def attrs

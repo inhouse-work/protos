@@ -14,11 +14,11 @@ module Protos
 
       private
 
-      def css
-        @css ||= build_theme(
+      def style
+        {
           container: tokens("drawer-side"),
           toggle: tokens("drawer-overlay")
-        )
+        }
       end
     end
   end

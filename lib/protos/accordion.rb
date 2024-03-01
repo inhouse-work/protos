@@ -22,13 +22,13 @@ module Protos
 
     private
 
-    def css
-      @css ||= build_theme(
+    def style
+      {
         container: tokens(
           "join",
           "join-vertical"
         )
-      )
+      }
     end
   end
 end

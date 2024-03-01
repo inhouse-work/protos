@@ -57,15 +57,15 @@ module Protos
       }.fetch(@shape)
     end
 
-    def css
-      @css ||= build_theme(
+    def style
+      {
         container: tokens(
           "avatar",
           indicator,
           placeholder: "placeholder"
         ),
         figure: tokens(shape)
-      )
+      }
     end
   end
 end

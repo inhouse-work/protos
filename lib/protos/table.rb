@@ -38,11 +38,11 @@ module Protos
 
     private
 
-    def css
-      @css ||= build_theme(
+    def theme
+      {
         container: tokens("w-full", "overflow-x-auto"),
         table: tokens("table")
-      )
+      }
     end
   end
 end

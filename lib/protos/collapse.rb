@@ -16,18 +16,16 @@ module Protos
 
     private
 
-    def css
-      @css ||= build_theme(
+    def theme
+      {
         container: tokens("collapse", "collapse-arrow", "bg-base-100")
-      )
+      }
     end
 
-    def attrs
-      @attrs ||= build_attrs(
-        {
-          tabindex: 0
-        }
-      )
+    def default_attrs
+      {
+        tabindex: 0
+      }
     end
   end
 end

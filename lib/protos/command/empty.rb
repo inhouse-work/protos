@@ -9,16 +9,16 @@ module Protos
 
       private
 
-      def attrs
-        @attrs ||= build_attrs(
+      def default_attrs
+        {
           data: { "protos--command-target": "empty" }
-        )
+        }
       end
 
-      def css
-        @css ||= build_theme(
+      def theme
+        {
           container: tokens("hidden", "px-xs", "py-sm")
-        )
+        }
       end
     end
   end

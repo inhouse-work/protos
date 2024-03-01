@@ -25,13 +25,13 @@ module Protos
 
     private
 
-    def css
-      @css ||= build_theme(
+    def theme
+      {
         container: tokens(
           "alert",
           color
         )
-      )
+      }
     end
 
     def color

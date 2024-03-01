@@ -41,15 +41,15 @@ module Protos
       }.fetch(@image_display)
     end
 
-    def css
-      @css ||= build_theme(
+    def theme
+      {
         container: tokens(
           "card",
           image_display,
           border: "card-bordered",
           compact: "card-compact"
         )
-      )
+      }
     end
   end
 end

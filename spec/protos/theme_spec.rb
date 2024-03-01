@@ -18,6 +18,13 @@ RSpec.describe Protos::Theme do
   end
 
   describe "#merge" do
+    it "handles a nil value" do
+      theme = described_class.new(foo: "bar")
+      theme.merge(nil)
+
+      expect(theme[:foo]).to eq("bar")
+    end
+
     it "adds new keys to the theme" do
       theme = described_class.new
       theme.merge(foo: "bar")

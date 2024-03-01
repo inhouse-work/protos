@@ -9,13 +9,13 @@ module Protos
 
       private
 
-      def css
-        @css ||= build_theme(
+      def theme
+        {
           container: tokens(
             "leading-relaxed",
             "[&:not(:first-child)]:mt-sm"
           )
-        )
+        }
       end
     end
   end

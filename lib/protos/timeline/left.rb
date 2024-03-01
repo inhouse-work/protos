@@ -9,10 +9,10 @@ module Protos
 
       private
 
-      def css
-        @css ||= build_theme(
+      def theme
+        {
           container: tokens("timeline-start")
-        )
+        }
       end
     end
   end

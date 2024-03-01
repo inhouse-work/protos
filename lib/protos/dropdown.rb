@@ -46,14 +46,14 @@ module Protos
       }.fetch(@position)
     end
 
-    def css
-      @css ||= build_theme(
+    def theme
+      {
         container: tokens(
           "dropdown",
           position,
           hover: "dropdown-hover"
         )
-      )
+      }
     end
   end
 end

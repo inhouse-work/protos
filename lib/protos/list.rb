@@ -15,12 +15,12 @@ module Protos
     private
 
     def css
-      @css ||= build_theme(
+      {
         container: tokens(
           "join",
           "join-vertical"
         )
-      )
+      }
     end
 
     def element

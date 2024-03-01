@@ -10,9 +10,14 @@ module Protos
     # Define a method to access the css hash. This is expected to be
     # a hash of styles that will be merged to the main theme
     defines :css_method, type: Types::Symbol
-    css_method :style
+    defines :attrs_method, type: Types::Symbol
 
-    option :theme, default: -> { {} }, reader: :private
+    css_method :theme
+    attrs_method :default_attrs
+
+    # Theme can override the css hash and add additional styles
+    option :theme, as: :theme_override, default: -> { {} }, reader: :private
+    # Class becomes the :container key in the css hash
     option :class, as: :container_class, default: -> { "" }, reader: :private
     option :data, default: -> { {} }, reader: :private
     option :html_options, default: -> { {} }, reader: :private
@@ -50,18 +55,26 @@ module Protos
     end
 
     def build_attrs(...)
+      defaults = if respond_to?(self.class.attrs_method, :include_private)
+        send(self.class.attrs_method)
+      end
+
       Attributes
         .new(...)
+        .merge(defaults)
         .merge(html_options)
-        .merge(data:)
         .merge(class: css[:container])
     end
 
     def build_theme(...)
+      component_style = if respond_to?(self.class.css_method, :include_private)
+        send(self.class.css_method)
+      end
+
       Theme
         .new(...)
-        .merge(send(self.class.css_method))
-        .merge(theme)
+        .merge(component_style)
+        .merge(theme_override)
         .merge(container: container_class)
     end
   end

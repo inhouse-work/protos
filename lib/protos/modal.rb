@@ -20,7 +20,7 @@ module Protos
 
     private
 
-    def attrs
+    def default_attrs
       {
         data: {
           controller: "protos--modal"

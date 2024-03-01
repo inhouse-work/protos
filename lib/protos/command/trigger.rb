@@ -9,12 +9,10 @@ module Protos
 
       private
 
-      def attrs
-        @attrs ||= build_attrs(
-          {
-            data: { action: "protos--modal#open" }
-          }
-        )
+      def default_attrs
+        {
+          data: { action: "protos--modal#open" }
+        }
       end
     end
   end

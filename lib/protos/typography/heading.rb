@@ -15,15 +15,15 @@ module Protos
 
       private
 
-      def css
-        @css ||= build_theme(
+      def theme
+        {
           container: tokens(
             size,
             "scroll-m-20",
             "tracking-tight",
             "transition-colors"
           )
-        )
+        }
       end
 
       def size

@@ -9,15 +9,15 @@ module Protos
 
       private
 
-      def css
-        @css ||= build_theme(
+      def theme
+        {
           container: tokens(
             "font-medium",
             "hover:underline",
             "underline-offset-4",
             "cursor-pointer"
           )
-        )
+        }
       end
     end
   end

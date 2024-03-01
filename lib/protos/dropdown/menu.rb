@@ -9,8 +9,8 @@ module Protos
 
       private
 
-      def css
-        @css ||= build_theme(
+      def theme
+        {
           container: tokens(
             "menu",
             "dropdown-content",
@@ -18,7 +18,7 @@ module Protos
             "bg-base-100",
             "rounded-box"
           )
-        )
+        }
       end
     end
   end

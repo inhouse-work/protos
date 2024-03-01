@@ -7,8 +7,7 @@ module Protos
     extend Dry::Initializer
     extend Dry::Core::ClassAttributes
 
-    # Define a method to access the css hash. This is expected to be
-    # a hash of styles that will be merged to the main theme
+    # Define methods for css and attrs. Each is expected to return a hash
     defines :css_method, type: Types::Symbol
     defines :attrs_method, type: Types::Symbol
 

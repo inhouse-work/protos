@@ -2,15 +2,18 @@
 
 TestComponent = Class.new(Protos::Component) do
   def template(&block)
-    summary(**attrs, &block)
+    div(**attrs) do
+      div(class: css[:inner], &block)
+    end
   end
 
   private
 
-  def css
-    @css ||= build_theme(
-      container: tokens("test-component")
-    )
+  def style
+    {
+      container: tokens("test-component"),
+      inner: tokens("test-component-inner")
+    }
   end
 end
 
@@ -20,13 +23,14 @@ RSpec.describe Protos::Component do
   end
 
   it "renders the component" do
-    expect(page).to have_css("summary")
+    expect(page).to have_css("div > div")
     expect(page).to have_content("Hello")
   end
 
   it "applies the styles" do
     expect(page).to have_css(".test-component")
     expect(page).to have_css(".injected-class")
+    expect(page).to have_css(".test-component-inner")
   end
 
   it "applies the undefined html options" do

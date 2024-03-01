@@ -42,6 +42,10 @@ module Protos
       @css ||= build_theme
     end
 
+    def style
+      {}
+    end
+
     def build_attrs(...)
       Attributes
         .new(...)
@@ -53,6 +57,7 @@ module Protos
     def build_theme(...)
       Theme
         .new(...)
+        .merge(style)
         .merge(theme)
         .merge(container: container_class)
     end

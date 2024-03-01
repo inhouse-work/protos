@@ -57,7 +57,7 @@ module Protos
       }.fetch(@shape)
     end
 
-    def style
+    def theme
       {
         container: tokens(
           "avatar",

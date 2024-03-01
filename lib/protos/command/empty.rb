@@ -15,7 +15,7 @@ module Protos
         }
       end
 
-      def style
+      def theme
         {
           container: tokens("hidden", "px-xs", "py-sm")
         }

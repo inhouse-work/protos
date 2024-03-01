@@ -11,7 +11,7 @@ module Protos
 
       private
 
-      def style
+      def theme
         {
           container: tokens("drawer-button")
         }

@@ -14,7 +14,7 @@ module Protos
 
       private
 
-      def style
+      def theme
         {
           container: tokens("drawer-side"),
           toggle: tokens("drawer-overlay")

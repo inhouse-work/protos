@@ -25,7 +25,7 @@ module Protos
 
       private
 
-      def style
+      def theme
         {
           container: tokens("form-control"),
           label: tokens(

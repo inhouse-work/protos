@@ -20,7 +20,7 @@ module Protos
         }
       end
 
-      def style
+      def theme
         {
           container: tokens("modal", "modal-bottom", "sm:modal-middle"),
           modal: tokens("modal-box", "p-0"),

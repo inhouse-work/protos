@@ -46,7 +46,7 @@ module Protos
       }.fetch(@position)
     end
 
-    def style
+    def theme
       {
         container: tokens(
           "dropdown",

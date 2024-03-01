@@ -41,7 +41,7 @@ module Protos
       }.fetch(@image_display)
     end
 
-    def style
+    def theme
       {
         container: tokens(
           "card",

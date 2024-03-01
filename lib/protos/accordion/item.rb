@@ -20,7 +20,7 @@ module Protos
         Collapse.new(theme: { container: css[:collapse] })
       end
 
-      def style
+      def theme
         {
           container: tokens("join-item")
         }

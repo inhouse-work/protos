@@ -38,7 +38,7 @@ module Protos
 
     private
 
-    def style
+    def theme
       {
         container: tokens("w-full", "overflow-x-auto"),
         table: tokens("table")

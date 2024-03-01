@@ -9,4 +9,4 @@ gem "debug"
 gem "phlex-testing-capybara"
 gem "rake"
 gem "rspec"
-gem "rubocop-inhouse"
+gem "rubocop-inhouse", require: false

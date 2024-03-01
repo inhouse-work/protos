@@ -33,7 +33,11 @@ end
 
 RSpec.describe Protos::Component do
   before do
-    render TestComponent.new(class: "injected-class", role: "test") { "Hello" }
+    render TestComponent.new(
+      class: "injected-class",
+      role: "test",
+      data: { value: "test" }
+    ) { "Hello" }
   end
 
   it "renders the component" do
@@ -51,5 +55,6 @@ RSpec.describe Protos::Component do
   it "applies the html options" do
     expect(page).to have_css("[role='test']")
     expect(page).to have_css("[data-test-component='true']")
+    expect(page).to have_css("[data-value='test']")
   end
 end

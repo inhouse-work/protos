@@ -34,6 +34,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Uncomment to register a new dependency of your gem
+  spec.add_dependency "dry-core", "~> 1.0"
   spec.add_dependency "dry-initializer", "~> 3.1"
   spec.add_dependency "dry-types", "~> 1.7"
   spec.add_dependency "phlex", "~> 1.9"

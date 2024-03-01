@@ -5,6 +5,10 @@ module Protos
     # DOCS: Base component
 
     extend Dry::Initializer
+    extend Dry::Core::ClassAttributes
+
+    defines :css_method, type: Types::Symbol
+    css_method :style
 
     option :theme, default: -> { {} }, reader: :private
     option :class, as: :container_class, default: -> { "" }, reader: :private
@@ -57,7 +61,7 @@ module Protos
     def build_theme(...)
       Theme
         .new(...)
-        .merge(style)
+        .merge(send(self.class.css_method))
         .merge(theme)
         .merge(container: container_class)
     end

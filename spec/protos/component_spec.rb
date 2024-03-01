@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 TestComponent = Class.new(Protos::Component) do
+  css_method :custom_style
+
   def template(&block)
     div(**attrs) do
       div(class: css[:inner]) do
@@ -11,7 +13,7 @@ TestComponent = Class.new(Protos::Component) do
 
   private
 
-  def style
+  def custom_style
     {
       container: tokens("test-component"),
       inner: tokens("test-component-inner"),

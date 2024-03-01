@@ -7,6 +7,8 @@ module Protos
     extend Dry::Initializer
     extend Dry::Core::ClassAttributes
 
+    # Define a method to access the css hash. This is expected to be
+    # a hash of styles that will be merged to the main theme
     defines :css_method, type: Types::Symbol
     css_method :style
 
@@ -15,6 +17,7 @@ module Protos
     option :data, default: -> { {} }, reader: :private
     option :html_options, default: -> { {} }, reader: :private
 
+    # Adds non-defined options to the html_options hash
     def initialize(*args, **kwargs, &block)
       raise_block_in_initializer_error if block
 
@@ -44,10 +47,6 @@ module Protos
 
     def css
       @css ||= build_theme
-    end
-
-    def style
-      {}
     end
 
     def build_attrs(...)

@@ -19,7 +19,6 @@ module Protos
     option :theme, as: :theme_override, default: -> { {} }, reader: :private
     # Class becomes the :container key in the css hash
     option :class, as: :container_class, default: -> { "" }, reader: :private
-    option :data, default: -> { {} }, reader: :private
     option :html_options, default: -> { {} }, reader: :private
 
     # Adds non-defined options to the html_options hash

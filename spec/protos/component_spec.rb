@@ -3,7 +3,9 @@
 TestComponent = Class.new(Protos::Component) do
   def template(&block)
     div(**attrs) do
-      div(class: css[:inner], &block)
+      div(class: css[:inner]) do
+        div(class: css[:deeply][:nested], &block)
+      end
     end
   end
 
@@ -12,7 +14,10 @@ TestComponent = Class.new(Protos::Component) do
   def style
     {
       container: tokens("test-component"),
-      inner: tokens("test-component-inner")
+      inner: tokens("test-component-inner"),
+      deeply: {
+        nested: tokens("test-component-deeply-nested")
+      }
     }
   end
 end
@@ -23,7 +28,7 @@ RSpec.describe Protos::Component do
   end
 
   it "renders the component" do
-    expect(page).to have_css("div > div")
+    expect(page).to have_css("div > div > div")
     expect(page).to have_content("Hello")
   end
 
@@ -31,6 +36,7 @@ RSpec.describe Protos::Component do
     expect(page).to have_css(".test-component")
     expect(page).to have_css(".injected-class")
     expect(page).to have_css(".test-component-inner")
+    expect(page).to have_css(".test-component-deeply-nested")
   end
 
   it "applies the undefined html options" do

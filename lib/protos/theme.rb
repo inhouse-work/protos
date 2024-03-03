@@ -10,27 +10,63 @@ module Protos
       @theme.fetch(key)
     end
 
+    def key?(key)
+      @theme.key?(key)
+    end
+
+    def add(key, value)
+      current_tokens = parse(@theme.fetch(key, ""))
+      new_tokens = parse(value)
+      tokens = current_tokens + new_tokens
+
+      @theme[key] = tokens.to_s
+    end
+
+    def remove(key, value)
+      current_tokens = parse(@theme.fetch(key, ""))
+      removable_tokens = parse(value)
+      tokens = current_tokens - removable_tokens
+
+      @theme[key] = tokens.to_s
+    end
+
+    def set(key, value)
+      tokens = parse(value)
+      @theme[key] = tokens.to_s
+    end
+
     def merge(hash)
       hash ||= {}
 
       tap do
         hash.each_key do |key|
-          if @theme.key?(key)
-            @theme[key] = [@theme[key], hash[key]].flatten.compact.join(" ")
-          elsif key.to_s.start_with?("!")
+          if key?(key)
+            add(key, hash[key])
+          elsif negation?(key)
             no_bang = key.to_s[1..].to_sym
-            tokens = @theme[no_bang].split
-            removable_tokens = hash[key].split
-            removable_tokens.each { |token| tokens.delete(token) }
-            @theme[no_bang] = tokens.join(" ")
-          elsif key.to_s.end_with?("!")
+            remove(no_bang, hash[key])
+          elsif override?(key)
             no_bang = key.to_s.chomp("!").to_sym
-            @theme[no_bang] = hash[key]
+            set(no_bang, hash[key])
           else
-            @theme[key] = hash[key]
+            set(key, hash[key])
           end
         end
       end
+    end
+
+    private
+
+    def parse(value)
+      TokenList.parse(value)
+    end
+
+    def negation?(key)
+      key.to_s.start_with?("!")
+    end
+
+    def override?(key)
+      key.to_s.end_with?("!")
     end
   end
 end

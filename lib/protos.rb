@@ -12,6 +12,7 @@ module Protos
   else
     require_relative "protos/version"
     require_relative "protos/types"
+    require_relative "protos/token_list"
     require_relative "protos/component"
     require_relative "protos/theme"
     require_relative "protos/attributes"

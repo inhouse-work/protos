@@ -7,7 +7,7 @@ module Protos
     end
 
     def [](key)
-      @theme.fetch(key)
+      @theme[key]
     end
 
     def key?(key)
@@ -31,8 +31,12 @@ module Protos
     end
 
     def set(key, value)
-      tokens = parse(value)
-      @theme[key] = tokens.to_s
+      if value.is_a?(Hash)
+        @theme[key] = value
+      else
+        tokens = parse(value)
+        @theme[key] = tokens.to_s
+      end
     end
 
     def merge(hash)

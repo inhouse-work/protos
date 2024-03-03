@@ -55,6 +55,7 @@ module Protos
     require_relative "protos/drawer/content"
 
     require_relative "protos/dropdown"
+    require_relative "protos/dropdown/item"
     require_relative "protos/dropdown/menu"
     require_relative "protos/dropdown/trigger"
 

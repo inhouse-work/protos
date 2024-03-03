@@ -46,5 +46,13 @@ RSpec.describe Protos::Theme do
 
       expect(theme[:foo]).to eq("baz")
     end
+
+    it "removes classes prefixed with a bang" do
+      theme = described_class.new(foo: "bar baz")
+      negation = { "!foo": "bar" }
+      theme.merge(negation)
+
+      expect(theme[:foo]).to eq("baz")
+    end
   end
 end

@@ -6,7 +6,7 @@ TestComponent = Class.new(Protos::Component) do
 
   def template(&block)
     div(**attrs) do
-      div(class: css[:inner]) do
+      div(class: "#{css[:inner]} #{css[:overridable]}") do
         div(class: css[:deeply][:nested], &block)
       end
     end
@@ -22,8 +22,9 @@ TestComponent = Class.new(Protos::Component) do
 
   def custom_style
     {
-      container: tokens("test-component"),
+      container: tokens("test-component", "removed-component"),
       inner: tokens("test-component-inner"),
+      overridable: tokens("removed-component"),
       deeply: {
         nested: tokens("test-component-deeply-nested")
       }
@@ -36,13 +37,25 @@ RSpec.describe Protos::Component do
     render TestComponent.new(
       class: "injected-class",
       role: "test",
-      data: { value: "test" }
+      data: { value: "test" },
+      theme: {
+        "!container": "removed-component",
+        overridable!: "added-component"
+      }
     ) { "Hello" }
   end
 
   it "renders the component" do
     expect(page).to have_css("div > div > div")
     expect(page).to have_content("Hello")
+  end
+
+  it "overrides the theme" do
+    expect(page).to have_css(".added-component")
+  end
+
+  it "removes classes from the theme" do
+    expect(page).to have_no_css(".removed-component")
   end
 
   it "applies the styles" do

@@ -16,4 +16,9 @@ RSpec.describe Protos::Accordion::Item do
   it "renders the id" do
     expect(page).to have_field("1")
   end
+
+  it "overrides the styles for collapse" do
+    expect(page).to have_no_css ".bg-base-100"
+    expect(page).to have_css ".bg-transparent"
+  end
 end

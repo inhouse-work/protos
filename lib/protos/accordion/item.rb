@@ -17,12 +17,14 @@ module Protos
       private
 
       def collapse
-        Collapse.new(theme: { container: css[:collapse] })
+        collapse_theme = { container!: css[:collapse] }
+        Collapse.new(theme: collapse_theme)
       end
 
       def theme
         {
-          container: tokens("join-item")
+          container: tokens("join-item"),
+          collapse: tokens("bg-transparent")
         }
       end
     end

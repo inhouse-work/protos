@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Protos
   class TokenList
     def self.parse(input)

@@ -2,8 +2,64 @@
 
 A UI component library for Phlex using daisyui.
 
+All components avoid using `Phlex::DeferredRender` so you can reorder components
+exactly how you like them.
+
+Components are easy to style, positioning them is usually done through the
+`class` option which applies the style to the outer most container of the
+component:
+
+```ruby
+render Protos::Avatar.new(class: "my-lg") do |avatar|
+  # ...
+end
+```
+
+But they are also extensible to all styles by injecting a `theme` into the
+component:
+
+```ruby
+render Protos::Avatar.new(theme: {
+    container: "my-lg",
+    figure: "p-sm" # Apply this padding to the image container
+}) do |avatar|
+  # ...
+end
+```
+
+You can even override or negate certain parts of the theme:
+
+```ruby
+render Protos::Avatar.new(theme: {
+    container!: "my-lg", # Override the original container style
+    "!figure": "p-sm"    # Remove this class from the figure style
+}) do |avatar|
+  # ...
+end
+```
+
+If the component uses a stimulus controller on the data component, or any other
+default attributes you can safely add to them without overriding:
+
+```ruby
+render Protos::Avatar.new(data: { controller: "my-controller" }) do |avatar|
+  # ...
+end
+```
+
+This will add your attributes without removing the important ones that help the
+components be accessible.
+
 Protos uses a set of conventions that make it easier to work with tailwindcss
-and components in Phlex which you can use by inheriting from the base component.
+and components in Phlex which you can use in your own components by inheriting 
+from the base component.
+
+This adds:
+1. extends `Dry::Initializer` to easily add initialization params and options
+2. adds `attrs` which merges html attributes onto defaults
+3. adds `default_attrs` for default html attributes on a component
+4. adds `theme` for default styles hash
+5. adds `css` for accessing theme slots
 
 You can find this example in `examples/navbar.rb` which you can run with `ruby
 examples/navbar.rb`:
@@ -82,7 +138,10 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 ## Usage
 
-Setup tailwindcss:
+Setup tailwindcss to add the protos path to your content.
+
+Protos also uses semantic spacing such as `p-sm` or `m-md` instead of set
+numbers so you can easily choose the spacing you want.
 
 ```js
 // tailwind.config.js
@@ -96,6 +155,26 @@ module.exports = {
     "./app/views/**/*.{rb,html,html.erb,erb}",
     protos_path
   ],
+  theme: {
+    extend: {
+      spacing: {
+        xs: "var(--spacing-xs)",
+        sm: "var(--spacing-sm)",
+        md: "var(--spacing-md)",
+        lg: "var(--spacing-lg)",
+        xl: "var(--spacing-xl)",
+      },
+      // If you use % based spacing you might want different spacing
+      // for any vertical gaps to prevent overflow
+      gap: {
+        xs: "var(--spacing-gap-xs)",
+        sm: "var(--spacing-gap-sm)",
+        md: "var(--spacing-gap-md)",
+        lg: "var(--spacing-gap-lg)",
+        xl: "var(--spacing-gap-xl)",
+      },
+    },
+  }
   // ....
 }
 ```
@@ -122,6 +201,34 @@ render Protos::Card.new(class: "bg-base-100") do |card|
     span { "This is some more content" }
     card.actions do
       button(class: "btn btn-primary") { "Action 1" }
+    end
+  end
+end
+```
+
+A good idea would be to encapsulate these proto components with your own
+components as a wrapper. For example you could use `Proto::List` to create your
+own list and even use `Phlex::DeferredRender` to make the API more convenient.
+
+```ruby
+module Ui
+  class List < Protos::Component
+    include Protos::Typography
+    include Phlex::DeferredRender
+
+    def template
+      article(**attrs) do
+        header class: css[:header] do
+          h3(size: :md) { title }
+          nav { render_actions }
+        end
+
+        render Protos::List do |list|
+          items.each do |item|
+            render list.item { render item }
+          end
+        end
+      end
     end
   end
 end

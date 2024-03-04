@@ -14,7 +14,7 @@ module Protos
           container: tokens(
             "menu",
             "dropdown-content",
-            "z-[1]",
+            "z-10",
             "bg-base-100",
             "rounded-box"
           )

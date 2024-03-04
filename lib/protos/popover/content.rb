@@ -11,7 +11,7 @@ module Protos
 
       def theme
         {
-          container: "dropdown-content"
+          container: tokens("dropdown-content", "z-10")
         }
       end
     end

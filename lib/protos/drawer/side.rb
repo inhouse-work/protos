@@ -16,7 +16,7 @@ module Protos
 
       def theme
         {
-          container: tokens("drawer-side"),
+          container: tokens("drawer-side", "z-20"),
           toggle: tokens("drawer-overlay")
         }
       end

@@ -14,7 +14,7 @@ module Protos
 
     private
 
-    def css
+    def theme
       {
         container: tokens(
           "join",

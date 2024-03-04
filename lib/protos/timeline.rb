@@ -26,7 +26,7 @@ module Protos
 
     private
 
-    def css
+    def theme
       {
         container: tokens(
           "timeline",

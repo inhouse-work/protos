@@ -216,23 +216,59 @@ module Ui
     include Protos::Typography
     include Phlex::DeferredRender
 
+    option :title, default: -> {}
+    option :ordered, default: -> { false }
+    option :items, default: -> { [] }, reader: false
+    option :actions, default: -> { [] }, reader: false
+
     def template
       article(**attrs) do
         header class: css[:header] do
           h3(size: :md) { title }
-          nav { render_actions }
-        end
-
-        render Protos::List do |list|
-          items.each do |item|
-            render list.item { render item }
+          nav(class: css[:actions]) do
+            @actions.each do |action|
+              render action
+            end
           end
         end
+
+        render Protos::List.new(ordered:, class: css[:list]) do
+          @items.each { |item| render item }
+          li(&@empty) if @items.empty?
+        end
       end
+    end
+
+    def with_item(*, **, &block)
+      theme = { container: css[:item] }
+      @items << Protos::List::Item.new(*, theme:, **, &block)
+    end
+
+    def with_action(&block)
+      @actions << block
+    end
+
+    def with_empty(&block)
+      @empty = block
+    end
+
+    private
+
+    def theme
+      {
+        container: tokens("space-y-xs"),
+        header: tokens("flex", "justify-between", "items-end", "gap-sm"),
+        list: tokens("divide-y", "border", "w-full"),
+        actions: tokens("space-x-xs"),
+        item: tokens("p-sm")
+      }
     end
   end
 end
 ```
+
+Now the component is specific to our application, and the styles are still
+overridable at all levels.
 
 ## Development
 

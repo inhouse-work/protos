@@ -268,7 +268,16 @@ end
 ```
 
 Now the component is specific to our application, and the styles are still
-overridable at all levels.
+overridable at all levels:
+
+```ruby
+render Ui::List.new(title: "Project Names") do |list|
+  list.with_action { link_to("Add item", "#") }
+  list.with_item { "Project 1" }
+  list.with_item { "Project 2" }
+  list.with_item { "Project 3" }
+end
+```
 
 ## Development
 

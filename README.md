@@ -1,9 +1,12 @@
 # Protos
 
-A UI component library for Phlex using daisyui.
+A UI component library for [Phlex](https://www.phlex.fun/) using
+[tailwindcss](https://tailwindcss.com/) and
+[daisyUI](https://daisyui.com/).
 
-All components avoid using `Phlex::DeferredRender` so you can reorder components
-exactly how you like them.
+All components avoid using
+[`Phlex::DeferredRender`](https://www.phlex.fun/#slots)
+so you can reorder components exactly how you like them.
 
 Components are easy to style, positioning them is usually done through the
 `class` option which applies the style to the outer most container of the

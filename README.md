@@ -118,9 +118,10 @@ Then you can use the components
 ```ruby
 render Protos::Card.new(class: "bg-base-100") do |card|
   card.body(class: "gap-sm") do
-    card.span(class: "font-bold") { "Hello world" }
+    card.title(class: "font-bold") { "Hello world" }
+    span { "This is some more content" }
     card.actions do
-      card.button(class: "btn btn-primary") { "Action 1" }
+      button(class: "btn btn-primary") { "Action 1" }
     end
   end
 end

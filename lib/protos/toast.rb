@@ -29,7 +29,11 @@ module Protos
 
     def theme
       {
-        container: tokens("toast")
+        container: tokens(
+          "toast",
+          "toast-end",
+          "[&:not([open])]:hidden"
+        )
       }
     end
   end

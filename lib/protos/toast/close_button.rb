@@ -4,6 +4,8 @@ module Protos
       def template(&block)
         form(method: :dialog, class: css[:form]) do
           button(
+            autofocus: true,
+            formmethod: :dialog,
             **attrs,
             &block
           )

@@ -33,6 +33,9 @@ module Protos
     require_relative "protos/card/actions"
     require_relative "protos/card/image"
 
+    require_relative "protos/carousel"
+    require_relative "protos/carousel/item"
+
     require_relative "protos/collapse"
     require_relative "protos/collapse/title"
     require_relative "protos/collapse/content"

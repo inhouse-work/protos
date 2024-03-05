@@ -80,6 +80,9 @@ module Protos
     require_relative "protos/table/row"
     require_relative "protos/table/cell"
 
+    require_relative "protos/toast"
+    require_relative "protos/toast/close_button"
+
     require_relative "protos/timeline"
     require_relative "protos/timeline/item"
     require_relative "protos/timeline/left"

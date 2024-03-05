@@ -9,4 +9,8 @@ RSpec.describe Protos::Table::Cell do
     expect(page).to have_css("td")
     expect(page).to have_content("cell")
   end
+
+  it "renders the style" do
+    expect(page).to have_css(".text-left")
+  end
 end

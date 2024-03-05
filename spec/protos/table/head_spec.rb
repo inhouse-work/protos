@@ -9,4 +9,8 @@ RSpec.describe Protos::Table::Head do
     expect(page).to have_css("th")
     expect(page).to have_content("head")
   end
+
+  it "renders the style" do
+    expect(page).to have_css(".text-left")
+  end
 end

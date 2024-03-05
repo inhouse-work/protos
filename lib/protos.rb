@@ -27,6 +27,9 @@ module Protos
 
     require_relative "protos/avatar"
 
+    require_relative "protos/breadcrumbs"
+    require_relative "protos/breadcrumbs/crumb"
+
     require_relative "protos/card"
     require_relative "protos/card/body"
     require_relative "protos/card/title"

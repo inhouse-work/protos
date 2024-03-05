@@ -282,6 +282,134 @@ render Ui::List.new(title: "Project Names") do |list|
 end
 ```
 
+Or here is another example of a table:
+
+```ruby
+module Ui
+  class Table < ApplicationComponent
+    include Protos::Typography
+    include Phlex::DeferredRender
+    include Actionable
+
+    class Column
+      attr_reader :title
+
+      def initialize(title, &block)
+        @title = title
+        @block = block
+      end
+
+      def call(item)
+        @block.call(item)
+      end
+    end
+
+    option :title, default: -> {}
+    option :collection, default: -> { [] }, reader: false
+    option :columns, default: -> { [] }, reader: false
+
+    def template
+      article(**attrs) do
+        header class: css[:header] do
+          h3(size: :md) { title } if title.present?
+          nav(class: css[:actions]) do
+            @actions.each do |action|
+              render action
+            end
+          end
+        end
+
+        render Protos::Table.new(class: css[:table]) do |table|
+          render(table.caption(class: css[:caption]), &@caption) if @caption
+          render table.header do
+            render table.row do
+              @columns.each do |column|
+                render table.head do
+                  plain(column.title)
+                end
+              end
+            end
+          end
+
+          render table.body do
+            @collection.each do |item|
+              render table.row do
+                @columns.each do |column|
+                  render table.cell do
+                    column.call(item)
+                  end
+                end
+              end
+            end
+
+            if @collection.empty?
+              render table.row do
+                render table.cell(colspan: @columns.length) do
+                  @empty&.call
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+
+    def with_column(...)
+      @columns << Column.new(...)
+    end
+
+    def with_empty(&block)
+      @empty = block
+    end
+
+    def with_caption(&block)
+      @caption = block
+    end
+
+    def with_action(&block)
+      @actions << block
+    end
+
+    private
+
+    def theme
+      {
+        container: tokens("space-y-sm"),
+        header: tokens("flex", "justify-between", "items-end", "gap-sm"),
+        table: tokens("border"),
+        caption: tokens("text-muted")
+      }
+    end
+  end
+end
+```
+
+Which lets you have a very nice table builder:
+
+```ruby
+collection = [
+  {
+    name: "John Doe",
+    status: "Active",
+    location: "New York"
+  }
+]
+
+render Ui::Table.new(title: "A table", collection:) do |table|
+  table.with_caption { "Users" }
+  table.with_action("Add new", size: :sm)
+
+  table.with_column("Name") { |row| row[:name] }
+  table.with_column("Location") { |row| row[:location] }
+  table.with_column("Status") do |row|
+    table.span(class: "badge badge-info") { row[:status] }
+  end
+  table.with_column("Actions") do
+    table.a(href: "#") { "View" }
+  end
+end
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run

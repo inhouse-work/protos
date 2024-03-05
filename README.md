@@ -209,6 +209,8 @@ render Protos::Card.new(class: "bg-base-100") do |card|
 end
 ```
 
+## Building your own components
+
 A good idea would be to encapsulate these proto components with your own
 components as a wrapper. For example you could use `Proto::List` to create your
 own list and even use `Phlex::DeferredRender` to make the API more convenient.

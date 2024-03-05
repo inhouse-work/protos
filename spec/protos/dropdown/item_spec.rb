@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Protos::Dropdown::Item do
   before do
     render described_class.new { "Content 1" }

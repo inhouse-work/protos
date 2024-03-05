@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Protos
   class Toast
     class CloseButton < Component

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Protos::Swap do
   before do
     render described_class.new { "Swap content" }

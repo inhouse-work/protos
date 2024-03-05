@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Protos::Tabs do
   before do
     render described_class.new(type: :lifted, size: :lg) { "Tabs content" }

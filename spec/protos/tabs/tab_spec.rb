@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Protos::Tabs::Tab do
   before do
     render described_class.new(

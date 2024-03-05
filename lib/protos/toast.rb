@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Protos
   class Toast < Component
     Positions = Types::Symbol.enum(

@@ -402,10 +402,10 @@ render Ui::Table.new(title: "A table", collection:) do |table|
   table.with_column("Name") { |row| row[:name] }
   table.with_column("Location") { |row| row[:location] }
   table.with_column("Status") do |row|
-    table.span(class: "badge badge-info") { row[:status] }
+    span(class: "badge badge-info") { row[:status] }
   end
   table.with_column("Actions") do
-    table.a(href: "#") { "View" }
+    a(href: "#") { "View" }
   end
 end
 ```

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Protos
   class Carousel
     class Actions < Component

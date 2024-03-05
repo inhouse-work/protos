@@ -37,6 +37,12 @@ module Protos
     require_relative "protos/carousel/item"
     require_relative "protos/carousel/actions"
 
+    require_relative "protos/chat_bubble"
+    require_relative "protos/chat_bubble/content"
+    require_relative "protos/chat_bubble/image"
+    require_relative "protos/chat_bubble/header"
+    require_relative "protos/chat_bubble/footer"
+
     require_relative "protos/collapse"
     require_relative "protos/collapse/title"
     require_relative "protos/collapse/content"

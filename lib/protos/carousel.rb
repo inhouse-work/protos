@@ -20,6 +20,10 @@ module Protos
       Item.new(...)
     end
 
+    def actions(...)
+      Actions.new(...)
+    end
+
     private
 
     def snap_to

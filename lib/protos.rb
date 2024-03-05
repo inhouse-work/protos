@@ -35,6 +35,7 @@ module Protos
 
     require_relative "protos/carousel"
     require_relative "protos/carousel/item"
+    require_relative "protos/carousel/actions"
 
     require_relative "protos/collapse"
     require_relative "protos/collapse/title"

@@ -72,6 +72,10 @@ module Protos
     require_relative "protos/dropdown/menu"
     require_relative "protos/dropdown/trigger"
 
+    require_relative "protos/hero"
+    require_relative "protos/hero/content"
+    require_relative "protos/hero/overlay"
+
     require_relative "protos/list"
     require_relative "protos/list/item"
 

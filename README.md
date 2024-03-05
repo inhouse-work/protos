@@ -397,7 +397,9 @@ collection = [
 
 render Ui::Table.new(title: "A table", collection:) do |table|
   table.with_caption { "Users" }
-  table.with_action("Add new", size: :sm)
+  table.with_action do
+    a(href: "#") { "Add new" }
+  end
 
   table.with_column("Name") { |row| row[:name] }
   table.with_column("Location") { |row| row[:location] }

@@ -4,6 +4,31 @@ A UI component library for [Phlex](https://www.phlex.fun/) using
 [tailwindcss](https://tailwindcss.com/) and
 [daisyUI](https://daisyui.com/).
 
+This library avoids re-making Protos components for extremely simple daisyui
+components such as:
+
+- Badge
+- Buttons
+- Checkbox
+- File input
+- Indicator
+- Join
+- Kbd
+- Link
+- Loading
+- Mask
+- Progress
+- Radial progress
+- Radio
+- Range
+- Select
+- Skeleton
+- Stack
+- Text input
+- Textarea
+- Toggle
+- Tooltip
+
 All components avoid using
 [`Phlex::DeferredRender`](https://www.phlex.fun/#slots)
 so you can reorder components exactly how you like them.

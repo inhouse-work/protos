@@ -75,6 +75,9 @@ module Protos
     require_relative "protos/swap/on"
     require_relative "protos/swap/off"
 
+    require_relative "protos/tabs"
+    require_relative "protos/tabs/tab"
+
     require_relative "protos/table"
     require_relative "protos/table/caption"
     require_relative "protos/table/header"

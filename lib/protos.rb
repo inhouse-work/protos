@@ -71,6 +71,10 @@ module Protos
     require_relative "protos/popover/trigger"
     require_relative "protos/popover/content"
 
+    require_relative "protos/swap"
+    require_relative "protos/swap/on"
+    require_relative "protos/swap/off"
+
     require_relative "protos/table"
     require_relative "protos/table/caption"
     require_relative "protos/table/header"

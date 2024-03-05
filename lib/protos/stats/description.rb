@@ -1,0 +1,19 @@
+# frozen_string_literal: true
+
+module Protos
+  class Stats
+    class Description < Component
+      def template(&block)
+        div(**attrs, &block)
+      end
+
+      private
+
+      def theme
+        {
+          container: tokens("stat-desc")
+        }
+      end
+    end
+  end
+end

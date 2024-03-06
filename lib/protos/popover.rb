@@ -21,7 +21,7 @@ module Protos
     )
 
     AnimationTypes = Types::Coercible::Symbol.enum(
-      :none,
+      :fade,
       :shift_away,
       :shift_away_subtle,
       :shift_away_extreme,
@@ -42,7 +42,7 @@ module Protos
            reader: false
     option :animation,
            type: AnimationTypes,
-           default: -> { :none },
+           default: -> { :fade },
            reader: false
     option :duration,
            type: Types::Integer | Types::Array.of(Types::Integer),
@@ -81,7 +81,7 @@ module Protos
 
     def options
       opts = {}
-      opts[:animation] = dasherize(@animation) if @animation != :none
+      opts[:animation] = dasherize(@animation)
       opts[:placement] = dasherize(@position)
       opts[:duration] = @duration
       opts[:hideOnClick] = @hide_on_click

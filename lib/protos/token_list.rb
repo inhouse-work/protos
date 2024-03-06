@@ -12,7 +12,7 @@ module Protos
 
     attr_reader :tokens
 
-    def initialize(tokens)
+    def initialize(tokens = [])
       @tokens = Set.new(tokens)
     end
 
@@ -31,11 +31,19 @@ module Protos
     end
 
     def remove(token)
-      @tokens.delete(token)
+      tap do
+        self.class.parse(token).tokens.each do |token|
+          @tokens.delete(token)
+        end
+      end
     end
 
-    def add(token)
-      @tokens.add(token)
+    def add(input)
+      tap do
+        self.class.parse(input).tokens.each do |token|
+          @tokens.add(token)
+        end
+      end
     end
   end
 end

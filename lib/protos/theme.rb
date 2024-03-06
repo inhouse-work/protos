@@ -15,27 +15,35 @@ module Protos
     end
 
     def add(key, value)
-      current_tokens = parse(@theme.fetch(key, ""))
-      new_tokens = parse(value)
-      tokens = current_tokens + new_tokens
-
-      @theme[key] = tokens.to_s
+      TokenList.new
+        .add(@theme.fetch(key, ""))
+        .add(value)
+        .to_s
+        .tap do |tokens|
+          @theme[key] = tokens
+        end
     end
 
     def remove(key, value)
-      current_tokens = parse(@theme.fetch(key, ""))
-      removable_tokens = parse(value)
-      tokens = current_tokens - removable_tokens
-
-      @theme[key] = tokens.to_s
+      TokenList.new
+        .add(@theme.fetch(key, ""))
+        .remove(value)
+        .to_s
+        .tap do |tokens|
+          @theme[key] = tokens
+        end
     end
 
     def set(key, value)
       if value.is_a?(Hash)
         @theme[key] = value
       else
-        tokens = parse(value)
-        @theme[key] = tokens.to_s
+        TokenList
+          .parse(value)
+          .to_s
+          .tap do |tokens|
+            @theme[key] = tokens
+          end
       end
     end
 
@@ -60,10 +68,6 @@ module Protos
     end
 
     private
-
-    def parse(value)
-      TokenList.parse(value)
-    end
 
     def negation?(key)
       key.to_s.start_with?("!")

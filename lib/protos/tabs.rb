@@ -3,23 +3,23 @@
 module Protos
   class Tabs < Component
     option :type,
+           default: -> { :default },
+           reader: false,
            type: Types::Coercible::Symbol.enum(
              :default,
              :boxed,
              :bordered,
              :lifted
-           ),
-           default: -> { :default },
-           reader: false
+           )
     option :size,
+           default: -> { :md },
+           reader: false,
            type: Types::Coercible::Symbol.enum(
              :xs,
              :sm,
              :md,
              :lg
-           ),
-           default: -> { :md },
-           reader: false
+           )
 
     def template(&block)
       div(**attrs, &block)

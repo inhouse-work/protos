@@ -18,7 +18,7 @@ module Protos
     end
 
     def to_s
-      @tokens.to_a.join(" ")
+      merge(@tokens.to_a.join(" "))
     end
 
     def -(other)
@@ -45,6 +45,22 @@ module Protos
           @tokens.add(token)
         end
       end
+    end
+
+    private
+
+    def merge(tokens)
+      TailwindMerge::Merger.new(
+        config: {
+          theme: {
+            # Not currently working in the gem.
+            # "spacing" => %w[xs sm md lg xl],
+            # "padding" => %w[xs sm md lg xl],
+            # "margin" => %w[xs sm md lg xl]
+          }
+        }
+      )
+        .merge(tokens)
     end
   end
 end

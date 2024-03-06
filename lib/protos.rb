@@ -3,6 +3,7 @@
 require "dry-types"
 require "dry-initializer"
 require "phlex"
+require "tailwind_merge"
 
 module Protos
   class Error < StandardError; end

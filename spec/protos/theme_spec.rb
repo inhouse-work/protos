@@ -18,6 +18,14 @@ RSpec.describe Protos::Theme do
   end
 
   describe "#merge" do
+    it "uses tailwindcss merge to merge conflicting styles" do
+      skip("Not currently working in the gem with semantic styles.")
+      theme = described_class.new(foo: "p-sm")
+      theme.merge(foo: "p-md")
+
+      expect(theme[:foo]).to eq("p-md")
+    end
+
     it "handles a nil value" do
       theme = described_class.new(foo: "bar")
       theme.merge(nil)

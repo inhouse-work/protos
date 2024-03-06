@@ -7,6 +7,9 @@ A UI component library for [Phlex](https://www.phlex.fun/) using
 You can see a full list of the components at
 [https://protos.inhouse.work/](https://protos.inhouse.work/).
 
+Tailwindcss classes are merged using
+[tailwind\_merge](https://github.com/gjtorikian/tailwind_merge).
+
 Other Phlex based UI libraries:
 
 - [PhlexUI](https://phlexui.com/)

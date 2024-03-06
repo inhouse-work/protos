@@ -4,6 +4,14 @@ A UI component library for [Phlex](https://www.phlex.fun/) using
 [tailwindcss](https://tailwindcss.com/) and
 [daisyUI](https://daisyui.com/).
 
+You can see a full list of the components at
+[https://protos.inhouse.work/](https://protos.inhouse.work/).
+
+Other Phlex based UI libraries:
+
+- [PhlexUI](https://phlexui.com/)
+- [ZestUI](https://zestui.com/)
+
 This library avoids re-making Protos components for extremely simple daisyui
 components such as:
 

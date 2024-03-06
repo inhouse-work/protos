@@ -7,7 +7,8 @@ RSpec.describe Protos::Popover do
       animation: :shift_away,
       duration: [200, 200],
       hide_on_click: :toggle,
-      z_index: 10
+      z_index: 10,
+      trigger: %i[mouseenter focus]
     )
   end
 
@@ -21,7 +22,8 @@ RSpec.describe Protos::Popover do
       placement: "top",
       duration: [200, 200],
       hideOnClick: "toggle",
-      zIndex: 10
+      zIndex: 10,
+      trigger: "mouseenter focus"
     })
 
     expect(page).to have_css("div[data-controller='protos--popover']")

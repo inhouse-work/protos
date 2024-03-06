@@ -36,6 +36,14 @@ module Protos
       :perspective_extreme
     )
 
+    TriggerTypes = Types::Coercible::Symbol.enum(
+      :focus,
+      :mouseenter,
+      :click,
+      :focusin,
+      :manual
+    )
+
     option :position,
            type: PositionTypes,
            default: -> { :top },
@@ -60,6 +68,10 @@ module Protos
            default: -> { {} },
            reader: false,
            type: Types::Hash
+    option :trigger,
+           default: -> { %i[mouseenter focus] },
+           reader: false,
+           type: TriggerTypes | Types::Array.of(TriggerTypes)
 
     def template(&block)
       div(**attrs, &block)
@@ -86,6 +98,7 @@ module Protos
       opts[:duration] = @duration
       opts[:hideOnClick] = @hide_on_click
       opts[:zIndex] = @z_index
+      opts[:trigger] = Array(@trigger).flatten.map(&:to_s).join(" ")
       opts.merge(@options)
     end
 

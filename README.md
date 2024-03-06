@@ -7,10 +7,12 @@ A UI component library for [Phlex](https://www.phlex.fun/) using
 You can see a full list of the components at
 [https://protos.inhouse.work/](https://protos.inhouse.work/).
 
-Tailwindcss classes are merged using
+- Tailwindcss classes are merged using
 [tailwind\_merge](https://github.com/gjtorikian/tailwind_merge).
+- Uses [tippy.js](https://atomiks.github.io/tippyjs/v6/getting-started/) for
+  dropdowns, combobox, and popovers
 
-Other Phlex based UI libraries:
+Other Phlex based UI libraries worth checking out:
 
 - [PhlexUI](https://phlexui.com/)
 - [ZestUI](https://zestui.com/)

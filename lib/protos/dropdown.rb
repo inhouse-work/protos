@@ -6,6 +6,10 @@ module Protos
            type: PositionTypes,
            default: -> { :bottom },
            reader: false
+    option :trigger,
+           default: -> { :click },
+           reader: false,
+           type: TriggerTypes | Types::Array.of(TriggerTypes)
 
     def item(...)
       Item.new(...)

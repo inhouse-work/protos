@@ -52,8 +52,6 @@ module Protos
     require_relative "protos/collapse/title"
     require_relative "protos/collapse/content"
 
-    require_relative "protos/combobox"
-
     require_relative "protos/command"
     require_relative "protos/command/input"
     require_relative "protos/command/dialog"
@@ -128,5 +126,7 @@ module Protos
     require_relative "protos/dropdown/item"
     require_relative "protos/dropdown/menu"
     require_relative "protos/dropdown/trigger"
+
+    require_relative "protos/combobox"
   end
 end

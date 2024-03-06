@@ -1,14 +1,11 @@
 # frozen_string_literal: true
 
 module Protos
-  class Combobox < Component
-    def template
-      div(**attrs) do
-        render Popover.new do
-          yield if block_given?
-        end
-      end
-    end
+  class Combobox < Popover
+    option :trigger,
+           default: -> { :click },
+           reader: false,
+           type: TriggerTypes | Types::Array.of(TriggerTypes)
 
     def trigger(...)
       Popover::Trigger.new(...)
@@ -46,7 +43,10 @@ module Protos
 
     def default_attrs
       {
-        data: { controller: "protos--command" }
+        data: {
+          controller: "protos--popover protos--command",
+          "protos--popover-options-value": JSON.generate(options)
+        }
       }
     end
   end

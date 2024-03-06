@@ -5,8 +5,8 @@ module Protos
     class Tab < Component
       param :id
       option :label
-      option :active, default: false
-      option :disabled, default: false
+      option :active, default: -> { false }
+      option :disabled, default: -> { false }
 
       def template(&block)
         input(

@@ -1,25 +1,15 @@
 # frozen_string_literal: true
 
 module Protos
-  class Dropdown < Component
-    PositionTypes = Types::Coercible::Symbol.enum(
-      :top,
-      :bottom,
-      :left,
-      :right,
-      :start,
-      :end
-    )
-
+  class Dropdown < Popover
     option :position,
            type: PositionTypes,
            default: -> { :bottom },
            reader: false
-    option :hover, type: Types::Bool, default: -> { false }
-
-    def template(&block)
-      details(**attrs, &block)
-    end
+    option :trigger,
+           default: -> { :click },
+           reader: false,
+           type: TriggerTypes | Types::Array.of(TriggerTypes)
 
     def item(...)
       Item.new(...)
@@ -31,29 +21,6 @@ module Protos
 
     def trigger(...)
       Trigger.new(...)
-    end
-
-    private
-
-    def position
-      {
-        bottom: "dropdown-bottom",
-        top: "dropdown-top",
-        left: "dropdown-left",
-        right: "dropdown-right",
-        end: "dropdown-end",
-        start: "dropdown-start"
-      }.fetch(@position)
-    end
-
-    def theme
-      {
-        container: tokens(
-          "dropdown",
-          position,
-          hover: "dropdown-hover"
-        )
-      }
     end
   end
 end

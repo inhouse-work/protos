@@ -2,10 +2,7 @@
 
 module Protos
   class Dropdown
-    class Trigger < Component
-      def template(&block)
-        summary(**attrs, &block)
-      end
+    class Trigger < Popover::Trigger
     end
   end
 end

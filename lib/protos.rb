@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "json"
 require "dry-types"
 require "dry-initializer"
 require "phlex"
@@ -51,8 +52,6 @@ module Protos
     require_relative "protos/collapse/title"
     require_relative "protos/collapse/content"
 
-    require_relative "protos/combobox"
-
     require_relative "protos/command"
     require_relative "protos/command/input"
     require_relative "protos/command/dialog"
@@ -67,11 +66,6 @@ module Protos
     require_relative "protos/drawer/side"
     require_relative "protos/drawer/trigger"
     require_relative "protos/drawer/content"
-
-    require_relative "protos/dropdown"
-    require_relative "protos/dropdown/item"
-    require_relative "protos/dropdown/menu"
-    require_relative "protos/dropdown/trigger"
 
     require_relative "protos/hero"
     require_relative "protos/hero/content"
@@ -126,5 +120,13 @@ module Protos
     require_relative "protos/typography/heading"
     require_relative "protos/typography/paragraph"
     require_relative "protos/typography/inline_link"
+
+    # Dependent
+    require_relative "protos/dropdown"
+    require_relative "protos/dropdown/item"
+    require_relative "protos/dropdown/menu"
+    require_relative "protos/dropdown/trigger"
+
+    require_relative "protos/combobox"
   end
 end

@@ -2,9 +2,11 @@
 
 module Protos
   class Dropdown
-    class Menu < Component
+    class Menu < Popover::Content
       def template(&block)
-        ul(**attrs, &block)
+        template_tag(**template_attrs) do
+          ul(**attrs, &block)
+        end
       end
 
       private

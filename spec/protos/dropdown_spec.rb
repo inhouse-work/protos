@@ -2,17 +2,14 @@
 
 RSpec.describe Protos::Dropdown do
   before do
-    render described_class.new(hover: true) { "Hello, World!" }
+    render described_class.new
   end
 
   it "renders the dropdown" do
-    expect(page).to have_css("details")
-    expect(page).to have_content("Hello, World!")
+    expect(page).to have_css("div")
   end
 
-  it "renders the styles" do
-    expect(page).to have_css(".dropdown-bottom")
-    expect(page).to have_css(".dropdown")
-    expect(page).to have_css(".dropdown-hover")
+  it "connects the stimulus controller" do
+    expect(page).to have_css("div[data-controller='protos--popover']")
   end
 end

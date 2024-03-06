@@ -6,10 +6,10 @@ RSpec.describe Protos::Combobox do
   end
 
   it "renders the component" do
-    expect(page).to have_css("details")
+    expect(page).to have_css("div")
   end
 
-  it "adds the stimulus controller" do
-    expect(page).to have_css("[data-controller='protos--command']")
+  it "adds the stimulus controllers" do
+    expect(page).to have_css("[data-controller='protos--popover protos--command']")
   end
 end

@@ -6,7 +6,7 @@ RSpec.describe Protos::Dropdown::Trigger do
   end
 
   it "renders the trigger" do
-    expect(page).to have_css("summary")
+    expect(page).to have_css("div")
     expect(page).to have_content("trigger")
     expect(page).to have_css(".custom")
   end

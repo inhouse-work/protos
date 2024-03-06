@@ -2,11 +2,12 @@
 
 TestComponent = Class.new(Protos::Component) do
   css_method :custom_style
-  attrs_method :options
+  attrs_method :custom_options
 
   def template(&block)
     div(**attrs) do
       div(class: "#{css[:inner]} #{css[:overridable]}") do
+        span(class: css[:non_existent]) { "Hello" }
         div(class: css[:deeply][:nested], &block)
       end
     end
@@ -14,7 +15,7 @@ TestComponent = Class.new(Protos::Component) do
 
   private
 
-  def options
+  def custom_options
     {
       data: { "test-component": "true" }
     }
@@ -47,6 +48,7 @@ RSpec.describe Protos::Component do
 
   it "renders the component" do
     expect(page).to have_css("div > div > div")
+    expect(page).to have_css("div > div > span")
     expect(page).to have_content("Hello")
   end
 

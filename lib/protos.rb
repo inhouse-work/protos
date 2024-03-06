@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "json"
 require "dry-types"
 require "dry-initializer"
 require "phlex"

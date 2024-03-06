@@ -4,15 +4,9 @@ module Protos
   class Popover
     class Content < Component
       def template(&block)
-        div(**attrs, &block)
-      end
-
-      private
-
-      def theme
-        {
-          container: tokens("dropdown-content", "z-10")
-        }
+        template_tag(data: { "protos--popover-target": "template" }) do
+          div(**attrs, &block)
+        end
       end
     end
   end

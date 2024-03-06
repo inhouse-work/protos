@@ -7,21 +7,62 @@ module Protos
 
     PositionTypes = Types::Coercible::Symbol.enum(
       :top,
-      :bottom,
-      :left,
+      :top_start,
+      :top_end,
       :right,
-      :start,
-      :end
+      :right_start,
+      :right_end,
+      :bottom,
+      :bottom_start,
+      :bottom_end,
+      :left,
+      :left_start,
+      :left_end
+    )
+
+    AnimationTypes = Types::Coercible::Symbol.enum(
+      :none,
+      :shift_away,
+      :shift_away_subtle,
+      :shift_away_extreme,
+      :shift_towards,
+      :shift_towards_subtle,
+      :shift_towards_extreme,
+      :scale,
+      :scale_subtle,
+      :scale_extreme,
+      :perspective,
+      :perspective_subtle,
+      :perspective_extreme
     )
 
     option :position,
            type: PositionTypes,
-           default: -> { :bottom },
+           default: -> { :top },
            reader: false
-    option :hover, type: Types::Bool, default: -> { false }
+    option :animation,
+           type: AnimationTypes,
+           default: -> { :none },
+           reader: false
+    option :duration,
+           type: Types::Integer | Types::Array.of(Types::Integer),
+           default: -> { [300, 250] },
+           reader: false
+    option :hide_on_click,
+           type: Types::Bool | Types.Value(:toggle),
+           default: -> { true },
+           reader: false
+    option :z_index,
+           type: Types::Integer,
+           default: -> { 9999 },
+           reader: false
+    option :options,
+           default: -> { {} },
+           reader: false,
+           type: Types::Hash
 
     def template(&block)
-      details(**attrs, &block)
+      div(**attrs, &block)
     end
 
     def content(...)
@@ -34,20 +75,26 @@ module Protos
 
     private
 
-    def position
-      {
-        bottom: "dropdown-bottom",
-        top: "dropdown-top",
-        left: "dropdown-left",
-        right: "dropdown-right",
-        end: "dropdown-end",
-        start: "dropdown-start"
-      }.fetch(@position)
+    def dasherize(string)
+      string.to_s.tr("_", "-")
     end
 
-    def theme
+    def options
+      opts = {}
+      opts[:animation] = dasherize(@animation) if @animation != :none
+      opts[:placement] = dasherize(@position)
+      opts[:duration] = @duration
+      opts[:hideOnClick] = @hide_on_click
+      opts[:zIndex] = @z_index
+      opts.merge(@options)
+    end
+
+    def default_attrs
       {
-        container: tokens("dropdown", position)
+        data: {
+          controller: "protos--popover",
+          "protos--popover-options-value": JSON.generate(options)
+        }
       }
     end
   end

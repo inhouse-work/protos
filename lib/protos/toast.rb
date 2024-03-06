@@ -34,7 +34,8 @@ module Protos
         container: tokens(
           "toast",
           "toast-end",
-          "[&:not([open])]:hidden"
+          "[&:not([open])]:hidden",
+          "bg-transparent"
         )
       }
     end

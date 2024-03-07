@@ -3,15 +3,21 @@
 module Protos
   class Toast < Component
     Positions = Types::Symbol.enum(
-      :start,
-      :center,
-      :end,
-      :top,
-      :middle,
-      :bottom
+      :top_start,
+      :top_center,
+      :top_end,
+      :middle_start,
+      :middle_center,
+      :middle_end,
+      :bottom_start,
+      :bottom_center,
+      :bottom_end
     )
 
-    option :position, type: Positions, default: -> { :end }
+    option :position,
+           type: Positions,
+           default: -> { :bottom_end },
+           reader: false
 
     def template(&block)
       dialog(**attrs, &block)
@@ -29,11 +35,25 @@ module Protos
       }
     end
 
+    def position
+      {
+        top_start: "toast-start toast-top",
+        top_center: "toast-center toast-top",
+        top_end: "toast-end toast-top",
+        middle_start: "toast-start toast-middle",
+        middle_center: "toast-center toast-middle",
+        middle_end: "toast-end toast-middle",
+        bottom_start: "toast-start toast-bottom",
+        bottom_center: "toast-center toast-bottom",
+        bottom_end: "toast-end toast-bottom"
+      }.fetch(@position)
+    end
+
     def theme
       {
         container: tokens(
           "toast",
-          "toast-end",
+          position,
           "[&:not([open])]:hidden",
           "bg-transparent"
         )

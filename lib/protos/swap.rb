@@ -4,7 +4,7 @@ module Protos
   class Swap < Component
     def template
       label(**attrs) do
-        input(type: :checkbox)
+        input(type: :checkbox, class: css[:input])
         yield if block_given?
       end
     end
@@ -21,7 +21,8 @@ module Protos
 
     def theme
       {
-        container: tokens("swap")
+        container: tokens("swap"),
+        input: tokens("hidden")
       }
     end
   end

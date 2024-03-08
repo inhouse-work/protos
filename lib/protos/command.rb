@@ -42,7 +42,7 @@ module Protos
 
     def default_attrs
       {
-        data: { controller: "protos--command protos--modal" }
+        data: { controller: "protos--modal" }
       }
     end
   end

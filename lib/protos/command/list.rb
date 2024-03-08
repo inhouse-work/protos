@@ -9,6 +9,12 @@ module Protos
 
       private
 
+      def default_attrs
+        {
+          data: { controller: "protos--command" }
+        }
+      end
+
       def theme
         {
           container: tokens("menu")

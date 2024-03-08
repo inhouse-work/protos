@@ -44,7 +44,7 @@ module Protos
     def default_attrs
       {
         data: {
-          controller: "protos--popover protos--command",
+          controller: "protos--popover",
           "protos--popover-options-value": JSON.generate(options)
         }
       }

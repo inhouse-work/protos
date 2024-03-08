@@ -12,4 +12,8 @@ RSpec.describe Protos::Command::List do
   it "adds the styles" do
     expect(page).to have_css(".menu")
   end
+
+  it "connects the stimulus controller for command" do
+    expect(page).to have_css("[data-controller='protos--command']")
+  end
 end

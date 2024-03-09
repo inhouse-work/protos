@@ -11,99 +11,177 @@ You can see a full list of the components at
 [tailwind\_merge](https://github.com/gjtorikian/tailwind_merge).
 - Uses [tippy.js](https://atomiks.github.io/tippyjs/v6/getting-started/) for
   dropdowns, combobox, and popovers
+- All components avoid using
+  [`Phlex::DeferredRender`](https://www.phlex.fun/#slots)
+  so you can reorder components exactly how you like them.
 
 Other Phlex based UI libraries worth checking out:
 
 - [PhlexUI](https://phlexui.com/)
 - [ZestUI](https://zestui.com/)
 
-This library avoids re-making Protos components for extremely simple daisyui
-components such as:
+## Protos::Component
 
-- Badge
-- Buttons
-- Checkbox
-- File input
-- Indicator
-- Join
-- Kbd
-- Link
-- Loading
-- Mask
-- Progress
-- Radial progress
-- Radio
-- Range
-- Select
-- Skeleton
-- Stack
-- Text input
-- Textarea
-- Toggle
-- Tooltip
+A protos component follows some conventions that make them easy to work with as
+components in your app.
 
-All components avoid using
-[`Phlex::DeferredRender`](https://www.phlex.fun/#slots)
-so you can reorder components exactly how you like them.
+Every UI component library will have a tension between being too general or
+narrow to be useful. Making components that look good out of the box can make
+them hard to customize.
 
-Components are easy to style, positioning them is usually done through the
-`class` option which applies the style to the outer most container of the
-component:
+There are 3 main conventions:
+
+### Theme
+
+Components are styled with `css` slots that are filled with values from a `theme`:
 
 ```ruby
-render Protos::Avatar.new(class: "my-lg") do |avatar|
-  # ...
+class List < Protos::Component
+  def template
+    ul(class: css[:list]) do
+      li(class: css[:item]) { "Item 1" }
+      li(class: css[:item]) { "Item 2" }
+    end
+  end
+
+  def theme
+    {
+      list: tokens("space-y-4"),
+      item: tokens("font-bold", "text-2xl")
+    }
+  end
 end
 ```
 
-But they are also extensible to all styles by injecting a `theme` into the
-component:
+Doing this means we can override the style of particular slots:
 
 ```ruby
-render Protos::Avatar.new(theme: {
-    container: "my-lg",
-    figure: "p-sm" # Apply this padding to the image container
-}) do |avatar|
-  # ...
+render List.new(
+  theme: {
+    list: "space-y-8",
+    item: "bg-red-500"
+  }
+)
+```
+
+This would combine the default and our theme using tailwind\_merge:
+
+```html
+<ul class="space-y-8">
+  <li class="font-bold text-2xl bg-red-500">Item 1</li>
+  <li class="font-bold text-2xl bg-red-500">Item 2</li>
+</ul>
+```
+
+
+We can override the theme by using a `!` at the end of the key:
+
+```ruby
+render List.new(
+  theme: {
+    item!: "bg-red-500"
+  }
+)
+```
+
+The css slot `css[:item]` would be overridden rather than merged:
+
+```html
+<li class="bg-red-500">Item 1</li>
+```
+
+We can also negate a certain class from the slot by putting a `!` at the start
+of the key:
+
+```ruby
+render List.new(
+  theme: {
+    "!item": "text-2xl"
+  }
+)
+```
+
+The new `css[:item]` slot would be:
+
+```html
+<li class="font-bold">Item 1</li>
+```
+
+### Attrs
+
+By convention, all components spread in an `attrs` hash on their outermost
+element of the component.
+
+By doing this we enable 2 main conveniences:
+1. We can pass `class` when initializing the component
+2. We can add default attributes that can be merged with defaults
+
+```ruby
+class List < Protos::Component
+  def template
+    ul(**attrs) do
+      # ...
+    end
+  end
+
+  private
+
+  def default_attrs
+    {
+      data: {
+        controller: "list"
+      }
+    }
+  end
+
+  def theme
+    {
+      container: tokens("space-y-4"),
+      item: tokens("font-bold")
+    }
+  end
 end
 ```
 
-You can even override or negate certain parts of the theme:
+Attrs will by default merge `class` into the `css[:container]` slot so we
+changed that in our theme. We also added `default_attrs` and gave a controller.
+These could be any html options.
+
+Now we get some additional convenience:
 
 ```ruby
-render Protos::Avatar.new(theme: {
-    container!: "my-lg", # Override the original container style
-    "!figure": "p-sm"    # Remove this class from the figure style
-}) do |avatar|
-  # ...
+render List.new(
+  class: "my-lg",
+  data: { controller: "confetti" }
+)
+```
+
+This would merge our `data` and `class` safely into the attributes:
+
+```html
+<ul data-controller="list confetti" class="space-y-4 my-lg">
+```
+
+### Params and options
+
+Components use `Dry::Initializer` which lets us easily add new positional
+arguments with `param` or keyword arguments with `option`
+
+```ruby
+class List < Protos::Component
+  option :ordered
 end
 ```
 
-If the component uses a stimulus controller on the data component, or any other
-default attributes you can safely add to them without overriding:
+The following keywords are reserved in the base class:
 
-```ruby
-render Protos::Avatar.new(data: { controller: "my-controller" }) do |avatar|
-  # ...
-end
-```
+- `class`
+- `theme`
+- `html_options`
 
-This will add your attributes without removing the important ones that help the
-components be accessible.
+## Putting it all together
 
-Protos uses a set of conventions that make it easier to work with tailwindcss
-and components in Phlex which you can use in your own components by inheriting 
-from the base component.
-
-This adds:
-1. extends `Dry::Initializer` to easily add initialization params and options
-2. adds `attrs` which merges html attributes onto defaults
-3. adds `default_attrs` for default html attributes on a component
-4. adds `theme` for default styles hash
-5. adds `css` for accessing theme slots
-
-You can find this example in `examples/navbar.rb` which you can run with `ruby
-examples/navbar.rb`:
+Here is an example of a small navbar component:
 
 ```ruby
 require "protos"
@@ -451,6 +529,33 @@ render Ui::Table.new(title: "A table", collection:) do |table|
   end
 end
 ```
+
+## No unnecessary components
+
+This library avoids re-making Protos components for extremely simple daisyui
+components such as:
+
+- Badge
+- Buttons
+- Checkbox
+- File input
+- Indicator
+- Join
+- Kbd
+- Link
+- Loading
+- Mask
+- Progress
+- Radial progress
+- Radio
+- Range
+- Select
+- Skeleton
+- Stack
+- Text input
+- Textarea
+- Toggle
+- Tooltip
 
 ## Development
 

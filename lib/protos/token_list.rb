@@ -7,7 +7,9 @@ module Protos
       when String then new(input.split)
       when Array then new(input)
       when TokenList then input
-      else raise ArgumentError, "Invalid input: #{input.inspect}"
+      when NilClass then new
+      else raise ArgumentError,
+                 "Invalid input for #{self.class.name}: #{input.inspect}"
       end
     end
 

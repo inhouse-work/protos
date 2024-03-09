@@ -1,4 +1,12 @@
 RSpec.describe Protos::TokenList do
+  describe ".parse" do
+    it "allows nil" do
+      tokens = described_class.parse(nil).to_s
+
+      expect(tokens).to eq("")
+    end
+  end
+
   describe "#to_s" do
     it "merges the list with tailwindcss merge" do
       tokens = described_class.new(%w[p-2 p-4]).to_s

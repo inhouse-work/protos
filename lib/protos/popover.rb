@@ -8,6 +8,9 @@ module Protos
     # Dropdowns, and popovers in general, use tippy.js to position content
     # rather than pure CSS for accessibility. The layout of pure CSS was too
     # tricky to get right and we felt the dependency tradeoff was worthwhile.
+    #
+    # Tippy.js options can be passed in via the `options` attribute or, more
+    # conveniently by the typed options listed below.
 
     PositionTypes = Types::Coercible::Symbol.enum(
       :top,

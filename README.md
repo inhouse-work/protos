@@ -33,9 +33,9 @@ We try and resolve this tensions by making the components have a minimal style
 that can be easily overridden using some ergonomic conventions.
 
 There are 3 core conventions:
-- Slots and themes
-- Attrs and default attrs
-- Params and options
+- [Slots and themes](#slots-and-themes)
+- [Attrs and default attrs](#attrs-and-default-attrs)
+- [Params and options](#params-and-options)
 
 ### Slots and themes
 

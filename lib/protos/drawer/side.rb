@@ -19,7 +19,11 @@ module Protos
 
       def theme
         {
-          container: tokens("drawer-side", "z-20"),
+          container: tokens(
+            "drawer-side",
+            "z-20",
+            "peer-checked:backdrop-blur-sm"
+          ),
           toggle: tokens("drawer-overlay")
         }
       end

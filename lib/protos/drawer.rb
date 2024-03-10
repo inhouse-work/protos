@@ -33,7 +33,7 @@ module Protos
     def theme
       {
         container: tokens("drawer"),
-        toggle: tokens("drawer-toggle")
+        toggle: tokens("drawer-toggle", "peer")
       }
     end
   end

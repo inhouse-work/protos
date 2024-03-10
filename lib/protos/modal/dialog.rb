@@ -16,7 +16,12 @@ module Protos
 
       def theme
         {
-          container: tokens("modal", "modal-bottom", "sm:modal-middle"),
+          container: tokens(
+            "modal",
+            "modal-bottom",
+            "backdrop-blur-sm",
+            "sm:modal-middle"
+          ),
           modal: tokens("modal-box", "flex", "flex-col", "gap-xs")
         }
       end

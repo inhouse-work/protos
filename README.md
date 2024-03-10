@@ -312,10 +312,20 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 ## Usage
 
-Setup tailwindcss to add the protos path to your content.
+Setup [Tailwindcss](https://tailwindcss.com/), [daisyUI](https://daisyui.com)
+and add the protos path to your content.
+
+```
+npm install -D tailwindcss postcss autoprefixer daisyui
+npx tailwindcss init
+```
+
+Then we need to add the protos path to the `content` of our tailwindcss config
+so tailwind will read the styles defined in the Protos gem.
 
 Protos also uses semantic spacing such as `p-sm` or `m-md` instead of set
-numbers so you can easily choose the spacing you want.
+numbers so you can easily choose the spacing you want. So we will need to extend
+`spacing` in your theme.
 
 ```js
 // tailwind.config.js
@@ -366,7 +376,7 @@ And somewhere in your entrypoints import as a side effect:
 import "protos-stimulus"
 ```
 
-Then you can use the components
+Then you can use the components in your apps.
 
 ```ruby
 render Protos::Card.new(class: "bg-base-100") do |card|
@@ -394,10 +404,9 @@ module Protos
     end
 
     def theme
-      {
-        container: tokens("swap", "bg-red-500"),
-        input: tokens("block")
-      }
+      super.merge({
+        input: tokens("block", "bg-red-500")
+      })
     end
   end
 end

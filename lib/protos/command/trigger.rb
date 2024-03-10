@@ -3,6 +3,8 @@
 module Protos
   class Command
     class Trigger < Component
+      # DOCS: A trigger is a button that opens a command palette modal
+
       def template(&block)
         button(**attrs, &block)
       end

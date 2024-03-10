@@ -2,6 +2,10 @@
 
 module Protos
   class Collapse < Component
+    # DOCS: A collapsible container that can be expanded or collapsed. The title
+    # is visible at all times, and the content is only visible when expanded.
+    # https://daisyui.com/components/collapse/
+
     def template(&block)
       div(**attrs, &block)
     end

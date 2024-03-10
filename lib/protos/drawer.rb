@@ -2,6 +2,11 @@
 
 module Protos
   class Drawer < Component
+    # DOCS: A drawer component that can be toggled via a trigger. The content of
+    # a drawer is displayed at all times and overlapped by the side when the
+    # trigger is clicked.
+    # https://daisyui.com/components/drawer/
+
     option :id, type: Types::Coercible::String
 
     def template

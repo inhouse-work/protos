@@ -2,6 +2,9 @@
 
 module Protos
   class Avatar < Component
+    # DOCS: The avatar component is used to represent a user or entity.
+    # https://daisyui.com/components/avatar/
+
     IndicatorTypes = Types::Coercible::Symbol.enum(:none, :online, :offline)
 
     option :placeholder, type: Types::Bool, default: -> { false }

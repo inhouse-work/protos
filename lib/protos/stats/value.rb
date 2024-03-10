@@ -3,6 +3,8 @@
 module Protos
   class Stats
     class Value < Component
+      # DOCS: A value for a single stat
+
       def template(&block)
         div(**attrs, &block)
       end

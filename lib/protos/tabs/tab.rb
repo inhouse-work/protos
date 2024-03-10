@@ -3,6 +3,8 @@
 module Protos
   class Tabs
     class Tab < Component
+      # DOCS: A single tab in a tabs component
+
       param :id
       option :label
       option :active, default: -> { false }

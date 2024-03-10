@@ -2,6 +2,10 @@
 
 module Protos
   class Toast < Component
+    # DOCS: A toast component that can be used to display messages to the user
+    # that popup at a fixed position on the screen.
+    # https://daisyui.com/components/toast/
+
     Positions = Types::Symbol.enum(
       :top_start,
       :top_center,

@@ -2,6 +2,9 @@
 
 module Protos
   class Table < Component
+    # DOCS: A table component
+    # https://daisyui.com/components/table/
+
     option :pin_rows, default: -> { false }, type: Types::Bool
     option :pin_columns, default: -> { false }, type: Types::Bool
     option :striped, default: -> { false }, type: Types::Bool

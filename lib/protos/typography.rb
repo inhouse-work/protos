@@ -2,6 +2,9 @@
 
 module Protos
   module Typography
+    # DOCS: The core typography module that can be mixedin to override the
+    # default elements with custom elements.
+
     def h1(**options, &block)
       render(Heading.new(level: 1, size: :xl, **options), &block)
     end

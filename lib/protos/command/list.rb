@@ -3,6 +3,8 @@
 module Protos
   class Command
     class List < Component
+      # DOCS: A list of commands. This can contain either items or groups.
+
       def template(&block)
         ul(**attrs, &block)
       end

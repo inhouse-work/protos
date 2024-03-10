@@ -3,6 +3,8 @@
 module Protos
   class Command
     class Item < Component
+      # DOCS: A single option within a command
+
       def template(&block)
         li(**attrs, &block)
       end

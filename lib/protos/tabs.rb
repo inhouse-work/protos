@@ -2,6 +2,9 @@
 
 module Protos
   class Tabs < Component
+    # DOCS: A component that contains many Protos::Tab components
+    # https://daisyui.com/components/tab/
+
     option :type,
            default: -> { :default },
            reader: false,

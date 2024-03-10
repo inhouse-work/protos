@@ -3,6 +3,8 @@
 module Protos
   module Typography
     class Paragraph < Component
+      # DOCS: A paragraph of text
+
       def template(&block)
         p(**attrs, &block)
       end

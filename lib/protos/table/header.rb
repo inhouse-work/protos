@@ -3,6 +3,9 @@
 module Protos
   class Table
     class Header < Component
+      # DOCS: The header of a table that contains many Protos::Table::Head
+      # components
+
       def template(&block)
         thead(**attrs, &block)
       end

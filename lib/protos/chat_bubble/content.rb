@@ -3,6 +3,9 @@
 module Protos
   class ChatBubble
     class Content < Component
+      # DOCS: The main content of a chat bubble. This would normally be the text
+      # content of the message. It will be colored according to the type.
+
       option :type,
              default: -> { :none },
              reader: false,

@@ -3,6 +3,8 @@
 module Protos
   class Table
     class Caption < Component
+      # DOCS: The caption of a table
+
       def template(&block)
         caption(**attrs, &block)
       end

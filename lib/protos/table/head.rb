@@ -3,6 +3,8 @@
 module Protos
   class Table
     class Head < Component
+      # DOCS: The head of a table
+
       option :align,
              type: Types::Coercible::Symbol.enum(:left, :center, :right),
              default: -> {

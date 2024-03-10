@@ -3,6 +3,9 @@
 module Protos
   class Command
     class Empty < Component
+      # DOCS: The empty component is displayed in the list when there are no
+      # matches in an input.
+
       def template(&block)
         li(**attrs, &block)
       end

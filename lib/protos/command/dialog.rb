@@ -3,6 +3,9 @@
 module Protos
   class Command
     class Dialog < Component
+      # DOCS: The dialog for a command wraps the command content and provides a
+      # modal backdrop for the command when it is opened.
+
       def template(&block)
         dialog(**attrs) do
           div(class: css[:modal], &block)

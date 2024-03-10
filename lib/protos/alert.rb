@@ -2,6 +2,10 @@
 
 module Protos
   class Alert < Component
+    # DOCS: A component that displays messages (usually from flashes). These can
+    # be used in combination with Protos::Toast to have popup notifications.
+    # https://daisyui.com/components/alert/
+
     AlertTypes = Types::Coercible::Symbol.enum(
       :info,
       :success,

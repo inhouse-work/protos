@@ -3,6 +3,8 @@
 module Protos
   class ChatBubble
     class Footer < Component
+      # DOCS: The footer of a chat bubble
+
       def template(&block)
         div(**attrs, &block)
       end

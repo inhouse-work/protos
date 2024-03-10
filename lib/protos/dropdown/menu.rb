@@ -3,6 +3,10 @@
 module Protos
   class Dropdown
     class Menu < Popover::Content
+      # DOCS: The container for items in a dropdown. This is a restyled
+      # Protos::Popover::Content component as the main functionality for
+      # dropdowns comes from there.
+
       def template(&block)
         template_tag(**template_attrs) do
           ul(**attrs, &block)

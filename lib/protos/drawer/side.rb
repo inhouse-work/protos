@@ -3,6 +3,9 @@
 module Protos
   class Drawer
     class Side < Component
+      # DOCS: The content that will be shown when you open the drawer using the
+      # trigger. This would be hidden until triggered.
+
       option :id, type: Types::Coercible::String
 
       def template

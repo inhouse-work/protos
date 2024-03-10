@@ -2,6 +2,9 @@
 
 module Protos
   class Card < Component
+    # DOCS: A card component
+    # https://daisyui.com/components/card/
+
     ImageDisplayTypes = Types::Coercible::Symbol.enum(:default, :overlay, :side)
 
     option :border, type: Types::Bool, default: -> { true }, reader: :private

@@ -3,6 +3,8 @@
 module Protos
   class Command
     class Input < Component
+      # DOCS: The search input for the command palette
+
       option :placeholder,
              default: -> {
                "Type a command or search..."

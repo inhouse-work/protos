@@ -3,11 +3,13 @@
 module Protos
   class Accordion
     class Item < Component
+      # DOCS: An accorion is just a collapse with radio buttons.
+
       option :id, type: Types::Coercible::String
 
       def template(&block)
         li(**attrs) do
-          render collapse do |_collapse|
+          render collapse_component do
             input(type: :radio, name: id, id:)
             yield if block
           end
@@ -16,11 +18,11 @@ module Protos
 
       private
 
-      def collapse
+      def collapse_component
         collapse_theme = { "!container": tokens("bg-base-100") }
-        collapse_theme[:container!] = css[:collapse]
+        collapse_theme[:container!] = css[:collapse] if css[:collapse]
 
-        Collapse.new(theme: collapse_theme.compact)
+        Collapse.new(theme: collapse_theme)
       end
 
       def theme

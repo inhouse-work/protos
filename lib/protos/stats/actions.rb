@@ -3,6 +3,8 @@
 module Protos
   class Stats
     class Actions < Component
+      # DOCS: A container for the actions (e.g. buttons) for a group of stats
+
       def template(&block)
         div(**attrs, &block)
       end

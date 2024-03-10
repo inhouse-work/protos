@@ -3,6 +3,8 @@
 module Protos
   class Stats
     class Stat < Component
+      # DOCS: A single stat container
+
       def template(&block)
         div(**attrs, &block)
       end

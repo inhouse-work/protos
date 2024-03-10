@@ -3,6 +3,8 @@
 module Protos
   class Table
     class Body < Component
+      # DOCS: The body of a table
+
       def template(&block)
         tbody(**attrs, &block)
       end

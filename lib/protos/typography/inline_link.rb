@@ -3,6 +3,8 @@
 module Protos
   module Typography
     class InlineLink < Component
+      # DOCS: A link that is styled to be inline with text
+
       def template(&block)
         a(**attrs, &block)
       end

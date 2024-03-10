@@ -2,6 +2,10 @@
 
 module Protos
   class Carousel < Component
+    # DOCS: A carousel component that contains items that can be scrolled
+    # through in a mobile friendly manner.
+    # https://daisyui.com/components/carousel/
+
     option :vertical, type: Types::Bool, default: -> { false }
     option :snap_to,
            default: -> { :none },

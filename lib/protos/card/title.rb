@@ -3,6 +3,8 @@
 module Protos
   class Card
     class Title < Component
+      # DOCS: The title of a card
+
       def template(&block)
         div(**attrs, &block)
       end

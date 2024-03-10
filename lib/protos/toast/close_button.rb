@@ -3,6 +3,8 @@
 module Protos
   class Toast
     class CloseButton < Component
+      # DOCS: A close button for a toast
+
       def template(&block)
         form(method: :dialog, class: css[:form]) do
           button(

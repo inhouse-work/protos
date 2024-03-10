@@ -3,6 +3,9 @@
 module Protos
   class Collapse
     class Content < Component
+      # DOCS: The content of a collapse. This would be hidden until the collapse
+      # is opened.
+
       def template(&block)
         div(**attrs, &block)
       end

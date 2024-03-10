@@ -2,6 +2,9 @@
 
 module Protos
   class Engine < ::Rails::Engine
+    # DOCS: This is the engine for the Protos gem. It allows autoloading the lib
+    # when used inside a Rails app.
+
     config.autoload_paths += Dir["#{config.root}/lib/"]
   end
 end

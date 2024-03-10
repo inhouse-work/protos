@@ -3,6 +3,9 @@
 module Protos
   class Collapse
     class Title < Component
+      # DOCS: The title of a collapse. This is the content that is always
+      # visible and is used to toggle the collapse.
+
       def template(&block)
         div(**attrs, &block)
       end

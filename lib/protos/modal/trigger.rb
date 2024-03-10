@@ -3,6 +3,8 @@
 module Protos
   class Modal
     class Trigger < Component
+      # DOCS: A trigger is a button that opens a modal
+
       def template(&block)
         button(**attrs, &block)
       end

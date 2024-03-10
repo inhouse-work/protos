@@ -3,6 +3,9 @@
 module Protos
   class ChatBubble
     class Header < Component
+      # DOCS: The header of a chat bubble. This is typically used to display the
+      # name of the user who sent the message.
+
       def template(&block)
         div(**attrs, &block)
       end

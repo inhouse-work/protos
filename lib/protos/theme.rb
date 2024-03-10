@@ -2,6 +2,11 @@
 
 module Protos
   class Theme
+    # DOCS: A class that holds data for a theme. This class is used to safely
+    # merge in user supplied css classes into a default theme.
+    # This is the object that is returned by `css` and used to set slots for
+    # a component style.
+
     def initialize(theme = {}, **kwargs)
       @theme = theme.merge(kwargs)
     end

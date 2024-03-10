@@ -2,6 +2,10 @@
 
 module Protos
   class Command < Component
+    # DOCS: A command pallete component that can be used to trigger a modal with
+    # filterable list of commands. Command modals are by default closable by
+    # clicking the overlay rather than a specific close button.
+
     def template(&block)
       div(**attrs, &block)
     end

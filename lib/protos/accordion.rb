@@ -2,6 +2,11 @@
 
 module Protos
   class Accordion < Component
+    # DOCS: The accordion component. Accordion is a collapse with radio buttons.
+    # Only one item can be open at a time. If you want to allow multiple items
+    # to be open at the same time, use the collapse component.
+    # https://daisyui.com/components/accordion/
+
     option :id, default: -> { SecureRandom.uuid }
 
     def template(&block)

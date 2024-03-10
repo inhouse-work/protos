@@ -3,6 +3,8 @@
 module Protos
   class Table
     class Cell < Component
+      # DOCS: A single cell in a table
+
       option :align,
              type: Types::Coercible::Symbol.enum(:left, :center, :right),
              default: -> {

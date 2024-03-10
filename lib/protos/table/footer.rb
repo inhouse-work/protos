@@ -3,6 +3,8 @@
 module Protos
   class Table
     class Footer < Component
+      # DOCS: The footer of a table
+
       def template(&block)
         tfoot(**attrs, &block)
       end

@@ -2,6 +2,9 @@
 
 module Protos
   class Timeline < Component
+    # DOCS: A timeline component
+    # https://daisyui.com/components/timeline/
+
     option :vertical, type: Types::Bool, default: -> { false }
 
     def template(&block)

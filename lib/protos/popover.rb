@@ -3,7 +3,11 @@
 module Protos
   class Popover < Component
     # DOCS: Like a dropdown, but instead of a list of menu items, its just
-    # a rendered block
+    # a rendered block. The popover is triggered by a button or link.
+    #
+    # Dropdowns, and popovers in general, use tippy.js to position content
+    # rather than pure CSS for accessibility. The layout of pure CSS was too
+    # tricky to get right and we felt the dependency tradeoff was worthwhile.
 
     PositionTypes = Types::Coercible::Symbol.enum(
       :top,

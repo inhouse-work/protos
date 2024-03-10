@@ -3,6 +3,8 @@
 module Protos
   class Card
     class Body < Component
+      # DOCS: The main content area of a card
+
       def template(&block)
         div(**attrs, &block)
       end

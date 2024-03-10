@@ -2,6 +2,11 @@
 
 module Protos
   class ChatBubble < Component
+    # DOCS: A chat bubble component that contains a message an possibly some
+    # metadata and an image. Each chat bubble would represent a single message
+    # in a larger chat history.
+    # https://daisyui.com/components/chat/
+
     option :align,
            default: -> { :start },
            reader: false,

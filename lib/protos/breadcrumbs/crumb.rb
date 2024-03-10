@@ -3,6 +3,8 @@
 module Protos
   class Breadcrumbs
     class Crumb < Component
+      # DOCS: A crumb is a single item within a breadcrumb
+
       def template(&block)
         li(**attrs, &block)
       end

@@ -2,6 +2,9 @@
 
 module Protos
   class Stats < Component
+    # DOCS: Stats component that contains a collection of stats
+    # https://daisyui.com/components/stat/
+
     def template(&block)
       div(**attrs, &block)
     end

@@ -2,6 +2,9 @@
 
 module Protos
   class List < Component
+    # DOCS: A list of items that are joined together for easier styling with
+    # borders, border radius, etc.
+
     option :ordered, Types::Bool, default: -> { false }, reader: false
 
     def template(&block)

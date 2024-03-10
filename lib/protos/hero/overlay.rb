@@ -3,6 +3,10 @@
 module Protos
   class Hero
     class Overlay < Component
+      # DOCS: The overlay of a hero. This would be used with images to reduce
+      # their opacity through the opacity of the overlay. This can be useful to
+      # make text readable on noisy images.
+
       def template(&block)
         div(**attrs, &block)
       end

@@ -2,6 +2,10 @@
 
 module Protos
   class Combobox < Popover
+    # DOCS: A combobox is a combination of a text input and a list of options.
+    # It makes selecting values from a large list easier by filtering the list.
+    # Comboboxes use popovers and command to create the list of options.
+
     option :trigger,
            default: -> { :click },
            reader: false,

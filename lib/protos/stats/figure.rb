@@ -3,6 +3,8 @@
 module Protos
   class Stats
     class Figure < Component
+      # DOCS: A figure for a single stat
+
       def template(&block)
         div(**attrs, &block)
       end

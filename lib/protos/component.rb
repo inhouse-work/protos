@@ -8,11 +8,11 @@ module Protos
     extend Dry::Core::ClassAttributes
 
     # Define methods for css and attrs. Each is expected to return a hash
-    defines :css_method, type: Types::Symbol
-    defines :attrs_method, type: Types::Symbol
+    defines :theme_method, type: Types::Symbol
+    defines :default_attrs_method, type: Types::Symbol
 
-    css_method :theme
-    attrs_method :default_attrs
+    theme_method :theme
+    default_attrs_method :default_attrs
 
     # Theme can override the css hash and add additional styles
     option :theme, as: :theme_override, default: -> { {} }, reader: :private
@@ -53,8 +53,11 @@ module Protos
     end
 
     def build_attrs(...)
-      defaults = if respond_to?(self.class.attrs_method, :include_private)
-        send(self.class.attrs_method)
+      defaults = if respond_to?(
+        self.class.default_attrs_method,
+        :include_private
+      )
+        send(self.class.default_attrs_method)
       end
 
       Attributes
@@ -65,8 +68,11 @@ module Protos
     end
 
     def build_theme(...)
-      component_style = if respond_to?(self.class.css_method, :include_private)
-        send(self.class.css_method)
+      component_style = if respond_to?(
+        self.class.theme_method,
+        :include_private
+      )
+        send(self.class.theme_method)
       end
 
       Theme

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 TestComponent = Class.new(Protos::Component) do
-  css_method :custom_style
-  attrs_method :custom_options
+  theme_method :custom_style
+  default_attrs_method :custom_options
 
   def template(&block)
     div(**attrs) do

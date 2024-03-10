@@ -29,11 +29,18 @@ Every UI component library will have a tension between being too general or
 narrow to be useful. Making components that look good out of the box can make
 them hard to customize.
 
-There are 3 main conventions:
+We try and resolve this tensions by making the components have a minimal style
+that can be easily overridden using some ergonomic conventions.
 
-### Theme
+There are 3 core conventions:
+- Slots and themes
+- Attrs and default attrs
+- Params and options
 
-Components are styled with `css` slots that are filled with values from a `theme`:
+### Slots and themes
+
+Components are styled with `css` slots that are filled with values from
+a `theme`:
 
 ```ruby
 class List < Protos::Component
@@ -53,7 +60,31 @@ class List < Protos::Component
 end
 ```
 
-Doing this means we can override the style of particular slots:
+Here we are using conditional `tokens` from Phlex but you can also use
+simple strings.
+
+If you want to change the method we define our default theme you can override the
+`theme_method` on the class:
+
+```ruby
+class List < Protos::Component
+  theme_method :custom_theme
+
+  # ...
+
+  private
+
+  def custom_theme
+    {
+      list: tokens("space-y-4"),
+      item: tokens("font-bold", "text-2xl")
+    }
+  end
+end
+```
+
+Using a theme and css slots allows us to easily override any part of a component
+when we render:
 
 ```ruby
 render List.new(
@@ -73,8 +104,7 @@ This would combine the default and our theme using tailwind\_merge:
 </ul>
 ```
 
-
-We can override the theme by using a `!` at the end of the key:
+We can override the slot entirely by using a `!` at the end of the key:
 
 ```ruby
 render List.new(
@@ -90,8 +120,8 @@ The css slot `css[:item]` would be overridden rather than merged:
 <li class="bg-red-500">Item 1</li>
 ```
 
-We can also negate a certain class from the slot by putting a `!` at the start
-of the key:
+We can also negate a certain class or classes from the slot by putting a `!` 
+at the start of the key:
 
 ```ruby
 render List.new(
@@ -107,7 +137,7 @@ The new `css[:item]` slot would be:
 <li class="font-bold">Item 1</li>
 ```
 
-### Attrs
+### Attrs and default attrs
 
 By convention, all components spread in an `attrs` hash on their outermost
 element of the component.
@@ -147,6 +177,29 @@ Attrs will by default merge `class` into the `css[:container]` slot so we
 changed that in our theme. We also added `default_attrs` and gave a controller.
 These could be any html options.
 
+If we wanted to, just like for our theme we can change the method from
+`default_attrs` by defining the `default_attrs_method` on the class:
+
+```ruby
+class List < Protos::Component
+  default_attrs_method :custom_attrs
+
+  # ...
+
+  private
+
+  def custom_attrs
+    {
+      data: {
+        controller: "list"
+      }
+    }
+  end
+
+  # ...
+end
+```
+
 Now we get some additional convenience:
 
 ```ruby
@@ -164,8 +217,10 @@ This would merge our `data` and `class` safely into the attributes:
 
 ### Params and options
 
-Components use `Dry::Initializer` which lets us easily add new positional
-arguments with `param` or keyword arguments with `option`
+Components extend
+[`Dry::Initializer`](https://dry-rb.org/gems/dry-initializer/3.1/)
+which lets us easily add new positional arguments with `param` or keyword
+arguments with `option`
 
 ```ruby
 class List < Protos::Component
@@ -315,10 +370,10 @@ Then you can use the components
 
 ```ruby
 render Protos::Card.new(class: "bg-base-100") do |card|
-  card.body(class: "gap-sm") do
-    card.title(class: "font-bold") { "Hello world" }
+  render card.body(class: "gap-sm") do
+    render card.title(class: "font-bold") { "Hello world" }
     span { "This is some more content" }
-    card.actions do
+    render card.actions do
       button(class: "btn btn-primary") { "Action 1" }
     end
   end
@@ -327,9 +382,32 @@ end
 
 ## Building your own components
 
-A good idea would be to encapsulate these proto components with your own
-components as a wrapper. For example you could use `Proto::List` to create your
-own list and even use `Phlex::DeferredRender` to make the API more convenient.
+You can override components simply by redefining the class in your own app:
+
+```ruby
+module Protos
+  class Swap < Component
+    private
+
+    def on(...)
+      MyOnButton.new(...)
+    end
+
+    def theme
+      {
+        container: tokens("swap", "bg-red-500"),
+        input: tokens("block")
+      }
+    end
+  end
+end
+```
+
+You could also encapsulate these more primitive proto components into your own
+components. You could use `Proto::List` to create your own list and even use
+`Phlex::DeferredRender` to make the API more convenient.
+
+Let's create a list component with headers and actions:
 
 ```ruby
 module Ui
@@ -392,9 +470,9 @@ Now the component is specific to our application, and the styles are still
 overridable at all levels:
 
 ```ruby
-render Ui::List.new(title: "Project Names") do |list|
+render Ui::List.new(title: "Project Names", ordered: true) do |list|
   list.with_action { link_to("Add item", "#") }
-  list.with_item { "Project 1" }
+  list.with_item(class: "active") { "Project 1" }
   list.with_item { "Project 2" }
   list.with_item { "Project 3" }
 end

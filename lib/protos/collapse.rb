@@ -6,8 +6,13 @@ module Protos
     # is visible at all times, and the content is only visible when expanded.
     # https://daisyui.com/components/collapse/
 
-    def template(&block)
-      div(**attrs, &block)
+    option :checkbox, default: -> { false }, type: Types::Bool, reader: false
+
+    def template
+      div(**attrs) do
+        input(type: "checkbox", class: "hidden") if @checkbox
+        yield if block_given?
+      end
     end
 
     def title(...)

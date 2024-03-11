@@ -2,7 +2,11 @@
 
 RSpec.describe Protos::Collapse do
   before do
-    render described_class.new { "Content" }
+    render described_class.new(checkbox: true) { "Content" }
+  end
+
+  it "renders the checkbox" do
+    expect(page).to have_field type: "checkbox", class: "hidden"
   end
 
   it "renders the content" do

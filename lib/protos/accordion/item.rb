@@ -10,7 +10,7 @@ module Protos
       def template(&block)
         li(**attrs) do
           render collapse_component do
-            input(type: :radio, name: id, id:)
+            input(type: :radio, name: id)
             yield if block
           end
         end

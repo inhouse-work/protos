@@ -7,21 +7,6 @@ RSpec.describe Protos::TokenList do
     end
   end
 
-  describe "#to_s" do
-    it "merges the list with tailwindcss merge" do
-      tokens = described_class.new(%w[p-2 p-4]).to_s
-
-      expect(tokens).to eq("p-4")
-    end
-
-    it "merges in semantic spacing" do
-      skip("Not currently working in the gem.")
-      tokens = described_class.new(%w[p-2 p-sm]).to_s
-
-      expect(tokens).to eq("p-sm")
-    end
-  end
-
   describe "#add" do
     it "adds the given token to the list" do
       tokens = described_class

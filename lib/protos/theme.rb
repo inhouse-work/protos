@@ -7,12 +7,21 @@ module Protos
     # This is the object that is returned by `css` and used to set slots for
     # a component style.
 
+    class << self
+      def merger
+        @merger ||= TailwindMerge::Merger.new
+      end
+    end
+
     def initialize(theme = {}, **kwargs)
       @theme = theme.merge(kwargs)
     end
 
     def [](key)
-      @theme[key]
+      value = @theme[key]
+      return value unless value.is_a?(String)
+
+      self.class.merger.merge(value)
     end
 
     def key?(key)

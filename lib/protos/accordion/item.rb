@@ -10,7 +10,9 @@ module Protos
       def template(&block)
         li(**attrs) do
           render collapse_component do
-            input(type: :radio, name: id)
+            # form: "" prevents the radio button from being submitted if its
+            # within a form
+            input(type: :radio, name: id, form: "")
             yield if block
           end
         end

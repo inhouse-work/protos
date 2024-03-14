@@ -7,16 +7,19 @@ module Protos
     # https://daisyui.com/components/collapse/
 
     option :checkbox, default: -> { false }, type: Types::Bool, reader: false
+    option :id,
+           default: -> { "collapse-#{SecureRandom.hex(4)}" },
+           type: Types::String
 
     def template
       div(**attrs) do
-        input(type: "checkbox", class: "hidden") if @checkbox
+        input(type: "checkbox", id:) if @checkbox
         yield if block_given?
       end
     end
 
-    def title(...)
-      Title.new(...)
+    def title(*args, **kwargs, &block)
+      Title.new(*args, id:, **kwargs, &block)
     end
 
     def content(...)

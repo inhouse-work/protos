@@ -6,7 +6,7 @@ RSpec.describe Protos::Collapse do
   end
 
   it "renders the checkbox" do
-    expect(page).to have_field type: "checkbox", class: "hidden"
+    expect(page).to have_field type: "checkbox"
   end
 
   it "renders the content" do

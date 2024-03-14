@@ -7,7 +7,8 @@ module Protos
     # to be open at the same time, use the collapse component.
     # https://daisyui.com/components/accordion/
 
-    option :id, default: -> { SecureRandom.uuid }
+    option :id,
+           default: -> { "collapse-#{SecureRandom.hex(4)}" }
 
     def template(&block)
       ul(**attrs, &block)
@@ -17,8 +18,8 @@ module Protos
       Item.new(id:, **kwargs)
     end
 
-    def title(...)
-      Collapse::Title.new(...)
+    def title(*args, **kwargs, &block)
+      Collapse::Title.new(*args, id:, **kwargs, &block)
     end
 
     def content(...)

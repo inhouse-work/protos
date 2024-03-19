@@ -16,7 +16,8 @@ module Protos
           class: css[:input],
           name: id,
           role: :tab,
-          aria_label: label
+          aria_label: label,
+          autocomplete: :off
         )
         div(**attrs, &block)
       end

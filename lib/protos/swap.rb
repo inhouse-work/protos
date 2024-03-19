@@ -8,7 +8,7 @@ module Protos
 
     def template
       label(**attrs) do
-        input(type: :checkbox, class: css[:input])
+        input(type: :checkbox, class: css[:input], autocomplete: :off)
         yield if block_given?
       end
     end

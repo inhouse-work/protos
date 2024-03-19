@@ -19,7 +19,8 @@ module Protos
               type: :text,
               data: { action: "protos--command#filter" },
               class: css[:input],
-              placeholder:
+              placeholder:,
+              autocomplete: :off
             )
           end
         end

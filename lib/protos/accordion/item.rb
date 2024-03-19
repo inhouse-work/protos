@@ -12,7 +12,7 @@ module Protos
           render collapse_component do
             # form: "" prevents the radio button from being submitted if its
             # within a form
-            input(type: :radio, name: id, form: "")
+            input(type: :radio, name: id, form: "", autocomplete: :off)
             yield if block
           end
         end

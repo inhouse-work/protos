@@ -13,7 +13,7 @@ module Protos
 
     def template
       div(**attrs) do
-        input(type: "checkbox", id:) if @checkbox
+        input(type: "checkbox", id:, autocomplete: :off) if @checkbox
         yield if block_given?
       end
     end

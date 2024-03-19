@@ -25,8 +25,7 @@ module Protos
 
     def theme
       {
-        container: tokens("swap"),
-        input: tokens("hidden")
+        container: tokens("swap")
       }
     end
   end

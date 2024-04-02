@@ -25,11 +25,11 @@ Other Phlex based UI libraries worth checking out:
 A protos component follows some conventions that make them easy to work with as
 components in your app.
 
-Every UI component library will have a tension between being too general or
-narrow to be useful. Making components that look good out of the box can make
-them hard to customize.
+Every UI component library will have a tension between being too general to fit
+in your app or too narrow to be useful. Making components that look good out of
+the box can make them hard to customize.
 
-We try and resolve this tensions by making the components have a minimal style
+We try and resolve this tension by making these components have a minimal style
 that can be easily overridden using some ergonomic conventions.
 
 There are 3 core conventions:
@@ -40,7 +40,12 @@ There are 3 core conventions:
 ### Slots and themes
 
 Components are styled with `css` slots that are filled with values from
-a `theme`:
+a `theme`.
+
+You define a theme for your component by defining a `#theme` method that returns
+a hash. This hash will be merged with any theme provided when rendering your
+component. This allows you to easily override styles for your components
+depending on their context.
 
 ```ruby
 class List < Protos::Component
@@ -53,31 +58,8 @@ class List < Protos::Component
 
   def theme
     {
-      list: tokens("space-y-4"),
-      item: tokens("font-bold", "text-2xl")
-    }
-  end
-end
-```
-
-Here we are using conditional `tokens` from Phlex but you can also use
-simple strings.
-
-If you want to change the method we define our default theme you can override the
-`theme_method` on the class:
-
-```ruby
-class List < Protos::Component
-  theme_method :custom_theme
-
-  # ...
-
-  private
-
-  def custom_theme
-    {
-      list: tokens("space-y-4"),
-      item: tokens("font-bold", "text-2xl")
+      list: tokens("space-y-4"), # We can use `#tokens` from phlex (recommended)
+      item: "font-bold text-2xl" # Or just plain old strings
     }
   end
 end
@@ -137,14 +119,36 @@ The new `css[:item]` slot would be:
 <li class="font-bold">Item 1</li>
 ```
 
+If you want to change the method we define our default theme you can override the
+`theme_method` on the class:
+
+```ruby
+class List < Protos::Component
+  theme_method :custom_theme
+
+  # ...
+
+  private
+
+  def custom_theme
+    {
+      list: tokens("space-y-4"),
+      item: tokens("font-bold", "text-2xl")
+    }
+  end
+end
+```
+
 ### Attrs and default attrs
 
 By convention, all components spread in an `attrs` hash on their outermost
 element of the component.
 
 By doing this we enable 2 main conveniences:
-1. We can pass `class` when initializing the component
-2. We can add default attributes that can be merged with defaults
+1. We can pass a `class` keyword when initializing the component which will be
+   merged safely into the `css[:container]` slot
+2. We can add default attributes that are safely merged with any provided to the
+   component when its being initialized
 
 ```ruby
 class List < Protos::Component
@@ -158,9 +162,7 @@ class List < Protos::Component
 
   def default_attrs
     {
-      data: {
-        controller: "list"
-      }
+        data: { controller: "list" }
     }
   end
 
@@ -173,9 +175,24 @@ class List < Protos::Component
 end
 ```
 
-Attrs will by default merge `class` into the `css[:container]` slot so we
-changed that in our theme. We also added `default_attrs` and gave a controller.
-These could be any html options.
+`#attrs` will by default merge the `class` keyword into the `css[:container]`
+slot which we define in our theme.
+
+Special html options will be safely merged. For examples, the component above
+defines a list controller. If we passed our own controller into data when we
+initialize, the component's data-controller attribute would be appended to:
+
+```ruby
+render List.new(
+  data: { controller: "tooltip" }
+)
+```
+
+That would output both controllers to the DOM element:
+
+```html
+<ul data-controller="list tooltip">
+```
 
 If we wanted to, just like for our theme we can change the method from
 `default_attrs` by defining the `default_attrs_method` on the class:
@@ -184,35 +201,14 @@ If we wanted to, just like for our theme we can change the method from
 class List < Protos::Component
   default_attrs_method :custom_attrs
 
-  # ...
-
   private
 
   def custom_attrs
     {
-      data: {
-        controller: "list"
-      }
+      data: { controller: "list" }
     }
   end
-
-  # ...
 end
-```
-
-Now we get some additional convenience:
-
-```ruby
-render List.new(
-  class: "my-lg",
-  data: { controller: "confetti" }
-)
-```
-
-This would merge our `data` and `class` safely into the attributes:
-
-```html
-<ul data-controller="list confetti" class="space-y-4 my-lg">
 ```
 
 ### Params and options

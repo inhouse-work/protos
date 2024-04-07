@@ -5,7 +5,7 @@ module Protos
     class Row < Component
       # DOCS: The row of a table
 
-      def template(&block)
+      def view_template(&block)
         tr(**attrs, &block)
       end
     end

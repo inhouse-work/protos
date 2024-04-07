@@ -5,7 +5,7 @@ module Protos
     class Actions < Component
       # DOCS: Area for actions (e.g buttons) within a carousel
 
-      def template(&block)
+      def view_template(&block)
         div(**attrs, &block)
       end
 

@@ -6,7 +6,7 @@ module Protos
     # display different content.
     # https://daisyui.com/components/swap/
 
-    def template
+    def view_template
       label(**attrs) do
         input(type: :checkbox, class: css[:input], autocomplete: :off)
         yield if block_given?

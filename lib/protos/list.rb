@@ -7,7 +7,7 @@ module Protos
 
     option :ordered, Types::Bool, default: -> { false }, reader: false
 
-    def template(&block)
+    def view_template(&block)
       send(element, **attrs, &block)
     end
 

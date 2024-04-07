@@ -80,7 +80,7 @@ module Protos
            reader: false,
            type: TriggerTypes | Types::Array.of(TriggerTypes)
 
-    def template(&block)
+    def view_template(&block)
       div(**attrs, &block)
     end
 

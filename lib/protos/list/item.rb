@@ -7,7 +7,7 @@ module Protos
       # work for list items, including border radius. E.g. only the first and
       # last items will have border radius on the top and bottom.
 
-      def template(&block)
+      def view_template(&block)
         li(**attrs, &block)
       end
 

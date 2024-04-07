@@ -5,7 +5,7 @@ module Protos
     class Description < Component
       # DOCS: A description for a group of stats
 
-      def template(&block)
+      def view_template(&block)
         div(**attrs, &block)
       end
 

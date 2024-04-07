@@ -7,7 +7,7 @@ module Protos
       # Items in the group will have a divider line on the left side and can
       # optionally have a title.
 
-      def template(&block)
+      def view_template(&block)
         li(**attrs) do
           ul(class: css[:list], &block)
         end

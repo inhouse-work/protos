@@ -17,7 +17,7 @@ module Protos
            default: -> { :none },
            reader: false
 
-    def template(&block)
+    def view_template(&block)
       div(**attrs) do
         div(class: css[:figure], &block)
       end

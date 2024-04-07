@@ -12,7 +12,7 @@ module Protos
       option :size, type: SizeTypes, default: -> { "md" }, reader: false
       option :level, type: LevelTypes, default: -> { 1 }, reader: false
 
-      def template(&block)
+      def view_template(&block)
         send(element, **attrs, &block)
       end
 

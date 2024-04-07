@@ -5,7 +5,7 @@ module Protos
     class CloseButton < Component
       # DOCS: A close button for a modal
 
-      def template(&block)
+      def view_template(&block)
         form(method: :dialog, class: css[:form]) do
           button(
             **attrs,

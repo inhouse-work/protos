@@ -8,7 +8,7 @@ module Protos
 
       option :id, type: Types::Coercible::String
 
-      def template
+      def view_template
         aside(**attrs) do
           label(for: id, aria_label: "close sidebar", class: css[:toggle])
           yield if block_given?

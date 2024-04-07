@@ -3,7 +3,7 @@
 TypographyTestComponent = Class.new(Protos::Component) do
   include Protos::Typography
 
-  def template(&block)
+  def view_template(&block)
     h1(**attrs, &block)
   end
 end

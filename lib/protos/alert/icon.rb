@@ -6,7 +6,7 @@ module Protos
       # DOCS: Icon for the alert, usually showing at the top left corner aligned
       # to the text
 
-      def template(&block)
+      def view_template(&block)
         div(**attrs, &block)
       end
 

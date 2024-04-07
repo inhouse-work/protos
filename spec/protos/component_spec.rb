@@ -4,7 +4,7 @@ TestComponent = Class.new(Protos::Component) do
   theme_method :custom_style
   default_attrs_method :custom_options
 
-  def template(&block)
+  def view_template(&block)
     div(**attrs) do
       div(class: "#{css[:inner]} #{css[:overridable]}") do
         span(class: css[:non_existent]) { "Hello" }

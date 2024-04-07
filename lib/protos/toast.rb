@@ -23,7 +23,7 @@ module Protos
            default: -> { :bottom_end },
            reader: false
 
-    def template(&block)
+    def view_template(&block)
       dialog(**attrs, &block)
     end
 

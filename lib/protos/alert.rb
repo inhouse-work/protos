@@ -15,7 +15,7 @@ module Protos
 
     option :type, type: AlertTypes, default: -> { :info }, reader: :private
 
-    def template(&block)
+    def view_template(&block)
       div(**attrs, &block)
     end
 

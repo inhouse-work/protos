@@ -3,7 +3,7 @@
 require_relative "../lib/protos"
 
 class Navbar < Protos::Component
-  def template
+  def view_template
     header(**attrs) do
       h1(class: css[:heading]) { "Hello world" }
       h2(class: css[:subtitle]) { "With a subtitle" }

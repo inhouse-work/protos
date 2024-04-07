@@ -10,7 +10,7 @@ module Protos
              reader: false,
              default: -> { "" }
 
-      def template(&block)
+      def view_template(&block)
         if @id.size.positive?
           label(for: @id, **attrs, &block)
         else

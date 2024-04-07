@@ -5,7 +5,7 @@ module Protos
     class Footer < Component
       # DOCS: The footer of a table
 
-      def template(&block)
+      def view_template(&block)
         tfoot(**attrs, &block)
       end
     end

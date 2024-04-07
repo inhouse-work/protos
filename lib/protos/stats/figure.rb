@@ -5,7 +5,7 @@ module Protos
     class Figure < Component
       # DOCS: A figure for a single stat
 
-      def template(&block)
+      def view_template(&block)
         div(**attrs, &block)
       end
 

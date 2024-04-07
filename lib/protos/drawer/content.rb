@@ -6,7 +6,7 @@ module Protos
       # DOCS: The content of a drawer. This would be visible at all times and
       # represents the main content of your page.
 
-      def template(&block)
+      def view_template(&block)
         div(**attrs, &block)
       end
 

@@ -5,7 +5,7 @@ module Protos
     class Title < Component
       # DOCS: The title of a card
 
-      def template(&block)
+      def view_template(&block)
         div(**attrs, &block)
       end
 

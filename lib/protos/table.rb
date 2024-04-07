@@ -18,7 +18,7 @@ module Protos
              :lg
            )
 
-    def template(&block)
+    def view_template(&block)
       div(**attrs) do
         table(class: css[:table], &block)
       end

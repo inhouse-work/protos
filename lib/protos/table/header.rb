@@ -6,7 +6,7 @@ module Protos
       # DOCS: The header of a table that contains many Protos::Table::Head
       # components
 
-      def template(&block)
+      def view_template(&block)
         thead(**attrs, &block)
       end
     end

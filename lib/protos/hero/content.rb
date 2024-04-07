@@ -6,7 +6,7 @@ module Protos
       # DOCS: The content of a hero. This would be centered within the main
       # component container.
 
-      def template(&block)
+      def view_template(&block)
         div(**attrs, &block)
       end
 

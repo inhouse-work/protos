@@ -7,7 +7,7 @@ module Protos
       # Protos::Popover::Content component as the main functionality for
       # dropdowns comes from there.
 
-      def template(&block)
+      def view_template(&block)
         template_tag(**template_attrs) do
           ul(**attrs, &block)
         end

@@ -8,7 +8,7 @@ module Protos
       # This means content in here will not be available in system tests that
       # use rack_test.
 
-      def template(&block)
+      def view_template(&block)
         template_tag(**template_attrs) do
           div(**attrs, &block)
         end

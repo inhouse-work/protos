@@ -7,7 +7,7 @@ module Protos
 
       option :id, type: Types::Coercible::String
 
-      def template(&block)
+      def view_template(&block)
         li(**attrs) do
           render collapse_component do
             # form: "" prevents the radio button from being submitted if its

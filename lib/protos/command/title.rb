@@ -6,7 +6,7 @@ module Protos
       # DOCS: The title for a group of commands. This is expected to be used
       # inside a Protos::Command::Group component.
 
-      def template(&block)
+      def view_template(&block)
         h2(**attrs, &block)
       end
 

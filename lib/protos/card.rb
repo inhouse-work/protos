@@ -14,7 +14,7 @@ module Protos
            default: -> { :default },
            reader: false
 
-    def template(&block)
+    def view_template(&block)
       article(**attrs, &block)
     end
 

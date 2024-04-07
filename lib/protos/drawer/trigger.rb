@@ -8,7 +8,7 @@ module Protos
 
       option :id, type: Types::Coercible::String
 
-      def template(&block)
+      def view_template(&block)
         label(for: id, **attrs, &block)
       end
 

@@ -10,7 +10,7 @@ module Protos
       option :active, default: -> { false }
       option :disabled, default: -> { false }
 
-      def template(&block)
+      def view_template(&block)
         input(
           type: :radio,
           class: css[:input],

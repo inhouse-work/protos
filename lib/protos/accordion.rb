@@ -10,7 +10,7 @@ module Protos
     option :id,
            default: -> { "collapse-#{SecureRandom.hex(4)}" }
 
-    def template(&block)
+    def view_template(&block)
       ul(**attrs, &block)
     end
 

@@ -11,7 +11,7 @@ module Protos
              },
              reader: :private
 
-      def template(&block)
+      def view_template(&block)
         div(**attrs) do
           label(class: css[:label]) do
             div(class: css[:icon], &block) if block

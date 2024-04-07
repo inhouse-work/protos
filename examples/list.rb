@@ -1,7 +1,7 @@
 require "protos"
 
 class List < Protos::Component
-  def template
+  def view_template
     ul(**attrs) do
       li(class: css[:item]) { "Item 1" }
       li(class: css[:item]) { "Item 2" }

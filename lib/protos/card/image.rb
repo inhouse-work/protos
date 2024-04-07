@@ -7,7 +7,7 @@ module Protos
       # on daisyui which will style the <figure> tag depending on whether
       # image-overlay is present on the card.
 
-      def template(&block)
+      def view_template(&block)
         figure(**attrs, &block)
       end
     end

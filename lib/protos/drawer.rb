@@ -9,7 +9,7 @@ module Protos
 
     option :id, type: Types::Coercible::String
 
-    def template
+    def view_template
       div(**attrs) do
         input(id:, type: :checkbox, class: css[:toggle], autocomplete: :off)
         yield if block_given?

@@ -6,7 +6,7 @@ module Protos
       # DOCS: An image within a chat bubble. This would typically be an avatar
       # component.
 
-      def template(&block)
+      def view_template(&block)
         div(**attrs, &block)
       end
 

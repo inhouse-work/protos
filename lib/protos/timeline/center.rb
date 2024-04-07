@@ -6,7 +6,7 @@ module Protos
       # DOCS: The center of a timeline. This would usually be an icon or
       # something small that shows a point on the timeline.
 
-      def template(&block)
+      def view_template(&block)
         div(**attrs, &block)
       end
 

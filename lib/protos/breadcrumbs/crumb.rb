@@ -5,7 +5,7 @@ module Protos
     class Crumb < Component
       # DOCS: A crumb is a single item within a breadcrumb
 
-      def template(&block)
+      def view_template(&block)
         li(**attrs, &block)
       end
     end

@@ -5,7 +5,7 @@ module Protos
     class Value < Component
       # DOCS: A value for a single stat
 
-      def template(&block)
+      def view_template(&block)
         div(**attrs, &block)
       end
 

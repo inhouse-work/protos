@@ -6,7 +6,7 @@ module Protos
       # DOCS: A modal dialog. This is the place for the main content of the
       # modal that will be displayed when the trigger is clicked.
 
-      def template(&block)
+      def view_template(&block)
         dialog(**attrs) do
           div(class: css[:modal], &block)
         end

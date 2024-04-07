@@ -11,7 +11,7 @@ module Protos
            default: -> { "collapse-#{SecureRandom.hex(4)}" },
            type: Types::String
 
-    def template
+    def view_template
       div(**attrs) do
         input(type: "checkbox", id:, autocomplete: :off) if @checkbox
         yield if block_given?

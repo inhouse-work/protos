@@ -14,9 +14,7 @@ module Protos
       ul(**attrs, &block)
     end
 
-    def item(**kwargs)
-      Item.new(id:, **kwargs)
-    end
+    def item(**kwargs) = render Item.new(id:, **kwargs)
 
     def title(*args, **kwargs, &block)
       Collapse::Title.new(*args, id:, **kwargs, &block)

@@ -23,6 +23,12 @@ RSpec.describe Protos::Command do
 
   it "renders the container" do
     expect(page).to have_content "Trigger"
+    expect(page).to have_content "Item one"
+    expect(page).to have_content "Item two"
+    expect(page).to have_content "Item three"
+    expect(page).to have_content "Group title"
+    expect(page).to have_content "No results found"
+    expect(page).to have_field(placeholder: "Search...")
   end
 
   it "connects the stimulus controller for the modal" do

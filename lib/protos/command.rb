@@ -22,7 +22,7 @@ module Protos
 
     def group(...) = render Group.new(...)
 
-    def item(...) = render Item.new
+    def item(...) = render Item.new(...)
 
     def empty(...) = render Empty.new(...)
 

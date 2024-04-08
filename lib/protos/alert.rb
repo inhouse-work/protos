@@ -19,13 +19,9 @@ module Protos
       div(**attrs, &block)
     end
 
-    def icon(...)
-      Icon.new(...)
-    end
+    def icon(...) = render Icon.new(...)
 
-    def actions(...)
-      Actions.new(...)
-    end
+    def actions(...) = render Actions.new(...)
 
     private
 

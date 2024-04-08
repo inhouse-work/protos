@@ -27,9 +27,7 @@ module Protos
       dialog(**attrs, &block)
     end
 
-    def close_button(...)
-      CloseButton.new(...)
-    end
+    def close_button(...) = render CloseButton.new(...)
 
     private
 

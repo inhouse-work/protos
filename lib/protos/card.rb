@@ -18,21 +18,13 @@ module Protos
       article(**attrs, &block)
     end
 
-    def body(...)
-      Body.new(...)
-    end
+    def body(...) = render Body.new(...)
 
-    def image(...)
-      Image.new(...)
-    end
+    def image(...) = render Image.new(...)
 
-    def title(...)
-      Title.new(...)
-    end
+    def title(...) = render Title.new(...)
 
-    def actions(...)
-      Actions.new(...)
-    end
+    def actions(...) = render Actions.new(...)
 
     private
 

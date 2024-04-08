@@ -16,12 +16,10 @@ module Protos
 
     def item(**) = render Item.new(id:, **)
 
-    def title(*, **, &block)
-      Collapse::Title.new(*, id:, **, &block)
-    end
+    def content(...) = render Collapse::Content.new(...)
 
-    def content(...)
-      Collapse::Content.new(...)
+    def title(*, **, &block)
+      render Collapse::Title.new(*, id:, **, &block)
     end
 
     private

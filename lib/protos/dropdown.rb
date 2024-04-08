@@ -19,16 +19,10 @@ module Protos
            reader: false,
            type: TriggerTypes | Types::Array.of(TriggerTypes)
 
-    def item(...)
-      Item.new(...)
-    end
+    def item(...) = render Item.new(...)
 
-    def menu(...)
-      Menu.new(...)
-    end
+    def menu(...) = render Menu.new(...)
 
-    def trigger(...)
-      Trigger.new(...)
-    end
+    def trigger(...) = render Trigger.new(...)
   end
 end

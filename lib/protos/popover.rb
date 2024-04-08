@@ -84,13 +84,9 @@ module Protos
       div(**attrs, &block)
     end
 
-    def content(...)
-      Content.new(...)
-    end
+    def content(...) = render Content.new(...)
 
-    def trigger(...)
-      Trigger.new(...)
-    end
+    def trigger(...) = render Trigger.new(...)
 
     private
 

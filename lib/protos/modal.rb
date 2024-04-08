@@ -9,17 +9,11 @@ module Protos
       div(**attrs, class: css[:container], &block)
     end
 
-    def close_button(...)
-      CloseButton.new(...)
-    end
+    def close_button(...) = render CloseButton.new(...)
 
-    def dialog(...)
-      Dialog.new(...)
-    end
+    def dialog(...) = render Dialog.new(...)
 
-    def trigger(...)
-      Trigger.new(...)
-    end
+    def trigger(...) = render Trigger.new(...)
 
     private
 

@@ -20,13 +20,9 @@ module Protos
       div(**attrs, &block)
     end
 
-    def item(...)
-      Item.new(...)
-    end
+    def item(...) = render Item.new(...)
 
-    def actions(...)
-      Actions.new(...)
-    end
+    def actions(...) = render Actions.new(...)
 
     private
 

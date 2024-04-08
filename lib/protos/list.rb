@@ -11,9 +11,7 @@ module Protos
       send(element, **attrs, &block)
     end
 
-    def item(...)
-      Item.new(...)
-    end
+    def item(...) = render Item.new(...)
 
     private
 

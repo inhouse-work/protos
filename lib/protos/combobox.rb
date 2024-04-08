@@ -11,37 +11,21 @@ module Protos
            reader: false,
            type: TriggerTypes | Types::Array.of(TriggerTypes)
 
-    def trigger(...)
-      Popover::Trigger.new(...)
-    end
+    def trigger(...) = render Popover::Trigger.new(...)
 
-    def content(...)
-      Popover::Content.new(...)
-    end
+    def content(...) = render Popover::Content.new(...)
 
-    def input(...)
-      Command::Input.new(...)
-    end
+    def input(...) = render Command::Input.new(...)
 
-    def group(...)
-      Command::Group.new(...)
-    end
+    def group(...) = render Command::Group.new(...)
 
-    def item(...)
-      Command::Item.new(...)
-    end
+    def item(...) = render Command::Item.new(...)
 
-    def list(...)
-      Command::List.new(...)
-    end
+    def list(...) = render Command::List.new(...)
 
-    def title(...)
-      Command::Title.new(...)
-    end
+    def title(...) = render Command::Title.new(...)
 
-    def empty(...)
-      Command::Empty.new(...)
-    end
+    def empty(...) = render Command::Empty.new(...)
 
     private
 

@@ -10,37 +10,21 @@ module Protos
       div(**attrs, &block)
     end
 
-    def input(...)
-      Input.new(...)
-    end
+    def input(...) = render Input.new(...)
 
-    def list(...)
-      List.new(...)
-    end
+    def list(...) = render List.new(...)
 
-    def trigger(...)
-      Trigger.new(...)
-    end
+    def trigger(...) = render Trigger.new(...)
 
-    def dialog(...)
-      Dialog.new(...)
-    end
+    def dialog(...) = render Dialog.new(...)
 
-    def title(...)
-      Title.new(...)
-    end
+    def title(...) = render Title.new(...)
 
-    def group(...)
-      Group.new(...)
-    end
+    def group(...) = render Group.new(...)
 
-    def item(...)
-      Item.new
-    end
+    def item(...) = render Item.new
 
-    def empty(...)
-      Empty.new(...)
-    end
+    def empty(...) = render Empty.new(...)
 
     private
 

@@ -28,9 +28,7 @@ module Protos
       div(**attrs, &block)
     end
 
-    def tab(...)
-      Tab.new(...)
-    end
+    def tab(...) = render Tab.new(...)
 
     private
 

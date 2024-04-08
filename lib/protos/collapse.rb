@@ -18,13 +18,9 @@ module Protos
       end
     end
 
-    def title(*, **, &block)
-      Title.new(*, id:, **, &block)
-    end
+    def title(*, **, &block) = render Title.new(*, id:, **, &block)
 
-    def content(...)
-      Content.new(...)
-    end
+    def content(...) = render Content.new(...)
 
     private
 

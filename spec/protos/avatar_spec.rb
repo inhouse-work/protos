@@ -1,13 +1,17 @@
 # frozen_string_literal: true
 
 RSpec.describe Protos::Avatar do
-  before do
-    render described_class.new(
+  subject do
+    described_class.new(
       placeholder: true,
-      shape: "circle",
-      indicator: "online"
-    ) { "NT" }
+      shape: :circle,
+      indicator: :online
+    ) do |avatar|
+      avatar.plain "NT"
+    end
   end
+
+  before { render subject }
 
   it "renders an avatar" do
     expect(page).to have_css("div")

@@ -13,13 +13,9 @@ module Protos
       end
     end
 
-    def on(...)
-      On.new(...)
-    end
+    def on(...) = render On.new(...)
 
-    def off(...)
-      Off.new(...)
-    end
+    def off(...) = render Off.new(...)
 
     private
 

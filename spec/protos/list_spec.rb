@@ -1,13 +1,19 @@
 # frozen_string_literal: true
 
 RSpec.describe Protos::List do
-  before do
-    render described_class.new { "content" }
+  subject do
+    described_class.new do |list|
+      list.item { "Item one" }
+      list.item { "Item two" }
+    end
   end
+
+  before { render subject }
 
   it "renders the list" do
     expect(page).to have_css("ul")
-    expect(page).to have_content("content")
+    expect(page).to have_content("Item one")
+    expect(page).to have_content("Item two")
   end
 
   it "renders the style" do

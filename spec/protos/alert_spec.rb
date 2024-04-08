@@ -1,13 +1,19 @@
 # frozen_string_literal: true
 
 RSpec.describe Protos::Alert do
-  before do
-    render described_class.new { "alert" }
+  subject do
+    described_class.new do |alert|
+      alert.plain "alert"
+      alert.icon { "X" }
+    end
   end
+
+  before { render subject }
 
   it "renders the alert" do
     expect(page).to have_css("div")
     expect(page).to have_css(".alert.alert-info")
     expect(page).to have_content("alert")
+    expect(page).to have_content("X")
   end
 end

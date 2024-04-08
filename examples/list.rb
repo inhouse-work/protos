@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "protos"
 
 class List < Protos::Component

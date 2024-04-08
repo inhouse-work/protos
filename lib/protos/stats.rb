@@ -9,29 +9,17 @@ module Protos
       div(**attrs, &block)
     end
 
-    def actions(...)
-      Actions.new(...)
-    end
+    def actions(...) = render Actions.new(...)
 
-    def description(...)
-      Description.new(...)
-    end
+    def description(...) = render Description.new(...)
 
-    def figure(...)
-      Figure.new(...)
-    end
+    def figure(...) = render Figure.new(...)
 
-    def stat(...)
-      Stat.new(...)
-    end
+    def stat(...) = render Stat.new(...)
 
-    def title(...)
-      Title.new(...)
-    end
+    def title(...) = render Title.new(...)
 
-    def value(...)
-      Value.new(...)
-    end
+    def value(...) = render Value.new(...)
 
     private
 

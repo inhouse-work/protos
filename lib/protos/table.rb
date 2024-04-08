@@ -24,33 +24,19 @@ module Protos
       end
     end
 
-    def body(...)
-      Body.new(...)
-    end
+    def body(...) = render Body.new(...)
 
-    def caption(...)
-      Caption.new(...)
-    end
+    def caption(...) = render Caption.new(...)
 
-    def cell(...)
-      Cell.new(...)
-    end
+    def cell(...) = render Cell.new(...)
 
-    def footer(...)
-      Footer.new(...)
-    end
+    def footer(...) = render Footer.new(...)
 
-    def head(...)
-      Head.new(...)
-    end
+    def head(...) = render Head.new(...)
 
-    def header(...)
-      Header.new(...)
-    end
+    def header(...) = render Header.new(...)
 
-    def row(...)
-      Row.new(...)
-    end
+    def row(...) = render Row.new(...)
 
     private
 

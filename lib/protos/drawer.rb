@@ -16,17 +16,11 @@ module Protos
       end
     end
 
-    def content(...)
-      Content.new(...)
-    end
+    def content(...) = render Content.new(...)
 
-    def side(*args, **kwargs, &block)
-      Side.new(*args, id:, **kwargs, &block)
-    end
+    def side(*, **, &block) = render Side.new(*, id:, **, &block)
 
-    def trigger(*args, **kwargs, &block)
-      Trigger.new(*args, id:, **kwargs, &block)
-    end
+    def trigger(*, **, &block) = render Trigger.new(*, id:, **, &block)
 
     private
 

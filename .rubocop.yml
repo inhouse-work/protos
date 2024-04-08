@@ -1,12 +1,9 @@
 require:
   - rubocop-inhouse
 
-AllCops:
-  TargetRubyVersion: 3.1
-
 inherit_gem:
   rubocop-inhouse:
     - config/default.yml
 
-Style/ConstantVisibility:
-  Enabled: false
+AllCops:
+  TargetRubyVersion: 3.3

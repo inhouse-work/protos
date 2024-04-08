@@ -11,9 +11,7 @@ module Protos
       end
     end
 
-    def crumb(...)
-      Crumb.new(...)
-    end
+    def crumb(...) = render Crumb.new(...)
 
     private
 

@@ -14,16 +14,12 @@ module Protos
       ul(**attrs, &block)
     end
 
-    def item(**kwargs)
-      Item.new(id:, **kwargs)
-    end
+    def item(*, **, &block) = render Item.new(*, id:, **, &block)
 
-    def title(*args, **kwargs, &block)
-      Collapse::Title.new(*args, id:, **kwargs, &block)
-    end
+    def content(...) = render Collapse::Content.new(...)
 
-    def content(...)
-      Collapse::Content.new(...)
+    def title(*, **, &block)
+      render Collapse::Title.new(*, id:, **, &block)
     end
 
     private

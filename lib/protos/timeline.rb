@@ -11,21 +11,13 @@ module Protos
       ul(**attrs, &block)
     end
 
-    def item(...)
-      Item.new(...)
-    end
+    def item(...) = render Item.new(...)
 
-    def left(...)
-      Left.new(...)
-    end
+    def left(...) = render Left.new(...)
 
-    def center(...)
-      Center.new(...)
-    end
+    def center(...) = render Center.new(...)
 
-    def right(...)
-      Right.new(...)
-    end
+    def right(...) = render Right.new(...)
 
     private
 

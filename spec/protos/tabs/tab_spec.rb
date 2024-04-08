@@ -3,7 +3,7 @@
 RSpec.describe Protos::Tabs::Tab do
   before do
     render described_class.new(
-      "tab_1",
+      id: "tab_1",
       label: "Tab 1",
       disabled: true,
       active: true

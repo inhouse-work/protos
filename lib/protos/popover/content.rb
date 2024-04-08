@@ -7,6 +7,8 @@ module Protos
       # added to the DOM by tippy.js to handle the position of the content.
       # This means content in here will not be available in system tests that
       # use rack_test.
+      #
+      # TODO: Move away from using template
 
       def view_template(&block)
         template_tag(**template_attrs) do

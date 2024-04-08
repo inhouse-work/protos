@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description = "A UI component library built with phlex and daisyui"
   spec.homepage = "https://github.com/inhouse-work/protos"
   spec.license = "MIT"
-  spec.required_ruby_version = ">= 3.1"
+  spec.required_ruby_version = ">= 3.2"
   spec.requirements << "tailwindcss"
   spec.requirements << "daisyui"
   spec.requirements << "protos-stimulus"

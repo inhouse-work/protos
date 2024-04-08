@@ -10,13 +10,9 @@ module Protos
       div(**attrs, &block)
     end
 
-    def content(...)
-      Content.new(...)
-    end
+    def content(...) = render Content.new(...)
 
-    def overlay(...)
-      Overlay.new(...)
-    end
+    def overlay(...) = render Overlay.new(...)
 
     private
 

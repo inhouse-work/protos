@@ -19,21 +19,13 @@ module Protos
       div(**attrs, &block)
     end
 
-    def content(...)
-      Content.new(...)
-    end
+    def content(...) = render Content.new(...)
 
-    def footer(...)
-      Footer.new(...)
-    end
+    def footer(...) = render Footer.new(...)
 
-    def header(...)
-      Header.new(...)
-    end
+    def header(...) = render Header.new(...)
 
-    def image(...)
-      Image.new(...)
-    end
+    def image(...) = render Image.new(...)
 
     private
 

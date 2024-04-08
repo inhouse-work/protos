@@ -10,6 +10,7 @@ module Protos
           button(
             autofocus: true,
             formmethod: :dialog,
+            formnovalidate: true,
             **attrs,
             &block
           )

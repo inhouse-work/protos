@@ -14,7 +14,7 @@ module Protos
       ul(**attrs, &block)
     end
 
-    def item(**) = render Item.new(id:, **)
+    def item(*, **, &block) = render Item.new(*, id:, **, &block)
 
     def content(...) = render Collapse::Content.new(...)
 

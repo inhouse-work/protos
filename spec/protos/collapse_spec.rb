@@ -1,16 +1,22 @@
 # frozen_string_literal: true
 
 RSpec.describe Protos::Collapse do
-  before do
-    render described_class.new(checkbox: true) { "Content" }
+  subject do
+    described_class.new(checkbox: true) do |collapse|
+      collapse.title { "Title" }
+      collapse.content { "Content" }
+    end
   end
+
+  before { render subject }
 
   it "renders the checkbox" do
     expect(page).to have_field type: "checkbox"
   end
 
-  it "renders the content" do
+  it "renders the title and content" do
     expect(page).to have_content "Content"
+    expect(page).to have_content "Title"
   end
 
   it "renders the styles" do

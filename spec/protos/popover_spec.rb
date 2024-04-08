@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 RSpec.describe Protos::Popover do
-  before do
-    render described_class.new(
+  subject do
+    described_class.new(
       position: :top,
       animation: :shift_away,
       duration: [200, 200],
@@ -11,6 +11,8 @@ RSpec.describe Protos::Popover do
       trigger: %i[mouseenter focus]
     )
   end
+
+  before { render subject }
 
   it "renders the popover" do
     expect(page).to have_css("div")

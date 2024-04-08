@@ -1,15 +1,17 @@
 # frozen_string_literal: true
 
-TypographyTestComponent = Class.new(Protos::Component) do
-  include Protos::Typography
-
-  def view_template(&block)
-    h1(**attrs, &block)
-  end
-end
-
 RSpec.describe Protos::Typography do
   before do
+    stub_const(
+      "TypographyTestComponent", Class.new(Protos::Component) do
+        include Protos::Typography
+
+        def view_template(&block)
+          h1(**attrs, &block)
+        end
+      end
+    )
+
     render TypographyTestComponent.new(class: "text-red-500", size: :xl) { "Hello" }
   end
 

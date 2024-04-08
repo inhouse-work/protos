@@ -28,15 +28,13 @@ module Protos
 
     # Adds non-defined options to the html_options hash
     def initialize(*args, **kwargs, &block)
-      raise_block_in_initializer_error if block
-
       defined_keys = self.class.dry_initializer.definitions.keys
       defined, undefined =
         kwargs
           .partition { |key, _| defined_keys.include?(key) }
           .map(&:to_h)
 
-      super(*args, html_options: undefined, **defined)
+      super(*args, html_options: undefined, **defined, &block)
     end
 
     private

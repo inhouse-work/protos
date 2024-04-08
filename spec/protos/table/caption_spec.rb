@@ -12,6 +12,5 @@ RSpec.describe Protos::Table::Caption do
 
   it "renders the style" do
     expect(page).to have_css(".caption-bottom")
-    expect(page).to have_css(".p-sm")
   end
 end

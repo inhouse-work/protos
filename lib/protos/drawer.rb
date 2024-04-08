@@ -20,12 +20,12 @@ module Protos
       Content.new(...)
     end
 
-    def side(*args, **kwargs, &block)
-      Side.new(*args, id:, **kwargs, &block)
+    def side(*, **, &block)
+      Side.new(*, id:, **, &block)
     end
 
-    def trigger(*args, **kwargs, &block)
-      Trigger.new(*args, id:, **kwargs, &block)
+    def trigger(*, **, &block)
+      Trigger.new(*, id:, **, &block)
     end
 
     private

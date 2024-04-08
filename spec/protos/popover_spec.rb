@@ -17,14 +17,16 @@ RSpec.describe Protos::Popover do
   end
 
   it "connects the stimulus controller" do
-    options = JSON.generate({
-      animation: "shift-away",
-      placement: "top",
-      duration: [200, 200],
-      hideOnClick: "toggle",
-      zIndex: 10,
-      trigger: "mouseenter focus"
-    })
+    options = JSON.generate(
+      {
+        animation: "shift-away",
+        placement: "top",
+        duration: [200, 200],
+        hideOnClick: "toggle",
+        zIndex: 10,
+        trigger: "mouseenter focus"
+      }
+    )
 
     expect(page).to have_css("div[data-controller='protos--popover']")
     expect(page).to have_css("div[data-protos--popover-options-value='#{options}']")

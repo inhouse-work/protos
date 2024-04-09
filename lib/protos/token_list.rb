@@ -27,21 +27,21 @@ module Protos
     end
 
     def remove(tokens)
-      parse(tokens).each { |token| @tokens.delete(token) }
+      tap { @tokens.subtract(parse(tokens)) }
     end
 
     def add(tokens)
-      parse(tokens).each { |token| @tokens.add(token) }
+      tap { @tokens.merge(parse(tokens)) }
     end
 
     def clear
-      @tokens.clear
+      tap { @tokens.clear }
     end
 
     private
 
     def parse(tokens)
-      tokens.split.map!(&:strip)
+      tokens.split
     end
   end
 end

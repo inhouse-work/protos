@@ -33,7 +33,7 @@ module Protos
     private
 
     def mix(*hashes)
-      hashes.each_with_object({}).each do |hash, result|
+      hashes.each_with_object({}) do |hash, result|
         hash ||= {}
 
         result.merge!(hash) do |_key, a, b| # rubocop:disable Metrics/ParameterLists

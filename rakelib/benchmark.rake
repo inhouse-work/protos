@@ -45,6 +45,24 @@ namespace :benchmark do
         end
       end
     end
+
+    task :theme_without_merger do
+      Benchmark.ips do |x|
+        x.report("Protos::Theme initialization") do
+          Protos::Theme.new({ foo: "bar" }, baz: "quix", tailwind_merge: false)
+        end
+
+        x.report("Protos::Theme#[]") do
+          Protos::Theme.new(foo: "bar", tailwind_merge: false)[:foo]
+        end
+
+        x.report("Protos::Theme#merge") do
+          Protos::Theme.new(foo: "bar", tailwind_merge: false).merge(
+            foo: "baz", foo!: "quix"
+          )
+        end
+      end
+    end
   end
 
   namespace :memory do

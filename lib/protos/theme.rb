@@ -13,7 +13,9 @@ module Protos
       end
     end
 
-    def initialize(theme = {}, **kwargs)
+    def initialize(theme = {}, tailwind_merge: true, **kwargs)
+      @tailwind_merge = tailwind_merge
+
       @theme = Hash.new do |hash, key|
         hash[key] = TokenList.new
       end
@@ -26,25 +28,28 @@ module Protos
     def [](key)
       return nil unless key?(key)
 
-      @theme[key].to_s
+      value = @theme[key].to_s
+      return nil if value.empty?
+      return value unless @tailwind_merge
+
+      self.class.merger.merge(@theme[key].to_s)
     end
 
     def key?(key)
       @theme.key?(key)
     end
 
-    def add(key, value, merge: false)
-      value = self.class.merger.merge(value) if merge
+    def add(key, value)
       @theme[key].add(value)
     end
 
     def remove(key, value)
       @theme[key].remove(value)
+      @theme.delete(key) if @theme[key].to_s.empty?
     end
 
     def set(key, value)
-      @theme[key].clear
-      @theme[key].add(value)
+      @theme[key].clear.add(value)
     end
 
     def merge(hash)
@@ -53,7 +58,7 @@ module Protos
       tap do
         hash.each_key do |key|
           if key?(key)
-            add(key, hash[key], merge: true)
+            add(key, hash[key])
           elsif negation?(key)
             no_bang = key.to_s[1..].to_sym
             remove(no_bang, hash[key])

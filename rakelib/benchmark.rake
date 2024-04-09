@@ -3,66 +3,12 @@ require "benchmark/ips"
 require "benchmark/memory"
 require "protos"
 
-class PhlexTable < Phlex::HTML
-  def view_template
-    table do
-      thead do
-        tr do
-          th { "Name" }
-          th { "Age" }
-        end
-      end
-
-      tbody do
-        100.times do |i|
-          tr do
-            td { "John Doe" }
-            td { i }
-          end
-        end
-      end
-
-      tfoot do
-        tr do
-          td { "Total" }
-          td { 100 }
-        end
-      end
-    end
-  end
-end
-
-class ProtosTable < Protos::Component
-  def view_template
-    render Protos::Table.new do |table|
-      table.header do
-        table.row do
-          table.head { "Name" }
-          table.head { "Age" }
-        end
-      end
-
-      table.body do
-        100.times do |i|
-          table.row do
-            table.cell { "John Doe" }
-            table.cell { i }
-          end
-        end
-      end
-
-      table.footer do
-        table.row do
-          table.cell { "Total" }
-          table.cell { 100 }
-        end
-      end
-    end
-  end
-end
+require_relative "support/protos_table"
+require_relative "support/phlex_table"
 
 namespace :benchmark do
   namespace :ips do
+    desc "Run Protos::Table and Phlex::Table ips benchmarks"
     task :table do
       Benchmark.ips do |x|
         x.report("Protos::Table") do
@@ -79,6 +25,7 @@ namespace :benchmark do
   end
 
   namespace :memory do
+    desc "Run Protos::Table and Phlex::Table memory benchmarks"
     task :table do
       Benchmark.memory do |x|
         x.report("Protos::Table") do

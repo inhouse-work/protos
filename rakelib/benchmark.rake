@@ -1,11 +1,7 @@
-#!/usr/bin/env ruby
-# frozen_string_literal: true
-
-require "bundler/setup"
-require "protos"
 require "benchmark"
 require "benchmark/ips"
 require "benchmark/memory"
+require "protos"
 
 class PhlexTable < Phlex::HTML
   def view_template
@@ -65,27 +61,36 @@ class ProtosTable < Protos::Component
   end
 end
 
+namespace :benchmark do
+  namespace :ips do
+    task :table do
+      Benchmark.ips do |x|
+        x.report("Protos::Table") do
+          ProtosTable.new.call
+        end
 
-Benchmark.ips do |x|
-  x.report("Protos::Table") do
-    ProtosTable.new.call
+        x.report("Phlex::Table") do
+          PhlexTable.new.call
+        end
+
+        x.compare!
+      end
+    end
   end
 
-  x.report("Phlex::Table") do
-    PhlexTable.new.call
+  namespace :memory do
+    task :table do
+      Benchmark.memory do |x|
+        x.report("Protos::Table") do
+          ProtosTable.new.call
+        end
+
+        x.report("Phlex::Table") do
+          PhlexTable.new.call
+        end
+
+        x.compare!
+      end
+    end
   end
-
-  x.compare!
-end
-
-Benchmark.memory do |x|
-  x.report("Protos::Table") do
-    ProtosTable.new.call
-  end
-
-  x.report("Phlex::Table") do
-    PhlexTable.new.call
-  end
-
-  x.compare!
 end

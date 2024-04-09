@@ -14,7 +14,7 @@ module Protos
       def theme
         {
           container: tokens(
-            "font-medium",
+            "font-semibold",
             "hover:underline",
             "underline-offset-4",
             "cursor-pointer"

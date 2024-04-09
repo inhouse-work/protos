@@ -11,8 +11,8 @@ module Protos
                :left
              }
 
-      def view_template(&block)
-        td(**attrs, &block)
+      def view_template(&)
+        td(**attrs, &)
       end
 
       private

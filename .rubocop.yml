@@ -7,3 +7,6 @@ inherit_gem:
 
 AllCops:
   TargetRubyVersion: 3.2
+
+Naming/BlockForwarding:
+  EnforcedStyle: anonymous

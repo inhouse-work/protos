@@ -6,8 +6,8 @@ module Protos
       # DOCS: The content of a collapse. This would be hidden until the collapse
       # is opened.
 
-      def view_template(&block)
-        div(**attrs, &block)
+      def view_template(&)
+        div(**attrs, &)
       end
 
       private

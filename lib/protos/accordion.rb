@@ -10,16 +10,16 @@ module Protos
     option :id,
            default: -> { "collapse-#{SecureRandom.hex(4)}" }
 
-    def view_template(&block)
-      ul(**attrs, &block)
+    def view_template(&)
+      ul(**attrs, &)
     end
 
-    def item(*, **, &block) = render Item.new(*, id:, **, &block)
+    def item(*, **, &) = render Item.new(*, id:, **, &)
 
     def content(...) = render Collapse::Content.new(...)
 
-    def title(*, **, &block)
-      render Collapse::Title.new(*, id:, **, &block)
+    def title(*, **, &)
+      render Collapse::Title.new(*, id:, **, &)
     end
 
     private

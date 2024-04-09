@@ -5,8 +5,8 @@ module Protos
     class Stat < Component
       # DOCS: A single stat container
 
-      def view_template(&block)
-        div(**attrs, &block)
+      def view_template(&)
+        div(**attrs, &)
       end
 
       private

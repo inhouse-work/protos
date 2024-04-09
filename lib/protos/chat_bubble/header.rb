@@ -6,8 +6,8 @@ module Protos
       # DOCS: The header of a chat bubble. This is typically used to display the
       # name of the user who sent the message.
 
-      def view_template(&block)
-        div(**attrs, &block)
+      def view_template(&)
+        div(**attrs, &)
       end
 
       private

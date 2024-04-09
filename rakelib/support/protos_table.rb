@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProtosTable < Protos::Component
   def view_template
     render Protos::Table.new do |table|

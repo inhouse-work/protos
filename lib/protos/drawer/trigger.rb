@@ -8,8 +8,8 @@ module Protos
 
       option :id, type: Types::Coercible::String
 
-      def view_template(&block)
-        label(for: id, **attrs, &block)
+      def view_template(&)
+        label(for: id, **attrs, &)
       end
 
       private

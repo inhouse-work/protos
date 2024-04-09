@@ -5,8 +5,8 @@ module Protos
     # DOCS: Stats component that contains a collection of stats
     # https://daisyui.com/components/stat/
 
-    def view_template(&block)
-      div(**attrs, &block)
+    def view_template(&)
+      div(**attrs, &)
     end
 
     def actions(...) = render Actions.new(...)

@@ -7,8 +7,8 @@ module Protos
       # their opacity through the opacity of the overlay. This can be useful to
       # make text readable on noisy images.
 
-      def view_template(&block)
-        div(**attrs, &block)
+      def view_template(&)
+        div(**attrs, &)
       end
 
       private

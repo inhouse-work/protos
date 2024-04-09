@@ -5,8 +5,8 @@ module Protos
     # DOCS: A modal component that can be triggered by a button or a link and
     # will open a fullscreen modal, usually with a close button.
 
-    def view_template(&block)
-      div(**attrs, class: css[:container], &block)
+    def view_template(&)
+      div(**attrs, class: css[:container], &)
     end
 
     def close_button(...) = render CloseButton.new(...)

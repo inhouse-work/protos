@@ -5,8 +5,8 @@ module Protos
     class Actions < Component
       # DOCS: A container for the actions (e.g. buttons) for a group of stats
 
-      def view_template(&block)
-        div(**attrs, &block)
+      def view_template(&)
+        div(**attrs, &)
       end
 
       private

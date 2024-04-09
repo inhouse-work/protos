@@ -5,8 +5,8 @@ module Protos
     class On < Component
       # DOCS: The on state for a swap component. This is the active state.
 
-      def view_template(&block)
-        div(**attrs, &block)
+      def view_template(&)
+        div(**attrs, &)
       end
 
       private

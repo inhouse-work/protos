@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PhlexTable < Phlex::HTML
   def view_template
     table do

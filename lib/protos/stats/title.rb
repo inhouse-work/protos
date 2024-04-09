@@ -5,8 +5,8 @@ module Protos
     class Title < Component
       # DOCS: A title for a group of stats
 
-      def view_template(&block)
-        div(**attrs, &block)
+      def view_template(&)
+        div(**attrs, &)
       end
 
       private

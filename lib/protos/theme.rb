@@ -40,6 +40,8 @@ module Protos
     end
 
     def add(key, value)
+      return if value.nil?
+
       @theme[key].add(value)
     end
 
@@ -49,6 +51,8 @@ module Protos
     end
 
     def set(key, value)
+      return if value.nil?
+
       @theme[key].clear.add(value)
     end
 

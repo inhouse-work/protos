@@ -15,6 +15,10 @@ RSpec.describe Protos::Attributes do
       attrs = described_class.new(foo: "bar")
       expect(attrs[:foo]).to eq("bar")
     end
+
+    it "handles non-existent attributes" do
+      expect(subject[:foo]).to be_nil
+    end
   end
 
   describe "#merge" do

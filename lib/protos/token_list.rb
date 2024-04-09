@@ -37,7 +37,13 @@ module Protos
     private
 
     def parse(tokens)
-      tokens.split
+      case tokens
+      when Array then tokens
+      when String then tokens.split
+      else
+        raise ArgumentError, "Invalid tokens: #{tokens}, must be either " \
+                             "String or an Array"
+      end
     end
   end
 end

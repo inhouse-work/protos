@@ -7,6 +7,7 @@ module Protos
 
       option :align,
              type: Types::Coercible::Symbol.enum(:left, :center, :right),
+             reader: false,
              default: -> {
                :left
              }
@@ -29,13 +30,17 @@ module Protos
         align == :right
       end
 
+      def align
+        {
+          left: "text-left",
+          right: "text-right",
+          center: "text-center"
+        }.fetch(@align)
+      end
+
       def theme
         {
-          container: tokens(
-            left?: "text-left",
-            right?: "text-right",
-            center?: "text-center"
-          )
+          container: align
         }
       end
     end

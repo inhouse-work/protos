@@ -13,7 +13,7 @@ module Protos
 
       def theme
         {
-          container: tokens("caption-bottom")
+          container: "caption-bottom"
         }
       end
     end

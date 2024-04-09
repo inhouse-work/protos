@@ -26,8 +26,8 @@ TestComponent = Class.new(Protos::Component) do
   def custom_style
     {
       container: tokens("test-component", "removed-component"),
-      inner: tokens("test-component-inner"),
-      overridable: tokens("removed-component")
+      inner: "test-component-inner",
+      overridable: ["removed-component"]
     }
   end
 end

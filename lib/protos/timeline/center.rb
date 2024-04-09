@@ -14,7 +14,7 @@ module Protos
 
       def theme
         {
-          container: tokens("timeline-middle")
+          container: "timeline-middle"
         }
       end
     end

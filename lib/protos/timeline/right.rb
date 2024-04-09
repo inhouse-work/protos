@@ -14,7 +14,7 @@ module Protos
 
       def theme
         {
-          container: tokens("timeline-end")
+          container: "timeline-end"
         }
       end
     end

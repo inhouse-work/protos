@@ -23,7 +23,7 @@ module Protos
         {
           # NOTE: Added this because I'm noticing the form having a margin
           # with a default setup. Not sure if this is really needed.
-          form: tokens("m-0")
+          form: "m-0"
         }
       end
     end

@@ -32,7 +32,7 @@ module Protos
 
       def theme
         {
-          container: tokens("tab-content"),
+          container: "tab-content",
           input: tokens(
             "tab",
             disabled: "tab-disabled",

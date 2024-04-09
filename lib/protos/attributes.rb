@@ -20,6 +20,8 @@ module Protos
 
     def merge(hash)
       tap do
+        next unless hash
+
         @attrs = mix(@attrs, hash)
       end
     end
@@ -33,15 +35,13 @@ module Protos
     private
 
     def mix(*hashes)
-      hashes.each_with_object({}) do |hash, result|
-        hash ||= {}
-
+      hashes.reduce({}) do |hash, result|
         result.merge!(hash) do |_key, a, b| # rubocop:disable Metrics/ParameterLists
           case [a, b]
-          in String, String then "#{a} #{b}"
-          in Array, Array then a + b
-          in Hash, Hash then mix(a, b)
-          else b
+          in String, String then "#{b} #{a}"
+          in Array, Array then b + a
+          in Hash, Hash then mix(b, a)
+          else a
           end
         end
       end

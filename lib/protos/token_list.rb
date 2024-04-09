@@ -3,8 +3,7 @@
 module Protos
   class TokenList
     # DOCS: A list of utility tokens that can handle parsing and merging sets of
-    # tokens together safely. It uses TailwindMerge to merge the tokens together
-    # while accounting for their conflicts.
+    # tokens together safely.
 
     def self.parse(input)
       case input

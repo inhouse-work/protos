@@ -24,6 +24,23 @@ namespace :benchmark do
         x.compare!
       end
     end
+
+    desc "Run Protos::Theme ips benchmarks"
+    task :theme do
+      Benchmark.ips do |x|
+        x.report("Protos::Theme initialization") do
+          Protos::Theme.new({ foo: "bar" }, baz: "quix")
+        end
+
+        x.report("Protos::Theme#[]") do
+          Protos::Theme.new(foo: "bar")[:foo]
+        end
+
+        x.report("Protos::Theme#merge") do
+          Protos::Theme.new(foo: "bar").merge(foo: "baz", foo!: "quix")
+        end
+      end
+    end
   end
 
   namespace :memory do
@@ -39,6 +56,15 @@ namespace :benchmark do
         end
 
         x.compare!
+      end
+    end
+
+    desc "Run Protos::Theme memory benchmarks"
+    task :theme do
+      Benchmark.memory do |x|
+        x.report("Protos::Theme initialization") do
+          Protos::Theme.new({ foo: "bar" }, baz: "quix")
+        end
       end
     end
   end

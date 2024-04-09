@@ -5,17 +5,6 @@ module Protos
     # DOCS: A list of utility tokens that can handle parsing and merging sets of
     # tokens together safely.
 
-    def self.parse(input)
-      case input
-      when String then new(input.split)
-      when Array then new(input)
-      when TokenList then input
-      when NilClass then new
-      else raise ArgumentError,
-                 "Invalid input for #{self.class.name}: #{input.inspect}"
-      end
-    end
-
     attr_reader :tokens
 
     def initialize(tokens = [])

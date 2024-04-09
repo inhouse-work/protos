@@ -1,14 +1,6 @@
 # frozen_string_literal: true
 
 RSpec.describe Protos::TokenList do
-  describe ".parse" do
-    it "allows nil" do
-      tokens = described_class.parse(nil).to_s
-
-      expect(tokens).to eq("")
-    end
-  end
-
   describe "#clear" do
     it "clears the list" do
       subject.add("foo")

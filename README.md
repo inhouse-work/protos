@@ -668,7 +668,8 @@ You can run the benchmarks using the raketasks, e.g:
 
 There are also tasks for profiling and exploring memory consumption.
 
-You can find the latest benchmarks in `benchmarks/`.
+You can find the latest benchmarks in `benchmarks/`. These were run on a new
+Macbook M3 Pro chip.
 
 Currently this library is 30x slower than plain Phlex components. This is due to
 the overhead of themes, attributes and other quality of life improvements.

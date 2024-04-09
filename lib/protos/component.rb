@@ -32,7 +32,7 @@ module Protos
       defined, undefined =
         kwargs
           .partition { |key, _| defined_keys.include?(key) }
-          .map(&:to_h)
+          .map!(&:to_h)
 
       super(*args, html_options: undefined, **defined, &)
     end

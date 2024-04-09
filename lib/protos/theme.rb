@@ -20,7 +20,7 @@ module Protos
         hash[key] = TokenList.new
       end
 
-      theme.merge(kwargs).each do |key, value|
+      theme.merge!(kwargs).each do |key, value|
         @theme[key].add(value)
       end
     end
@@ -32,7 +32,7 @@ module Protos
       return nil if value.empty?
       return value unless @tailwind_merge
 
-      self.class.merger.merge(@theme[key].to_s)
+      self.class.merger.merge(value)
     end
 
     def key?(key)
@@ -45,7 +45,7 @@ module Protos
 
     def remove(key, value)
       @theme[key].remove(value)
-      @theme.delete(key) if @theme[key].to_s.empty?
+      @theme.delete(key) if @theme[key].empty?
     end
 
     def set(key, value)
@@ -53,33 +53,31 @@ module Protos
     end
 
     def merge(hash)
-      hash ||= {}
+      return self unless hash
 
-      tap do
-        hash.each_key do |key|
-          if key?(key)
-            add(key, hash[key])
-          elsif negation?(key)
-            no_bang = key.to_s[1..].to_sym
-            remove(no_bang, hash[key])
-          elsif override?(key)
-            no_bang = key.to_s.chomp("!").to_sym
-            set(no_bang, hash[key])
-          else
-            set(key, hash[key])
-          end
+      hash.each do |key, value|
+        if key?(key)
+          add(key, value)
+        elsif negation?(key)
+          remove(key[1..].to_sym, value)
+        elsif override?(key)
+          set(key[..-2].to_sym, value)
+        else
+          set(key, value)
         end
       end
+
+      self
     end
 
     private
 
     def negation?(key)
-      key.to_s.start_with?("!")
+      key.start_with?("!")
     end
 
     def override?(key)
-      key.to_s.end_with?("!")
+      key.end_with?("!")
     end
   end
 end

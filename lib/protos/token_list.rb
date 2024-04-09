@@ -11,20 +11,27 @@ module Protos
       @tokens = Set.new(tokens)
     end
 
+    def empty?
+      @tokens.empty?
+    end
+
     def to_s
       @tokens.join(" ")
     end
 
     def remove(tokens)
-      tap { @tokens.subtract(parse(tokens)) }
+      @tokens.subtract(parse(tokens))
+      self
     end
 
     def add(tokens)
-      tap { @tokens.merge(parse(tokens)) }
+      @tokens.merge(parse(tokens))
+      self
     end
 
     def clear
-      tap { @tokens.clear }
+      @tokens.clear
+      self
     end
 
     private

@@ -33,6 +33,7 @@ Gem::Specification.new do |spec|
             spec/
             features/
             rakelib/
+            benchmark/
             .git
             appveyor
             Gemfile

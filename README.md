@@ -659,7 +659,22 @@ https://github.com/inhouse-work/protos.
 
 ## Benchmarks
 
-You can run the benchmarks with `bin/benchmarks`
+You can run the benchmarks using the raketasks, e.g:
+
+- `bin/rake benchmark:ips:table`
+- `bin/rake benchmark:memory:table`
+- `bin/rake benchmark:ips:theme`
+- `bin/rake benchmark:ips:attributes`
+
+There are also tasks for profiling and exploring memory consumption.
+
+You can find the latest benchmarks in `benchmarks/`.
+
+Currently this library is 30x slower than plain Phlex components. This is due to
+the overhead of themes, attributes and other quality of life improvements.
+
+This may seem like a lot but Phlex is so fast that rendering a large table can
+still be done 4000 times per second with this lib.
 
 ## License
 

@@ -13,7 +13,7 @@ module Protos
 
       def theme
         {
-          container: tokens("carousel-item")
+          container: "carousel-item"
         }
       end
     end

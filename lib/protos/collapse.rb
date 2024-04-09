@@ -26,7 +26,11 @@ module Protos
 
     def theme
       {
-        container: tokens("collapse", "collapse-arrow", "bg-base-100")
+        container: %w[
+          collapse
+          collapse-arrow
+          bg-base-100
+        ]
       }
     end
 

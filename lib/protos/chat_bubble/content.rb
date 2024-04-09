@@ -41,7 +41,10 @@ module Protos
 
       def theme
         {
-          container: tokens("chat-bubble", type)
+          container: %W[
+            chat-bubble
+            #{type}
+          ]
         }
       end
     end

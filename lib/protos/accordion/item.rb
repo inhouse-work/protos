@@ -28,7 +28,7 @@ module Protos
 
       def theme
         {
-          container: tokens("join-item")
+          container: "join-item"
         }
       end
     end

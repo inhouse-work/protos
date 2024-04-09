@@ -13,9 +13,9 @@ module Protos
 
       def theme
         {
-          container: tokens(
-            "leading-relaxed",
-            "[&:not(:first-child)]:mt-sm"
+          container: %w(
+            leading-relaxed
+            [&:not(:first-child)]:mt-sm
           )
         }
       end

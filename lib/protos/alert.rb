@@ -27,10 +27,10 @@ module Protos
 
     def theme
       {
-        container: tokens(
-          "alert",
-          color
-        )
+        container: %W[
+          alert
+          #{color}
+        ]
       }
     end
 

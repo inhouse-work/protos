@@ -13,7 +13,11 @@ module Protos
 
       def theme
         {
-          container: tokens("flex", "gap-xs", "items-center")
+          container: %w[
+            flex
+            gap-xs
+            items-center
+          ]
         }
       end
     end

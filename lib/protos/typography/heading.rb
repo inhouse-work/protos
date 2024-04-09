@@ -20,12 +20,12 @@ module Protos
 
       def theme
         {
-          container: tokens(
+          container: [
             size,
             "scroll-m-20",
             "tracking-tight",
             "transition-colors"
-          )
+          ]
         }
       end
 

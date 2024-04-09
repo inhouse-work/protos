@@ -53,12 +53,12 @@ module Protos
 
     def theme
       {
-        container: tokens(
-          "toast",
-          position,
-          "[&:not([open])]:hidden",
-          "bg-transparent"
-        )
+        container: %W[
+          #{position}
+          toast
+          [&:not([open])]:hidden
+          bg-transparent
+        ]
       }
     end
   end

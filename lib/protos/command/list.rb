@@ -19,7 +19,7 @@ module Protos
 
       def theme
         {
-          container: tokens("menu")
+          container: "menu"
         }
       end
     end

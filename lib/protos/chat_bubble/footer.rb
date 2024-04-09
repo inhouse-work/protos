@@ -13,7 +13,7 @@ module Protos
 
       def theme
         {
-          container: tokens("chat-footer")
+          container: "chat-footer"
         }
       end
     end

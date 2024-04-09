@@ -58,7 +58,11 @@ module Protos
 
     def theme
       {
-        container: tokens("tabs", size, type)
+        container: %W[
+          tabs
+          #{size}
+          #{type}
+        ]
       }
     end
   end

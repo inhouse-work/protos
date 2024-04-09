@@ -17,13 +17,13 @@ module Protos
 
       def theme
         {
-          container: tokens(
-            "menu",
-            "dropdown-content",
-            "z-10",
-            "bg-base-100",
-            "rounded-box"
-          )
+          container: %w[
+            menu
+            dropdown-content
+            z-10
+            bg-base-100
+            rounded-box
+          ]
         }
       end
     end

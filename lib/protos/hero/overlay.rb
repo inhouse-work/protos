@@ -15,7 +15,7 @@ module Protos
 
       def theme
         {
-          container: tokens("hero-overlay")
+          container: "hero-overlay"
         }
       end
     end

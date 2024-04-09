@@ -13,7 +13,7 @@ module Protos
 
       def theme
         {
-          container: tokens("swap-off")
+          container: "swap-off"
         }
       end
     end

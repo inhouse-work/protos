@@ -14,7 +14,7 @@ module Protos
 
       def theme
         {
-          container: tokens("drawer-content")
+          container: "drawer-content"
         }
       end
     end

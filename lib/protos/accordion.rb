@@ -26,10 +26,10 @@ module Protos
 
     def theme
       {
-        container: tokens(
-          "join",
-          "join-vertical"
-        )
+        container: %w[
+          join
+          join-vertical
+        ]
       }
     end
   end

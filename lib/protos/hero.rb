@@ -18,7 +18,7 @@ module Protos
 
     def theme
       {
-        container: tokens("hero")
+        container: "hero"
       }
     end
   end

@@ -13,7 +13,7 @@ module Protos
 
       def theme
         {
-          container: tokens("stat-desc")
+          container: "stat-desc"
         }
       end
     end

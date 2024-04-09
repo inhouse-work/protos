@@ -25,7 +25,7 @@ module Protos
 
     def theme
       {
-        container: tokens("stats")
+        container: "stats"
       }
     end
   end

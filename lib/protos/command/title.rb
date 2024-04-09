@@ -14,7 +14,7 @@ module Protos
 
       def theme
         {
-          container: tokens("menu-title")
+          container: "menu-title"
         }
       end
     end

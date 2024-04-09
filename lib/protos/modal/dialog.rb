@@ -14,24 +14,29 @@ module Protos
 
       private
 
-      def theme
-        {
-          container: tokens(
-            "modal",
-            "modal-bottom",
-            "backdrop-blur-sm",
-            "sm:modal-middle"
-          ),
-          modal: tokens("modal-box", "flex", "flex-col", "gap-xs")
-        }
-      end
-
       def attrs
         @attrs ||= build_attrs(
           {
             data: { "protos--modal-target": "modal" }
           }
         )
+      end
+
+      def theme
+        {
+          container: %w[
+            modal
+            modal-bottom
+            backdrop-blur-sm
+            sm:modal-middle
+          ],
+          modal: %w[
+            modal-box
+            flex
+            flex-col
+            gap-xs
+          ]
+        }
       end
     end
   end

@@ -22,7 +22,7 @@ module Protos
 
       def theme
         {
-          container: tokens("collapse-title")
+          container: "collapse-title"
         }
       end
     end

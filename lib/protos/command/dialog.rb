@@ -25,14 +25,17 @@ module Protos
 
       def theme
         {
-          container: tokens(
-            "modal",
-            "modal-bottom",
-            "backdrop-blur-sm",
-            "sm:modal-middle"
-          ),
-          modal: tokens("modal-box", "p-0"),
-          form: tokens("modal-backdrop")
+          container: %w[
+            modal
+            modal-bottom
+            backdrop-blur-sm
+            sm:modal-middle
+          ],
+          modal: %w[
+            modal-box
+            p-0
+          ],
+          form: "modal-backdrop"
         }
       end
     end

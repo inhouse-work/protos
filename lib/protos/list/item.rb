@@ -15,10 +15,10 @@ module Protos
 
       def theme
         {
-          container: tokens(
-            "join-item",
-            "[&:not(:first-child)]:border-t-0"
-          )
+          container: %w[
+            join-item
+            [&:not(:first-child)]:border-t-0
+          ]
         }
       end
     end

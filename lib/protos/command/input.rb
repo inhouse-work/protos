@@ -30,16 +30,22 @@ module Protos
 
       def theme
         {
-          container: tokens("form-control"),
-          label: tokens(
-            "input",
-            "input-bordered",
-            "flex",
-            "items-center",
-            "gap-2"
-          ),
-          input: tokens("grow", "bg-transparent"),
-          icon: tokens("flex", "place-items-center")
+          container: "form-control",
+          label: %w[
+            input
+            input-bordered
+            flex
+            items-center
+            gap-2
+          ],
+          input: %w[
+            grow
+            bg-transparent
+          ],
+          icon: %w[
+            flex
+            place-items-center
+          ]
         }
       end
     end

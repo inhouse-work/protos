@@ -13,16 +13,16 @@ module Protos
 
       def theme
         {
-          container: tokens(
-            "absolute",
-            "flex",
-            "justify-between",
-            "transform",
-            "-translate-y-1/2",
-            "left-sm",
-            "right-sm",
-            "top-1/2"
-          )
+          container: %w[
+            absolute
+            flex
+            justify-between
+            transform
+            -translate-y-1/2
+            left-sm
+            right-sm
+            top-1/2
+          ]
         }
       end
     end

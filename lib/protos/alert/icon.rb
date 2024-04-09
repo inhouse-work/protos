@@ -14,7 +14,10 @@ module Protos
 
       def theme
         {
-          container: tokens("place-self-start", "mt-1")
+          container: %w[
+            place-self-start
+            mt-1
+          ]
         }
       end
     end

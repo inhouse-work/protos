@@ -14,7 +14,7 @@ module Protos
 
       def theme
         {
-          container: tokens("chat-image")
+          container: "chat-image"
         }
       end
     end

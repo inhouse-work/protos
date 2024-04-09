@@ -14,7 +14,7 @@ module Protos
 
       def theme
         {
-          container: tokens("collapse-content")
+          container: "collapse-content"
         }
       end
     end

@@ -13,7 +13,7 @@ module Protos
 
       def theme
         {
-          container: tokens("card-title")
+          container: "card-title"
         }
       end
     end

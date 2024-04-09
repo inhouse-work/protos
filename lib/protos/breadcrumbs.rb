@@ -17,7 +17,7 @@ module Protos
 
     def theme
       {
-        container: tokens("breadcrumbs")
+        container: "breadcrumbs"
       }
     end
   end

@@ -13,12 +13,12 @@ module Protos
 
       def theme
         {
-          container: tokens(
-            "font-semibold",
-            "hover:underline",
-            "underline-offset-4",
-            "cursor-pointer"
-          )
+          container: %w[
+            font-semibold
+            hover:underline
+            underline-offset-4
+            cursor-pointer
+          ]
         }
       end
     end

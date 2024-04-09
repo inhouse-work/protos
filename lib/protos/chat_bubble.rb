@@ -38,7 +38,10 @@ module Protos
 
     def theme
       {
-        container: tokens("chat", align)
+        container: %W[
+          chat
+          #{align}
+        ]
       }
     end
   end

@@ -49,7 +49,7 @@ depending on their context.
 
 ```ruby
 class List < Protos::Component
-  def template
+  def view_template
     ul(class: css[:list]) do
       li(class: css[:item]) { "Item 1" }
       li(class: css[:item]) { "Item 2" }
@@ -152,7 +152,7 @@ By doing this we enable 2 main conveniences:
 
 ```ruby
 class List < Protos::Component
-  def template
+  def view_template
     ul(**attrs) do
       # ...
     end
@@ -238,7 +238,7 @@ Here is an example of a small navbar component:
 require "protos"
 
 class Navbar < Protos::Component
-  def template
+  def view_template
     # **attrs will add:
     # - Any html options defined on the component initialization such as data,
     #   role, for, etc..
@@ -375,11 +375,11 @@ import "protos-stimulus"
 Then you can use the components in your apps.
 
 ```ruby
-render Protos::Card.new(class: "bg-base-100") do |card|
-  render card.body(class: "gap-sm") do
-    render card.title(class: "font-bold") { "Hello world" }
+Protos::Card.new(class: "bg-base-100") do |card|
+  card.body(class: "gap-sm") do
+    card.title(class: "font-bold") { "Hello world" }
     span { "This is some more content" }
-    render card.actions do
+    card.actions do
       button(class: "btn btn-primary") { "Action 1" }
     end
   end

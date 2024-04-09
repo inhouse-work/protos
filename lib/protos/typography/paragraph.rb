@@ -5,8 +5,8 @@ module Protos
     class Paragraph < Component
       # DOCS: A paragraph of text
 
-      def view_template(&block)
-        p(**attrs, &block)
+      def view_template(&)
+        p(**attrs, &)
       end
 
       private

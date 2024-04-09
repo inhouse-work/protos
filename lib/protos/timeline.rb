@@ -7,8 +7,8 @@ module Protos
 
     option :vertical, type: Types::Bool, default: -> { false }
 
-    def view_template(&block)
-      ul(**attrs, &block)
+    def view_template(&)
+      ul(**attrs, &)
     end
 
     def item(...) = render Item.new(...)

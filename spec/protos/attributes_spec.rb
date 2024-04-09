@@ -26,7 +26,11 @@ RSpec.describe Protos::Attributes do
     end
 
     it "merges the attributes" do
-      attrs = described_class.new(string: "bar", array: [1, 2], hash: { a: 1 })
+      attrs = described_class.new(
+        string: "bar",
+        array: [1, 2],
+        hash: { a: 1 }
+      )
       attrs.merge(string: "baz", array: [3], hash: { a: 2, b: 3 })
 
       expect(attrs[:string]).to eq("bar baz")

@@ -5,8 +5,8 @@ module Protos
     class Actions < Component
       # DOCS: Area for actions (e.g buttons) within a card
 
-      def view_template(&block)
-        nav(**attrs, &block)
+      def view_template(&)
+        nav(**attrs, &)
       end
 
       private

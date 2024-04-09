@@ -10,7 +10,7 @@ module Protos
       option :active, default: -> { false }
       option :disabled, default: -> { false }
 
-      def view_template(&block)
+      def view_template(&)
         input(
           type: :radio,
           class: css[:input],
@@ -19,7 +19,7 @@ module Protos
           aria_label: label,
           autocomplete: :off
         )
-        div(**attrs, &block)
+        div(**attrs, &)
       end
 
       private

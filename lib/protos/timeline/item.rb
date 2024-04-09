@@ -7,8 +7,8 @@ module Protos
       # right and depending on its position in the list, an hr at the beginning
       # or end.
 
-      def view_template(&block)
-        li(**attrs, &block)
+      def view_template(&)
+        li(**attrs, &)
       end
     end
   end

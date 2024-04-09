@@ -1,53 +1,57 @@
 # frozen_string_literal: true
 
 RSpec.describe Protos::TokenList do
-  describe ".parse" do
-    it "allows nil" do
-      tokens = described_class.parse(nil).to_s
+  describe "#clear" do
+    it "clears the list" do
+      subject.add("foo")
+      subject.clear
 
-      expect(tokens).to eq("")
+      expect(subject.to_s).to eq("")
     end
   end
 
   describe "#add" do
     it "adds the given token to the list" do
-      tokens = described_class
-        .new
-        .add("baz")
-        .to_s
+      subject.add("baz")
 
-      expect(tokens).to eq("baz")
+      expect(subject.to_s).to eq("baz")
+    end
+
+    it "splits classes" do
+      subject.add("foo bar")
+      subject.add("foo")
+
+      expect(subject.to_s).to eq("foo bar")
+    end
+
+    it "does not add duplicates" do
+      subject.add("baz")
+
+      expect { subject.add("baz") }
+        .not_to change(subject, :to_s)
+    end
+
+    it "handles spacing issues" do
+      subject.add("foo  bar")
+      subject.add("  foo")
+      subject.add("foo")
+
+      expect(subject.to_s).to eq("foo bar")
     end
   end
 
   describe "#remove" do
     it "removes the given token from the list" do
-      tokens = described_class
-        .new(%w[foo bar])
-        .remove("bar")
-        .to_s
+      tokens = described_class.new(%w[foo bar])
+      tokens.remove("bar")
 
-      expect(tokens).to eq("foo")
+      expect(tokens.to_s).to eq("foo")
     end
-  end
 
-  describe "#-" do
-    it "returns a new list with the given tokens removed" do
-      tokens_a = described_class.new(%w[foo bar])
-      tokens_b = described_class.new(["bar"])
-      tokens = (tokens_a - tokens_b).to_s
+    it "handles removing a non existing key" do
+      subject.remove("bar")
 
-      expect(tokens).to eq("foo")
-    end
-  end
-
-  describe "#+" do
-    it "returns a new list with the given tokens added" do
-      tokens_a = described_class.new(%w[foo bar])
-      tokens_b = described_class.new(["baz"])
-      tokens = (tokens_a + tokens_b).to_s
-
-      expect(tokens).to eq("foo bar baz")
+      expect(subject.to_s).to eq("")
     end
   end
 end

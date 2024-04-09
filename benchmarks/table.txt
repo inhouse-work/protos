@@ -1,0 +1,12 @@
+ruby 3.3.0 (2023-12-25 revision 5124f9ac75) [arm64-darwin23]
+Warming up --------------------------------------
+       Protos::Table    41.000 i/100ms
+        Phlex::Table     1.239k i/100ms
+Calculating -------------------------------------
+       Protos::Table    417.028 (± 0.2%) i/s -      2.091k in   5.014103s
+        Phlex::Table     12.785k (± 0.6%) i/s -     64.428k in   5.039702s
+
+Comparison:
+        Phlex::Table:    12784.6 i/s
+       Protos::Table:      417.0 i/s - 30.66x  slower
+

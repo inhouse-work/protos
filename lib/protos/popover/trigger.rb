@@ -6,8 +6,8 @@ module Protos
       # DOCS: The trigger of a popover. This is the element that you would hover
       # or click on to show the popover.
 
-      def view_template(&block)
-        div(**attrs, &block)
+      def view_template(&)
+        div(**attrs, &)
       end
 
       private

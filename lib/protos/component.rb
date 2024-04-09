@@ -21,32 +21,23 @@ module Protos
     default_attrs_method :default_attrs
 
     # Theme can override the css hash and add additional styles
-    option :theme, as: :theme_override, default: -> { {} }, reader: :private
+    option :theme, as: :theme_override, default: -> { {} }, reader: false
     # Class becomes the :container key in the css hash
-    option :class, as: :container_class, default: -> { "" }, reader: :private
-    option :html_options, default: -> { {} }, reader: :private
+    option :class, as: :container_class, default: -> { "" }, reader: false
+    option :html_options, default: -> { {} }, reader: false
 
     # Adds non-defined options to the html_options hash
-    def initialize(*args, **kwargs, &block)
+    def initialize(*args, **kwargs, &)
       defined_keys = self.class.dry_initializer.definitions.keys
       defined, undefined =
         kwargs
           .partition { |key, _| defined_keys.include?(key) }
-          .map(&:to_h)
+          .map!(&:to_h)
 
-      super(*args, html_options: undefined, **defined, &block)
+      super(*args, html_options: undefined, **defined, &)
     end
 
     private
-
-    def raise_block_in_initializer_error
-      raise(
-        ArgumentError,
-        "It is unexpected to pass a block to the initializer of a component. " \
-        "You might have tried to render and passed a block but it went to " \
-        "the component.new. Check your render call."
-      )
-    end
 
     def attrs
       @attrs ||= build_attrs
@@ -57,33 +48,35 @@ module Protos
     end
 
     def build_attrs(...)
-      defaults = if respond_to?(
-        self.class.default_attrs_method,
-        :include_private
-      )
-        send(self.class.default_attrs_method)
+      defaults = if respond_to?(default_attrs_method, :include_private)
+        send(default_attrs_method)
       end
 
       Attributes
         .new(...)
         .merge(defaults)
-        .merge(html_options)
+        .merge(@html_options)
         .merge(class: css[:container])
     end
 
     def build_theme(...)
-      component_style = if respond_to?(
-        self.class.theme_method,
-        :include_private
-      )
-        send(self.class.theme_method)
+      component_style = if respond_to?(theme_method, :include_private)
+        send(theme_method)
       end
 
       Theme
         .new(...)
         .merge(component_style)
-        .merge(theme_override)
-        .merge(container: container_class)
+        .merge(@theme_override)
+        .merge(container: @container_class)
+    end
+
+    def theme_method
+      self.class.theme_method
+    end
+
+    def default_attrs_method
+      self.class.default_attrs_method
     end
   end
 end

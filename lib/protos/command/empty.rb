@@ -6,8 +6,8 @@ module Protos
       # DOCS: The empty component is displayed in the list when there are no
       # matches in an input.
 
-      def view_template(&block)
-        li(**attrs, &block)
+      def view_template(&)
+        li(**attrs, &)
       end
 
       private

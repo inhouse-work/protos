@@ -5,8 +5,8 @@ module Protos
     class Body < Component
       # DOCS: The main content area of a card
 
-      def view_template(&block)
-        div(**attrs, &block)
+      def view_template(&)
+        div(**attrs, &)
       end
 
       private

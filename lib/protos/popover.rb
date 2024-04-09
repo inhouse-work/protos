@@ -80,8 +80,8 @@ module Protos
            reader: false,
            type: TriggerTypes | Types::Array.of(TriggerTypes)
 
-    def view_template(&block)
-      div(**attrs, &block)
+    def view_template(&)
+      div(**attrs, &)
     end
 
     def content(...) = render Content.new(...)

@@ -5,8 +5,8 @@ module Protos
     class Footer < Component
       # DOCS: The footer of a chat bubble
 
-      def view_template(&block)
-        div(**attrs, &block)
+      def view_template(&)
+        div(**attrs, &)
       end
 
       private

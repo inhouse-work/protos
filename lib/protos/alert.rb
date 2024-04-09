@@ -15,8 +15,8 @@ module Protos
 
     option :type, type: AlertTypes, default: -> { :info }, reader: :private
 
-    def view_template(&block)
-      div(**attrs, &block)
+    def view_template(&)
+      div(**attrs, &)
     end
 
     def icon(...) = render Icon.new(...)

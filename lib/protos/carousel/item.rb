@@ -5,8 +5,8 @@ module Protos
     class Item < Component
       # DOCS: A single item within a carousel
 
-      def view_template(&block)
-        div(**attrs, &block)
+      def view_template(&)
+        div(**attrs, &)
       end
 
       private

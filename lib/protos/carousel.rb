@@ -16,8 +16,8 @@ module Protos
              :end
            )
 
-    def view_template(&block)
-      div(**attrs, &block)
+    def view_template(&)
+      div(**attrs, &)
     end
 
     def item(...) = render Item.new(...)

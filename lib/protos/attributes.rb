@@ -11,7 +11,7 @@ module Protos
     # controllers do not get overridden.
 
     def initialize(attrs = {}, **kwargs)
-      @attrs = attrs.merge(kwargs)
+      @attrs = attrs.merge!(kwargs)
     end
 
     def [](key)
@@ -19,9 +19,10 @@ module Protos
     end
 
     def merge(hash)
-      tap do
-        @attrs = mix(@attrs, hash)
-      end
+      return self unless hash
+
+      @attrs = mix(@attrs, hash)
+      self
     end
 
     # Allows for the use of the `**` operator to pass the attributes to
@@ -32,10 +33,8 @@ module Protos
 
     private
 
-    def mix(*hashes)
-      hashes.each_with_object({}).each do |hash, result|
-        hash ||= {}
-
+    def mix(hash, *hashes)
+      hashes.each_with_object(hash) do |hash, result|
         result.merge!(hash) do |_key, a, b| # rubocop:disable Metrics/ParameterLists
           case [a, b]
           in String, String then "#{a} #{b}"

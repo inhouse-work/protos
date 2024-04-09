@@ -24,8 +24,8 @@ module Protos
              :lg
            )
 
-    def view_template(&block)
-      div(**attrs, &block)
+    def view_template(&)
+      div(**attrs, &)
     end
 
     def tab(...) = render Tab.new(...)

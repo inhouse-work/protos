@@ -5,8 +5,8 @@ module Protos
     class Item < Component
       # DOCS: A single option within a command
 
-      def view_template(&block)
-        li(**attrs, &block)
+      def view_template(&)
+        li(**attrs, &)
       end
 
       private

@@ -3,19 +3,7 @@
 module Protos
   class TokenList
     # DOCS: A list of utility tokens that can handle parsing and merging sets of
-    # tokens together safely. It uses TailwindMerge to merge the tokens together
-    # while accounting for their conflicts.
-
-    def self.parse(input)
-      case input
-      when String then new(input.split)
-      when Array then new(input)
-      when TokenList then input
-      when NilClass then new
-      else raise ArgumentError,
-                 "Invalid input for #{self.class.name}: #{input.inspect}"
-      end
-    end
+    # tokens together safely.
 
     attr_reader :tokens
 
@@ -23,34 +11,33 @@ module Protos
       @tokens = Set.new(tokens)
     end
 
+    def empty?
+      @tokens.empty?
+    end
+
     def to_s
       @tokens.join(" ")
     end
 
-    def -(other)
-      other = TokenList.parse(other)
-      self.class.new(@tokens - other.tokens)
+    def remove(tokens)
+      @tokens.subtract(parse(tokens))
+      self
     end
 
-    def +(other)
-      other = TokenList.parse(other)
-      self.class.new(@tokens + other.tokens)
+    def add(tokens)
+      @tokens.merge(parse(tokens))
+      self
     end
 
-    def remove(token)
-      tap do
-        self.class.parse(token).tokens.each do |token|
-          @tokens.delete(token)
-        end
-      end
+    def clear
+      @tokens.clear
+      self
     end
 
-    def add(input)
-      tap do
-        self.class.parse(input).tokens.each do |token|
-          @tokens.add(token)
-        end
-      end
+    private
+
+    def parse(tokens)
+      tokens.split
     end
   end
 end

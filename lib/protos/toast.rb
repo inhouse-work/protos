@@ -23,8 +23,8 @@ module Protos
            default: -> { :bottom_end },
            reader: false
 
-    def view_template(&block)
-      dialog(**attrs, &block)
+    def view_template(&)
+      dialog(**attrs, &)
     end
 
     def close_button(...) = render CloseButton.new(...)

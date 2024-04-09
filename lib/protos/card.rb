@@ -14,8 +14,8 @@ module Protos
            default: -> { :default },
            reader: false
 
-    def view_template(&block)
-      article(**attrs, &block)
+    def view_template(&)
+      article(**attrs, &)
     end
 
     def body(...) = render Body.new(...)

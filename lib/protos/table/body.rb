@@ -5,8 +5,8 @@ module Protos
     class Body < Component
       # DOCS: The body of a table
 
-      def view_template(&block)
-        tbody(**attrs, &block)
+      def view_template(&)
+        tbody(**attrs, &)
       end
     end
   end

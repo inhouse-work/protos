@@ -11,7 +11,7 @@ RSpec.describe Protos::Typography::InlineLink do
   end
 
   it "renders the style" do
-    expect(page).to have_css(".font-medium")
+    expect(page).to have_css(".font-semibold")
     expect(page).to have_css(".underline-offset-4")
     expect(page).to have_css(".cursor-pointer")
   end

@@ -5,8 +5,13 @@ source "https://rubygems.org"
 # Specify your gem's dependencies in protos.gemspec
 gemspec
 
+gem "benchmark"
+gem "benchmark-ips"
+gem "benchmark-memory"
 gem "debug"
+gem "memory_profiler"
 gem "phlex-testing-capybara"
 gem "rake"
 gem "rspec"
 gem "rubocop-inhouse", require: false
+gem "ruby-prof"

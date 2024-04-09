@@ -6,4 +6,7 @@ inherit_gem:
     - config/default.yml
 
 AllCops:
-  TargetRubyVersion: 3.3
+  TargetRubyVersion: 3.2
+
+Naming/BlockForwarding:
+  EnforcedStyle: anonymous

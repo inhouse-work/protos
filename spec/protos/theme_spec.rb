@@ -10,6 +10,74 @@ RSpec.describe Protos::Theme do
     end
   end
 
+  describe "#key?" do
+    it "returns true if the key exists" do
+      subject.set(:foo, "bar")
+
+      expect(subject.key?(:foo)).to be(true)
+    end
+
+    it "returns false if the key does not exist" do
+      subject.set(:foo, "bar")
+      subject.remove(:foo, "bar")
+
+      expect(subject.key?(:foo)).to be(false)
+    end
+  end
+
+  describe "#add" do
+    it "adds a class to the theme" do
+      subject.add(:foo, "foo")
+
+      expect(subject[:foo]).to eq("foo")
+    end
+
+    it "appends to existing classes" do
+      theme = described_class.new(foo: "bar")
+      theme.add(:foo, "baz")
+
+      expect(theme[:foo]).to eq("bar baz")
+    end
+
+    it "does not append duplicates" do
+      theme = described_class.new(foo: "bar")
+      theme.add(:foo, "bar")
+
+      expect(theme[:foo]).to eq("bar")
+    end
+
+    it "splits classes" do
+      subject.add(:foo, "foo bar")
+      subject.add(:foo, "foo")
+
+      expect(subject[:foo]).to eq("foo bar")
+    end
+  end
+
+  describe "#remove" do
+    it "removes a class from the theme" do
+      theme = described_class.new(foo: "bar")
+      theme.remove(:foo, "bar")
+
+      expect(theme[:foo]).to eq(nil)
+    end
+
+    it "handles removing a non existing key" do
+      subject.remove(:foo, "bar")
+
+      expect(subject[:foo]).to eq(nil)
+    end
+  end
+
+  describe "#set" do
+    it "sets the value for the given key" do
+      subject.set(:foo, "bar")
+      subject.set(:foo, "baz")
+
+      expect(subject[:foo]).to eq("baz")
+    end
+  end
+
   describe "#[]" do
     it "returns the value for the given key" do
       theme = described_class.new(foo: "bar")
@@ -29,6 +97,14 @@ RSpec.describe Protos::Theme do
       theme.merge(nil)
 
       expect(theme[:foo]).to eq("bar")
+    end
+
+    it "handles multiple classes on a key" do
+      subject
+        .merge(foo: "bar baz")
+        .merge(foo: "bar")
+
+      expect(subject[:foo]).to eq("bar baz")
     end
 
     it "adds new keys to the theme" do
@@ -59,6 +135,14 @@ RSpec.describe Protos::Theme do
       theme.merge(negation)
 
       expect(theme[:foo]).to eq("baz")
+    end
+
+    it "removes classes from the container key" do
+      theme = described_class.new(container: "foo bar")
+      negation = { "!container": "foo" }
+      theme.merge(negation)
+
+      expect(theme[:container]).to eq("bar")
     end
   end
 end

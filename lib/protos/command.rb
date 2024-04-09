@@ -6,8 +6,8 @@ module Protos
     # filterable list of commands. Command modals are by default closable by
     # clicking the overlay rather than a specific close button.
 
-    def view_template(&block)
-      div(**attrs, &block)
+    def view_template(&)
+      div(**attrs, &)
     end
 
     def input(...) = render Input.new(...)

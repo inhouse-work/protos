@@ -13,13 +13,24 @@ module Protos
       end
     end
 
-    def initialize(theme = {}, **kwargs)
-      @theme = theme.merge(kwargs)
+    def initialize(theme = {}, tailwind_merge: true, **kwargs)
+      @tailwind_merge = tailwind_merge
+
+      @theme = Hash.new do |hash, key|
+        hash[key] = TokenList.new
+      end
+
+      theme.merge!(kwargs).each do |key, value|
+        @theme[key].add(value)
+      end
     end
 
     def [](key)
-      value = @theme[key]
-      return value unless value.is_a?(String)
+      return nil unless key?(key)
+
+      value = @theme[key].to_s
+      return nil if value.empty?
+      return value unless @tailwind_merge
 
       self.class.merger.merge(value)
     end
@@ -29,66 +40,44 @@ module Protos
     end
 
     def add(key, value)
-      TokenList.new
-        .add(@theme.fetch(key, ""))
-        .add(value)
-        .to_s
-        .tap do |tokens|
-          @theme[key] = tokens
-        end
+      @theme[key].add(value)
     end
 
     def remove(key, value)
-      TokenList.new
-        .add(@theme.fetch(key, ""))
-        .remove(value)
-        .to_s
-        .tap do |tokens|
-          @theme[key] = tokens
-        end
+      @theme[key].remove(value)
+      @theme.delete(key) if @theme[key].empty?
     end
 
     def set(key, value)
-      if value.is_a?(Hash)
-        @theme[key] = value
-      else
-        TokenList
-          .parse(value)
-          .to_s
-          .tap do |tokens|
-            @theme[key] = tokens
-          end
-      end
+      @theme[key].clear.add(value)
     end
 
     def merge(hash)
-      hash ||= {}
+      return self unless hash
 
-      tap do
-        hash.each_key do |key|
-          if key?(key)
-            add(key, hash[key])
-          elsif negation?(key)
-            no_bang = key.to_s[1..].to_sym
-            remove(no_bang, hash[key])
-          elsif override?(key)
-            no_bang = key.to_s.chomp("!").to_sym
-            set(no_bang, hash[key])
-          else
-            set(key, hash[key])
-          end
+      hash.each do |key, value|
+        if key?(key)
+          add(key, value)
+        elsif negation?(key)
+          remove(key[1..].to_sym, value)
+        elsif override?(key)
+          set(key[..-2].to_sym, value)
+        else
+          set(key, value)
         end
       end
+
+      self
     end
 
     private
 
     def negation?(key)
-      key.to_s.start_with?("!")
+      key.start_with?("!")
     end
 
     def override?(key)
-      key.to_s.end_with?("!")
+      key.end_with?("!")
     end
   end
 end

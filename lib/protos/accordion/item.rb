@@ -9,7 +9,7 @@ module Protos
 
       def view_template(&block)
         li(**attrs) do
-          render collapse_component do
+          render Collapse.new(theme: collapse_theme) do
             # form: "" prevents the radio button from being submitted if its
             # within a form
             input(type: :radio, name: id, form: "", autocomplete: :off)
@@ -20,11 +20,10 @@ module Protos
 
       private
 
-      def collapse_component
-        collapse_theme = { "!container": tokens("bg-base-100") }
-        collapse_theme[:container!] = css[:collapse] if css[:collapse]
-
-        Collapse.new(theme: collapse_theme)
+      def collapse_theme
+        { "!container": tokens("bg-base-100") }.tap do |theme|
+          theme[:container!] = css[:collapse] if css[:collapse]
+        end
       end
 
       def theme

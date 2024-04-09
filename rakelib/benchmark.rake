@@ -13,6 +13,8 @@ namespace :benchmark do
     desc "Run Protos::Table and Phlex::Table ips benchmarks"
     task :table do
       Benchmark.ips do |x|
+        Protos::Theme.merger
+
         x.report("Protos::Table") do
           ProtosTable.new.call
         end
@@ -28,6 +30,8 @@ namespace :benchmark do
     desc "Run Protos::Theme ips benchmarks"
     task :theme do
       Benchmark.ips do |x|
+        Protos::Theme.merger
+
         x.report("Protos::Theme initialization") do
           Protos::Theme.new({ foo: "bar" }, baz: "quix")
         end
@@ -47,6 +51,8 @@ namespace :benchmark do
     desc "Run Protos::Table and Phlex::Table memory benchmarks"
     task :table do
       Benchmark.memory do |x|
+        Protos::Theme.merger
+
         x.report("Protos::Table") do
           ProtosTable.new.call
         end
@@ -62,8 +68,18 @@ namespace :benchmark do
     desc "Run Protos::Theme memory benchmarks"
     task :theme do
       Benchmark.memory do |x|
+        Protos::Theme.merger
+
         x.report("Protos::Theme initialization") do
           Protos::Theme.new({ foo: "bar" }, baz: "quix")
+        end
+
+        x.report("Protos::Theme#[]") do
+          Protos::Theme.new(foo: "bar")[:foo]
+        end
+
+        x.report("Protos::Theme#merge") do
+          Protos::Theme.new(foo: "bar").merge(foo: "baz", foo!: "quix")
         end
       end
     end

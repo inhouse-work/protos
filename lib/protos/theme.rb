@@ -14,51 +14,37 @@ module Protos
     end
 
     def initialize(theme = {}, **kwargs)
-      @theme = theme.merge(kwargs)
+      @theme = Hash.new do |hash, key|
+        hash[key] = TokenList.new
+      end
+
+      theme.merge(kwargs).each do |key, value|
+        @theme[key].add(value)
+      end
     end
 
     def [](key)
-      value = @theme[key]
-      return value unless value.is_a?(String)
+      return nil unless key?(key)
 
-      self.class.merger.merge(value)
+      @theme[key].to_s
     end
 
     def key?(key)
       @theme.key?(key)
     end
 
-    def add(key, value)
-      TokenList.new
-        .add(@theme.fetch(key, ""))
-        .add(value)
-        .to_s
-        .tap do |tokens|
-          @theme[key] = tokens
-        end
+    def add(key, value, merge: false)
+      value = self.class.merger.merge(value) if merge
+      @theme[key].add(value)
     end
 
     def remove(key, value)
-      TokenList.new
-        .add(@theme.fetch(key, ""))
-        .remove(value)
-        .to_s
-        .tap do |tokens|
-          @theme[key] = tokens
-        end
+      @theme[key].remove(value)
     end
 
     def set(key, value)
-      if value.is_a?(Hash)
-        @theme[key] = value
-      else
-        TokenList
-          .parse(value)
-          .to_s
-          .tap do |tokens|
-            @theme[key] = tokens
-          end
-      end
+      @theme[key].clear
+      @theme[key].add(value)
     end
 
     def merge(hash)
@@ -67,7 +53,7 @@ module Protos
       tap do
         hash.each_key do |key|
           if key?(key)
-            add(key, hash[key])
+            add(key, hash[key], merge: true)
           elsif negation?(key)
             no_bang = key.to_s[1..].to_sym
             remove(no_bang, hash[key])

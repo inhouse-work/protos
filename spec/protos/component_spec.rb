@@ -4,11 +4,10 @@ TestComponent = Class.new(Protos::Component) do
   theme_method :custom_style
   default_attrs_method :custom_options
 
-  def view_template(&block)
+  def view_template(&)
     div(**attrs) do
       div(class: "#{css[:inner]} #{css[:overridable]}") do
         span(class: css[:non_existent]) { "Hello" }
-        div(class: css[:deeply][:nested], &block)
       end
     end
   end
@@ -25,10 +24,7 @@ TestComponent = Class.new(Protos::Component) do
     {
       container: tokens("test-component", "removed-component"),
       inner: tokens("test-component-inner"),
-      overridable: tokens("removed-component"),
-      deeply: {
-        nested: tokens("test-component-deeply-nested")
-      }
+      overridable: tokens("removed-component")
     }
   end
 end
@@ -47,7 +43,6 @@ RSpec.describe Protos::Component do
   end
 
   it "renders the component" do
-    expect(page).to have_css("div > div > div")
     expect(page).to have_css("div > div > span")
     expect(page).to have_content("Hello")
   end
@@ -64,7 +59,6 @@ RSpec.describe Protos::Component do
     expect(page).to have_css(".test-component")
     expect(page).to have_css(".injected-class")
     expect(page).to have_css(".test-component-inner")
-    expect(page).to have_css(".test-component-deeply-nested")
   end
 
   it "applies the html options" do

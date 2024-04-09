@@ -11,10 +11,8 @@ RSpec.describe Protos::TokenList do
 
   describe "#add" do
     it "adds the given token to the list" do
-      tokens = described_class
-        .new
-        .add("baz")
-        .to_s
+      subject.add("baz")
+      tokens = subject.to_s
 
       expect(tokens).to eq("baz")
     end
@@ -22,32 +20,10 @@ RSpec.describe Protos::TokenList do
 
   describe "#remove" do
     it "removes the given token from the list" do
-      tokens = described_class
-        .new(%w[foo bar])
-        .remove("bar")
-        .to_s
+      tokens = described_class.new(%w[foo bar])
+      tokens.remove("bar")
 
-      expect(tokens).to eq("foo")
-    end
-  end
-
-  describe "#-" do
-    it "returns a new list with the given tokens removed" do
-      tokens_a = described_class.new(%w[foo bar])
-      tokens_b = described_class.new(["bar"])
-      tokens = (tokens_a - tokens_b).to_s
-
-      expect(tokens).to eq("foo")
-    end
-  end
-
-  describe "#+" do
-    it "returns a new list with the given tokens added" do
-      tokens_a = described_class.new(%w[foo bar])
-      tokens_b = described_class.new(["baz"])
-      tokens = (tokens_a + tokens_b).to_s
-
-      expect(tokens).to eq("foo bar baz")
+      expect(tokens.to_s).to eq("foo")
     end
   end
 end

@@ -26,30 +26,22 @@ module Protos
       @tokens.join(" ")
     end
 
-    def -(other)
-      other = TokenList.parse(other)
-      self.class.new(@tokens - other.tokens)
+    def remove(tokens)
+      parse(tokens).each { |token| @tokens.delete(token) }
     end
 
-    def +(other)
-      other = TokenList.parse(other)
-      self.class.new(@tokens + other.tokens)
+    def add(tokens)
+      parse(tokens).each { |token| @tokens.add(token) }
     end
 
-    def remove(token)
-      tap do
-        self.class.parse(token).tokens.each do |token|
-          @tokens.delete(token)
-        end
-      end
+    def clear
+      @tokens.clear
     end
 
-    def add(input)
-      tap do
-        self.class.parse(input).tokens.each do |token|
-          @tokens.add(token)
-        end
-      end
+    private
+
+    def parse(tokens)
+      tokens.split.map!(&:strip)
     end
   end
 end

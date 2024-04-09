@@ -21,10 +21,10 @@ module Protos
       private
 
       def collapse_component
-        collapse_theme = { "!container": tokens("bg-base-100") }
-        collapse_theme[:container!] = css[:collapse] if css[:collapse]
+        theme = { "!container": tokens("bg-base-100") }
+        theme[:container!] = css[:collapse] if css[:collapse]
 
-        Collapse.new(theme: collapse_theme)
+        Collapse.new(theme:)
       end
 
       def theme

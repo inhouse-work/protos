@@ -16,7 +16,10 @@ TestComponent = Class.new(Protos::Component) do
 
   def custom_options
     {
-      data: { "test-component": "true" }
+      data: {
+        "test-component": "true",
+        controller: "controller-one"
+      }
     }
   end
 
@@ -34,7 +37,10 @@ RSpec.describe Protos::Component do
     render TestComponent.new(
       class: "injected-class",
       role: "test",
-      data: { value: "test" },
+      data: {
+        value: "test",
+        controller: "controller-two"
+      },
       theme: {
         "!container": "removed-component",
         overridable!: "added-component"
@@ -65,5 +71,6 @@ RSpec.describe Protos::Component do
     expect(page).to have_css("[role='test']")
     expect(page).to have_css("[data-test-component='true']")
     expect(page).to have_css("[data-value='test']")
+    expect(page).to have_css("[data-controller='controller-one controller-two']")
   end
 end

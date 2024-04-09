@@ -36,6 +36,9 @@ module Protos
     def mix(hash, *hashes)
       hashes.each_with_object(hash) do |hash, result|
         result.merge!(hash) do |_key, a, b| # rubocop:disable Metrics/ParameterLists
+          next a unless b
+          next a if a == b
+
           case [a, b]
           in String, String then "#{a} #{b}"
           in Array, Array then a + b

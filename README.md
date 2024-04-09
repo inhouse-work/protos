@@ -657,6 +657,10 @@ git commits and the created tag, and push the `.gem` file to
 Bug reports and pull requests are welcome on GitHub at
 https://github.com/inhouse-work/protos.
 
+## Benchmarks
+
+You can run the benchmarks with `bin/benchmarks`
+
 ## License
 
 The gem is available as open source under the terms of the

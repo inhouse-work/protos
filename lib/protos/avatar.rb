@@ -5,15 +5,70 @@ module Protos
     # DOCS: The avatar component is used to represent a user or entity.
     # https://daisyui.com/components/avatar/
 
-    IndicatorTypes = Types::Coercible::Symbol.enum(:none, :online, :offline)
+    Indicators = Types::Coercible::Symbol.enum(:none, :online, :offline)
+    MaskShapes = Types::Coercible::Symbol.enum(
+      :none,
+      :squircle,
+      :heart,
+      :hexagon,
+      :hexagon2,
+      :decagon,
+      :pentagon,
+      :diamond,
+      :square,
+      :circle,
+      :parallelogram,
+      :parallelogram2,
+      :parallelogram3,
+      :parallelogram4,
+      :star,
+      :star2,
+      :triangle,
+      :triangle2,
+      :triangle3,
+      :triangle4,
+      :half1,
+      :half2
+    )
+
+    SHAPES = {
+      none: "",
+      squircle: "mask mask-squircle",
+      heart: "mask mask-heart",
+      hexagon: "mask mask-hexagon",
+      hexagon2: "mask mask-hexagon-2",
+      decagon: "mask mask-decagon",
+      pentagon: "mask mask-pentagon",
+      diamond: "mask mask-diamond",
+      square: "mask mask-square",
+      circle: "mask mask-circle",
+      parallelogram: "mask mask-parallelogram",
+      parallelogram2: "mask mask-parallelogram-2",
+      parallelogram3: "mask mask-parallelogram-3",
+      parallelogram4: "mask mask-parallelogram-4",
+      star: "mask mask-star",
+      star2: "mask mask-star-2",
+      triangle: "mask mask-triangle",
+      triangle2: "mask mask-triangle-2",
+      triangle3: "mask mask-triangle-3",
+      triangle4: "mask mask-triangle-4",
+      half1: "mask mask-half-1",
+      half2: "mask mask-half-2"
+    }.freeze
+
+    INDICATORS = {
+      none: "",
+      online: "online",
+      offline: "offline"
+    }.freeze
 
     option :placeholder, type: Types::Bool, default: -> { false }
     option :indicator,
-           type: IndicatorTypes,
+           type: Indicators,
            default: -> { :none },
            reader: false
     option :shape,
-           type: Types::MaskShapes,
+           type: MaskShapes,
            default: -> { :none },
            reader: false
 
@@ -26,38 +81,11 @@ module Protos
     private
 
     def indicator
-      {
-        none: "",
-        online: "online",
-        offline: "offline"
-      }.fetch(@indicator)
+      INDICATORS.fetch(@indicator)
     end
 
     def shape
-      {
-        none: "",
-        squircle: "mask mask-squircle",
-        heart: "mask mask-heart",
-        hexagon: "mask mask-hexagon",
-        hexagon2: "mask mask-hexagon-2",
-        decagon: "mask mask-decagon",
-        pentagon: "mask mask-pentagon",
-        diamond: "mask mask-diamond",
-        square: "mask mask-square",
-        circle: "mask mask-circle",
-        parallelogram: "mask mask-parallelogram",
-        parallelogram2: "mask mask-parallelogram-2",
-        parallelogram3: "mask mask-parallelogram-3",
-        parallelogram4: "mask mask-parallelogram-4",
-        star: "mask mask-star",
-        star2: "mask mask-star-2",
-        triangle: "mask mask-triangle",
-        triangle2: "mask mask-triangle-2",
-        triangle3: "mask mask-triangle-3",
-        triangle4: "mask mask-triangle-4",
-        half1: "mask mask-half-1",
-        half2: "mask mask-half-2"
-      }.fetch(@shape)
+      SHAPES.fetch(@shape)
     end
 
     def theme

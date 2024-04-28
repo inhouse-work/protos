@@ -5,6 +5,13 @@ module Protos
     # DOCS: A component that contains many Protos::Tab components
     # https://daisyui.com/components/tab/
 
+    SIZES = {
+      xs: "tabs-xs",
+      sm: "tabs-sm",
+      md: "tabs-md",
+      lg: "tabs-lg"
+    }.freeze
+
     option :type,
            default: -> { :default },
            reader: false,
@@ -33,12 +40,7 @@ module Protos
     private
 
     def size
-      {
-        xs: "tabs-xs",
-        sm: "tabs-sm",
-        md: "tabs-md",
-        lg: "tabs-lg"
-      }.fetch(@size)
+      SIZES.fetch(@size)
     end
 
     def type

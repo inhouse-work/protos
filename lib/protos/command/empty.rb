@@ -20,11 +20,7 @@ module Protos
 
       def theme
         {
-          container: %w[
-            hidden
-            px-xs
-            py-sm
-          ]
+          container: "hidden px-xs py-sm"
         }
       end
     end

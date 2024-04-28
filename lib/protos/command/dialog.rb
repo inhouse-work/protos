@@ -31,10 +31,7 @@ module Protos
             backdrop-blur-sm
             sm:modal-middle
           ],
-          modal: %w[
-            modal-box
-            p-0
-          ],
+          modal: "modal-box p-0",
           form: "modal-backdrop"
         }
       end

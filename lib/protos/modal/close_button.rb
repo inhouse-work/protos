@@ -7,10 +7,7 @@ module Protos
 
       def view_template(&block)
         form(method: :dialog, class: css[:form]) do
-          button(
-            **attrs,
-            &block
-          )
+          button(**attrs, &block)
         end
       end
     end

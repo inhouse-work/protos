@@ -18,6 +18,18 @@ module Protos
       :bottom_end
     )
 
+    POSITIONS = {
+      top_start: "toast-start toast-top",
+      top_center: "toast-center toast-top",
+      top_end: "toast-end toast-top",
+      middle_start: "toast-start toast-middle",
+      middle_center: "toast-center toast-middle",
+      middle_end: "toast-end toast-middle",
+      bottom_start: "toast-start toast-bottom",
+      bottom_center: "toast-center toast-bottom",
+      bottom_end: "toast-end toast-bottom"
+    }.freeze
+
     option :position,
            type: Positions,
            default: -> { :bottom_end },
@@ -38,17 +50,7 @@ module Protos
     end
 
     def position
-      {
-        top_start: "toast-start toast-top",
-        top_center: "toast-center toast-top",
-        top_end: "toast-end toast-top",
-        middle_start: "toast-start toast-middle",
-        middle_center: "toast-center toast-middle",
-        middle_end: "toast-end toast-middle",
-        bottom_start: "toast-start toast-bottom",
-        bottom_center: "toast-center toast-bottom",
-        bottom_end: "toast-end toast-bottom"
-      }.fetch(@position)
+      POSITIONS.fetch(@position)
     end
 
     def theme

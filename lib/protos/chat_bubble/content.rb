@@ -6,6 +6,17 @@ module Protos
       # DOCS: The main content of a chat bubble. This would normally be the text
       # content of the message. It will be colored according to the type.
 
+      STYLES = {
+        none: "",
+        primary: "chat-bubble-primary",
+        secondary: "chat-bubble-secondary",
+        accent: "chat-bubble-accent",
+        info: "chat-bubble-info",
+        success: "chat-bubble-success",
+        warning: "chat-bubble-warning",
+        error: "chat-bubble-error"
+      }.freeze
+
       option :type,
              default: -> { :none },
              reader: false,
@@ -26,24 +37,15 @@ module Protos
 
       private
 
-      def type
-        {
-          none: "",
-          primary: "chat-bubble-primary",
-          secondary: "chat-bubble-secondary",
-          accent: "chat-bubble-accent",
-          info: "chat-bubble-info",
-          success: "chat-bubble-success",
-          warning: "chat-bubble-warning",
-          error: "chat-bubble-error"
-        }.fetch(@type)
+      def style
+        STYLES.fetch(@type)
       end
 
       def theme
         {
           container: %W[
             chat-bubble
-            #{type}
+            #{style}
           ]
         }
       end

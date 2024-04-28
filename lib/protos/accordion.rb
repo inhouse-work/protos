@@ -7,8 +7,7 @@ module Protos
     # to be open at the same time, use the collapse component.
     # https://daisyui.com/components/accordion/
 
-    option :id,
-           default: -> { "collapse-#{SecureRandom.hex(4)}" }
+    option :id, default: -> { "collapse-#{SecureRandom.hex(4)}" }
 
     def view_template(&)
       ul(**attrs, &)
@@ -18,18 +17,13 @@ module Protos
 
     def content(...) = render Collapse::Content.new(...)
 
-    def title(*, **, &)
-      render Collapse::Title.new(*, id:, **, &)
-    end
+    def title(*, **, &) = render Collapse::Title.new(*, id:, **, &)
 
     private
 
     def theme
       {
-        container: %w[
-          join
-          join-vertical
-        ]
+        container: "join join-vertical"
       }
     end
   end

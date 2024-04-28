@@ -17,10 +17,7 @@ module Protos
 
     def theme
       {
-        container: %w[
-          join
-          join-vertical
-        ]
+        container: "join join-vertical"
       }
     end
 

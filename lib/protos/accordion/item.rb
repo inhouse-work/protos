@@ -21,7 +21,7 @@ module Protos
       private
 
       def collapse_theme
-        { "!container": tokens("bg-base-100") }.tap do |theme|
+        { "!container": "bg-base-100" }.tap do |theme|
           theme[:container!] = css[:collapse] if css[:collapse]
         end
       end

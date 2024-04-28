@@ -12,7 +12,7 @@ module Protos
     # Tippy.js options can be passed in via the `options` attribute or, more
     # conveniently by the typed options listed below.
 
-    PositionTypes = Types::Coercible::Symbol.enum(
+    Positions = Types::Coercible::Symbol.enum(
       :top,
       :top_start,
       :top_end,
@@ -27,7 +27,7 @@ module Protos
       :left_end
     )
 
-    AnimationTypes = Types::Coercible::Symbol.enum(
+    Animations = Types::Coercible::Symbol.enum(
       :fade,
       :shift_away,
       :shift_away_subtle,
@@ -43,7 +43,7 @@ module Protos
       :perspective_extreme
     )
 
-    TriggerTypes = Types::Coercible::Symbol.enum(
+    Triggers = Types::Coercible::Symbol.enum(
       :focus,
       :mouseenter,
       :click,
@@ -52,11 +52,11 @@ module Protos
     )
 
     option :position,
-           type: PositionTypes,
+           type: Positions,
            default: -> { :top },
            reader: false
     option :animation,
-           type: AnimationTypes,
+           type: Animations,
            default: -> { :fade },
            reader: false
     option :duration,
@@ -78,7 +78,7 @@ module Protos
     option :trigger,
            default: -> { %i[mouseenter focus] },
            reader: false,
-           type: TriggerTypes | Types::Array.of(TriggerTypes)
+           type: Triggers | Types::Array.of(Triggers)
 
     def view_template(&)
       div(**attrs, &)

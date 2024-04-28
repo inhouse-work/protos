@@ -5,6 +5,13 @@ module Protos
     # DOCS: A table component
     # https://daisyui.com/components/table/
 
+    SIZES = {
+      xs: "table-xs",
+      sm: "table-sm",
+      md: "table-md",
+      lg: "table-lg"
+    }.freeze
+
     option :pin_rows, default: -> { false }, type: Types::Bool
     option :pin_columns, default: -> { false }, type: Types::Bool
     option :striped, default: -> { false }, type: Types::Bool
@@ -41,20 +48,12 @@ module Protos
     private
 
     def size
-      {
-        xs: "table-xs",
-        sm: "table-sm",
-        md: "table-md",
-        lg: "table-lg"
-      }.fetch(@size)
+      SIZES.fetch(@size)
     end
 
     def theme
       {
-        container: %w[
-          w-full
-          overflow-x-auto
-        ],
+        container: "w-full overflow-x-auto",
         table: tokens(
           "table",
           size,

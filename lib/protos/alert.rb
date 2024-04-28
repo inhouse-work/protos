@@ -13,6 +13,13 @@ module Protos
       :error
     )
 
+    COLORS = {
+      info: "alert-info",
+      error: "alert-error",
+      warning: "alert-warning",
+      success: "alert-success"
+    }.freeze
+
     option :type, type: AlertTypes, default: -> { :info }, reader: :private
 
     def view_template(&)
@@ -35,12 +42,7 @@ module Protos
     end
 
     def color
-      {
-        info: "alert-info",
-        error: "alert-error",
-        warning: "alert-warning",
-        success: "alert-success"
-      }.fetch(type)
+      COLORS.fetch(type)
     end
   end
 end

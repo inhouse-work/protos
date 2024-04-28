@@ -27,10 +27,7 @@ module Protos
     def theme
       {
         container: "drawer",
-        toggle: %w[
-          drawer-toggle
-          peer
-        ]
+        toggle: "drawer-toggle peer"
       }
     end
   end

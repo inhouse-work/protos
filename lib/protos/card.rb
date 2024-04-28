@@ -5,12 +5,18 @@ module Protos
     # DOCS: A card component
     # https://daisyui.com/components/card/
 
-    ImageDisplayTypes = Types::Coercible::Symbol.enum(:default, :overlay, :side)
+    ImageDisplays = Types::Coercible::Symbol.enum(:default, :overlay, :side)
+
+    IMAGE_DISPLAYS = {
+      default: "",
+      overlay: "image-full",
+      side: "card-side"
+    }.freeze
 
     option :border, type: Types::Bool, default: -> { true }, reader: :private
     option :compact, type: Types::Bool, default: -> { false }, reader: :private
     option :image_display,
-           ImageDisplayTypes,
+           ImageDisplays,
            default: -> { :default },
            reader: false
 
@@ -29,11 +35,7 @@ module Protos
     private
 
     def image_display
-      {
-        default: "",
-        overlay: "image-full",
-        side: "card-side"
-      }.fetch(@image_display)
+      IMAGE_DISPLAYS.fetch(@image_display)
     end
 
     def theme

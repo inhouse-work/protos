@@ -6,6 +6,12 @@ module Protos
     # through in a mobile friendly manner.
     # https://daisyui.com/components/carousel/
 
+    SNAP_POINTS = {
+      none: "",
+      center: "carousel-center",
+      end: "carousel-end"
+    }.freeze
+
     option :vertical, type: Types::Bool, default: -> { false }
     option :snap_to,
            default: -> { :none },
@@ -27,11 +33,7 @@ module Protos
     private
 
     def snap_to
-      {
-        none: "",
-        center: "carousel-center",
-        end: "carousel-end"
-      }.fetch(@snap_to)
+      SNAP_POINTS.fetch(@snap_to)
     end
 
     def theme

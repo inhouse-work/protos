@@ -14,10 +14,7 @@ module Protos
 
       def theme
         {
-          container: %w[
-            place-self-start
-            mt-1
-          ]
+          container: "place-self-start mt-1"
         }
       end
     end

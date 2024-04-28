@@ -11,13 +11,13 @@ module Protos
     # tricky to get right and we felt the dependency tradeoff was worthwhile.
 
     option :position,
-           type: PositionTypes,
+           type: Popover::Positions,
            default: -> { :bottom },
            reader: false
     option :trigger,
            default: -> { :click },
            reader: false,
-           type: TriggerTypes | Types::Array.of(TriggerTypes)
+           type: Popover::Triggers | Types::Array.of(Popover::Triggers)
 
     def item(...) = render Item.new(...)
 

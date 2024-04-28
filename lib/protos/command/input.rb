@@ -6,10 +6,10 @@ module Protos
       # DOCS: The search input for the command palette
 
       option :placeholder,
+             reader: :private,
              default: -> {
                "Type a command or search..."
-             },
-             reader: :private
+             }
 
       def view_template(&block)
         div(**attrs) do
@@ -31,20 +31,14 @@ module Protos
       def theme
         {
           container: "form-control",
+          input: "grow bg-transparent",
+          icon: "flex place-items-center",
           label: %w[
             input
             input-bordered
             flex
             items-center
             gap-2
-          ],
-          input: %w[
-            grow
-            bg-transparent
-          ],
-          icon: %w[
-            flex
-            place-items-center
           ]
         }
       end

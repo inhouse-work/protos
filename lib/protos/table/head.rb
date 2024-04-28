@@ -5,12 +5,16 @@ module Protos
     class Head < Component
       # DOCS: The head of a table
 
+      ALLIGNMENT = {
+        left: "text-left",
+        right: "text-right",
+        center: "text-center"
+      }.freeze
+
       option :align,
              type: Types::Coercible::Symbol.enum(:left, :center, :right),
              reader: false,
-             default: -> {
-               :left
-             }
+             default: -> { :left }
 
       def view_template(&)
         th(**attrs, &)
@@ -19,11 +23,7 @@ module Protos
       private
 
       def align
-        {
-          left: "text-left",
-          right: "text-right",
-          center: "text-center"
-        }.fetch(@align)
+        ALLIGNMENT.fetch(@align)
       end
 
       def theme

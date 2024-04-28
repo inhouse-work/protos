@@ -9,7 +9,7 @@ module Protos
     option :trigger,
            default: -> { :click },
            reader: false,
-           type: TriggerTypes | Types::Array.of(TriggerTypes)
+           type: Popover::Triggers | Types::Array.of(Popover::Triggers)
 
     def trigger(...) = render Popover::Trigger.new(...)
 

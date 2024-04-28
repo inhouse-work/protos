@@ -7,6 +7,11 @@ module Protos
     # in a larger chat history.
     # https://daisyui.com/components/chat/
 
+    ALIGNMENTS = {
+      start: "chat-start",
+      end: "chat-end"
+    }.freeze
+
     option :align,
            default: -> { :start },
            reader: false,
@@ -30,10 +35,7 @@ module Protos
     private
 
     def align
-      {
-        start: "chat-start",
-        end: "chat-end"
-      }.fetch(@align)
+      ALIGNMENTS.fetch(@align)
     end
 
     def theme

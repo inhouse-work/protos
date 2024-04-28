@@ -5,12 +5,16 @@ module Protos
     class Cell < Component
       # DOCS: A single cell in a table
 
+      ALLIGNMENT = {
+        left: "text-left",
+        right: "text-right",
+        center: "text-center"
+      }.freeze
+
       option :align,
              type: Types::Coercible::Symbol.enum(:left, :center, :right),
              reader: false,
-             default: -> {
-               :left
-             }
+             default: -> { :left }
 
       def view_template(&)
         td(**attrs, &)
@@ -31,11 +35,7 @@ module Protos
       end
 
       def align
-        {
-          left: "text-left",
-          right: "text-right",
-          center: "text-center"
-        }.fetch(@align)
+        ALLIGNMENT.fetch(@align)
       end
 
       def theme

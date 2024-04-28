@@ -56,7 +56,7 @@ RSpec.describe Protos::Theme do
     it "handles nil values" do
       subject.add(:foo, nil)
 
-      expect(subject[:foo]).to be(nil)
+      expect(subject[:foo]).to be_nil
     end
   end
 
@@ -65,13 +65,13 @@ RSpec.describe Protos::Theme do
       theme = described_class.new(foo: "bar")
       theme.remove(:foo, "bar")
 
-      expect(theme[:foo]).to be(nil)
+      expect(theme[:foo]).to be_nil
     end
 
     it "handles removing a non existing key" do
       subject.remove(:foo, "bar")
 
-      expect(subject[:foo]).to be(nil)
+      expect(subject[:foo]).to be_nil
     end
   end
 

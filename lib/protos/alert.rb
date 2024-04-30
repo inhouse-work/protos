@@ -6,21 +6,21 @@ module Protos
     # be used in combination with Protos::Toast to have popup notifications.
     # https://daisyui.com/components/alert/
 
-    AlertTypes = Types::Coercible::Symbol.enum(
+    Styles = Types::Coercible::Symbol.enum(
       :info,
       :success,
       :warning,
       :error
     )
 
-    COLORS = {
+    STYLES = {
       info: "alert-info",
       error: "alert-error",
       warning: "alert-warning",
       success: "alert-success"
     }.freeze
 
-    option :type, type: AlertTypes, default: -> { :info }, reader: :private
+    option :type, type: Styles, default: -> { :info }, reader: false
 
     def view_template(&)
       div(**attrs, &)
@@ -36,13 +36,13 @@ module Protos
       {
         container: %W[
           alert
-          #{color}
+          #{style}
         ]
       }
     end
 
-    def color
-      COLORS.fetch(type)
+    def style
+      STYLES.fetch(@type)
     end
   end
 end

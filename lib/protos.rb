@@ -91,6 +91,9 @@ module Protos
     require_relative "protos/stats/title"
     require_relative "protos/stats/value"
 
+    require_relative "protos/steps"
+    require_relative "protos/steps/step"
+
     require_relative "protos/swap"
     require_relative "protos/swap/on"
     require_relative "protos/swap/off"

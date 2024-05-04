@@ -5,6 +5,8 @@ module Protos
     class Paragraph < Component
       # DOCS: A paragraph of text
 
+      option :margin, default: -> { true }
+
       def view_template(&)
         p(**attrs, &)
       end
@@ -13,9 +15,9 @@ module Protos
 
       def theme
         {
-          container: %w(
-            leading-relaxed
-            [&:not(:first-child)]:mt-sm
+          container: tokens(
+            "leading-relaxed",
+            margin: "[&:not(:first-child)]:mt-sm"
           )
         }
       end

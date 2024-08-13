@@ -5,6 +5,6 @@ module Protos
     # DOCS: This is the engine for the Protos gem. It allows autoloading the lib
     # when used inside a Rails app.
 
-    config.autoload_paths << File.expand_path("lib", __dir__)
+    config.autoload_paths << Pathname.new(__dir__).join("..")
   end
 end

@@ -10,7 +10,7 @@ RSpec.describe Protos::Command::Item do
   end
 
   it "adds the stimulus target" do
-    expect(page).to have_stimulus_target("protos--command", "swag")
+    expect(page).to have_stimulus_target("protos--command", "item")
   end
 
   it "adds the modal close action on form submission" do

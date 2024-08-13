@@ -13,7 +13,10 @@ module Protos
 
       def default_attrs
         {
-          data: { "protos--command-target": "item" }
+          data: {
+            "protos--command-target": "item",
+            action: "turbo:submit-end->protos--modal#handleFormSubmit"
+          }
         }
       end
     end

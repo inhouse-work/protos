@@ -12,6 +12,14 @@ module Protos
           ul(class: css[:list], &block)
         end
       end
+
+      private
+
+      def default_attrs
+        {
+          data: { "protos--command-target": "group" }
+        }
+      end
     end
   end
 end

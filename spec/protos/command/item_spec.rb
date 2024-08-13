@@ -6,11 +6,14 @@ RSpec.describe Protos::Command::Item do
   end
 
   it "renders the item" do
-    expect(page).to have_css("li")
-    expect(page).to have_content("Item")
+    expect(page).to have_css("li", text: "Item")
   end
 
   it "adds the stimulus target" do
-    expect(page).to have_css("[data-protos--command-target='item']")
+    expect(page).to have_stimulus_target("protos--command", "swag")
+  end
+
+  it "adds the modal close action on form submission" do
+    expect(page).to have_css("li[data-action='turbo:submit-end->protos--modal#handleFormSubmit']")
   end
 end

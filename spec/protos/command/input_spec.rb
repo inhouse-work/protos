@@ -14,6 +14,7 @@ RSpec.describe Protos::Command::Input do
   end
 
   it "adds the stimulus action" do
-    expect(page).to have_css("[data-action='protos--command#filter']")
+    expect(page).to have_css("input[data-action='protos--command#filter']")
+    expect(page).to have_css("input[data-protos--command-target='input']")
   end
 end

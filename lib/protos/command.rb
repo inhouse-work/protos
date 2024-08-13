@@ -10,21 +10,21 @@ module Protos
       div(**attrs, &)
     end
 
-    def input(...) = render Input.new(...)
+    def input(...) = render Command::Input.new(...)
 
-    def list(...) = render List.new(...)
+    def list(...) = render Command::List.new(...)
 
-    def trigger(...) = render Trigger.new(...)
+    def trigger(...) = render Command::Trigger.new(...)
 
-    def dialog(...) = render Dialog.new(...)
+    def dialog(...) = render Command::Dialog.new(...)
 
-    def title(...) = render Title.new(...)
+    def title(...) = render Command::Title.new(...)
 
-    def group(...) = render Group.new(...)
+    def group(...) = render Command::Group.new(...)
 
-    def item(...) = render Item.new(...)
+    def item(...) = render Command::Item.new(...)
 
-    def empty(...) = render Empty.new(...)
+    def empty(...) = render Command::Empty.new(...)
 
     private
 

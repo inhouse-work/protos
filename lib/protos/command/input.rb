@@ -17,7 +17,10 @@ module Protos
             div(class: css[:icon], &block) if block
             input(
               type: :text,
-              data: { action: "protos--command#filter" },
+              data: {
+                action: "protos--command#filter",
+                "protos--command-target": "input"
+              },
               class: css[:input],
               placeholder:,
               autocomplete: :off

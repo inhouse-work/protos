@@ -7,7 +7,7 @@ module Protos
       # or click on to show the popover.
 
       def view_template(&)
-        div(**attrs, &)
+        button(**attrs, &)
       end
 
       private
@@ -15,7 +15,8 @@ module Protos
       def default_attrs
         {
           data: { "protos--popover-target": "trigger" },
-          tabindex: 0
+          tabindex: 0,
+          type: :button
         }
       end
     end

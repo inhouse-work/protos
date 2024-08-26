@@ -1,20 +1,23 @@
 # frozen_string_literal: true
 
 RSpec.describe Protos::Popover::Trigger do
+  subject { page }
+
   before do
     render described_class.new { "Some trigger" }
   end
 
-  it "renders the popover content" do
-    expect(page).to have_css("div")
-    expect(page).to have_content("Some trigger")
+  context "content" do
+    it { is_expected.to have_css("button") }
+    it { is_expected.to have_content("Some trigger") }
   end
 
-  it "connects the stimulus controller" do
-    expect(page).to have_css("div[data-protos--popover-target='trigger']")
+  context "interactivity" do
+    it { is_expected.to have_css("button[data-protos--popover-target='trigger']") }
   end
 
-  it "sets the tabindex" do
-    expect(page).to have_css("div[tabindex='0']")
+  context "accessibility" do
+    it { is_expected.to have_css("button[tabindex='0']") }
+    it { is_expected.to have_css("button[type='button']") }
   end
 end

@@ -29,7 +29,7 @@ module Protos
       end
     end
 
-    def title(*, **, &) = render Title.new(*, id: @input_id, **, &)
+    def title(*, **, &) = render Title.new(*, input_id: @input_id, **, &)
 
     def content(...) = render Content.new(...)
 

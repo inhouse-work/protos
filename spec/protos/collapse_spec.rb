@@ -10,15 +10,18 @@ RSpec.describe Protos::Collapse do
     end
   end
 
-  it { is_expected.to have_field type: "checkbox" }
-  it { is_expected.to have_field "123" }
-
-  it "renders the title and content" do
-    expect(page).to have_content "Content"
-    expect(page).to have_content "Title"
+  context "accessibility" do
+    it { is_expected.to have_field type: "checkbox" }
+    it { is_expected.to have_field "123" }
+    it { is_expected.to have_css "label[for=123]" }
   end
 
-  it "renders the styles" do
-    expect(page).to have_css ".collapse"
+  context "content" do
+    it { is_expected.to have_content "Title" }
+    it { is_expected.to have_content "Content" }
+  end
+
+  context "styles" do
+    it { is_expected.to have_css ".collapse" }
   end
 end

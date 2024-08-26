@@ -15,6 +15,12 @@ module Protos
 
     private
 
+    def default_attrs
+      {
+        aria_label: "breadcrumbs"
+      }
+    end
+
     def theme
       {
         container: "breadcrumbs"

@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 RSpec.describe Protos::Drawer do
-  subject do
-    described_class.new(id: "some_id") do |drawer|
+  subject { page }
+
+  before do
+    render described_class.new(id: "some_id") do |drawer|
       drawer.content do
         drawer.trigger { "Trigger" }
         drawer.plain "Main content"
@@ -14,16 +16,17 @@ RSpec.describe Protos::Drawer do
     end
   end
 
-  before { render subject }
-
-  it "renders the drawer container" do
-    expect(page).to have_css("div")
-    expect(page).to have_content("Trigger")
-    expect(page).to have_content("Main content")
-    expect(page).to have_content("Sidebar content")
+  context "content" do
+    it { is_expected.to have_content("Trigger") }
+    it { is_expected.to have_content("Main content") }
+    it { is_expected.to have_content("Sidebar content") }
   end
 
-  it "renders the style" do
-    expect(page).to have_css(".drawer")
+  context "accessibility" do
+    it { is_expected.to have_field("some_id") }
+  end
+
+  context "styles" do
+    it { is_expected.to have_css("div.drawer") }
   end
 end

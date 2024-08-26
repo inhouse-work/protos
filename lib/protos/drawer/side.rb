@@ -6,11 +6,15 @@ module Protos
       # DOCS: The content that will be shown when you open the drawer using the
       # trigger. This would be hidden until triggered.
 
-      option :id, type: Types::Coercible::String
+      option :input_id, reader: false, type: Types::String
 
       def view_template
         aside(**attrs) do
-          label(for: id, aria_label: "close sidebar", class: css[:toggle])
+          label(
+            for: @input_id,
+            aria_label: "close sidebar",
+            class: css[:toggle]
+          )
           yield if block_given?
         end
       end

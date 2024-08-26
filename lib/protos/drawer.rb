@@ -7,20 +7,29 @@ module Protos
     # trigger is clicked.
     # https://daisyui.com/components/drawer/
 
-    option :id, type: Types::Coercible::String
+    option :id,
+           reader: false,
+           type: Types::Coercible::String,
+           default: -> { "drawer-#{SecureRandom.hex(4)}" }
 
     def view_template
       div(**attrs) do
-        input(id:, type: :checkbox, class: css[:toggle], autocomplete: :off)
+        input(
+          id: @id,
+          type: :checkbox,
+          class: css[:toggle],
+          autocomplete: :off,
+          form: ""
+        )
         yield if block_given?
       end
     end
 
     def content(...) = render Content.new(...)
 
-    def side(*, **, &) = render Side.new(*, id:, **, &)
+    def side(*, **, &) = render Side.new(*, input_id: @id, **, &)
 
-    def trigger(*, **, &) = render Trigger.new(*, id:, **, &)
+    def trigger(*, **, &) = render Trigger.new(*, input_id: @id, **, &)
 
     private
 

@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
 RSpec.describe Protos::Dropdown::Trigger do
+  subject { page }
+
   before do
-    render described_class.new(class: "custom") { "trigger" }
+    render described_class.new(class: "custom") { "Trigger" }
   end
 
-  it "renders the trigger" do
-    expect(page).to have_css("div")
-    expect(page).to have_content("trigger")
-    expect(page).to have_css(".custom")
-  end
+  it { is_expected.to have_css(".custom") }
+  it { is_expected.to have_content("Trigger") }
 end

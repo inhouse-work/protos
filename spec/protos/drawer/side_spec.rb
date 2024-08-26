@@ -1,21 +1,23 @@
 # frozen_string_literal: true
 
 RSpec.describe Protos::Drawer::Side do
+  subject { page }
+
   before do
-    render described_class.new(id: "some_id") { "drawer" }
+    render described_class.new(input_id: "some_id") { "drawer" }
   end
 
-  it "renders the drawer sidebar" do
-    expect(page).to have_css("aside")
-    expect(page).to have_content("drawer")
+  context "content" do
+    it { is_expected.to have_css("aside") }
+    it { is_expected.to have_content("drawer") }
   end
 
-  it "renders the overlay" do
-    expect(page).to have_css("label[for=some_id]")
+  context "accessibility" do
+    it { is_expected.to have_css("label[for=some_id]") }
   end
 
-  it "renders the style" do
-    expect(page).to have_css(".drawer-side")
-    expect(page).to have_css(".drawer-overlay")
+  context "styles" do
+    it { is_expected.to have_css(".drawer-side") }
+    it { is_expected.to have_css(".drawer-overlay") }
   end
 end

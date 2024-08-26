@@ -7,19 +7,29 @@ module Protos
     # to be open at the same time, use the collapse component.
     # https://daisyui.com/components/accordion/
 
-    option :id, default: -> { "collapse-#{SecureRandom.hex(4)}" }
-
     def view_template(&)
       ul(**attrs, &)
     end
 
-    def item(*, **, &) = render Item.new(*, id:, **, &)
+    def item(*, input_id: nil, **, &)
+      self.current_input_id = input_id
+
+      render Item.new(*, input_id: current_input_id, **, &)
+    end
 
     def content(...) = render Collapse::Content.new(...)
 
-    def title(*, **, &) = render Collapse::Title.new(*, id:, **, &)
+    def title(*, **, &)
+      render Collapse::Title.new(*, input_id: current_input_id, **, &)
+    end
 
     private
+
+    attr_reader :current_input_id
+
+    def current_input_id=(value)
+      @current_input_id = value || "collapse-#{SecureRandom.hex(4)}"
+    end
 
     def theme
       {

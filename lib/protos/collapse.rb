@@ -6,19 +6,30 @@ module Protos
     # is visible at all times, and the content is only visible when expanded.
     # https://daisyui.com/components/collapse/
 
-    option :checkbox, default: -> { false }, type: Types::Bool, reader: false
-    option :id,
+    option :input_type, default: -> { :checkbox }, reader: false
+    option :input_id,
+           reader: false,
            default: -> { "collapse-#{SecureRandom.hex(4)}" },
            type: Types::String
 
     def view_template
       div(**attrs) do
-        input(type: "checkbox", id:, autocomplete: :off) if @checkbox
+        if @input_type
+          input(
+            type: @input_type,
+            id: @input_id,
+            name: @input_id,
+            autocomplete: :off,
+            # form: "" prevents the radio button from being submitted if its
+            # within a form
+            form: ""
+          )
+        end
         yield if block_given?
       end
     end
 
-    def title(*, **, &) = render Title.new(*, id:, **, &)
+    def title(*, **, &) = render Title.new(*, id: @input_id, **, &)
 
     def content(...) = render Content.new(...)
 

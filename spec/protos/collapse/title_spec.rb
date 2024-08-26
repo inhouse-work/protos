@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 RSpec.describe Protos::Collapse::Title do
-  context "with an id" do
+  context "with an input id" do
     before do
-      render described_class.new(id: 1) { "Title" }
+      render described_class.new(input_id: 1) { "Title" }
     end
 
     it "renders the title as a label" do
@@ -13,7 +13,7 @@ RSpec.describe Protos::Collapse::Title do
     end
   end
 
-  context "without an id" do
+  context "without an input id" do
     before do
       render described_class.new { "Title" }
     end

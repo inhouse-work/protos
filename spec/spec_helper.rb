@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "debug"
 require "protos"
 
 RSpec.configure do |config|

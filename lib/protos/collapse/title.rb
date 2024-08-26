@@ -6,14 +6,14 @@ module Protos
       # DOCS: The title of a collapse. This is the content that is always
       # visible and is used to toggle the collapse.
 
-      option :id,
-             type: Types::Coercible::String,
+      option :input_id,
+             type: Types::String | Types::Integer | Types::Nil,
              reader: false,
-             default: -> { "" }
+             default: -> { }
 
       def view_template(&)
-        if @id.size.positive?
-          label(for: @id, **attrs, &)
+        if @input_id
+          label(for: @input_id.to_s, **attrs, &)
         else
           div(**attrs, &)
         end

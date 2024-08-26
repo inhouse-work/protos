@@ -5,16 +5,16 @@ module Protos
     class Item < Component
       # DOCS: An accorion is just a collapse with radio buttons.
 
-      option :id, type: Types::Coercible::String
+      option :input_id, type: Types::String | Types::Integer
 
       def view_template(&block)
         li(**attrs) do
-          render Collapse.new(theme: collapse_theme) do
-            # form: "" prevents the radio button from being submitted if its
-            # within a form
-            input(type: :radio, id:, name: id, form: "", autocomplete: :off)
-            yield if block
-          end
+          render Collapse.new(
+            theme: collapse_theme,
+            input_id: @input_id.to_s,
+            input_type: :radio,
+            &block
+          )
         end
       end
 

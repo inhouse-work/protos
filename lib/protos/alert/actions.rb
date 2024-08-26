@@ -11,6 +11,12 @@ module Protos
 
       private
 
+      def default_attrs
+        {
+          aria_label: "alert-actions"
+        }
+      end
+
       def theme
         {
           container: "flex gap-xs items-center"

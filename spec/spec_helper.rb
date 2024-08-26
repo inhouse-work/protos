@@ -1,12 +1,8 @@
 # frozen_string_literal: true
 
-require "debug"
-require "phlex/testing/capybara"
-
 require "protos"
 
 RSpec.configure do |config|
-  config.include Phlex::Testing::Capybara::ViewHelper
   # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = ".rspec_status"
 

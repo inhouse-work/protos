@@ -1,20 +1,20 @@
 # frozen_string_literal: true
 
 RSpec.describe Protos::Command::Input do
+  subject { page }
+
   before do
     render described_class.new { "X" }
   end
 
-  it "renders the input" do
-    expect(page).to have_field
+  context "content" do
+    it { is_expected.to have_css("li") }
+    it { is_expected.to have_field(type: :text) }
+    it { is_expected.to have_content("X") }
   end
 
-  it "renders the icon" do
-    expect(page).to have_content("X")
-  end
-
-  it "adds the stimulus action" do
-    expect(page).to have_css("input[data-action='protos--command#filter']")
-    expect(page).to have_css("input[data-protos--command-target='input']")
+  context "interactivity" do
+    it { is_expected.to have_css("input[data-protos--command-target='input']") }
+    it { is_expected.to have_css("input[data-action='protos--command#filter']") }
   end
 end

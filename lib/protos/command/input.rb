@@ -12,7 +12,7 @@ module Protos
              }
 
       def view_template(&block)
-        div(**attrs) do
+        li(**attrs) do
           label(class: css[:label]) do
             div(class: css[:icon], &block) if block
             input(

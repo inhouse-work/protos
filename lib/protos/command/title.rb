@@ -7,7 +7,7 @@ module Protos
       # inside a Protos::Command::Group component.
 
       def view_template(&)
-        h2(**attrs, &)
+        li { h2(**attrs, &) }
       end
 
       private

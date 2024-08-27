@@ -8,6 +8,7 @@ module Protos
       def view_template(&block)
         form(method: :dialog, class: css[:form]) do
           button(
+            aria_label: "close",
             autofocus: true,
             formmethod: :dialog,
             formnovalidate: true,

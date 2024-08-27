@@ -20,10 +20,90 @@ Other Phlex based UI libraries worth checking out:
 - [PhlexUI](https://phlexui.com/)
 - [ZestUI](https://zestui.com/)
 
+Thinking of making your next static site using Phlex? Check out
+[staticky](https://github.com/nolantait/staticky). The protos docs were
+published using it.
+
+## Phlex components
+
+Phlex is a fantastic framework for building frontend components in pure Ruby:
+
+```ruby
+class Navbar
+  def view_template
+    header(class: "flex items-center justify-between") do
+      h3 { "My site" }
+      button { "Log out" }
+    end
+  end
+end
+```
+
+But how can we sometimes render this `Navbar` with a different background color?
+
+It would be nice to have our components take a class like any other element:
+
+```ruby
+render Navbar.new(class: "bg-primary")
+```
+
+Unfortunately `class` is a special keyword in Ruby, so we need to do some
+awkward handling to use it like this:
+
+```ruby
+class Navbar
+  def initialize(**options)
+    # Keyword `class` is a special word in Ruby so we have to awkwardly unwrap
+    # like this instead of using keyword arguments
+    @classes = options[:class]
+  end
+
+  def view_template
+    header(class: "#{@classes} flex items-center justify-between") do
+      h3 { "My site" }
+      button { "Log out" }
+    end
+  end
+end
+```
+
+Now we can pass in a style to our container, but what about overriding the style
+of the `h3` tag?
+
+```ruby
+class Navbar
+  def initialize(**options)
+    # Keyword `class` is a special word in Ruby so we have to awkwardly unwrap
+    # like this instead of using keyword arguments
+    @container_classes = options[:class]
+    @title_classes = options[:title_class]
+  end
+
+  def view_template
+    header(class: "#{@classes} flex items-center justify-between") do
+      h3(class: @title_classes) { "My site" }
+      button { "Log out" }
+    end
+  end
+end
+```
+
+Eventually everyone makes a kind of ad-hoc system for specifying styles. It gets
+more complicated when you have attributes like a data-controller. How do you
+give a good experience letting people using your components to add their own
+controllers while your component depends on one already?
+
+This library is an attempt to make this kind of developer experience while
+making reusable components more convention over configuration.
+
 ## Protos::Component
 
-A protos component follows some conventions that make them easy to work with as
-components in your app.
+A protos component follows 3 conventions that make them easy to work with as
+components in your app:
+
+- [Slots and themes](#slots-and-themes)
+- [Attrs and default attrs](#attrs-and-default-attrs)
+- [Params and options](#params-and-options)
 
 Every UI component library will have a tension between being too general to fit
 in your app or too narrow to be useful. Making components that look good out of
@@ -32,20 +112,18 @@ the box can make them hard to customize.
 We try and resolve this tension by making these components have a minimal style
 that can be easily overridden using some ergonomic conventions.
 
-There are 3 core conventions:
-- [Slots and themes](#slots-and-themes)
-- [Attrs and default attrs](#attrs-and-default-attrs)
-- [Params and options](#params-and-options)
-
 ### Slots and themes
 
-Components are styled with `css` slots that are filled with values from
-a `theme`.
+Components are styled with `css` slots that get their values from a simple hash
+we call a `theme`.
 
-You define a theme for your component by defining a `#theme` method that returns
-a hash. This hash will be merged with any theme provided when rendering your
-component. This allows you to easily override styles for your components
-depending on their context.
+You define a `theme` for your component by defining a `#theme` method that
+returns a hash.
+
+Users of your components can override, merge, or remove parts of your theme by
+passing in their own as an argument to the component. Another nice benefit is
+that your markup doesn't get overwhelmed horizontally with your css classes.
+
 
 ```ruby
 class List < Protos::Component
@@ -58,7 +136,7 @@ class List < Protos::Component
 
   def theme
     {
-      list: tokens("space-y-4"), # We can use `#tokens` from phlex (recommended)
+      list: "space-y-4", # We can use `#tokens` from phlex (recommended)
       item: "font-bold text-2xl" # Or just plain old strings
     }
   end
@@ -66,7 +144,10 @@ end
 ```
 
 Using a theme and css slots allows us to easily override any part of a component
-when we render:
+when we render.
+
+Here we are passing in our own theme. The default behavior is to add these
+styles on to the theme, rather than replacing them.
 
 ```ruby
 render List.new(
@@ -77,7 +158,12 @@ render List.new(
 )
 ```
 
-This would combine the default and our theme using tailwind\_merge:
+When the component is rendered the `tailwind_merge` gem will also prune any
+duplicate unneeded styles.
+
+For example even though the themes `list` key would be added together to become
+`space-y-4 space-y-8`, the `tailwind_merge` gem will prune it down to just
+`space-y-8` as the two styles conflict.
 
 ```html
 <ul class="space-y-8">
@@ -119,8 +205,8 @@ The new `css[:item]` slot would be:
 <li class="font-bold">Item 1</li>
 ```
 
-If you want to change the method we define our default theme you can override the
-`theme_method` on the class:
+If you want to change the method we define our default theme under you can
+override the `theme_method` on the class:
 
 ```ruby
 class List < Protos::Component
@@ -142,12 +228,15 @@ end
 ### Attrs and default attrs
 
 By convention, all components spread in an `attrs` hash on their outermost
-element of the component.
+element of the component. There is no rule for this, but it makes them feel more
+naturally like native html elements when you render them.
 
-By doing this we enable 2 main conveniences:
+By doing this we enable 3 main conveniences:
 1. We can pass a `class` keyword when initializing the component which will be
    merged safely into the `css[:container]` slot
-2. We can add default attributes that are safely merged with any provided to the
+2. We can pass any html attributes we want to the element such as `id`, `data`
+   etc and it will just work
+3. We can add default attributes that are safely merged with any provided to the
    component when its being initialized
 
 ```ruby
@@ -175,8 +264,9 @@ class List < Protos::Component
 end
 ```
 
-`#attrs` will by default merge the `class` keyword into the `css[:container]`
-slot which we define in our theme.
+`#attrs` returns a hash which will by default merge the `class` keyword into the
+`css[:container]` slot which we define in our theme. The `ul` elements class
+would be `space-y-4` as that is the `css[:container]` on our theme.
 
 Special html options will be safely merged. For examples, the component above
 defines a list controller. If we passed our own controller into data when we
@@ -193,6 +283,9 @@ That would output both controllers to the DOM element:
 ```html
 <ul data-controller="list tooltip">
 ```
+
+This makes it very convenient to add functionality to basic components without
+overriding their core behavior or having to modify/override their class.
 
 If we wanted to, just like for our theme we can change the method from
 `default_attrs` by defining the `default_attrs_method` on the class:
@@ -224,25 +317,27 @@ class List < Protos::Component
 end
 ```
 
+This makes our initializaiton declarative and easy to extend without having to
+consider how to call `super` in the initializer.
+
 The following keywords are reserved in the base class:
 
 - `class`
 - `theme`
 - `html_options`
 
+You are free to add whatever positional or keyword arguments you like as long as
+they don't directly conflict with those names.
+
 ## Putting it all together
 
-Here is an example of a small navbar component:
+Lets revisit the example of our `Navbar` component:
 
 ```ruby
 require "protos"
 
 class Navbar < Protos::Component
   def view_template
-    # **attrs will add:
-    # - Any html options defined on the component initialization such as data,
-    #   role, for, etc..
-    # - Class will be added to the css[:container] and applied
     header(**attrs) do
       h1(class: css[:heading]) { "Hello world" }
       h2(class: css[:subtitle]) { "With a subtitle" }
@@ -259,19 +354,19 @@ class Navbar < Protos::Component
 
   def theme
     {
-      container: tokens(
-        "flex",
-        "justify-between",
-        "items-center",
-        "gap-sm"
-      ),
-      heading: tokens("text-2xl", "font-bold"),
-      subtitle: tokens("text-base")
+      container: "flex justify-between items-center gap-sm",
+      heading: "text-2xl font-bold",
+      subtitle: "text-sm"
     }
   end
 end
+```
 
-component = Navbar.new(
+Now all the concerns about adding in our behavior, styles, etc are handled for
+us by convention:
+
+```ruby
+render Navbar.new(
   # This will add to the component's css[:container] slot
   class: "my-sm",
   # This will add the controller and not remove
@@ -283,8 +378,6 @@ component = Navbar.new(
     subtitle!: "text-xl"   # We can override the entire slot
   }
 )
-
-puts component.call
 ```
 
 Which produces the following html:
@@ -344,15 +437,6 @@ module.exports = {
         lg: "var(--spacing-lg)",
         xl: "var(--spacing-xl)",
       },
-      // If you use % based spacing you might want different spacing
-      // for any vertical gaps to prevent overflow
-      gap: {
-        xs: "var(--spacing-gap-xs)",
-        sm: "var(--spacing-gap-sm)",
-        md: "var(--spacing-gap-md)",
-        lg: "var(--spacing-gap-lg)",
-        xl: "var(--spacing-gap-xl)",
-      },
     },
   }
   // ....
@@ -388,11 +472,12 @@ end
 
 ## Building your own components
 
-You can override components simply by redefining the class in your own app:
+You can override components simply by redefining sub-classing the class in your
+own app:
 
 ```ruby
-module Protos
-  class Swap < Component
+module Components
+  class Swap < Protos::Component
     private
 
     def on(...)
@@ -408,8 +493,22 @@ module Protos
 end
 ```
 
-You could also encapsulate these more primitive proto components into your own
-components. You could use `Proto::List` to create your own list and even use
+But its much better to avoid the sub-classing and just render the component
+inside of your own:
+
+```ruby
+module Components
+  class Swap < ApplicationComponent
+    def view_template
+      render Protos::Swap.new do |c|
+        # ....
+      end
+    end
+  end
+end
+```
+
+You could use `Proto::List` to create your own list and even use
 `Phlex::DeferredRender` to make the API more convenient.
 
 Let's create a list component with headers and actions:

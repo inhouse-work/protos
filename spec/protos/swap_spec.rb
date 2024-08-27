@@ -1,23 +1,27 @@
 # frozen_string_literal: true
 
 RSpec.describe Protos::Swap do
-  subject do
-    described_class.new do |swap|
+  subject { page }
+
+  before do
+    render described_class.new do |swap|
       swap.on { "Swap on" }
       swap.off { "Swap off" }
     end
   end
 
-  before { render subject }
-
-  it "renders a swap" do
-    expect(page).to have_css("label")
-    expect(page).to have_field(type: :checkbox)
-    expect(page).to have_content("Swap on")
-    expect(page).to have_content("Swap off")
+  context "content" do
+    it { is_expected.to have_css("label") }
+    it { is_expected.to have_field(type: :checkbox) }
+    it { is_expected.to have_content("Swap on") }
+    it { is_expected.to have_content("Swap off") }
   end
 
-  it "renders the style" do
-    expect(page).to have_css(".swap")
+  context "styles" do
+    it { is_expected.to have_css(".swap") }
+  end
+
+  context "accessibility" do
+    it { is_expected.to have_css("input[aria-label=swap]") }
   end
 end

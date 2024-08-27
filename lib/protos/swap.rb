@@ -8,7 +8,13 @@ module Protos
 
     def view_template
       label(**attrs) do
-        input(type: :checkbox, class: css[:input], autocomplete: :off)
+        input(
+          type: :checkbox,
+          class: css[:input],
+          autocomplete: :off,
+          form: "",
+          aria_label: "swap"
+        )
         yield if block_given?
       end
     end

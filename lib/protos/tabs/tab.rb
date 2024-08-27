@@ -5,35 +5,24 @@ module Protos
     class Tab < Component
       # DOCS: A single tab in a tabs component
 
-      option :id
-      option :label
       option :active, default: -> { false }
       option :disabled, default: -> { false }
 
       def view_template(&)
-        input(
-          type: :radio,
-          class: css[:input],
-          name: id,
-          role: :tab,
-          aria_label: label,
-          autocomplete: :off
-        )
-        div(**attrs, &)
+        button(**attrs, disabled:, &)
       end
 
       private
 
       def default_attrs
         {
-          role: :tabpanel
+          role: :tab
         }
       end
 
       def theme
         {
-          container: "tab-content",
-          input: tokens(
+          container: tokens(
             "tab",
             disabled: "tab-disabled",
             active: "tab-active"

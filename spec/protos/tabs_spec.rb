@@ -1,26 +1,23 @@
 # frozen_string_literal: true
 
 RSpec.describe Protos::Tabs do
-  subject do
-    described_class.new(type: :lifted, size: :lg) do |tabs|
-      tabs.tab(id: "tabs", label: "Tab 1") { "Tab 1 content" }
-      tabs.tab(id: "tabs", label: "Tab 2") { "Tab 2 content" }
+  subject { page }
+
+  before do
+    render described_class.new(type: :lifted, size: :lg) do |tabs|
+      tabs.tab { "Tab 1" }
+      tabs.tab { "Tab 2" }
     end
   end
 
-  before { render subject }
-
-  it "renders a tabs" do
-    expect(page).to have_css("div[role='tablist']")
-    expect(page).to have_css("input[type=radio][name='tabs'][aria-label='Tab 1']")
-    expect(page).to have_css("input[type=radio][name='tabs'][aria-label='Tab 2']")
-    expect(page).to have_content("Tab 1 content")
-    expect(page).to have_content("Tab 2 content")
+  context "content" do
+    it { is_expected.to have_content("Tab 1") }
+    it { is_expected.to have_content("Tab 2") }
   end
 
-  it "renders the style" do
-    expect(page).to have_css(".tabs")
-    expect(page).to have_css(".tabs-lifted")
-    expect(page).to have_css(".tabs-lg")
+  context "styles" do
+    it { is_expected.to have_css(".tabs") }
+    it { is_expected.to have_css(".tabs-lifted") }
+    it { is_expected.to have_css(".tabs-lg") }
   end
 end

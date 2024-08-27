@@ -1,5 +1,13 @@
 ## [Unreleased]
 
+## [0.5.0] - 2024-08-27
+
+- Fixes all accessibility violations according to Axe Core
+- Reduces responsibility of Tabs to only be a tablist, no tab panels
+- Fixes passing ID to popovers, dropdowns, drawers, etc to not override the
+  input ID
+- Changes trigger on popover to be a button instead of a div
+
 ## [0.4.3] - 2024-08-14
 
 - Removes unneeded auto-loading in Rails which fixes collisions with `protos-markdown`

@@ -1,39 +1,41 @@
 # frozen_string_literal: true
 
-TestComponent = Class.new(Protos::Component) do
-  theme_method :custom_style
-  default_attrs_method :custom_options
-
-  def view_template(&)
-    div(**attrs) do
-      div(class: "#{css[:inner]} #{css[:overridable]}") do
-        span(class: css[:non_existent]) { "Hello" }
-      end
-    end
-  end
-
-  private
-
-  def custom_options
-    {
-      data: {
-        "test-component": "true",
-        controller: "controller-one"
-      }
-    }
-  end
-
-  def custom_style
-    {
-      container: tokens("test-component", "removed-component"),
-      inner: "test-component-inner",
-      overridable: ["removed-component"]
-    }
-  end
-end
-
 RSpec.describe Protos::Component do
   before do
+    stub_const(
+      "TestComponent", Class.new(Protos::Component) do
+        theme_method :custom_style
+        default_attrs_method :custom_options
+
+        def view_template(&)
+          div(**attrs) do
+            div(class: "#{css[:inner]} #{css[:overridable]}") do
+              span(class: css[:non_existent]) { "Hello" }
+            end
+          end
+        end
+
+        private
+
+        def custom_options
+          {
+            data: {
+              "test-component": "true",
+              controller: "controller-one"
+            }
+          }
+        end
+
+        def custom_style
+          {
+            container: tokens("test-component", "removed-component"),
+            inner: "test-component-inner",
+            overridable: ["removed-component"]
+          }
+        end
+      end
+    )
+
     render TestComponent.new(
       class: "injected-class",
       role: "test",

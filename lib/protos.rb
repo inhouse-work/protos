@@ -15,6 +15,7 @@ require_relative "protos/types"
 require_relative "protos/token_list"
 require_relative "protos/component"
 require_relative "protos/theme"
+require_relative "protos/mix"
 require_relative "protos/attributes"
 
 # Components

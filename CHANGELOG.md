@@ -6,7 +6,6 @@
   overriding on all others. This is opposite to how attributes used to be merged
   by default. This is a fix for attributes like `value` where you actually need
   to override them.
-- Adds tests for all Rails components
 - Adds a separate tested `Mix` class for handling attribute merging
 
 ## [0.5.0] - 2024-08-27

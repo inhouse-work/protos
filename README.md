@@ -268,9 +268,11 @@ end
 `css[:container]` slot which we define in our theme. The `ul` elements class
 would be `space-y-4` as that is the `css[:container]` on our theme.
 
-Special html options will be safely merged. For examples, the component above
-defines a list controller. If we passed our own controller into data when we
-initialize, the component's data-controller attribute would be appended to:
+Special html options (`class`, `data`) will be safely merged. 
+
+For examples, the component above defines a list controller. If we passed our
+own controller into data when we initialize, the component's data-controller
+attribute would be appended to:
 
 ```ruby
 render List.new(
@@ -317,7 +319,7 @@ class List < Protos::Component
 end
 ```
 
-This makes our initializaiton declarative and easy to extend without having to
+This makes our initialization declarative and easy to extend without having to
 consider how to call `super` in the initializer.
 
 The following keywords are reserved in the base class:
@@ -401,7 +403,7 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 ## Usage
 
-Setup [Tailwindcss](https://tailwindcss.com/), [daisyUI](https://daisyui.com)
+Setup [TailwindCSS](https://tailwindcss.com/), [DaisyUI](https://daisyui.com)
 and add the protos path to your content.
 
 ```
@@ -409,7 +411,7 @@ npm install -D tailwindcss postcss autoprefixer daisyui
 npx tailwindcss init
 ```
 
-Then we need to add the protos path to the `content` of our tailwindcss config
+Then we need to add the protos path to the `content` of our tailwind config
 so tailwind will read the styles defined in the Protos gem.
 
 Protos also uses semantic spacing such as `p-sm` or `m-md` instead of set

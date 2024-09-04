@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HaveStimulusTarget
   def initialize(controller, target)
     @controller = controller

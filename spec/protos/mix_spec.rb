@@ -13,16 +13,25 @@ RSpec.describe Protos::Mix do
       result = subject.call(
         {
           class: "bar",
-          data: { a: 1 }
+          data: {
+            controller: "something",
+            list: [1, 2]
+          }
         },
         {
           class: "baz",
-          data: { a: 2, b: 3 }
+          data: {
+            controller: "other",
+            list: [3]
+          }
         }
       )
 
       expect(result[:class]).to eq("bar baz")
-      expect(result[:data]).to eq(a: 2, b: 3)
+      expect(result[:data]).to eq(
+        controller: "something other",
+        list: [1, 2, 3]
+      )
     end
 
     it "merges other attributes by replacement" do

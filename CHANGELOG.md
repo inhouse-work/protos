@@ -1,5 +1,14 @@
 ## [Unreleased]
 
+## [0.6.0] - 2024-09-04
+
+- Changes how merging attributes works to only mix on certain attributes,
+  overriding on all others. This is opposite to how attributes used to be merged
+  by default. This is a fix for attributes like `value` where you actually need
+  to override them.
+- Adds tests for all Rails components
+- Adds a separate tested `Mix` class for handling attribute merging
+
 ## [0.5.0] - 2024-08-27
 
 - Fixes all accessibility violations according to Axe Core

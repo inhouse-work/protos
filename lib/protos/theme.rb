@@ -9,7 +9,7 @@ module Protos
 
     class << self
       def merger
-        @merger ||= TailwindMerge::Merger.new
+        @merger ||= TailwindMerge::Merger.new.freeze
       end
     end
 

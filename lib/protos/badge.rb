@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Protos
   class Badge < Component
     option :type, default: -> { :default }

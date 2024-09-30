@@ -12,6 +12,9 @@ module Protos
     # Tippy.js options can be passed in via the `options` attribute or, more
     # conveniently by the typed options listed below.
 
+    autoload :Trigger, "protos/popover/trigger"
+    autoload :Content, "protos/popover/content"
+
     Positions = Types::Coercible::Symbol.enum(
       :top,
       :top_start,

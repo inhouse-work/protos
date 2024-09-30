@@ -7,6 +7,10 @@ module Protos
     # trigger is clicked.
     # https://daisyui.com/components/drawer/
 
+    autoload :Side, "protos/drawer/side"
+    autoload :Trigger, "protos/drawer/trigger"
+    autoload :Content, "protos/drawer/content"
+
     option :id,
            reader: false,
            type: Types::Coercible::String,

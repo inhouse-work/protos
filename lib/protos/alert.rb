@@ -6,6 +6,9 @@ module Protos
     # be used in combination with Protos::Toast to have popup notifications.
     # https://daisyui.com/components/alert/
 
+    autoload :Actions, "protos/alert/actions"
+    autoload :Icon, "protos/alert/icon"
+
     Styles = Types::Coercible::Symbol.enum(
       :info,
       :success,

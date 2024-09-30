@@ -6,6 +6,9 @@ module Protos
     # display different content.
     # https://daisyui.com/components/swap/
 
+    autoload :On, "protos/swap/on"
+    autoload :Off, "protos/swap/off"
+
     def view_template
       label(**attrs) do
         input(

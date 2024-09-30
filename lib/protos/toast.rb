@@ -6,6 +6,8 @@ module Protos
     # that popup at a fixed position on the screen.
     # https://daisyui.com/components/toast/
 
+    autoload :CloseButton, "protos/toast/close_button"
+
     Positions = Types::Symbol.enum(
       :top_start,
       :top_center,

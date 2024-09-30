@@ -7,6 +7,11 @@ module Protos
     # in a larger chat history.
     # https://daisyui.com/components/chat/
 
+    autoload :Content, "protos/chat_bubble/content"
+    autoload :Image, "protos/chat_bubble/image"
+    autoload :Header, "protos/chat_bubble/header"
+    autoload :Footer, "protos/chat_bubble/footer"
+
     ALIGNMENTS = {
       start: "chat-start",
       end: "chat-end"

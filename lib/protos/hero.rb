@@ -6,6 +6,9 @@ module Protos
     # optionally layout an image for a responsive layout.
     # https://daisyui.com/components/hero/
 
+    autoload :Content, "protos/hero/content"
+    autoload :Overlay, "protos/hero/overlay"
+
     def view_template(&)
       div(**attrs, &)
     end

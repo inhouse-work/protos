@@ -5,6 +5,8 @@ module Protos
     # DOCS: A list of breadcrumbs (e.g links) for navigation
     # https://daisyui.com/components/breadcrumbs/
 
+    autoload :Crumb, "protos/breadcrumbs/crumb"
+
     def view_template(&block)
       nav(**attrs) do
         ul(class: css[:list], &block)

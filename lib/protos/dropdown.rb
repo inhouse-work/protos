@@ -10,6 +10,10 @@ module Protos
     # rather than pure CSS for accessibility. The layout of pure CSS was too
     # tricky to get right and we felt the dependency tradeoff was worthwhile.
 
+    autoload :Item, "protos/dropdown/item"
+    autoload :Menu, "protos/dropdown/menu"
+    autoload :Trigger, "protos/dropdown/trigger"
+
     option :position,
            type: Popover::Positions,
            default: -> { :bottom },

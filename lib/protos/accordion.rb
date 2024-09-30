@@ -7,6 +7,8 @@ module Protos
     # to be open at the same time, use the collapse component.
     # https://daisyui.com/components/accordion/
 
+    autoload :Item, "protos/accordion/item"
+
     def view_template(&)
       ul(**attrs, &)
     end

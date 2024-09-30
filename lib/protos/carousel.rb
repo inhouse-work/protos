@@ -6,6 +6,9 @@ module Protos
     # through in a mobile friendly manner.
     # https://daisyui.com/components/carousel/
 
+    autoload :Item, "protos/carousel/item"
+    autoload :Actions, "protos/carousel/actions"
+
     SNAP_POINTS = {
       none: "",
       center: "carousel-center",

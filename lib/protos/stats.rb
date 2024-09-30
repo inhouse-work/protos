@@ -5,6 +5,13 @@ module Protos
     # DOCS: Stats component that contains a collection of stats
     # https://daisyui.com/components/stat/
 
+    autoload :Actions, "protos/stats/actions"
+    autoload :Description, "protos/stats/description"
+    autoload :Figure, "protos/stats/figure"
+    autoload :Stat, "protos/stats/stat"
+    autoload :Title, "protos/stats/title"
+    autoload :Value, "protos/stats/value"
+
     def view_template(&)
       div(**attrs, &)
     end

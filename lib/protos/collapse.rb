@@ -6,6 +6,9 @@ module Protos
     # is visible at all times, and the content is only visible when expanded.
     # https://daisyui.com/components/collapse/
 
+    autoload :Title, "protos/collapse/title"
+    autoload :Content, "protos/collapse/content"
+
     option :input_type, default: -> { :checkbox }, reader: false
     option :input_id,
            reader: false,

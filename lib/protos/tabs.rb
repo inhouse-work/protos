@@ -5,6 +5,8 @@ module Protos
     # DOCS: A component that contains many Protos::Tab components
     # https://daisyui.com/components/tab/
 
+    autoload :Tab, "protos/tabs/tab"
+
     SIZES = {
       xs: "tabs-xs",
       sm: "tabs-sm",

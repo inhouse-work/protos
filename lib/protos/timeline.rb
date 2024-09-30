@@ -5,6 +5,11 @@ module Protos
     # DOCS: A timeline component
     # https://daisyui.com/components/timeline/
 
+    autoload :Item, "protos/timeline/item"
+    autoload :Left, "protos/timeline/left"
+    autoload :Center, "protos/timeline/center"
+    autoload :Right, "protos/timeline/right"
+
     option :vertical, type: Types::Bool, default: -> { false }
 
     def view_template(&)

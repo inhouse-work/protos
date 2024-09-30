@@ -5,6 +5,14 @@ module Protos
     # DOCS: A table component
     # https://daisyui.com/components/table/
 
+    autoload :Caption, "protos/table/caption"
+    autoload :Header, "protos/table/header"
+    autoload :Head, "protos/table/head"
+    autoload :Body, "protos/table/body"
+    autoload :Footer, "protos/table/footer"
+    autoload :Row, "protos/table/row"
+    autoload :Cell, "protos/table/cell"
+
     SIZES = {
       xs: "table-xs",
       sm: "table-sm",

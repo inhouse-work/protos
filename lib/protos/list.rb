@@ -5,6 +5,8 @@ module Protos
     # DOCS: A list of items that are joined together for easier styling with
     # borders, border radius, etc.
 
+    autoload :Item, "protos/list/item"
+
     option :ordered, Types::Bool, default: -> { false }, reader: false
 
     def view_template(&)

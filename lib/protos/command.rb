@@ -6,6 +6,15 @@ module Protos
     # filterable list of commands. Command modals are by default closable by
     # clicking the overlay rather than a specific close button.
 
+    autoload :Input, "protos/command/input"
+    autoload :Dialog, "protos/command/dialog"
+    autoload :Group, "protos/command/group"
+    autoload :List, "protos/command/list"
+    autoload :Trigger, "protos/command/trigger"
+    autoload :Title, "protos/command/title"
+    autoload :Item, "protos/command/item"
+    autoload :Empty, "protos/command/empty"
+
     def view_template(&)
       div(**attrs, &)
     end

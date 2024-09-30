@@ -5,6 +5,10 @@ module Protos
     # DOCS: The core typography module that can be mixedin to override the
     # default elements with custom elements.
 
+    autoload :Heading, "protos/typography/heading"
+    autoload :Paragraph, "protos/typography/paragraph"
+    autoload :InlineLink, "protos/typography/inline_link"
+
     def h1(**, &)
       render Heading.new(level: 1, size: :xl, **, &)
     end

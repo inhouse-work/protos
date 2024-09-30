@@ -5,6 +5,11 @@ module Protos
     # DOCS: A card component
     # https://daisyui.com/components/card/
 
+    autoload :Body, "protos/card/body"
+    autoload :Title, "protos/card/title"
+    autoload :Actions, "protos/card/actions"
+    autoload :Image, "protos/card/image"
+
     ImageDisplays = Types::Coercible::Symbol.enum(:default, :overlay, :side)
 
     IMAGE_DISPLAYS = {

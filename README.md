@@ -714,12 +714,11 @@ render Ui::Table.new(title: "A table", collection:) do |table|
 end
 ```
 
-## No unnecessary components
+## Missing components
 
-This library avoids re-making Protos components for extremely simple daisyui
-components such as:
+This library tries to avoid re-making Protos components for extremely simple
+DaisyUI components. Here is a list that we don't yet have components for:
 
-- Badge
 - Buttons
 - Checkbox
 - File input

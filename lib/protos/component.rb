@@ -10,7 +10,7 @@ module Protos
     # make configuring each class much easier. It also enables gathering up all
     # undefined options and adding them to the html_options hash.
 
-    extend Dry::Initializer
+    extend Dry::Initializer[undefined: false]
     extend Dry::Core::ClassAttributes
 
     # Define methods for css and attrs. Each is expected to return a hash

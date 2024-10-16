@@ -8,7 +8,7 @@ module Protos
       # dropdowns comes from there.
 
       def view_template(&block)
-        template_tag(**template_attrs) do
+        template(**template_attrs) do
           ul(**attrs, &block)
         end
       end

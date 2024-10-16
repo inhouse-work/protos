@@ -17,13 +17,13 @@ module Protos
 
     option :vertical, type: Types::Bool, default: -> { false }
     option :snap_to,
-           default: -> { :none },
-           reader: false,
-           type: Types::Coercible::Symbol.enum(
-             :none,
-             :center,
-             :end
-           )
+      default: -> { :none },
+      reader: false,
+      type: Types::Coercible::Symbol.enum(
+        :none,
+        :center,
+        :end
+      )
 
     def view_template(&)
       div(**attrs, &)
@@ -41,11 +41,11 @@ module Protos
 
     def theme
       {
-        container: tokens(
+        container: [
           "carousel",
           snap_to,
-          vertical: "carousel-vertical"
-        )
+          ("carousel-vertical" if vertical)
+        ]
       }
     end
   end

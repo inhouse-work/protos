@@ -19,10 +19,10 @@ module Protos
 
     def theme
       {
-        container: tokens(
+        container: [
           "steps",
-          vertical: "steps-vertical"
-        )
+          ("steps-vertical" if vertical)
+        ]
       }
     end
   end

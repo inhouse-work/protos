@@ -20,14 +20,9 @@ class Navbar < Protos::Component
 
   def theme
     {
-      container: tokens(
-        "flex",
-        "justify-between",
-        "items-center",
-        "gap-sm"
-      ),
-      heading: tokens("text-2xl", "font-bold"),
-      subtitle: tokens("text-base")
+      container: "flex justify-between items-center gap-sm",
+      heading: "text-2xl font-bold",
+      subtitle: "text-base"
     }
   end
 end

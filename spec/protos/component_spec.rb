@@ -28,9 +28,9 @@ RSpec.describe Protos::Component do
 
         def custom_style
           {
-            container: tokens("test-component", "removed-component"),
+            container: "test-component removed-component",
             inner: "test-component-inner",
-            overridable: ["removed-component"]
+            overridable: "removed-component"
           }
         end
       end

@@ -21,9 +21,9 @@ module Protos
     option :border, type: Types::Bool, default: -> { true }, reader: :private
     option :compact, type: Types::Bool, default: -> { false }, reader: :private
     option :image_display,
-           ImageDisplays,
-           default: -> { :default },
-           reader: false
+      ImageDisplays,
+      default: -> { :default },
+      reader: false
 
     def view_template(&)
       article(**attrs, &)
@@ -45,12 +45,12 @@ module Protos
 
     def theme
       {
-        container: tokens(
+        container: [
           "card",
           image_display,
-          border: "card-bordered",
-          compact: "card-compact"
-        )
+          ("card-bordered" if border),
+          ("card-compact" if compact)
+        ]
       }
     end
   end

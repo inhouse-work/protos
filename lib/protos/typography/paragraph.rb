@@ -15,10 +15,10 @@ module Protos
 
       def theme
         {
-          container: tokens(
+          container: [
             "leading-relaxed",
-            margin: "[&:not(:first-child)]:mt-sm"
-          )
+            ("[&:not(:first-child)]:mt-sm" if margin)
+          ]
         }
       end
     end

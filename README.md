@@ -136,7 +136,7 @@ class List < Protos::Component
 
   def theme
     {
-      list: "space-y-4", # We can use `#tokens` from phlex (recommended)
+      list: ["space-y-4"], # We can use arrays
       item: "font-bold text-2xl" # Or just plain old strings
     }
   end
@@ -218,8 +218,8 @@ class List < Protos::Component
 
   def custom_theme
     {
-      list: tokens("space-y-4"),
-      item: tokens("font-bold", "text-2xl")
+      list: "space-y-4",
+      item: ["font-bold", "text-2xl"]
     }
   end
 end
@@ -257,8 +257,8 @@ class List < Protos::Component
 
   def theme
     {
-      container: tokens("space-y-4"),
-      item: tokens("font-bold")
+      container: "space-y-4",
+      item: "font-bold"
     }
   end
 end
@@ -488,7 +488,7 @@ module Components
 
     def theme
       super.merge({
-        input: tokens("block", "bg-red-500")
+        input: ["block", "bg-red-500"]
       })
     end
   end
@@ -561,11 +561,11 @@ module Ui
 
     def theme
       {
-        container: tokens("space-y-xs"),
-        header: tokens("flex", "justify-between", "items-end", "gap-sm"),
-        list: tokens("divide-y", "border", "w-full"),
-        actions: tokens("space-x-xs"),
-        item: tokens("p-sm")
+        container: "space-y-xs",
+        header: "flex justify-between items-end gap-sm",
+        list: "divide-y border w-full",
+        actions: "space-x-xs",
+        item: "p-sm"
       }
     end
   end
@@ -676,10 +676,10 @@ module Ui
 
     def theme
       {
-        container: tokens("space-y-sm"),
-        header: tokens("flex", "justify-between", "items-end", "gap-sm"),
-        table: tokens("border"),
-        caption: tokens("text-muted")
+        container: "space-y-sm",
+        header: "flex justify-between items-end gap-sm",
+        table: "border",
+        caption: "text-muted"
       }
     end
   end

@@ -28,10 +28,10 @@ module Protos
 
     def theme
       {
-        container: tokens(
+        container: [
           "timeline",
-          vertical: "timeline-vertical"
-        )
+          ("timeline-vertical" if vertical)
+        ]
       }
     end
   end

@@ -22,11 +22,11 @@ module Protos
 
       def theme
         {
-          container: tokens(
+          container: [
             "tab",
-            disabled: "tab-disabled",
-            active: "tab-active"
-          )
+            ("tab-disabled" if disabled),
+            ("tab-active" if active)
+          ]
         }
       end
     end

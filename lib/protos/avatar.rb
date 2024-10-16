@@ -64,13 +64,13 @@ module Protos
 
     option :placeholder, type: Types::Bool, default: -> { false }
     option :indicator,
-           type: Indicators,
-           default: -> { :none },
-           reader: false
+      type: Indicators,
+      default: -> { :none },
+      reader: false
     option :shape,
-           type: MaskShapes,
-           default: -> { :none },
-           reader: false
+      type: MaskShapes,
+      default: -> { :none },
+      reader: false
 
     def view_template(&block)
       div(**attrs) do
@@ -90,12 +90,12 @@ module Protos
 
     def theme
       {
-        container: tokens(
+        container: [
           "avatar",
           indicator,
-          placeholder: "placeholder"
-        ),
-        figure: tokens(shape)
+          ("placeholder" if placeholder)
+        ],
+        figure: shape
       }
     end
   end

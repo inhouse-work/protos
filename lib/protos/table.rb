@@ -24,14 +24,14 @@ module Protos
     option :pin_columns, default: -> { false }, type: Types::Bool
     option :striped, default: -> { false }, type: Types::Bool
     option :size,
-           default: -> { :md },
-           reader: false,
-           type: Types::Coercible::Symbol.enum(
-             :xs,
-             :sm,
-             :md,
-             :lg
-           )
+      default: -> { :md },
+      reader: false,
+      type: Types::Coercible::Symbol.enum(
+        :xs,
+        :sm,
+        :md,
+        :lg
+      )
 
     def view_template(&block)
       div(**attrs) do
@@ -62,13 +62,13 @@ module Protos
     def theme
       {
         container: "w-full overflow-x-auto",
-        table: tokens(
+        table: [
           "table",
           size,
-          pin_rows: "table-pin-rows",
-          pin_columns: "table-pin-columns",
-          striped: "table-striped"
-        )
+          ("table-pin-rows" if pin_rows),
+          ("table-pin-columns" if pin_columns),
+          ("table-striped" if striped)
+        ]
       }
     end
   end

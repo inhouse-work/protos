@@ -20,8 +20,8 @@ class List < Protos::Component
 
   def theme
     {
-      container: tokens("space-y-4"),
-      item: tokens("font-bold")
+      container: "space-y-4",
+      item: "font-bold"
     }
   end
 end

@@ -2,7 +2,23 @@
 
 module Protos
   class Badge < Component
-    option :type, default: -> { :default }
+    Badges = Types::Coercible::Symbol.enum(
+      :default,
+      :neutral,
+      :success,
+      :primary,
+      :secondary,
+      :info,
+      :error,
+      :warning,
+      :ghost
+    )
+
+    Sizes = Types::Coercible::Symbol.enum(:default, :xs, :sm, :md, :lg)
+
+    option :type, type: Badges, default: -> { :default }
+    option :outline, default: -> { false }
+    option :size, type: Sizes, default: -> { :default }
 
     def view_template(&)
       span(**attrs, &)
@@ -10,17 +26,36 @@ module Protos
 
     private
 
+    def badge_style
+      {
+        neutral: "badge-neutral",
+        success: "badge-success",
+        primary: "badge-primary",
+        secondary: "badge-secondary",
+        info: "badge-info",
+        error: "badge-error",
+        warning: "badge-warning",
+        ghost: "badge-ghost"
+      }
+    end
+
+    def badge_size
+      {
+        xs: "badge-xs",
+        sm: "badge-sm",
+        md: "badge-md",
+        lg: "badge-lg"
+      }
+    end
+
     def theme
       {
         container: [
           "badge",
-          ("badge-success" if type == :success),
-          ("badge-primary" if type == :primary),
-          ("badge-info" if type == :info),
-          ("badge-error" if type == :error),
-          ("badge-warning" if type == :warning),
-          ("badge-ghost" if type == :ghost)
-        ]
+          badge_style[type],
+          badge_size[size],
+          ("badge-outline" if outline)
+        ].compact
       }
     end
   end

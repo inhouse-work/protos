@@ -10,6 +10,14 @@ module Protos
           button(**attrs, &block)
         end
       end
+
+      private
+
+      def default_attrs
+        {
+          data: { action: "protos--modal#close" }
+        }
+      end
     end
   end
 end

@@ -14,12 +14,10 @@ module Protos
 
       private
 
-      def attrs
-        @attrs ||= build_attrs(
-          {
-            data: { "protos--modal-target": "modal" }
-          }
-        )
+      def default_attrs
+        {
+          data: { "protos--modal-target": "modal" }
+        }
       end
 
       def theme

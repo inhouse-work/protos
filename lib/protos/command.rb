@@ -25,7 +25,9 @@ module Protos
 
     def trigger(...) = render Command::Trigger.new(...)
 
-    def dialog(...) = render Command::Dialog.new(...)
+    def dialog(...) = render Modal::Dialog.new(...)
+
+    def close_button(...) = render Modal::CloseButton.new(...)
 
     def title(...) = render Command::Title.new(...)
 

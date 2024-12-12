@@ -26,7 +26,10 @@ module Protos
     end
 
     def [](*keys)
-      values = @theme.values_at(*keys).join(" ")
+      symbols, strings = keys.partition { |key| key.is_a?(Symbol) }
+      values = @theme.values_at(*symbols).join(" ")
+      values += " #{strings.join(" ")}" unless strings.empty?
+
       return nil if values.empty?
       return values unless @tailwind_merge
 

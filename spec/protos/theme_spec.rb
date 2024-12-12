@@ -107,6 +107,12 @@ RSpec.describe Protos::Theme do
 
       expect(theme[:foo, :baz]).to eq("bar qux")
     end
+
+    it "allows adding additional string styles" do
+      theme = described_class.new(foo: "bar")
+
+      expect(theme[:foo, "baz"]).to eq("bar baz")
+    end
   end
 
   describe "#merge" do

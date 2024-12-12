@@ -101,6 +101,12 @@ RSpec.describe Protos::Theme do
 
       expect(theme[:foo]).to eq("p-4")
     end
+
+    it "handles multiple keys" do
+      theme = described_class.new(foo: "bar", baz: "qux")
+
+      expect(theme[:foo, :baz]).to eq("bar qux")
+    end
   end
 
   describe "#merge" do

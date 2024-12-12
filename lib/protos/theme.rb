@@ -25,14 +25,12 @@ module Protos
       end
     end
 
-    def [](key)
-      return nil unless key?(key)
+    def [](*keys)
+      values = @theme.values_at(*keys).join(" ")
+      return nil if values.empty?
+      return values unless @tailwind_merge
 
-      value = @theme[key].to_s
-      return nil if value.empty?
-      return value unless @tailwind_merge
-
-      self.class.merger.merge(value)
+      self.class.merger.merge(values)
     end
 
     def key?(key)

@@ -88,9 +88,10 @@ class Navbar
 end
 ```
 
-Eventually everyone makes a kind of ad-hoc system for specifying styles. It gets
-more complicated when you have attributes like a data-controller. How do you
-give a good experience letting people using your components to add their own
+Eventually everyone makes a kind of ad-hoc system for specifying styles.
+
+It gets more complicated when you have attributes like a data-controller. How do
+you give a good experience letting people using your components to add their own
 controllers while your component depends on one already?
 
 This library is an attempt to make this kind of developer experience while
@@ -224,6 +225,18 @@ class List < Protos::Component
   end
 end
 ```
+
+Slots can also take multiple arguments, and even inline styles:
+
+```ruby
+class ListItem < Protos::Component
+  def view_template
+    li(class: css[:item, :primary_item, "text-sm"])
+  end
+end
+```
+
+This combines the styles together, removing any duplicates.
 
 ### Attrs and default attrs
 

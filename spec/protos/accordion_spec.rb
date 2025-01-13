@@ -4,15 +4,10 @@ RSpec.describe Protos::Accordion do
   subject { page }
 
   before do
-    render described_class.new do |accordion|
-      accordion.item(input_id: "123") do
+    render described_class.new(input_name: "123") do |accordion|
+      accordion.item do
         accordion.title { "Item 1" }
         accordion.content { "Content 1" }
-      end
-
-      accordion.item do
-        accordion.title { "Item 2" }
-        accordion.content { "Content 2" }
       end
     end
   end

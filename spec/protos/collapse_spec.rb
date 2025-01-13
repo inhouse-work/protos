@@ -4,7 +4,7 @@ RSpec.describe Protos::Collapse do
   subject { page }
 
   before do
-    render described_class.new(checkbox: true, input_id: "123") do |collapse|
+    render described_class.new(checkbox: true, input_name: "123") do |collapse|
       collapse.title { "Title" }
       collapse.content { "Content" }
     end

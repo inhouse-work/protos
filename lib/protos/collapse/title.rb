@@ -7,9 +7,9 @@ module Protos
       # visible and is used to toggle the collapse.
 
       option :input_id,
-             type: Types::String | Types::Integer | Types::Nil,
-             reader: false,
-             default: -> { }
+        type: Types::String | Types::Integer | Types::Nil,
+        reader: false,
+        default: -> { }
 
       def view_template(&)
         if @input_id

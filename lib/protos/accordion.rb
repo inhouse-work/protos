@@ -9,29 +9,26 @@ module Protos
 
     autoload :Item, "protos/accordion/item"
 
+    option :input_name,
+      default: -> { "accordion-#{SecureRandom.hex(4)}" },
+      reader: false,
+      type: Types::String
+
     def view_template(&)
       ul(**attrs, &)
     end
 
-    def item(*, input_id: nil, **, &)
-      self.current_input_id = input_id
-
-      render Item.new(*, input_id: current_input_id, **, &)
+    def item(*, **, &)
+      render Item.new(*, input_name: @input_name, **, &)
     end
 
     def content(...) = render Collapse::Content.new(...)
 
     def title(*, **, &)
-      render Collapse::Title.new(*, input_id: current_input_id, **, &)
+      render Collapse::Title.new(*, input_id: @input_name, **, &)
     end
 
     private
-
-    attr_reader :current_input_id
-
-    def current_input_id=(value)
-      @current_input_id = value || "collapse-#{SecureRandom.hex(4)}"
-    end
 
     def theme
       {

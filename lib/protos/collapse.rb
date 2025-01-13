@@ -10,18 +10,18 @@ module Protos
     autoload :Content, "protos/collapse/content"
 
     option :input_type, default: -> { :checkbox }, reader: false
-    option :input_id,
-           reader: false,
-           default: -> { "collapse-#{SecureRandom.hex(4)}" },
-           type: Types::String
+    option :input_name,
+      reader: false,
+      default: -> { "collapse-#{SecureRandom.hex(4)}" },
+      type: Types::String | Types::Integer
 
     def view_template
       div(**attrs) do
         if @input_type
           input(
             type: @input_type,
-            id: @input_id,
-            name: @input_id,
+            id: @input_name,
+            name: @input_name,
             autocomplete: :off,
             # form: "" prevents the radio button from being submitted if its
             # within a form
@@ -32,7 +32,7 @@ module Protos
       end
     end
 
-    def title(*, **, &) = render Title.new(*, input_id: @input_id, **, &)
+    def title(*, **, &) = render Title.new(*, input_id: @input_name, **, &)
 
     def content(...) = render Content.new(...)
 

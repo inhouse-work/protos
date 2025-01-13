@@ -4,7 +4,7 @@ RSpec.describe Protos::Accordion::Item do
   subject { page }
 
   before do
-    render described_class.new(input_id: "some-id") { "Content 1" }
+    render described_class.new(input_name: "some-id") { "Content 1" }
   end
 
   it { is_expected.to have_content "Content 1" }
@@ -18,7 +18,7 @@ RSpec.describe Protos::Accordion::Item do
 
   context "when overriding the collapse styles" do
     before do
-      render described_class.new(input_id: 1, theme: { collapse: "bg-red-500" }) do
+      render described_class.new(input_name: 1, theme: { collapse: "bg-red-500" }) do
         "content"
       end
     end

@@ -7,9 +7,9 @@ module Protos
     # Comboboxes use popovers and command to create the list of options.
 
     option :trigger,
-           default: -> { :click },
-           reader: false,
-           type: Popover::Triggers | Types::Array.of(Popover::Triggers)
+      default: -> { :click },
+      reader: false,
+      type: Popover::Triggers | Types::Array.of(Popover::Triggers)
 
     def trigger(...) = render Popover::Trigger.new(...)
 

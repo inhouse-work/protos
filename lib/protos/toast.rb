@@ -33,9 +33,9 @@ module Protos
     }.freeze
 
     option :position,
-           type: Positions,
-           default: -> { :bottom_end },
-           reader: false
+      type: Positions,
+      default: -> { :bottom_end },
+      reader: false
 
     def view_template(&)
       dialog(**attrs, &)

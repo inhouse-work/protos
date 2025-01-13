@@ -12,9 +12,9 @@ module Protos
       }.freeze
 
       option :align,
-             type: Types::Coercible::Symbol.enum(:left, :center, :right),
-             reader: false,
-             default: -> { :left }
+        type: Types::Coercible::Symbol.enum(:left, :center, :right),
+        reader: false,
+        default: -> { :left }
 
       def view_template(&)
         th(**attrs, &)

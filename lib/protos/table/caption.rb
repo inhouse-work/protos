@@ -11,9 +11,9 @@ module Protos
       }.freeze
 
       option :side,
-             reader: false,
-             type: Types::Coercible::Symbol.enum(:bottom, :top),
-             default: -> { :bottom }
+        reader: false,
+        type: Types::Coercible::Symbol.enum(:bottom, :top),
+        default: -> { :bottom }
 
       def view_template(&)
         caption(**attrs, &)

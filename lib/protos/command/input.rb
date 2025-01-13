@@ -6,10 +6,10 @@ module Protos
       # DOCS: The search input for the command palette
 
       option :placeholder,
-             reader: :private,
-             default: -> {
-               "Type a command or search..."
-             }
+        reader: :private,
+        default: -> {
+          "Type a command or search..."
+        }
 
       def view_template(&block)
         li(**attrs) do

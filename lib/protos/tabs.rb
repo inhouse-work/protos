@@ -15,23 +15,23 @@ module Protos
     }.freeze
 
     option :type,
-           default: -> { :default },
-           reader: false,
-           type: Types::Coercible::Symbol.enum(
-             :default,
-             :boxed,
-             :bordered,
-             :lifted
-           )
+      default: -> { :default },
+      reader: false,
+      type: Types::Coercible::Symbol.enum(
+        :default,
+        :boxed,
+        :bordered,
+        :lifted
+      )
     option :size,
-           default: -> { :md },
-           reader: false,
-           type: Types::Coercible::Symbol.enum(
-             :xs,
-             :sm,
-             :md,
-             :lg
-           )
+      default: -> { :md },
+      reader: false,
+      type: Types::Coercible::Symbol.enum(
+        :xs,
+        :sm,
+        :md,
+        :lg
+      )
 
     def view_template(&)
       div(**attrs, &)

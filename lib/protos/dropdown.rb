@@ -15,13 +15,13 @@ module Protos
     autoload :Trigger, "protos/dropdown/trigger"
 
     option :position,
-           type: Popover::Positions,
-           default: -> { :bottom },
-           reader: false
+      type: Popover::Positions,
+      default: -> { :bottom },
+      reader: false
     option :trigger,
-           default: -> { :click },
-           reader: false,
-           type: Popover::Triggers | Types::Array.of(Popover::Triggers)
+      default: -> { :click },
+      reader: false,
+      type: Popover::Triggers | Types::Array.of(Popover::Triggers)
 
     def item(...) = render Item.new(...)
 

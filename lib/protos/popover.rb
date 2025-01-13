@@ -55,33 +55,33 @@ module Protos
     )
 
     option :position,
-           type: Positions,
-           default: -> { :top },
-           reader: false
+      type: Positions,
+      default: -> { :top },
+      reader: false
     option :animation,
-           type: Animations,
-           default: -> { :fade },
-           reader: false
+      type: Animations,
+      default: -> { :fade },
+      reader: false
     option :duration,
-           type: Types::Integer | Types::Array.of(Types::Integer),
-           default: -> { [300, 250] },
-           reader: false
+      type: Types::Integer | Types::Array.of(Types::Integer),
+      default: -> { [300, 250] },
+      reader: false
     option :hide_on_click,
-           type: Types::Bool | Types.Value(:toggle),
-           default: -> { true },
-           reader: false
+      type: Types::Bool | Types.Value(:toggle),
+      default: -> { true },
+      reader: false
     option :z_index,
-           type: Types::Integer,
-           default: -> { 9999 },
-           reader: false
+      type: Types::Integer,
+      default: -> { 9999 },
+      reader: false
     option :options,
-           default: -> { {} },
-           reader: false,
-           type: Types::Hash
+      default: -> { {} },
+      reader: false,
+      type: Types::Hash
     option :trigger,
-           default: -> { %i[mouseenter focus] },
-           reader: false,
-           type: Triggers | Types::Array.of(Triggers)
+      default: -> { %i[mouseenter focus] },
+      reader: false,
+      type: Triggers | Types::Array.of(Triggers)
 
     def view_template(&)
       div(**attrs, &)

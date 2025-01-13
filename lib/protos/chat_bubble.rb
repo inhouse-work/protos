@@ -18,12 +18,12 @@ module Protos
     }.freeze
 
     option :align,
-           default: -> { :start },
-           reader: false,
-           type: Types::Coercible::Symbol.enum(
-             :start,
-             :end
-           )
+      default: -> { :start },
+      reader: false,
+      type: Types::Coercible::Symbol.enum(
+        :start,
+        :end
+      )
 
     def view_template(&)
       div(**attrs, &)

@@ -12,9 +12,9 @@ module Protos
     autoload :Content, "protos/drawer/content"
 
     option :id,
-           reader: false,
-           type: Types::Coercible::String,
-           default: -> { "drawer-#{SecureRandom.hex(4)}" }
+      reader: false,
+      type: Types::Coercible::String,
+      default: -> { "drawer-#{SecureRandom.hex(4)}" }
 
     def view_template
       div(**attrs) do

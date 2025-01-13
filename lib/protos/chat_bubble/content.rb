@@ -18,18 +18,18 @@ module Protos
       }.freeze
 
       option :type,
-             default: -> { :none },
-             reader: false,
-             type: Types::Coercible::Symbol.enum(
-               :none,
-               :primary,
-               :secondary,
-               :accent,
-               :info,
-               :success,
-               :warning,
-               :error
-             )
+        default: -> { :none },
+        reader: false,
+        type: Types::Coercible::Symbol.enum(
+          :none,
+          :primary,
+          :secondary,
+          :accent,
+          :info,
+          :success,
+          :warning,
+          :error
+        )
 
       def view_template(&)
         div(**attrs, &)

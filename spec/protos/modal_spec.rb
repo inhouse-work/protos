@@ -24,5 +24,6 @@ RSpec.describe Protos::Modal do
 
   it "attaches the stimulus controller" do
     expect(page).to have_css("[data-controller='protos--modal']")
+    expect(page).to have_css("[data-action='click->protos--modal#backdropClose']")
   end
 end

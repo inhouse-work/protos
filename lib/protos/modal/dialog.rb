@@ -16,7 +16,7 @@ module Protos
 
       def default_attrs
         {
-          data: { "protos--modal-target": "modal" }
+          data: { "protos--modal-target": "dialog" }
         }
       end
 

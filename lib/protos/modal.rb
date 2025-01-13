@@ -24,7 +24,8 @@ module Protos
     def default_attrs
       {
         data: {
-          controller: "protos--modal"
+          controller: "protos--modal",
+          action: "click->protos--modal#backdropClose"
         }
       }
     end

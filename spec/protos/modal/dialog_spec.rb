@@ -15,6 +15,6 @@ RSpec.describe Protos::Modal::Dialog do
   end
 
   it "adds the stimulus target" do
-    expect(page).to have_css("[data-protos--modal-target='modal']")
+    expect(page).to have_css("[data-protos--modal-target='dialog']")
   end
 end

@@ -1,5 +1,17 @@
 ## [Unreleased]
 
+- Changes passing an `input_id` to accordions. Replaced with the more accurate
+  `input_name` (optional) parameter. There was no point in having different
+  name attributes for the different radio buttons
+- Updates modal component to use newer modal controller from protos-stimulus
+  that uses `@stimulus-components/dialog`
+- Adds the ability for `css` helper to take multiple values, including inline
+  values instead of theme keys.
+- Adds new `Protos::Badge` component
+- Removes deprecated tokens to prepare for phlex 2.0
+- Removes `dry-initializer` undefined constant to improve performance
+- Adds autoloading constants instead of hard requires
+
 ## [0.6.0] - 2024-09-04
 
 - Changes how merging attributes works to only mix on certain attributes,

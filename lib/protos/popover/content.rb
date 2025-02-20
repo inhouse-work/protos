@@ -11,7 +11,7 @@ module Protos
       # TODO: Move away from using template
 
       def view_template(&block)
-        template_tag(**template_attrs) do
+        template(**template_attrs) do
           div(**attrs, &block)
         end
       end

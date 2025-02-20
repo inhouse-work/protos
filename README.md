@@ -11,9 +11,6 @@ You can see a full list of the components at
 [tailwind\_merge](https://github.com/gjtorikian/tailwind_merge).
 - Uses [tippy.js](https://atomiks.github.io/tippyjs/v6/getting-started/) for
   dropdowns, combobox, and popovers
-- All components avoid using
-  [`Phlex::DeferredRender`](https://www.phlex.fun/#slots)
-  so you can reorder components exactly how you like them.
 
 Other Phlex based UI libraries worth checking out:
 
@@ -523,16 +520,24 @@ module Components
 end
 ```
 
-You could use `Proto::List` to create your own list and even use
-`Phlex::DeferredRender` to make the API more convenient.
+You could use `Proto::List` to create your own list and even use some kind of
+[`DeferredRender`](https://www.phlex.fun/miscellaneous/v2-upgrade.html#removed-deferredrender)
+to make the API more convenient.
 
 Let's create a list component with headers and actions:
 
 ```ruby
+module DeferredRender
+  def before_template(&)
+    vanish(&)
+    super
+  end
+end
+
 module Ui
   class List < Protos::Component
     include Protos::Typography
-    include Phlex::DeferredRender
+    include DeferredRender
 
     option :title, default: -> {}
     option :ordered, default: -> { false }
@@ -603,8 +608,7 @@ Or here is another example of a table:
 module Ui
   class Table < ApplicationComponent
     include Protos::Typography
-    include Phlex::DeferredRender
-    include Actionable
+    include DeferredRender
 
     class Column
       attr_reader :title
@@ -622,6 +626,7 @@ module Ui
     option :title, default: -> {}
     option :collection, default: -> { [] }, reader: false
     option :columns, default: -> { [] }, reader: false
+    option :actions, default: -> { [] }, reader: false
 
     def template
       article(**attrs) do

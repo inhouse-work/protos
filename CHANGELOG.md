@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+- Updates to Phlex v2
+
 ## [0.7.0] - 2025-01-13
 
 - Changes passing an `input_id` to accordions. Replaced with the more accurate

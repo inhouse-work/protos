@@ -16,6 +16,24 @@ module Protos
 
     Sizes = Types::Coercible::Symbol.enum(:default, :xs, :sm, :md, :lg)
 
+    BADGE_STYLE = {
+      neutral: "badge-neutral",
+      success: "badge-success",
+      primary: "badge-primary",
+      secondary: "badge-secondary",
+      info: "badge-info",
+      error: "badge-error",
+      warning: "badge-warning",
+      ghost: "badge-ghost"
+    }.freeze
+
+    BADGE_SIZE = {
+      xs: "badge-xs",
+      sm: "badge-sm",
+      md: "badge-md",
+      lg: "badge-lg"
+    }.freeze
+
     option :type, type: Badges, default: -> { :default }
     option :outline, default: -> { false }
     option :size, type: Sizes, default: -> { :default }
@@ -26,34 +44,12 @@ module Protos
 
     private
 
-    def badge_style
-      {
-        neutral: "badge-neutral",
-        success: "badge-success",
-        primary: "badge-primary",
-        secondary: "badge-secondary",
-        info: "badge-info",
-        error: "badge-error",
-        warning: "badge-warning",
-        ghost: "badge-ghost"
-      }
-    end
-
-    def badge_size
-      {
-        xs: "badge-xs",
-        sm: "badge-sm",
-        md: "badge-md",
-        lg: "badge-lg"
-      }
-    end
-
     def theme
       {
         container: [
           "badge",
-          badge_style[type],
-          badge_size[size],
+          BADGE_STYLE[type],
+          BADGE_SIZE[size],
           ("badge-outline" if outline)
         ].compact
       }

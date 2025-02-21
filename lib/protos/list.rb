@@ -19,7 +19,7 @@ module Protos
 
     def theme
       {
-        container: "join join-vertical"
+        container: "list"
       }
     end
 

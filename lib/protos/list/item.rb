@@ -16,7 +16,7 @@ module Protos
       def theme
         {
           container: %w[
-            join-item
+            list-row
             [&:not(:first-child)]:border-t-0
           ]
         }

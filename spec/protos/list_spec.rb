@@ -17,7 +17,6 @@ RSpec.describe Protos::List do
   end
 
   it "renders the style" do
-    expect(page).to have_css(".join")
-    expect(page).to have_css(".join-vertical")
+    expect(page).to have_css(".list")
   end
 end

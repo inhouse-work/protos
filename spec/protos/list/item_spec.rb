@@ -8,5 +8,6 @@ RSpec.describe Protos::List::Item do
   it "renders the list item" do
     expect(page).to have_css("li")
     expect(page).to have_content("content")
+    expect(page).to have_css(".list-row")
   end
 end

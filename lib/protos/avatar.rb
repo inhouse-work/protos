@@ -58,8 +58,8 @@ module Protos
 
     INDICATORS = {
       none: "",
-      online: "online",
-      offline: "offline"
+      online: "avatar-online",
+      offline: "avatar-offline"
     }.freeze
 
     option :placeholder, type: Types::Bool, default: -> { false }

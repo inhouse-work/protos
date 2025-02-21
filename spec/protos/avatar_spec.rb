@@ -20,7 +20,7 @@ RSpec.describe Protos::Avatar do
   end
 
   it "displays the indicator" do
-    expect(page).to have_css(".online")
+    expect(page).to have_css(".avatar-online")
   end
 
   it "renders the image mask" do

@@ -16,6 +16,7 @@ Other Phlex based UI libraries worth checking out:
 
 - [PhlexUI](https://phlexui.com/)
 - [ZestUI](https://zestui.com/)
+- [Nitro Kit](https://github.com/mikker/nitro_kit)
 
 Thinking of making your next static site using Phlex? Check out
 [staticky](https://github.com/nolantait/staticky). The protos docs were

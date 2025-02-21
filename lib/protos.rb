@@ -31,6 +31,7 @@ module Protos
   autoload :Drawer, "protos/drawer"
   autoload :Hero, "protos/hero"
   autoload :List, "protos/list"
+  autoload :Menu, "protos/menu"
   autoload :Modal, "protos/modal"
   autoload :Popover, "protos/popover"
   autoload :Stats, "protos/stats"

@@ -10,20 +10,35 @@ module Protos
     autoload :Actions, "protos/card/actions"
     autoload :Image, "protos/card/image"
 
-    ImageDisplays = Types::Coercible::Symbol.enum(:default, :overlay, :side)
+    Size = Types::Coercible::Symbol.enum(
+      :default,
+      :xs,
+      :sm,
+      :md,
+      :lg,
+      :xl
+    )
 
-    IMAGE_DISPLAYS = {
-      default: "",
-      overlay: "image-full",
-      side: "card-side"
+    SIZES = {
+      default: "card-md",
+      xs: "card-xs",
+      sm: "card-sm",
+      md: "card-md",
+      lg: "card-lg",
+      xl: "card-xl"
     }.freeze
 
+    option :size, type: Size, default: -> { :default }, reader: :private
+    option :image_side,
+      type: Types::Bool,
+      default: -> { false },
+      reader: :private
+    option :image_full,
+      type: Types::Bool,
+      default: -> { false },
+      reader: :private
     option :border, type: Types::Bool, default: -> { true }, reader: :private
-    option :compact, type: Types::Bool, default: -> { false }, reader: :private
-    option :image_display,
-      ImageDisplays,
-      default: -> { :default },
-      reader: false
+    option :dash, type: Types::Bool, default: -> { false }, reader: :private
 
     def view_template(&)
       article(**attrs, &)
@@ -39,17 +54,15 @@ module Protos
 
     private
 
-    def image_display
-      IMAGE_DISPLAYS.fetch(@image_display)
-    end
-
     def theme
       {
         container: [
           "card",
-          image_display,
+          SIZES[size],
           ("card-bordered" if border),
-          ("card-compact" if compact)
+          ("card-dash" if dash),
+          ("image-full" if image_full),
+          ("card-side" if image_side)
         ]
       }
     end

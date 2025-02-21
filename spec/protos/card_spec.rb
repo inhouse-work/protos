@@ -3,9 +3,8 @@
 RSpec.describe Protos::Card do
   subject do
     described_class.new(
-      image_display: "overlay",
       border: true,
-      compact: true
+      image_full: true
     ) do |card|
       card.image { card.img(src: "#") }
       card.body do

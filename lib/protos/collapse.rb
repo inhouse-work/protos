@@ -23,6 +23,7 @@ module Protos
             id: @input_name,
             name: @input_name,
             autocomplete: :off,
+            aria_label: "Toggle accordion",
             # form: "" prevents the radio button from being submitted if its
             # within a form
             form: ""

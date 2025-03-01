@@ -17,6 +17,7 @@ namespace :memory do
     puts "Memory report written to tmp/memory-table.txt"
   end
 
+  desc "Memory report for Protos::Theme"
   task :theme do
     Protos::Theme.merger
 

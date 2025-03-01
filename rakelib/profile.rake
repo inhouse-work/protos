@@ -6,7 +6,7 @@ require "ruby-prof"
 require_relative "support/protos_table"
 require_relative "support/phlex_table"
 
-def output_result(result)
+def output_result(result) # rubocop:disable Style/TopLevelMethodDefinition
   flat_printer = RubyProf::FlatPrinter.new(result)
   flat_printer.print(File.open("tmp/profile-table-flat.txt", "w+"))
 

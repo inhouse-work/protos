@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PhlexTable < Phlex::HTML
-  def view_template
+  def view_template # rubocop:disable Metrics/MethodLength
     table do
       thead do
         tr do

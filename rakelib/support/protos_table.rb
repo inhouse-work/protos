@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ProtosTable < Protos::Component
-  def view_template
+  def view_template # rubocop:disable Metrics/MethodLength
     render Protos::Table.new do |table|
       table.header do
         table.row do

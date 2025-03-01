@@ -50,7 +50,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "dry-initializer", "~> 3.2"
   spec.add_dependency "dry-types", "~> 1.8"
   spec.add_dependency "phlex", "~> 2"
-  spec.add_dependency "tailwind_merge", "~> 0.16"
+  spec.add_dependency "tailwind_merge", "~> 1"
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html

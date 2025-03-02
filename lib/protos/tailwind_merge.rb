@@ -2,6 +2,7 @@
 
 module Protos
   class TailwindMerge
+    DEFAULTS = ::TailwindMerge::Config::DEFAULTS
     DAISY_CLASS_GROUPS = {
       alert: [
         alert: Protos::Alert::Styles.values.map(&:to_s)
@@ -49,23 +50,16 @@ module Protos
 
     def initialize
       @merger = ::TailwindMerge::Merger.new(
-        config: {
+        config: DEFAULTS.merge(
           ignore_empty_cache: true,
           cache_size: 500,
-          class_groups:
-        }
+          class_groups: DEFAULTS[:class_groups].merge(DAISY_CLASS_GROUPS)
+        )
       )
     end
 
     def merge(...)
       @merger.merge(...)
-    end
-
-    private
-
-    def class_groups
-      ::TailwindMerge::Config::DEFAULTS[:class_groups]
-        .merge(DAISY_CLASS_GROUPS)
     end
   end
 end

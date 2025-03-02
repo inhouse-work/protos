@@ -5,6 +5,9 @@
 - Adds `Protos::Status` component
 - Adds `Protos::Diff` component
 - Adds `Protos::Menu` component
+- Adds `state` and `icon` options to `Protos::Collapse`
+- Changes `dash` option to `dashed` on `Protos::Card`
+- Adds `dashed` and `soft` to `Protos::Badge`
 - Updates to Phlex `v2`
 - Updates to new DaisyUI `v5.0` styles
 - Performance improvements to `Protos::Theme`

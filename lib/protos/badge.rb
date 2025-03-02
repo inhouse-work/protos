@@ -16,7 +16,8 @@ module Protos
 
     Sizes = Types::Coercible::Symbol.enum(:default, :xs, :sm, :md, :lg)
 
-    BADGE_STYLE = {
+    STYLES = {
+      default: "",
       neutral: "badge-neutral",
       success: "badge-success",
       primary: "badge-primary",
@@ -27,7 +28,8 @@ module Protos
       ghost: "badge-ghost"
     }.freeze
 
-    BADGE_SIZE = {
+    SIZES = {
+      default: "badge-md",
       xs: "badge-xs",
       sm: "badge-sm",
       md: "badge-md",
@@ -36,6 +38,8 @@ module Protos
 
     option :type, type: Badges, default: -> { :default }
     option :outline, default: -> { false }
+    option :dashed, default: -> { false }
+    option :soft, default: -> { false }
     option :size, type: Sizes, default: -> { :default }
 
     def view_template(&)
@@ -48,9 +52,11 @@ module Protos
       {
         container: [
           "badge",
-          BADGE_STYLE[type],
-          BADGE_SIZE[size],
-          ("badge-outline" if outline)
+          STYLES.fetch(type),
+          SIZES.fetch(size),
+          ("badge-outline" if outline),
+          ("badge-dashed" if dashed),
+          ("badge-soft" if soft)
         ].compact
       }
     end

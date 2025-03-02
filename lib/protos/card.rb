@@ -38,7 +38,7 @@ module Protos
       default: -> { false },
       reader: :private
     option :border, type: Types::Bool, default: -> { true }, reader: :private
-    option :dash, type: Types::Bool, default: -> { false }, reader: :private
+    option :dashed, type: Types::Bool, default: -> { false }, reader: :private
 
     def view_template(&)
       article(**attrs, &)
@@ -60,7 +60,7 @@ module Protos
           "card",
           SIZES[size],
           ("card-bordered" if border),
-          ("card-dash" if dash),
+          ("card-dash" if dashed),
           ("image-full" if image_full),
           ("card-side" if image_side)
         ]

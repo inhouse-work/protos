@@ -27,13 +27,15 @@ RSpec.describe Protos::Badge do
 
   context "with an outline" do
     before do
-      render described_class.new(outline: true) do
+      render described_class.new(outline: true, soft: true, dashed: true) do
         "Some content"
       end
     end
 
     it { is_expected.to have_css(".badge") }
     it { is_expected.to have_css(".badge-outline") }
+    it { is_expected.to have_css(".badge-soft") }
+    it { is_expected.to have_css(".badge-dashed") }
   end
 
   context "with a size" do

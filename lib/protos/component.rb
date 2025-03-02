@@ -23,7 +23,7 @@ module Protos
     # Theme can override the css hash and add additional styles
     option :theme, as: :theme_override, default: -> { {} }, reader: false
     # Class becomes the :container key in the css hash
-    option :class, as: :container_class, default: -> { "" }, reader: false
+    option :class, as: :container_class, default: -> { }, reader: false
 
     # Adds non-defined options to the html_options hash
     def initialize(*, **kwargs, &)

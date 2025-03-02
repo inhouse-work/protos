@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [1.0.1] - 2025-03-01
+
+- Fixes a bug with inherited classes not finding their defined keys
+
 ## [1.0.0] - 2025-03-01
 
 - Adds `Protos::Status` component

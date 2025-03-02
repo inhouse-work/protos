@@ -700,27 +700,27 @@ end
 
 Here is a list that we don't yet have components for:
 
-- [] Buttons
-- [] Calendar
-- [] Checkbox
-- [] File input
-- [] Indicator
-- [] Join
-- [] Kbd
-- [] Link
-- [] Loading
-- [] Mask
-- [] Progress
-- [] Radial progress
-- [] Radio
-- [] Range
-- [] Select
-- [] Skeleton
-- [] Stack
-- [] Text input
-- [] Textarea
-- [] Toggle
-- [] Tooltip
+- [ ] Buttons
+- [ ] Calendar
+- [ ] Checkbox
+- [ ] File input
+- [ ] Indicator
+- [ ] Join
+- [ ] Kbd
+- [ ] Link
+- [ ] Loading
+- [ ] Mask
+- [ ] Progress
+- [ ] Radial progress
+- [ ] Radio
+- [ ] Range
+- [ ] Select
+- [ ] Skeleton
+- [ ] Stack
+- [ ] Text input
+- [ ] Textarea
+- [ ] Toggle
+- [ ] Tooltip
 
 ## Development
 

@@ -2,15 +2,8 @@
 
 module Protos
   class Badge < Component
-    Badges = Types::Coercible::Symbol.enum(
-      :default,
-      :neutral,
-      :success,
-      :primary,
-      :secondary,
-      :info,
-      :error,
-      :warning,
+    Styles = Types::Coercible::Symbol.enum(
+      *Types::Styles.values,
       :ghost
     )
 
@@ -37,7 +30,7 @@ module Protos
       xl: "badge-xl"
     }.freeze
 
-    option :type, type: Badges, default: -> { :default }
+    option :type, type: Styles, default: -> { :default }
     option :outline, default: -> { false }
     option :dashed, default: -> { false }
     option :soft, default: -> { false }

@@ -701,6 +701,7 @@ end
 Here is a list that we don't yet have components for:
 
 - [] Buttons
+- [] Calendar
 - [] Checkbox
 - [] File input
 - [] Indicator

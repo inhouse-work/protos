@@ -14,7 +14,7 @@ module Protos
         avatar: Protos::Avatar::Indicators.values.map(&:to_s)
       ],
       badge: [
-        badge: Protos::Badge::Badges.values.map(&:to_s)
+        badge: Protos::Badge::Styles.values.map(&:to_s)
       ],
       card: [
         card: Protos::Card::Sizes.values.map(&:to_s)
@@ -25,7 +25,7 @@ module Protos
       "chat-bubble": [
         { "chat-bubble": Protos::ChatBubble::Positions.values.map(&:to_s) },
         {
-          "chat-bubble": Protos::ChatBubble::Content::Styles.values.map(&:to_s)
+          "chat-bubble": Types::Styles.values.map(&:to_s)
         }
       ],
       menu: [
@@ -44,7 +44,7 @@ module Protos
         swap: %w[on off]
       ],
       step: [
-        step: Protos::Steps::Step::Styles.values.map(&:to_s)
+        step: Types::Styles.values.map(&:to_s)
       ]
     }.freeze
 

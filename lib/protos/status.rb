@@ -2,16 +2,8 @@
 
 module Protos
   class Status < Component
-    Styles = Types::Coercible::Symbol.enum(
-      :primary,
-      :secondary,
-      :accent,
-      :success,
-      :error,
-      :warning
-    )
-
     STYLES = {
+      default: "",
       primary: "status-primary",
       secondary: "status-secondary",
       accent: "status-accent",
@@ -31,7 +23,7 @@ module Protos
       xl: "status-xl"
     }.freeze
 
-    option :type, type: Styles, default: -> { :primary }
+    option :type, type: Types::Styles, default: -> { :primary }
     option :size, type: Sizes, default: -> { :md }
 
     def view_template(&)

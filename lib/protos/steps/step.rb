@@ -5,17 +5,6 @@ module Protos
     class Step < Protos::Component
       # DOCS: Step component that contains a single step in a list of steps
 
-      Styles = Types::Coercible::Symbol.enum(
-        :default,
-        :primary,
-        :secondary,
-        :accent,
-        :info,
-        :success,
-        :warning,
-        :error
-      )
-
       STYLES = {
         default: "",
         primary: "step-primary",
@@ -27,7 +16,7 @@ module Protos
         error: "step-error"
       }.freeze
 
-      option :type, reader: false, type: Styles, default: -> { :default }
+      option :type, reader: false, type: Types::Styles, default: -> { :default }
 
       def view_template(&)
         li(**attrs, &)

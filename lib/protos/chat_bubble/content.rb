@@ -8,14 +8,14 @@ module Protos
 
       STYLES = {
         default: "",
+        accent: "chat-bubble-accent",
+        error: "chat-bubble-error",
+        info: "chat-bubble-info",
+        neutral: "chat-bubble-neutral",
         primary: "chat-bubble-primary",
         secondary: "chat-bubble-secondary",
-        accent: "chat-bubble-accent",
-        info: "chat-bubble-info",
         success: "chat-bubble-success",
-        warning: "chat-bubble-warning",
-        error: "chat-bubble-error",
-        neutral: "chat-bubble-neutral"
+        warning: "chat-bubble-warning"
       }.freeze
 
       option :type,

@@ -37,10 +37,7 @@ module Protos
 
     def theme
       {
-        container: %W[
-          alert
-          #{style}
-        ]
+        container: ["alert", style]
       }
     end
 

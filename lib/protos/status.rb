@@ -4,13 +4,14 @@ module Protos
   class Status < Component
     STYLES = {
       default: "",
+      accent: "status-accent",
+      error: "status-error",
+      info: "status-info",
+      neutral: "status-neutral",
       primary: "status-primary",
       secondary: "status-secondary",
-      accent: "status-accent",
       success: "status-success",
-      error: "status-error",
-      warning: "status-warning",
-      info: "status-info"
+      warning: "status-warning"
     }.freeze
 
     Sizes = Types::Coercible::Symbol.enum(:xs, :sm, :md, :lg, :xl)

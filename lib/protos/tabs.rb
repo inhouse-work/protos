@@ -22,10 +22,10 @@ module Protos
     )
 
     STYLES = {
+      default: "",
       bordered: "tabs-bordered",
       boxed: "tabs-boxed",
-      lifted: "tabs-lifted",
-      default: ""
+      lifted: "tabs-lifted"
     }.freeze
 
     SIZES = {

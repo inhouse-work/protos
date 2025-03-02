@@ -37,6 +37,7 @@ module Protos
   autoload :Popover, "protos/popover"
   autoload :Stats, "protos/stats"
   autoload :Steps, "protos/steps"
+  autoload :Status, "protos/status"
   autoload :Swap, "protos/swap"
   autoload :Tabs, "protos/tabs"
   autoload :Table, "protos/table"

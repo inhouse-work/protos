@@ -2,9 +2,11 @@
 
 ## [1.0.0] - 2025-03-01
 
-- Updates to Phlex v2
-- Updates to new DaisyUI 5.0 styles
+- Adds `Protos::Status` component
+- Adds `Protos::Diff` component
 - Adds `Protos::Menu` component
+- Updates to Phlex `v2`
+- Updates to new DaisyUI `v5.0` styles
 - Performance improvements to `Protos::Theme`
 - Removes redefining `default_attrs` and `theme` methods. Didn't want the
   overhead of this completely unused feature. This removes `dry-core` as

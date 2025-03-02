@@ -4,7 +4,12 @@ RSpec.describe Protos::Collapse do
   subject { page }
 
   before do
-    render described_class.new(checkbox: true, input_name: "123") do |collapse|
+    render described_class.new(
+      checkbox: true,
+      input_name: "123",
+      icon: :arrow,
+      state: :open
+    ) do |collapse|
       collapse.title { "Title" }
       collapse.content { "Content" }
     end
@@ -23,5 +28,7 @@ RSpec.describe Protos::Collapse do
 
   context "styles" do
     it { is_expected.to have_css ".collapse" }
+    it { is_expected.to have_css ".collapse-open" }
+    it { is_expected.to have_css ".collapse-arrow" }
   end
 end

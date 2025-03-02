@@ -9,6 +9,23 @@ module Protos
     autoload :Title, "protos/collapse/title"
     autoload :Content, "protos/collapse/content"
 
+    Icons = Types::Coercible::Symbol.enum(:arrow, :plus)
+
+    ICONS = {
+      arrow: "collapse-arrow",
+      plus: "collapse-plus"
+    }.freeze
+
+    States = Types::Coercible::Symbol.enum(:default, :open, :close)
+
+    STATES = {
+      default: "",
+      open: "collapse-open",
+      close: "collapse-close"
+    }.freeze
+
+    option :state, type: States, default: -> { :default }, reader: false
+    option :icon, type: Icons, default: -> { :arrow }, reader: false
     option :input_type, default: -> { :checkbox }, reader: false
     option :input_name,
       reader: false,
@@ -41,10 +58,10 @@ module Protos
 
     def theme
       {
-        container: %w[
-          collapse
-          collapse-arrow
-          bg-base-100
+        container: [
+          "collapse",
+          ICONS.fetch(@icon),
+          STATES.fetch(@state)
         ]
       }
     end

@@ -7,6 +7,9 @@ module Protos
       # work for list items, including border radius. E.g. only the first and
       # last items will have border radius on the top and bottom.
 
+      option :wrap, Types::Bool, default: -> { false }, reader: :private
+      option :grow, Types::Bool, default: -> { false }, reader: :private
+
       def view_template(&)
         li(**attrs, &)
       end
@@ -15,9 +18,10 @@ module Protos
 
       def theme
         {
-          container: %w[
-            list-row
-            [&:not(:first-child)]:border-t-0
+          container: [
+            "list-row",
+            ("list-col-wrap" if wrap),
+            ("list-col-grow" if grow)
           ]
         }
       end

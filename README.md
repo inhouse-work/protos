@@ -204,26 +204,6 @@ The new `css[:item]` slot would be:
 <li class="font-bold">Item 1</li>
 ```
 
-If you want to change the method we define our default theme under you can
-override the `theme_method` on the class:
-
-```ruby
-class List < Protos::Component
-  theme_method :custom_theme
-
-  # ...
-
-  private
-
-  def custom_theme
-    {
-      list: "space-y-4",
-      item: ["font-bold", "text-2xl"]
-    }
-  end
-end
-```
-
 Slots can also take multiple arguments, and even inline styles:
 
 ```ruby
@@ -299,23 +279,6 @@ That would output both controllers to the DOM element:
 
 This makes it very convenient to add functionality to basic components without
 overriding their core behavior or having to modify/override their class.
-
-If we wanted to, just like for our theme we can change the method from
-`default_attrs` by defining the `default_attrs_method` on the class:
-
-```ruby
-class List < Protos::Component
-  default_attrs_method :custom_attrs
-
-  private
-
-  def custom_attrs
-    {
-      data: { controller: "list" }
-    }
-  end
-end
-```
 
 ### Params and options
 

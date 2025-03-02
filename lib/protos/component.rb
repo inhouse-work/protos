@@ -11,14 +11,6 @@ module Protos
     # undefined options and adding them to the html_options hash.
 
     extend Dry::Initializer[undefined: false]
-    extend Dry::Core::ClassAttributes
-
-    # Define methods for css and attrs. Each is expected to return a hash
-    defines :theme_method, type: Types::Symbol
-    defines :default_attrs_method, type: Types::Symbol
-
-    theme_method :theme
-    default_attrs_method :default_attrs
 
     # Theme can override the css hash and add additional styles
     option :theme, as: :theme_override, default: -> { {} }, reader: false
@@ -44,35 +36,27 @@ module Protos
     end
 
     def build_attrs(...)
-      defaults = if respond_to?(default_attrs_method, :include_private)
-        send(default_attrs_method)
-      end
-
       Attributes
         .new(...)
-        .merge(defaults)
+        .merge(default_attrs)
         .merge(@html_options)
         .merge(class: css[:container])
     end
 
     def build_theme(...)
-      component_style = if respond_to?(theme_method, :include_private)
-        send(theme_method)
-      end
-
       Theme
         .new(...)
-        .merge(component_style)
+        .merge(theme)
         .merge(@theme_override)
         .merge(container: @container_class)
     end
 
-    def theme_method
-      self.class.theme_method
+    def default_attrs
+      {}
     end
 
-    def default_attrs_method
-      self.class.default_attrs_method
+    def theme
+      {}
     end
   end
 end

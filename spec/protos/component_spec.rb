@@ -4,9 +4,6 @@ RSpec.describe Protos::Component do
   before do
     stub_const(
       "TestComponent", Class.new(Protos::Component) do
-        theme_method :custom_style
-        default_attrs_method :custom_options
-
         def view_template(&)
           div(**attrs) do
             div(class: "#{css[:inner]} #{css[:overridable]}") do
@@ -17,7 +14,7 @@ RSpec.describe Protos::Component do
 
         private
 
-        def custom_options
+        def default_attrs
           {
             data: {
               "test-component": "true",
@@ -26,7 +23,7 @@ RSpec.describe Protos::Component do
           }
         end
 
-        def custom_style
+        def theme
           {
             container: "test-component removed-component",
             inner: "test-component-inner",

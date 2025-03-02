@@ -9,7 +9,7 @@ module Protos
 
       def view_template(&block)
         template(**template_attrs) do
-          ul(**attrs, &block)
+          render ::Protos::Menu.new(**attrs, &block)
         end
       end
 
@@ -18,11 +18,8 @@ module Protos
       def theme
         {
           container: %w[
-            menu
             dropdown-content
             z-10
-            bg-base-100
-            rounded-box
           ]
         }
       end

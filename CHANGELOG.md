@@ -7,7 +7,8 @@
 - Adds `Protos::Menu` component
 - Performance improvements to `Protos::Theme`
 - Removes redefining `default_attrs` and `theme` methods. Didn't want the
-  overhead of this completely unused feature
+  overhead of this completely unused feature. This removes `dry-core` as
+  a dependency
 
 ## [0.7.0] - 2025-01-13
 

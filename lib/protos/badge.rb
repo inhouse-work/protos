@@ -14,7 +14,7 @@ module Protos
       :ghost
     )
 
-    Sizes = Types::Coercible::Symbol.enum(:default, :xs, :sm, :md, :lg)
+    Sizes = Types::Coercible::Symbol.enum(:default, :xs, :sm, :md, :lg, :xl)
 
     STYLES = {
       default: "",
@@ -33,7 +33,8 @@ module Protos
       xs: "badge-xs",
       sm: "badge-sm",
       md: "badge-md",
-      lg: "badge-lg"
+      lg: "badge-lg",
+      xl: "badge-xl"
     }.freeze
 
     option :type, type: Badges, default: -> { :default }

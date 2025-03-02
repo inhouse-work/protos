@@ -17,24 +17,30 @@ module Protos
     end
 
     def initialize(theme = {}, tailwind_merge: true, **kwargs)
-      @tailwind_merge = tailwind_merge
+      @should_merge = tailwind_merge
 
       @theme = Hash.new do |hash, key|
         hash[key] = TokenList.new
       end
+
+      return if kwargs.empty? && theme.empty?
 
       theme.merge!(kwargs).each do |key, value|
         @theme[key].add(value)
       end
     end
 
+    # Key can be a symbol or string, they will be merged together for the final
+    # css class.
+    # - A symbol will be used to fetch a `TokenList` from the theme at that key.
+    # - A string is used as a plain css value
     def [](*keys)
       symbols, strings = keys.partition { |key| key.is_a?(Symbol) }
-      values = @theme.values_at(*symbols).join(" ")
-      values += " #{strings.join(" ")}" unless strings.empty?
+      values = @theme.values_at(*symbols).map!(&:to_s).reject(&:empty?)
+      values.concat(strings) unless strings.empty?
 
       return nil if values.empty?
-      return values unless @tailwind_merge
+      return values unless @should_merge
 
       self.class.merger.merge(values)
     end
@@ -50,42 +56,34 @@ module Protos
     end
 
     def remove(key, value)
-      @theme[key].remove(value)
-      @theme.delete(key) if @theme[key].empty?
+      token_list = @theme[key].remove(value)
+      @theme.delete(key) if token_list.empty?
     end
 
     def set(key, value)
       return if value.nil?
 
-      @theme[key].clear.add(value)
+      if @theme.key?(key)
+        @theme[key].clear.add(value)
+      else
+        @theme[key].add(value)
+      end
     end
 
     def merge(hash)
       return self unless hash
 
       hash.each do |key, value|
-        if key?(key)
-          add(key, value)
-        elsif negation?(key)
-          remove(key[1..].to_sym, value)
-        elsif override?(key)
-          set(key[..-2].to_sym, value)
-        else
-          set(key, value)
-        end
+        next add(key, value) if key?(key.to_sym)
+        # Handle negation
+        next remove(key[1..].to_sym, value) if key.start_with?("!")
+        # handle override
+        next set(key[..-2].to_sym, value) if key.end_with?("!")
+
+        set(key.to_sym, value)
       end
 
       self
-    end
-
-    private
-
-    def negation?(key)
-      key.start_with?("!")
-    end
-
-    def override?(key)
-      key.end_with?("!")
     end
   end
 end

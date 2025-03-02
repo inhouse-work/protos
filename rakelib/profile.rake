@@ -27,7 +27,7 @@ namespace :profile do
   task :table do
     result = RubyProf::Profile.profile do
       100.times do
-        PhlexTable.new.call
+        ProtosTable.new.call
       end
     end
 

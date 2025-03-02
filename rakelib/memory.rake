@@ -6,6 +6,9 @@ require "protos"
 require_relative "support/protos_table"
 # require_relative "support/phlex_table"
 
+# Force autoloading of tailwind merger
+_ = Protos::Theme.merger
+
 namespace :memory do
   desc "Memory report for Protos::Table"
   task :table do
@@ -19,8 +22,6 @@ namespace :memory do
 
   desc "Memory report for Protos::Theme"
   task :theme do
-    Protos::Theme.merger
-
     report = MemoryProfiler.report do
       Protos::Theme.new(foo: "bar").merge(foo: "baz", foo!: "quix")
     end

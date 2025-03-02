@@ -6,6 +6,17 @@ module Protos
       # DOCS: The main content of a chat bubble. This would normally be the text
       # content of the message. It will be colored according to the type.
 
+      Styles = Types::Coercible::Symbol.enum(
+        :none,
+        :primary,
+        :secondary,
+        :accent,
+        :info,
+        :success,
+        :warning,
+        :error
+      )
+
       STYLES = {
         none: "",
         primary: "chat-bubble-primary",
@@ -20,16 +31,7 @@ module Protos
       option :type,
         default: -> { :none },
         reader: false,
-        type: Types::Coercible::Symbol.enum(
-          :none,
-          :primary,
-          :secondary,
-          :accent,
-          :info,
-          :success,
-          :warning,
-          :error
-        )
+        type: Styles
 
       def view_template(&)
         div(**attrs, &)

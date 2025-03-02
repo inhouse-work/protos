@@ -12,7 +12,7 @@ module Protos
         # This could be a class variable to save memory for subclasses being
         # used along side this class, but seeing as how its an
         # internal class I don't see much benefit at the moment.
-        @merger ||= TailwindMerge::Merger.new.freeze
+        @merger ||= TailwindMerge.new
       end
     end
 

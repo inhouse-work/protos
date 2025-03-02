@@ -12,6 +12,11 @@ module Protos
     autoload :Header, "protos/chat_bubble/header"
     autoload :Footer, "protos/chat_bubble/footer"
 
+    Positions = Types::Coercible::Symbol.enum(
+      :start,
+      :end
+    )
+
     ALIGNMENTS = {
       start: "chat-start",
       end: "chat-end"
@@ -20,10 +25,7 @@ module Protos
     option :align,
       default: -> { :start },
       reader: false,
-      type: Types::Coercible::Symbol.enum(
-        :start,
-        :end
-      )
+      type: Positions
 
     def view_template(&)
       div(**attrs, &)

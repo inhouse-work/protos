@@ -9,6 +9,12 @@ module Protos
     autoload :Item, "protos/carousel/item"
     autoload :Actions, "protos/carousel/actions"
 
+    Positions = Types::Coercible::Symbol.enum(
+      :none,
+      :center,
+      :end
+    )
+
     SNAP_POINTS = {
       none: "",
       center: "carousel-center",
@@ -19,11 +25,7 @@ module Protos
     option :snap_to,
       default: -> { :none },
       reader: false,
-      type: Types::Coercible::Symbol.enum(
-        :none,
-        :center,
-        :end
-      )
+      type: Positions
 
     def view_template(&)
       div(**attrs, &)

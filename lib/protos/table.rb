@@ -13,6 +13,13 @@ module Protos
     autoload :Row, "protos/table/row"
     autoload :Cell, "protos/table/cell"
 
+    Sizes = Types::Coercible::Symbol.enum(
+      :xs,
+      :sm,
+      :md,
+      :lg
+    )
+
     SIZES = {
       xs: "table-xs",
       sm: "table-sm",
@@ -26,12 +33,7 @@ module Protos
     option :size,
       default: -> { :md },
       reader: false,
-      type: Types::Coercible::Symbol.enum(
-        :xs,
-        :sm,
-        :md,
-        :lg
-      )
+      type: Sizes
 
     def view_template(&block)
       div(**attrs) do

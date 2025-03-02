@@ -5,8 +5,8 @@ module Protos
     # DOCS: A menu of links or actions.
     # https://daisyui.com/components/menu/
 
-    Direction = Types::Coercible::Symbol.enum(:vertical, :horizontal)
-    Size = Types::Coercible::Symbol.enum(:xs, :sm, :md, :lg, :xl)
+    Directions = Types::Coercible::Symbol.enum(:vertical, :horizontal)
+    Sizes = Types::Coercible::Symbol.enum(:xs, :sm, :md, :lg, :xl)
 
     DIRECTIONS = {
       vertical: "",
@@ -24,12 +24,12 @@ module Protos
     autoload :Item, "protos/menu/item"
 
     option :size,
-      type: Size,
+      type: Sizes,
       default: -> { :md },
       reader: :private
 
     option :direction,
-      type: Direction,
+      type: Directions,
       default: -> { :vertical },
       reader: :private
 

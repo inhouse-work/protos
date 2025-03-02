@@ -16,6 +16,7 @@ module Protos
   autoload :Theme, "protos/theme"
   autoload :Mix, "protos/mix"
   autoload :Attributes, "protos/attributes"
+  autoload :TailwindMerge, "protos/tailwind_merge"
 
   # Components
   autoload :Accordion, "protos/accordion"

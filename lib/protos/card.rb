@@ -10,7 +10,7 @@ module Protos
     autoload :Actions, "protos/card/actions"
     autoload :Image, "protos/card/image"
 
-    Size = Types::Coercible::Symbol.enum(
+    Sizes = Types::Coercible::Symbol.enum(
       :default,
       :xs,
       :sm,
@@ -28,7 +28,7 @@ module Protos
       xl: "card-xl"
     }.freeze
 
-    option :size, type: Size, default: -> { :default }, reader: :private
+    option :size, type: Sizes, default: -> { :default }, reader: :private
     option :image_side,
       type: Types::Bool,
       default: -> { false },

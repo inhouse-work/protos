@@ -5,6 +5,8 @@ module Protos
     class Caption < Component
       # DOCS: The caption of a table
 
+      Sides = Types::Coercible::Symbol.enum(:bottom, :top)
+
       SIDES = {
         bottom: "caption-bottom",
         top: "caption-top"
@@ -12,7 +14,7 @@ module Protos
 
       option :side,
         reader: false,
-        type: Types::Coercible::Symbol.enum(:bottom, :top),
+        type: Sides,
         default: -> { :bottom }
 
       def view_template(&)

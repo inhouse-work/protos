@@ -7,6 +7,27 @@ module Protos
 
     autoload :Tab, "protos/tabs/tab"
 
+    Styles = Types::Coercible::Symbol.enum(
+      :default,
+      :boxed,
+      :bordered,
+      :lifted
+    )
+
+    Sizes = Types::Coercible::Symbol.enum(
+      :xs,
+      :sm,
+      :md,
+      :lg
+    )
+
+    STYLES = {
+      bordered: "tabs-bordered",
+      boxed: "tabs-boxed",
+      lifted: "tabs-lifted",
+      default: ""
+    }.freeze
+
     SIZES = {
       xs: "tabs-xs",
       sm: "tabs-sm",
@@ -17,21 +38,11 @@ module Protos
     option :type,
       default: -> { :default },
       reader: false,
-      type: Types::Coercible::Symbol.enum(
-        :default,
-        :boxed,
-        :bordered,
-        :lifted
-      )
+      type: Styles
     option :size,
       default: -> { :md },
       reader: false,
-      type: Types::Coercible::Symbol.enum(
-        :xs,
-        :sm,
-        :md,
-        :lg
-      )
+      type: Sizes
 
     def view_template(&)
       div(**attrs, &)
@@ -46,12 +57,7 @@ module Protos
     end
 
     def type
-      {
-        bordered: "tabs-bordered",
-        boxed: "tabs-boxed",
-        lifted: "tabs-lifted",
-        default: ""
-      }.fetch(@type)
+      STYLES.fetch(@type)
     end
 
     def default_attrs

@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 module Protos
-  class Mix
+  module Mix
     # DOCS: This class is responsible for safely merging in both user supplied
     # and default attributes. When a user adds { data: { controller: "foo" }} to
     # their component. This will merge the value in so that any default
     # controllers do not get overridden.
 
-    MERGEABLE_ATTRIBUTES = Set.new(%i[class data]).freeze
+    module_function
 
-    def self.call(...) = new.call(...)
+    MERGEABLE_ATTRIBUTES = Set.new(%i[class data]).freeze
 
     def call(old_hash, *hashes)
       hashes
@@ -18,8 +18,6 @@ module Protos
           merge(result, new_hash, top_level: true)
         end
     end
-
-    private
 
     def merge(old_hash, new_hash, top_level: false) # rubocop:disable Metrics/PerceivedComplexity
       old_hash.merge!(new_hash) do |key, old, new|

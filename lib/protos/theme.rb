@@ -35,7 +35,7 @@ module Protos
     # - A symbol will be used to fetch a `TokenList` from the theme at that key.
     # - A string is used as a plain css value
     def [](*keys)
-      symbols, strings = keys.partition { |key| key.is_a?(Symbol) }
+      symbols, strings = keys.partition { |key| key.instance_of?(Symbol) }
       values = @theme.values_at(*symbols).map!(&:to_s).reject(&:empty?)
       values.concat(strings) unless strings.empty?
 

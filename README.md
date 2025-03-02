@@ -381,7 +381,7 @@ Setup [TailwindCSS](https://tailwindcss.com/), [DaisyUI](https://daisyui.com)
 and add the protos path to your content.
 
 ```
-npm install -D tailwindcss postcss autoprefixer daisyui
+npm install -D tailwindcss daisyui
 npx tailwindcss init
 ```
 
@@ -394,29 +394,26 @@ numbers so you can easily choose the spacing you want. So we will need to extend
 
 ```js
 // tailwind.config.js
-// For importing tailwind styles from protos gem
-const execSync = require('child_process').execSync;
-const outputProtos = execSync('bundle show protos', { encoding: 'utf-8' });
-const protos_path = outputProtos.trim() + '/**/*.rb';
+import { execSync } from "child_process"
 
-module.exports = {
+const outputProtos = execSync("bundle show protos", { encoding: "utf-8" })
+const protos_path = outputProtos.trim() + "/**/*.rb"
+
+export default {
   content: [
-    "./app/views/**/*.{rb,html,html.erb,erb}",
-    protos_path
+    "./app/views/**/*.rb",
+    protos_path,
   ],
-  theme: {
-    extend: {
-      spacing: {
-        xs: "var(--spacing-xs)",
-        sm: "var(--spacing-sm)",
-        md: "var(--spacing-md)",
-        lg: "var(--spacing-lg)",
-        xl: "var(--spacing-xl)",
-      },
-    },
-  }
-  // ....
+  plugins: [require("@tailwindcss/typography")],
 }
+```
+
+Then in your `application.css` you can import the tailwind config:
+
+```css
+@import "tailwindcss";
+@config "../../../tailwind.config.js";
+@plugin "daisyui";
 ```
 
 Add [`protos-stimulus`](https://github.com/inhouse-work/protos-stimulus)

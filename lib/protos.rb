@@ -29,6 +29,7 @@ module Protos
   autoload :ChatBubble, "protos/chat_bubble"
   autoload :Collapse, "protos/collapse"
   autoload :Command, "protos/command"
+  autoload :Diff, "protos/diff"
   autoload :Drawer, "protos/drawer"
   autoload :Hero, "protos/hero"
   autoload :List, "protos/list"

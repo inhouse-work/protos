@@ -1,6 +1,13 @@
 ## [Unreleased]
 
+## [1.0.0] - 2025-03-01
+
 - Updates to Phlex v2
+- Updates to new DaisyUI 5.0 styles
+- Adds `Protos::Menu` component
+- Performance improvements to `Protos::Theme`
+- Removes redefining `default_attrs` and `theme` methods. Didn't want the
+  overhead of this completely unused feature
 
 ## [0.7.0] - 2025-01-13
 

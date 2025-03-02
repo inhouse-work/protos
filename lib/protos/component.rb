@@ -5,10 +5,6 @@ module Protos
     # DOCS: Base component for all Protos::Components. You can inherit from this
     # class to gain flexible components you can style from the outside using css
     # slots, default attrs and themes.
-    #
-    # This component extends Dry::Initializer and Dry::Core::ClassAttributes to
-    # make configuring each class much easier. It also enables gathering up all
-    # undefined options and adding them to the html_options hash.
 
     extend Dry::Initializer[undefined: false]
 

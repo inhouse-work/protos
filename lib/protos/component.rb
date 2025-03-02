@@ -16,8 +16,8 @@ module Protos
     # Adds non-defined options to the html_options hash
     def initialize(*, **kwargs, &)
       super
-      attributes = self.class.dry_initializer.attributes(kwargs)
-      extra_keys = kwargs.keys - attributes.keys
+      defined_keys = self.class.dry_initializer.definitions.keys
+      extra_keys = kwargs.keys - defined_keys
       @html_options = kwargs.slice(*extra_keys)
     end
 

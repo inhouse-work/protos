@@ -698,29 +698,28 @@ end
 
 ## Missing components
 
-This library tries to avoid re-making Protos components for extremely simple
-DaisyUI components. Here is a list that we don't yet have components for:
+Here is a list that we don't yet have components for:
 
-- Buttons
-- Checkbox
-- File input
-- Indicator
-- Join
-- Kbd
-- Link
-- Loading
-- Mask
-- Progress
-- Radial progress
-- Radio
-- Range
-- Select
-- Skeleton
-- Stack
-- Text input
-- Textarea
-- Toggle
-- Tooltip
+- [] Buttons
+- [] Checkbox
+- [] File input
+- [] Indicator
+- [] Join
+- [] Kbd
+- [] Link
+- [] Loading
+- [] Mask
+- [] Progress
+- [] Radial progress
+- [] Radio
+- [] Range
+- [] Select
+- [] Skeleton
+- [] Stack
+- [] Text input
+- [] Textarea
+- [] Toggle
+- [] Tooltip
 
 ## Development
 

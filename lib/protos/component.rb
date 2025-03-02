@@ -24,17 +24,13 @@ module Protos
     option :theme, as: :theme_override, default: -> { {} }, reader: false
     # Class becomes the :container key in the css hash
     option :class, as: :container_class, default: -> { "" }, reader: false
-    option :html_options, default: -> { {} }, reader: false
 
     # Adds non-defined options to the html_options hash
     def initialize(*, **kwargs, &)
-      defined_keys = self.class.dry_initializer.definitions.keys
-      defined, undefined =
-        kwargs
-          .partition { |key, _| defined_keys.include?(key) }
-          .map!(&:to_h)
-
-      super(*, html_options: undefined, **defined, &)
+      super
+      attributes = self.class.dry_initializer.attributes(kwargs)
+      extra_keys = kwargs.keys - attributes.keys
+      @html_options = kwargs.slice(*extra_keys)
     end
 
     private

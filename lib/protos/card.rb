@@ -59,7 +59,7 @@ module Protos
         container: [
           "card",
           SIZES[size],
-          ("card-bordered" if border),
+          ("card-border" if border),
           ("card-dash" if dashed),
           ("image-full" if image_full),
           ("card-side" if image_side)

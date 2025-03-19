@@ -27,7 +27,7 @@ RSpec.describe Protos::Card do
   end
 
   it "renders the daisyui styles" do
-    expect(page).to have_css ".card-bordered"
+    expect(page).to have_css ".card-border"
     expect(page).to have_css ".card"
   end
 

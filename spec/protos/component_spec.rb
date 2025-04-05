@@ -3,7 +3,13 @@
 RSpec.describe Protos::Component do
   before do
     stub_const(
-      "TestComponent", Class.new(Protos::Component) do
+      "BaseComponent", Class.new(Protos::Component) do
+        option :some_property, reader: false, default: -> { "default" }
+      end
+    )
+
+    stub_const(
+      "TestComponent", Class.new(BaseComponent) do
         def view_template(&)
           div(**attrs) do
             div(class: "#{css[:inner]} #{css[:overridable]}") do

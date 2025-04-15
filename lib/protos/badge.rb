@@ -15,6 +15,7 @@ module Protos
       success: "badge-success",
       primary: "badge-primary",
       secondary: "badge-secondary",
+      accent: "badge-accent",
       info: "badge-info",
       error: "badge-error",
       warning: "badge-warning",

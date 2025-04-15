@@ -16,13 +16,13 @@ RSpec.describe Protos::Badge do
 
   context "with a type" do
     before do
-      render described_class.new(type: :ghost) do
+      render described_class.new(type: :accent) do
         "Some content"
       end
     end
 
     it { is_expected.to have_css(".badge") }
-    it { is_expected.to have_css(".badge-ghost") }
+    it { is_expected.to have_css(".badge-accent") }
   end
 
   context "with an outline" do

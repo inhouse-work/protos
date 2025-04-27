@@ -12,8 +12,7 @@ RSpec.describe Protos::Tabs::Tab do
   end
 
   context "accessibility" do
-    it { is_expected.to have_css("button[disabled]") }
-    it { is_expected.to have_css("button[role='tab']") }
+    it { is_expected.to have_css("a[role='tab']") }
   end
 
   context "styles" do

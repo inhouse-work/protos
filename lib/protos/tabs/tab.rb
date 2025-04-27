@@ -9,7 +9,7 @@ module Protos
       option :disabled, default: -> { false }
 
       def view_template(&)
-        button(**attrs, disabled:, &)
+        a(**attrs, &)
       end
 
       private

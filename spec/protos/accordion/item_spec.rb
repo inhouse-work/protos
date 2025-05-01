@@ -18,7 +18,11 @@ RSpec.describe Protos::Accordion::Item do
 
   context "when overriding the collapse styles" do
     before do
-      render described_class.new(input_name: 1, theme: { collapse: "bg-red-500" }) do
+      render described_class.new(
+        input_name: 1,
+        input_type: :checkbox,
+        theme: { collapse: "bg-red-500" }
+      ) do
         "content"
       end
     end
@@ -26,6 +30,7 @@ RSpec.describe Protos::Accordion::Item do
     it "renders the collapse with the overridden styles" do
       expect(page).to have_css ".bg-red-500"
       expect(page).to have_no_css ".collapse"
+      expect(page).to have_css("input#1[type=checkbox]")
     end
   end
 end

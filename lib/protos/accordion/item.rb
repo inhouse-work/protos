@@ -5,15 +5,10 @@ module Protos
     class Item < Component
       # DOCS: An accorion is just a collapse with radio buttons.
 
-      InputTypes = Types::Coercible::Symbol.enum(
-        :radio,
-        :checkbox
-      )
-
       option :input_name,
         type: Types::String | Types::Integer | Types::Nil
       option :input_type,
-        type: InputTypes,
+        type: Collapse::InputTypes,
         default: -> { :radio }
 
       def view_template(&block)

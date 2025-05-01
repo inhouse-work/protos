@@ -24,9 +24,17 @@ module Protos
       close: "collapse-close"
     }.freeze
 
+    InputTypes = Types::Coercible::Symbol.enum(
+      :radio,
+      :checkbox
+    )
+
     option :state, type: States, default: -> { :default }, reader: false
     option :icon, type: Icons, default: -> { :arrow }, reader: false
-    option :input_type, default: -> { :checkbox }, reader: false
+    option :input_type,
+      type: InputTypes,
+      default: -> { :checkbox },
+      reader: false
     option :input_name,
       reader: false,
       default: -> { "collapse-#{SecureRandom.hex(4)}" },

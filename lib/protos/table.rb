@@ -68,7 +68,7 @@ module Protos
           "table",
           size,
           ("table-pin-rows" if pin_rows),
-          ("table-pin-columns" if pin_columns),
+          ("table-pin-cols" if pin_columns),
           ("table-striped" if striped)
         ]
       }

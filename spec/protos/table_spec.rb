@@ -55,6 +55,6 @@ RSpec.describe Protos::Table do
     expect(page).to have_css(".w-full")
     expect(page).to have_css(".table-lg")
     expect(page).to have_css(".table-pin-rows")
-    expect(page).to have_css(".table-pin-columns")
+    expect(page).to have_css(".table-pin-cols")
   end
 end

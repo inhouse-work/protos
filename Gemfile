@@ -15,4 +15,4 @@ gem "phlex-testing-capybara"
 gem "rake"
 gem "rspec"
 gem "rubocop-inhouse", require: false
-gem "ruby-prof"
+# gem "ruby-prof"

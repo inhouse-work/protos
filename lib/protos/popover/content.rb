@@ -3,12 +3,27 @@
 module Protos
   class Popover
     class Content < Component
-      # DOCS: The content of a popover. We use a <template> element that is
-      # added to the DOM by tippy.js to handle the position of the content.
-      # This means content in here will not be available in system tests that
-      # use rack_test.
+      # The content that appears in the popover when triggered.
       #
-      # TODO: Move away from using template
+      # @example Basic content
+      #   popover.content { "Popover message" }
+      #
+      # @example Rich content
+      #   popover.content do
+      #     div(class: "p-4") do
+      #       h3 { "Title" }
+      #       p { "Detailed content here" }
+      #     end
+      #   end
+      #
+      # @note This component:
+      #   - Uses a <template> element for Tippy.js positioning
+      #   - Content won't be visible in rack_test system tests
+      #   - Should contain the actual popover content/structure
+      #   - Inherits animations/positioning from parent Popover
+      #
+      # @todo Consider moving away from template element for better testability
+      # @see Protos::Popover The parent popover component for configuration options
 
       def view_template(&block)
         template(**template_attrs) do

@@ -2,10 +2,13 @@
 
 module Protos
   class Command
+    # The empty component is displayed in the list when there are no
+    # matches in an input.
     class Empty < Component
-      # DOCS: The empty component is displayed in the list when there are no
-      # matches in an input.
-
+      # Renders the empty state element.
+      #
+      # @yield The content block for the empty state message.
+      # @return [nil] outputs to the @buffer
       def view_template(&)
         li(**attrs, &)
       end

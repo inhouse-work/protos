@@ -2,9 +2,12 @@
 
 module Protos
   class Carousel
+    # Area for actions (e.g buttons) within a carousel
     class Actions < Component
-      # DOCS: Area for actions (e.g buttons) within a carousel
-
+      # Renders the carousel actions container.
+      #
+      # @yield The content block for action buttons or controls.
+      # @return [nil] outputs to the @buffer
       def view_template(&)
         div(**attrs, &)
       end

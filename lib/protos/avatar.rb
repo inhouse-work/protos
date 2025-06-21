@@ -1,10 +1,25 @@
 # frozen_string_literal: true
 
 module Protos
+  # An avatar component for displaying user or entity images
+  #
+  # @see https://daisyui.com/components/avatar/
+  #
+  # @example Basic avatar
+  #   Protos::Avatar.new do
+  #     img(src: "user.jpg", alt: "User avatar")
+  #   end
+  #
+  # @example Avatar with indicator
+  #   Protos::Avatar.new(indicator: :online) do
+  #     img(src: "user.jpg", alt: "User avatar")
+  #   end
+  #
+  # @example Avatar with shape mask
+  #   Protos::Avatar.new(shape: :circle) do
+  #     img(src: "user.jpg", alt: "User avatar")
+  #   end
   class Avatar < Component
-    # DOCS: The avatar component is used to represent a user or entity.
-    # https://daisyui.com/components/avatar/
-
     Indicators = Types::Coercible::Symbol.enum(:none, :online, :offline)
     MaskShapes = Types::Coercible::Symbol.enum(
       :none,
@@ -54,16 +69,28 @@ module Protos
       offline: "avatar-offline"
     }.freeze
 
+    # @!attribute [r] placeholder
+    #   @return [Boolean] Whether to show placeholder styling.
     option :placeholder, type: Types::Bool, default: -> { false }
+
+    # @!attribute [r] indicator
+    #   @return [Symbol] One of `:none`, `:online`, or `:offline` for status indicator.
     option :indicator,
       type: Indicators,
       default: -> { :none },
       reader: false
+
+    # @!attribute [r] shape
+    #   @return [Symbol] One of `:none`, `:squircle`, `:heart`, `:hexagon`, etc. for masking shape.
     option :shape,
       type: MaskShapes,
       default: -> { :none },
       reader: false
 
+    # Renders the avatar container element.
+    #
+    # @yield The content block for the avatar image/content.
+    # @return [nil] outputs to the @buffer
     def view_template(&block)
       div(**attrs) do
         div(class: css[:figure], &block)

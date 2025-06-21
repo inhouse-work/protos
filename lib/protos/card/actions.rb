@@ -2,9 +2,12 @@
 
 module Protos
   class Card
+    # Area for actions (e.g buttons) within a card
     class Actions < Component
-      # DOCS: Area for actions (e.g buttons) within a card
-
+      # Renders the card actions container.
+      #
+      # @yield The content block for action buttons or controls.
+      # @return [nil] outputs to the @buffer
       def view_template(&)
         nav(**attrs, &)
       end

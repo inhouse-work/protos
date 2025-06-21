@@ -2,9 +2,12 @@
 
 module Protos
   class ChatBubble
+    # The footer of a chat bubble
     class Footer < Component
-      # DOCS: The footer of a chat bubble
-
+      # Renders the chat bubble footer element.
+      #
+      # @yield The content block for the footer content (timestamp, status, etc.).
+      # @return [nil] outputs to the @buffer
       def view_template(&)
         div(**attrs, &)
       end

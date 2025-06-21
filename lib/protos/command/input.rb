@@ -2,15 +2,20 @@
 
 module Protos
   class Command
+    # The search input for the command palette
     class Input < Component
-      # DOCS: The search input for the command palette
-
+      # @!attribute [r] placeholder
+      #   @return [String] Placeholder text for the input field.
       option :placeholder,
         reader: :private,
         default: -> {
           "Type a command or search..."
         }
 
+      # Renders the command input element.
+      #
+      # @yield The content block for an optional icon.
+      # @return [nil] outputs to the @buffer
       def view_template(&block)
         li(**attrs) do
           label(class: css[:label]) do

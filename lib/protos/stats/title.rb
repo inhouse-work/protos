@@ -3,7 +3,18 @@
 module Protos
   class Stats
     class Title < Component
-      # DOCS: A title for a group of stats
+      # The title/label for a statistic.
+      #
+      # @example Basic title
+      #   stats.title { "Total Revenue" }
+      #
+      # @example With custom styling
+      #   stats.title(class: "text-sm") { "Monthly Active Users" }
+      #
+      # @note This component:
+      #   - Typically appears above the value
+      #   - Should be concise and descriptive
+      #   - Can be styled independently
 
       def view_template(&)
         div(**attrs, &)

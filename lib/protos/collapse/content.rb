@@ -2,10 +2,13 @@
 
 module Protos
   class Collapse
+    # The content of a collapse. This would be hidden until the collapse
+    # is opened.
     class Content < Component
-      # DOCS: The content of a collapse. This would be hidden until the collapse
-      # is opened.
-
+      # Renders the collapse content container.
+      #
+      # @yield The content block for the collapsible content.
+      # @return [nil] outputs to the @buffer
       def view_template(&)
         div(**attrs, &)
       end

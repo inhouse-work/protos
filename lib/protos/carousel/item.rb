@@ -2,9 +2,12 @@
 
 module Protos
   class Carousel
+    # A single item within a carousel
     class Item < Component
-      # DOCS: A single item within a carousel
-
+      # Renders the carousel item element.
+      #
+      # @yield The content block for the item content.
+      # @return [nil] outputs to the @buffer
       def view_template(&)
         div(**attrs, &)
       end

@@ -1,10 +1,17 @@
 # frozen_string_literal: true
 
 module Protos
+  # A tabs component
+  #
+  # @see https://daisyui.com/components/tab/
+  #
+  # @example
+  #   Protos::Tabs.new(type: :boxed, size: :lg) do |tabs|
+  #     tabs.tab(active: true) { "Tab 1" }
+  #     tabs.tab { "Tab 2" }
+  #     tabs.tab(disabled: true) { "Tab 3" }
+  #   end
   class Tabs < Component
-    # DOCS: A component that contains many Protos::Tab components
-    # https://daisyui.com/components/tab/
-
     autoload :Tab, "protos/tabs/tab"
 
     Styles = Types::Coercible::Symbol.enum(
@@ -35,19 +42,32 @@ module Protos
       lg: "tabs-lg"
     }.freeze
 
+    # @!attribute [r] type
+    #   @return [Symbol] One of `:default`, `:boxed`, `:bordered`, or `:lifted` for styling.
     option :type,
       default: -> { :default },
       reader: false,
       type: Styles
+
+    # @!attribute [r] size
+    #   @return [Symbol] One of `:xs`, `:sm`, `:md`, or `:lg` for size.
     option :size,
       default: -> { :md },
       reader: false,
       type: Sizes
 
+    # Renders the full tabs element.
+    #
+    # @yield The content block to define individual tabs.
+    # @return [nil] outputs to the @buffer
     def view_template(&)
       div(**attrs, &)
     end
 
+    # Renders a tab.
+    #
+    # @param (see Protos::Tabs::Tab#initialize)
+    # @return [nil]
     def tab(...) = render Tab.new(...)
 
     private

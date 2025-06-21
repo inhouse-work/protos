@@ -10,8 +10,14 @@ module Protos
         two: "diff-item-2"
       }.freeze
 
+      # @!attribute [r] order
+      #   @return [Symbol] One of `:one` or `:two` to specify which side of the diff this item represents.
       option :order, type: Order, default: -> { :one }, reader: false
 
+      # Renders the diff item container.
+      #
+      # @yield The content block for the item content.
+      # @return [nil] outputs to the @buffer
       def view_template(&)
         div(**attrs, &)
       end

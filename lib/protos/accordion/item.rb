@@ -2,15 +2,23 @@
 
 module Protos
   class Accordion
+    # An accordion item containing a title and collapsible content
     class Item < Component
-      # DOCS: An accorion is just a collapse with radio buttons.
-
+      # @!attribute [r] input_name
+      #   @return [String, Integer, nil] Name/ID for the radio input.
       option :input_name,
         type: Types::String | Types::Integer | Types::Nil
+
+      # @!attribute [r] input_type
+      #   @return [Symbol] One of `:radio` or `:checkbox` for input type.
       option :input_type,
         type: Collapse::InputTypes,
         default: -> { :radio }
 
+      # Renders the accordion item container.
+      #
+      # @yield The content block for title and content.
+      # @return [nil] outputs to the @buffer
       def view_template(&block)
         li(**attrs) do
           render Collapse.new(

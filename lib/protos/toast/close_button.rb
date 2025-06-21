@@ -3,7 +3,21 @@
 module Protos
   class Toast
     class CloseButton < Component
-      # DOCS: A close button for a toast
+      # A button that closes the toast when clicked.
+      #
+      # @example Basic close button
+      #   toast.close_button { "×" }
+      #
+      # @example Close button with icon
+      #   toast.close_button { icon(:x_mark) }
+      #
+      # @note This component:
+      #   - Wraps the button in a form with method=dialog
+      #   - Automatically focuses when toast appears (autofocus)
+      #   - Includes proper ARIA label for accessibility
+      #   - Can be placed anywhere within the toast content
+      #
+      # @see Protos::Toast The parent toast component
 
       def view_template(&block)
         form(method: :dialog, class: css[:form]) do

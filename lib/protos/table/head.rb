@@ -3,7 +3,14 @@
 module Protos
   class Table
     class Head < Component
-      # DOCS: The head of a table
+      # DOCS: A table header cell (th element) that represents a column header.
+      # Can be aligned left, center or right.
+      #
+      # @example With alignment
+      #   table.head(align: :center) { "Centered Header" }
+      #
+      # @!attribute [r] align
+      #   @return [Symbol] Text alignment - :left, :center or :right
 
       ALLIGNMENT = {
         left: "text-left",

@@ -3,8 +3,19 @@
 module Protos
   class Timeline
     class Left < Component
-      # DOCS: Content on the left (on daisyui "start") side of a timeline.
-      # We chose not to use start/end because of the keywork conflict with ruby.
+      # Content on the left side of a timeline item (typically dates/times).
+      #
+      # @example Basic usage
+      #   timeline.left { "Jan 2023" }
+      #
+      # @example With custom styling
+      #   timeline.left(class: "font-bold") { "Q1 2024" }
+      #
+      # @note This component:
+      #   - Aligns to the left in horizontal timelines
+      #   - Appears above content in vertical timelines
+      #   - Uses "timeline-start" class internally (avoiding Ruby's 'start' keyword)
+      #   - Should contain relatively short content
 
       def view_template(&)
         div(**attrs, &)

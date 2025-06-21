@@ -3,7 +3,16 @@
 module Protos
   class Modal
     class Trigger < Component
-      # DOCS: A trigger is a button that opens a modal
+      # A button that opens the modal when clicked.
+      #
+      # @example Basic trigger
+      #   modal.trigger { "Open Modal" }
+      #
+      # @example Trigger with custom styling
+      #   modal.trigger(class: "btn btn-primary") { "Click Me" }
+      #
+      # @note This component automatically adds the necessary data-action
+      #   to handle opening the modal via Stimulus.
 
       def view_template(&)
         button(**attrs, &)

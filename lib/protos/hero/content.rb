@@ -2,10 +2,14 @@
 
 module Protos
   class Hero
+    # The content of a hero. This would be centered within the main
+    # component container.
     class Content < Component
-      # DOCS: The content of a hero. This would be centered within the main
-      # component container.
 
+      # Renders the hero content container.
+      #
+      # @yield The content block for the hero content.
+      # @return [nil] outputs to the @buffer
       def view_template(&)
         div(**attrs, &)
       end

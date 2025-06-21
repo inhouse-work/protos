@@ -2,9 +2,13 @@
 
 module Protos
   class Card
+    # The title of a card
     class Title < Component
-      # DOCS: The title of a card
 
+      # Renders the card title element.
+      #
+      # @yield The content block for the title text.
+      # @return [nil] outputs to the @buffer
       def view_template(&)
         div(**attrs, &)
       end

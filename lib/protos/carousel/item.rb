@@ -4,7 +4,6 @@ module Protos
   class Carousel
     # A single item within a carousel
     class Item < Component
-
       # Renders the carousel item element.
       #
       # @yield The content block for the item content.

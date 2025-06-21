@@ -5,7 +5,6 @@ module Protos
     # The content of a drawer. This would be visible at all times and
     # represents the main content of your page.
     class Content < Component
-
       # Renders the drawer content container.
       #
       # @yield The content block for the main content.

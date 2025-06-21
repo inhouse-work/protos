@@ -18,7 +18,6 @@ module Protos
   #     list.item { "Step 3: Finally this" }
   #   end
   class List < Component
-
     autoload :Item, "protos/list/item"
 
     # @!attribute [r] ordered

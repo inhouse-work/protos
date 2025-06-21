@@ -19,7 +19,6 @@ module Protos
   #     menu.item { a(href: "/logout") { "Logout" } }
   #   end
   class Menu < Component
-
     Directions = Types::Coercible::Symbol.enum(:vertical, :horizontal)
     Sizes = Types::Coercible::Symbol.enum(:xs, :sm, :md, :lg, :xl)
 

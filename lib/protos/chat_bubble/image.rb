@@ -5,7 +5,6 @@ module Protos
     # An image within a chat bubble. This would typically be an avatar
     # component.
     class Image < Component
-
       # Renders the chat bubble image element.
       #
       # @yield The content block for the image content (avatar, etc.).

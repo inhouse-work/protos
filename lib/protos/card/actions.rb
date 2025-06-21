@@ -4,7 +4,6 @@ module Protos
   class Card
     # Area for actions (e.g buttons) within a card
     class Actions < Component
-
       # Renders the card actions container.
       #
       # @yield The content block for action buttons or controls.

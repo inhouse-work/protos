@@ -4,7 +4,6 @@ module Protos
   class Carousel
     # Area for actions (e.g buttons) within a carousel
     class Actions < Component
-
       # Renders the carousel actions container.
       #
       # @yield The content block for action buttons or controls.

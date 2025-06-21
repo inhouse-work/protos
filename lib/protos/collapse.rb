@@ -30,7 +30,6 @@ module Protos
   #     collapse.content { "This starts open" }
   #   end
   class Collapse < Component
-
     autoload :Title, "protos/collapse/title"
     autoload :Content, "protos/collapse/content"
 

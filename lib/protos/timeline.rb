@@ -19,7 +19,6 @@ module Protos
   #     end
   #   end
   class Timeline < Component
-
     autoload :Item, "protos/timeline/item"
     autoload :Left, "protos/timeline/left"
     autoload :Center, "protos/timeline/center"

@@ -4,7 +4,6 @@ module Protos
   class Card
     # The title of a card
     class Title < Component
-
       # Renders the card title element.
       #
       # @yield The content block for the title text.

@@ -12,7 +12,6 @@ module Protos
   #     steps.step { "Step 3" }
   #   end
   class Steps < Component
-
     autoload :Step, "protos/steps/step"
 
     # @!attribute [r] vertical

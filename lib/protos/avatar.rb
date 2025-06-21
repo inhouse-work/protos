@@ -20,7 +20,6 @@ module Protos
   #     img(src: "user.jpg", alt: "User avatar")
   #   end
   class Avatar < Component
-
     Indicators = Types::Coercible::Symbol.enum(:none, :online, :offline)
     MaskShapes = Types::Coercible::Symbol.enum(
       :none,

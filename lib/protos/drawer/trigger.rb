@@ -5,7 +5,6 @@ module Protos
     # The trigger for a drawer. When this is clicked the side will open
     # and overlap the main content with a darker overlay.
     class Trigger < Component
-
       # @!attribute [r] input_id
       #   @return [String] The ID of the associated checkbox input for toggling.
       option :input_id, reader: false, type: Types::String

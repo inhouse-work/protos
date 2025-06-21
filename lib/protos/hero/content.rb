@@ -5,7 +5,6 @@ module Protos
     # The content of a hero. This would be centered within the main
     # component container.
     class Content < Component
-
       # Renders the hero content container.
       #
       # @yield The content block for the hero content.

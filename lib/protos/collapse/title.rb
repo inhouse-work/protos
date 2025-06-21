@@ -5,7 +5,6 @@ module Protos
     # The title of a collapse. This is the content that is always
     # visible and is used to toggle the collapse.
     class Title < Component
-
       # @!attribute [r] input_id
       #   @return [String, Integer, nil] The ID of the associated input element for toggling.
       option :input_id,

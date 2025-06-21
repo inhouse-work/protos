@@ -32,7 +32,6 @@ module Protos
   #     drawer.side { "Side content here" }
   #   end
   class Drawer < Component
-
     autoload :Side, "protos/drawer/side"
     autoload :Trigger, "protos/drawer/trigger"
     autoload :Content, "protos/drawer/content"

@@ -5,7 +5,6 @@ module Protos
     # The content that will be shown when you open the drawer using the
     # trigger. This would be hidden until triggered.
     class Side < Component
-
       # @!attribute [r] input_id
       #   @return [String] The ID of the associated checkbox input for toggling.
       option :input_id, reader: false, type: Types::String

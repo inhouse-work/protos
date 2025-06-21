@@ -14,7 +14,6 @@ module Protos
   #     end
   #   end
   class Toast < Component
-
     autoload :CloseButton, "protos/toast/close_button"
 
     Positions = Types::Symbol.enum(

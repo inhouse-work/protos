@@ -35,7 +35,6 @@ module Protos
   #     end
   #   end
   class Popover < Component
-
     autoload :Trigger, "protos/popover/trigger"
     autoload :Content, "protos/popover/content"
 

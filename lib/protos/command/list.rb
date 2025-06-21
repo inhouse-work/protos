@@ -4,7 +4,6 @@ module Protos
   class Command
     # A list of commands. This can contain either items or groups.
     class List < Component
-
       # Renders the command list container.
       #
       # @yield The content block to define command items and groups.

@@ -34,7 +34,6 @@ module Protos
   #     end
   #   end
   class Command < Component
-
     autoload :Input, "protos/command/input"
     autoload :Dialog, "protos/command/dialog"
     autoload :Group, "protos/command/group"

@@ -12,7 +12,7 @@ module Protos
   # @example Creating a custom component
   #   class MyComponent < Protos::Component
   #     option :title
-  #     
+  #
   #     def view_template
   #       div(class: css[:container]) do
   #         h1 { title }

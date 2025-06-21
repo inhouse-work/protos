@@ -5,7 +5,6 @@ module Protos
     # The empty component is displayed in the list when there are no
     # matches in an input.
     class Empty < Component
-
       # Renders the empty state element.
       #
       # @yield The content block for the empty state message.

@@ -4,7 +4,6 @@ module Protos
   class Command
     # A single option within a command
     class Item < Component
-
       # Renders the command item element.
       #
       # @yield The content block for the item content.

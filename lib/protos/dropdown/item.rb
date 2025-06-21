@@ -4,7 +4,6 @@ module Protos
   class Dropdown
     # A single item within a dropdown
     class Item < Component
-
       # Renders the dropdown item element.
       #
       # @yield The content block for the item.

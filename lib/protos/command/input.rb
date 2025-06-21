@@ -4,7 +4,6 @@ module Protos
   class Command
     # The search input for the command palette
     class Input < Component
-
       # @!attribute [r] placeholder
       #   @return [String] Placeholder text for the input field.
       option :placeholder,

@@ -38,7 +38,6 @@ module Protos
   #     end
   #   end
   class Combobox < Popover
-
     # @!attribute [r] trigger
     #   @return [Symbol, Array<Symbol>] One or more of `:focus`, `:mouseenter`, `:click`, `:focusin`, or `:manual` for trigger events.
     option :trigger,

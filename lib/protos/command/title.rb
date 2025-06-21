@@ -5,7 +5,6 @@ module Protos
     # The title for a group of commands. This is expected to be used
     # inside a Protos::Command::Group component.
     class Title < Component
-
       # Renders the command group title.
       #
       # @yield The content block for the title text.

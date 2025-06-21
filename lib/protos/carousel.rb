@@ -24,7 +24,6 @@ module Protos
   #     end
   #   end
   class Carousel < Component
-
     autoload :Item, "protos/carousel/item"
     autoload :Actions, "protos/carousel/actions"
 

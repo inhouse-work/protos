@@ -19,7 +19,6 @@ module Protos
   #     breadcrumbs.crumb { a(href: "/products") { "Products" } }
   #   end
   class Breadcrumbs < Component
-
     autoload :Crumb, "protos/breadcrumbs/crumb"
 
     # Renders the breadcrumbs container element.

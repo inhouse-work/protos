@@ -12,7 +12,6 @@ module Protos
   #     tabs.tab(disabled: true) { "Tab 3" }
   #   end
   class Tabs < Component
-
     autoload :Tab, "protos/tabs/tab"
 
     Styles = Types::Coercible::Symbol.enum(

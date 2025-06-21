@@ -31,7 +31,6 @@ module Protos
   #     end
   #   end
   class Hero < Component
-
     autoload :Content, "protos/hero/content"
     autoload :Overlay, "protos/hero/overlay"
 

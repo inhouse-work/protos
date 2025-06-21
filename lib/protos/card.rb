@@ -26,7 +26,6 @@ module Protos
   #     end
   #   end
   class Card < Component
-
     autoload :Body, "protos/card/body"
     autoload :Title, "protos/card/title"
     autoload :Actions, "protos/card/actions"

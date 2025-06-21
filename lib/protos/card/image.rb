@@ -6,7 +6,6 @@ module Protos
     # on daisyui which will style the <figure> tag depending on whether
     # image-overlay is present on the card.
     class Image < Component
-
       # Renders the card image container.
       #
       # @yield The content block for the image content.

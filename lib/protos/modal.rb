@@ -29,7 +29,6 @@ module Protos
   #     end
   #   end
   class Modal < Protos::Component
-
     autoload :CloseButton, "protos/modal/close_button"
     autoload :Dialog, "protos/modal/dialog"
     autoload :Trigger, "protos/modal/trigger"

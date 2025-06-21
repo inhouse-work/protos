@@ -6,7 +6,6 @@ module Protos
     # Protos::Popover::Content component as the main functionality for
     # dropdowns comes from there.
     class Menu < Popover::Content
-
       # Renders the dropdown menu container.
       #
       # @yield The content block to define menu items.

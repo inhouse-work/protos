@@ -21,7 +21,6 @@ module Protos
   #     chat.footer { "12:46 PM • Delivered" }
   #   end
   class ChatBubble < Component
-
     autoload :Content, "protos/chat_bubble/content"
     autoload :Image, "protos/chat_bubble/image"
     autoload :Header, "protos/chat_bubble/header"

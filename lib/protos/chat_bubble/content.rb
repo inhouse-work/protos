@@ -5,7 +5,6 @@ module Protos
     # The main content of a chat bubble. This would normally be the text
     # content of the message. It will be colored according to the type.
     class Content < Component
-
       STYLES = {
         default: "",
         accent: "chat-bubble-accent",

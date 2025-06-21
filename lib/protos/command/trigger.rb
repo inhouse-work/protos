@@ -4,7 +4,6 @@ module Protos
   class Command
     # A trigger is a button that opens a command palette modal
     class Trigger < Component
-
       # Renders the command trigger button.
       #
       # @yield The content block for the button content.

@@ -23,7 +23,6 @@ module Protos
   #     end
   #   end
   class Stats < Component
-
     autoload :Actions, "protos/stats/actions"
     autoload :Description, "protos/stats/description"
     autoload :Figure, "protos/stats/figure"

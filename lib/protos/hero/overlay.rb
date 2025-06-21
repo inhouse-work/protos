@@ -6,7 +6,6 @@ module Protos
     # their opacity through the opacity of the overlay. This can be useful to
     # make text readable on noisy images.
     class Overlay < Component
-
       # Renders the hero overlay element.
       #
       # @yield The content block for the overlay (usually empty).

@@ -4,7 +4,6 @@ module Protos
   class Accordion
     # An accordion item containing a title and collapsible content
     class Item < Component
-
       # @!attribute [r] input_name
       #   @return [String, Integer, nil] Name/ID for the radio input.
       option :input_name,

@@ -4,7 +4,6 @@ module Protos
   class Card
     # The main content area of a card
     class Body < Component
-
       # Renders the card body container.
       #
       # @yield The content block for the card's main content.

@@ -6,7 +6,6 @@ module Protos
     # Items in the group will have a divider line on the left side and can
     # optionally have a title.
     class Group < Component
-
       # Renders the command group container.
       #
       # @yield The content block to define group items and title.

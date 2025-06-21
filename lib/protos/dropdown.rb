@@ -29,7 +29,6 @@ module Protos
   #     end
   #   end
   class Dropdown < Popover
-
     autoload :Item, "protos/dropdown/item"
     autoload :Menu, "protos/dropdown/menu"
     autoload :Trigger, "protos/dropdown/trigger"

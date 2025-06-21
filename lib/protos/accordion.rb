@@ -25,7 +25,6 @@ module Protos
   #     end
   #   end
   class Accordion < Component
-
     autoload :Item, "protos/accordion/item"
 
     # @!attribute [r] input_name

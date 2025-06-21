@@ -2,9 +2,13 @@
 
 module Protos
   class Command
+    # A list of commands. This can contain either items or groups.
     class List < Component
-      # DOCS: A list of commands. This can contain either items or groups.
 
+      # Renders the command list container.
+      #
+      # @yield The content block to define command items and groups.
+      # @return [nil] outputs to the @buffer
       def view_template(&)
         ul(**attrs, &)
       end

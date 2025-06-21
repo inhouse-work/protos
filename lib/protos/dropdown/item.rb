@@ -2,9 +2,13 @@
 
 module Protos
   class Dropdown
+    # A single item within a dropdown
     class Item < Component
-      # DOCS: A single item within a dropdown
 
+      # Renders the dropdown item element.
+      #
+      # @yield The content block for the item.
+      # @return [nil] outputs to the @buffer
       def view_template(&)
         li(**attrs, &)
       end

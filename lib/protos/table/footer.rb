@@ -17,6 +17,14 @@ module Protos
       def view_template(&)
         tfoot(**attrs, &)
       end
+
+      private
+
+      def theme
+        {
+          container: "table-footer-group"
+        }
+      end
     end
   end
 end

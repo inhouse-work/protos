@@ -56,5 +56,7 @@ RSpec.describe Protos::Table do
     expect(page).to have_css(".table-lg")
     expect(page).to have_css(".table-pin-rows")
     expect(page).to have_css(".table-pin-cols")
+    expect(page).to have_css(".table-striped")
+    expect(page).to have_css(".print\\:break-inside-auto")
   end
 end

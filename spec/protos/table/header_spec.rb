@@ -9,4 +9,8 @@ RSpec.describe Protos::Table::Header do
     expect(page).to have_css("thead")
     expect(page).to have_content("header")
   end
+
+  it "renders the styles" do
+    expect(page).to have_css(".table-header-group")
+  end
 end

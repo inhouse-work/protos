@@ -14,6 +14,14 @@ module Protos
       def view_template(&)
         tr(**attrs, &)
       end
+
+      private
+
+      def theme
+        {
+          container: "print:break-inside-avoid print:break-after-auto"
+        }
+      end
     end
   end
 end

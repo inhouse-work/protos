@@ -129,6 +129,7 @@ module Protos
         container: "w-full overflow-x-auto",
         table: [
           "table",
+          "print:break-inside-auto",
           size,
           ("table-pin-rows" if pin_rows),
           ("table-pin-cols" if pin_columns),

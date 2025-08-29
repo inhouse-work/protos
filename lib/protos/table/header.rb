@@ -4,7 +4,8 @@ module Protos
   class Table
     class Header < Component
       # DOCS: The header section of a table that contains column headers.
-      # This wraps one or more Protos::Table::Head components in a thead element.
+      # This wraps one or more Protos::Table::Head components in a thead
+      # element.
       #
       # @example Basic usage
       #   table.header do
@@ -16,6 +17,14 @@ module Protos
 
       def view_template(&)
         thead(**attrs, &)
+      end
+
+      private
+
+      def theme
+        {
+          container: "table-header-group"
+        }
       end
     end
   end

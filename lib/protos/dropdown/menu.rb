@@ -11,7 +11,7 @@ module Protos
       # @yield The content block to define menu items.
       # @return [nil] outputs to the @buffer
       def view_template(&block)
-        template(**template_attrs) do
+        div(hidden: "true", **template_attrs) do
           render ::Protos::Menu.new(**attrs, &block)
         end
       end

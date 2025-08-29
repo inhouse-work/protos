@@ -22,19 +22,18 @@ module Protos
       #   - Should contain the actual popover content/structure
       #   - Inherits animations/positioning from parent Popover
       #
-      # @todo Consider moving away from template element for better testability
-      # @see Protos::Popover The parent popover component for configuration options
+      # @see Protos::Popover The parent popover component for configuration
+      # options
 
-      def view_template(&block)
-        template(**template_attrs) do
-          div(**attrs, &block)
-        end
+      def view_template(&)
+        div(hidden: "true", **template_attrs, &)
       end
 
       private
 
       def template_attrs
         {
+          class: "hidden",
           data: {
             "protos--popover-target": "template"
           }

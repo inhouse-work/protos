@@ -6,6 +6,6 @@ RSpec.describe Protos::Popover::Content do
   end
 
   it "renders the popover content" do
-    expect(page).to have_css("template", visible: :hidden)
+    expect(page).to have_css("div", visible: :hidden)
   end
 end

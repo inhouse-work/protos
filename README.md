@@ -505,7 +505,7 @@ module Ui
     option :items, default: -> { [] }, reader: false
     option :actions, default: -> { [] }, reader: false
 
-    def template
+    def view_template
       article(**attrs) do
         header class: css[:header] do
           h3(size: :md) { title }
@@ -589,7 +589,7 @@ module Ui
     option :columns, default: -> { [] }, reader: false
     option :actions, default: -> { [] }, reader: false
 
-    def template
+    def view_template
       article(**attrs) do
         header class: css[:header] do
           h3(size: :md) { title } if title.present?

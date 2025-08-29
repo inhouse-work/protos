@@ -17,8 +17,7 @@ module Protos
       #   end
       #
       # @note This component:
-      #   - Uses a <template> element for Tippy.js positioning
-      #   - Content won't be visible in rack_test system tests
+      #   - Uses a <div> element for Tippy.js positioning
       #   - Should contain the actual popover content/structure
       #   - Inherits animations/positioning from parent Popover
       #

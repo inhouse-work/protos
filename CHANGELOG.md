@@ -1,9 +1,9 @@
 ## [Unreleased (1.1.0)]
 
-- Changes `Protos::Dropdown` and `Protos::Popover` to use a hidden `div` instead
-  of `template` to contain content. Rack test does not load any html from
-  template elements which forces tests that would otherwise be fine to have to
-  load javascript.
+- Adds a `as_template` option to `Protos::Dropdown` and `Protos::Popover` to use
+  a hidden `div` instead of `template` to contain content. Rack test does not
+  load any html from template elements which forces tests that would otherwise
+  be fine to have to load javascript.
 - Improves how tables print by breaking after or before rows instead of within.
 
 ## [1.0.1] - 2025-03-01

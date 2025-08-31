@@ -2,7 +2,7 @@
 
 RSpec.describe Protos::Dropdown::Menu do
   before do
-    render described_class.new do |menu|
+    render described_class.new(as_template: false) do |menu|
       menu.item { "Item 1" }
     end
   end

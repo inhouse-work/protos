@@ -3,6 +3,8 @@
 module Protos
   class Popover
     class Content < Component
+      option :as_template, default: -> { true }
+
       # The content that appears in the popover when triggered.
       #
       # @example Basic content
@@ -25,10 +27,14 @@ module Protos
       # options
 
       def view_template(&)
-        div(hidden: "true", **template_attrs, &)
+        element(hidden: "true", **template_attrs, &)
       end
 
       private
+
+      def element(...)
+        as_template ? template(...) : div(...)
+      end
 
       def template_attrs
         {

@@ -31,7 +31,7 @@ module Protos
       option :type,
         default: -> { :default },
         reader: false,
-        type: Types::Styles
+        type: Types::Colors
 
       # Renders the chat bubble content element.
       #

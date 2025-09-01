@@ -44,7 +44,7 @@ module Protos
     #     - `:secondary`
     #     - `:success`
     #     - `:warning`
-    option :type, type: Types::Styles, default: -> { :primary }
+    option :type, type: Types::Colors, default: -> { :primary }
 
     # @!attribute [r] size
     #   @return [Symbol] One of `:xs`, `:sm`, `:md`, `:lg`, or `:xl` for size.

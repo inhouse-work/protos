@@ -24,6 +24,7 @@ module Protos
   autoload :Avatar, "protos/avatar"
   autoload :Badge, "protos/badge"
   autoload :Breadcrumbs, "protos/breadcrumbs"
+  autoload :Button, "protos/button"
   autoload :Card, "protos/card"
   autoload :Carousel, "protos/carousel"
   autoload :ChatBubble, "protos/chat_bubble"

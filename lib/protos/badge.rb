@@ -18,7 +18,7 @@ module Protos
   #   end
   class Badge < Component
     Styles = Types::Coercible::Symbol.enum(
-      *Types::Styles.values,
+      *Types::Colors.values,
       :ghost
     )
 

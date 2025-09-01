@@ -31,7 +31,7 @@ module Protos
       ],
       chat_bubble_styles: [
         {
-          "chat-bubble": Types::Styles.values.map(&:to_s)
+          "chat-bubble": Types::Colors.values.map(&:to_s)
         }
       ],
       menu: [
@@ -50,7 +50,7 @@ module Protos
         swap: %w[on off]
       ],
       step: [
-        step: Types::Styles.values.map(&:to_s)
+        step: Types::Colors.values.map(&:to_s)
       ]
     }.freeze
 

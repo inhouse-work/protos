@@ -32,8 +32,14 @@ module Protos
     #     if not provided.
     option :input_name,
       default: -> { "accordion-#{SecureRandom.hex(4)}" },
-      reader: false,
       type: Types::String
+
+    # @!attribute [r] input_type
+    # @return [Symbol] One of `:radio` or `:checkbox` for accordion behavior.
+    #   Use `:radio` for traditional accordion (only one open at a time)
+    option :input_type,
+      type: Collapse::InputTypes,
+      default: -> { :radio }
 
     # Renders the accordion container element.
     #
@@ -48,7 +54,7 @@ module Protos
     # @param (see Protos::Accordion::Item#initialize)
     # @return [nil]
     def item(*, **, &)
-      render Item.new(*, input_name: @input_name, **, &)
+      render Item.new(*, input_type:, input_name:, **, &)
     end
 
     # Renders the accordion content section.

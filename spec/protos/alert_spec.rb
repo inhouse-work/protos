@@ -15,6 +15,7 @@ RSpec.describe Protos::Alert do
     expect(page).to have_css(".alert")
     expect(page).to have_css(".alert-info")
     expect(page).to have_css(".alert-soft")
+    expect(page).to have_css(".alert-horizontal")
     expect(page).to have_content("alert")
     expect(page).to have_css("div[role=alert]")
     expect(page).to have_content("X")

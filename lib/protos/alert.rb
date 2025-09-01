@@ -23,6 +23,11 @@ module Protos
       :soft
     )
 
+    Directions = Types::Coercible::Symbol.enum(
+      :horizontal,
+      :vertical
+    )
+
     COLORS = {
       info: "alert-info",
       error: "alert-error",
@@ -35,6 +40,11 @@ module Protos
       outline: "alert-outline",
       dash: "alert-dash",
       soft: "alert-soft"
+    }.freeze
+
+    DIRECTIONS = {
+      horizontal: "alert-horizontal",
+      vertical: "alert-vertical"
     }.freeze
 
     # @!attribute [r] type
@@ -52,6 +62,12 @@ module Protos
     #   - `:dash`
     #   - `:soft`
     option :variant, type: Variants, default: -> { :default }
+
+    # @!attribute [r] direction
+    # @return [Symbol] One of:
+    #   - `:horizontal`
+    #   - `:vertical`
+    option :direction, type: Directions, default: -> { :horizontal }
 
     # Renders the alert container element.
     #
@@ -86,7 +102,8 @@ module Protos
         container: [
           "alert",
           COLORS.fetch(color),
-          VARIANTS.fetch(variant)
+          VARIANTS.fetch(variant),
+          DIRECTIONS.fetch(direction)
         ]
       }
     end

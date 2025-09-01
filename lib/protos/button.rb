@@ -53,13 +53,21 @@ module Protos
       circle: "btn-circle"
     }.freeze
 
+    # @!attribute [r] color
     option :color, type: Types::Colors, default: -> { :default }
+    # @!attribute [r] variant
     option :variant, type: Variants, default: -> { :default }
+    # @!attribute [r] shape
     option :shape, type: Shapes, default: -> { :default }
+    # @!attribute [r] size
     option :size, type: Types::Sizes, default: -> { :default }
+    # @!attribute [r] wide
     option :wide, type: Types::Bool, default: -> { false }
+    # @!attribute [r] block
     option :block, type: Types::Bool, default: -> { false }
+    # @!attribute [r] active
     option :active, type: Types::Bool, default: -> { false }
+    # @!attribute [r] disabled
     option :disabled, type: Types::Bool, default: -> { false }
 
     def view_template(&)

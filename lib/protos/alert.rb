@@ -53,6 +53,12 @@ module Protos
 
     private
 
+    def default_attrs
+      {
+        role: "alert"
+      }
+    end
+
     def theme
       {
         container: ["alert", style]

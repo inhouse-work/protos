@@ -6,7 +6,8 @@ module Protos
     # visible and is used to toggle the collapse.
     class Title < Component
       # @!attribute [r] input_id
-      #   @return [String, Integer, nil] The ID of the associated input element for toggling.
+      #   @return [String, Integer, nil] The ID of the associated input
+      #     element for toggling.
       option :input_id,
         type: Types::String | Types::Integer | Types::Nil,
         reader: false,

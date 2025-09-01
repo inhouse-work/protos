@@ -19,7 +19,9 @@ module Protos
   #
   # @example Hero with background image and overlay
   #   Protos::Hero.new(
-  #     style: "background-image: url(https://img.daisyui.com/images/stock/photo-1507003211169-0a1dd7228f2d.jpg);"
+  #     style: "background-image: url(
+  #       https://img.daisyui.com/images/stock/photo-123.jpg
+  #     );"
   #   ) do |hero|
   #     hero.overlay(class: "bg-opacity-60")
   #     hero.content do

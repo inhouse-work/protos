@@ -15,11 +15,17 @@ module Protos
   #   end
   #
   # @example Radio button collapse group
-  #   Protos::Collapse.new(input_type: :radio, input_name: "accordion") do |collapse|
+  #   Protos::Collapse.new(
+  #     input_type: :radio,
+  #     input_name: "accordion"
+  #   ) do |collapse|
   #     collapse.title { "Section 1" }
   #     collapse.content { "Content for section 1" }
   #   end
-  #   Protos::Collapse.new(input_type: :radio, input_name: "accordion") do |collapse|
+  #   Protos::Collapse.new(
+  #     input_type: :radio,
+  #     input_name: "accordion"
+  #   ) do |collapse|
   #     collapse.title { "Section 2" }
   #     collapse.content { "Content for section 2" }
   #   end
@@ -54,7 +60,8 @@ module Protos
     )
 
     # @!attribute [r] state
-    #   @return [Symbol] One of `:default`, `:open`, or `:close` for initial state.
+    #   @return [Symbol] One of `:default`, `:open`, or `:close` for initial
+    #     state.
     option :state, type: States, default: -> { :default }, reader: false
 
     # @!attribute [r] icon
@@ -69,7 +76,8 @@ module Protos
       reader: false
 
     # @!attribute [r] input_name
-    #   @return [String, Integer] Name/ID for the input element. Auto-generated if not provided.
+    #   @return [String, Integer] Name/ID for the input element.
+    #     Auto-generated if not provided.
     option :input_name,
       reader: false,
       default: -> { "collapse-#{SecureRandom.hex(4)}" },

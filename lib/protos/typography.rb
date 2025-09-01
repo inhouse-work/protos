@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 module Protos
+  # The core typography module that can be mixedin to override the
+  # default elements with custom elements.
   module Typography
-    # DOCS: The core typography module that can be mixedin to override the
-    # default elements with custom elements.
-
     autoload :Heading, "protos/typography/heading"
     autoload :Paragraph, "protos/typography/paragraph"
     autoload :InlineLink, "protos/typography/inline_link"

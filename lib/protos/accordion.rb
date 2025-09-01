@@ -28,7 +28,8 @@ module Protos
     autoload :Item, "protos/accordion/item"
 
     # @!attribute [r] input_name
-    #   @return [String] Name/ID for the accordion radio group. Auto-generated if not provided.
+    #   @return [String] Name/ID for the accordion radio group. Auto-generated
+    #     if not provided.
     option :input_name,
       default: -> { "accordion-#{SecureRandom.hex(4)}" },
       reader: false,

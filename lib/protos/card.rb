@@ -50,11 +50,18 @@ module Protos
     }.freeze
 
     # @!attribute [r] size
-    #   @return [Symbol] One of `:default`, `:xs`, `:sm`, `:md`, `:lg`, or `:xl` for card size.
+    #   @return [Symbol] One of:
+    #     - `:default`
+    #     - `:xs`
+    #     - `:sm`
+    #     - `:md`
+    #     - `:lg`
+    #     - `:xl`
     option :size, type: Sizes, default: -> { :default }, reader: :private
 
     # @!attribute [r] image_side
-    #   @return [Boolean] Whether to display image on the side (horizontal layout).
+    #   @return [Boolean] Whether to display image on the side
+    #     (horizontal layout).
     option :image_side,
       type: Types::Bool,
       default: -> { false },

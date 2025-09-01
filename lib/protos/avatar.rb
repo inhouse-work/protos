@@ -74,14 +74,21 @@ module Protos
     option :placeholder, type: Types::Bool, default: -> { false }
 
     # @!attribute [r] indicator
-    #   @return [Symbol] One of `:none`, `:online`, or `:offline` for status indicator.
+    #   @return [Symbol] One of:
+    #     - `:none`
+    #     - `:online`
+    #     - `:offline`
     option :indicator,
       type: Indicators,
       default: -> { :none },
       reader: false
 
     # @!attribute [r] shape
-    #   @return [Symbol] One of `:none`, `:squircle`, `:heart`, `:hexagon`, etc. for masking shape.
+    #   @return [Symbol] One of:
+    #     - `:none`
+    #     - `:squircle`
+    #     - `:heart`
+    #     - `:hexagon`
     option :shape,
       type: MaskShapes,
       default: -> { :none },

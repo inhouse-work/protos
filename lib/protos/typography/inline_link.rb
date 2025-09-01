@@ -2,9 +2,8 @@
 
 module Protos
   module Typography
+    # A link that is styled to be inline with text
     class InlineLink < Component
-      # DOCS: A link that is styled to be inline with text
-
       def view_template(&)
         a(**attrs, &)
       end

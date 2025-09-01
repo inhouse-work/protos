@@ -3,7 +3,8 @@
 module Protos
   class Stats
     class Stat < Component
-      # A container for a single statistic with title, value and optional elements.
+      # A container for a single statistic with title, value and optional
+      # elements.
       #
       # @example Basic stat
       #   stats.stat do
@@ -22,7 +23,8 @@ module Protos
       #
       # @note This component:
       #   - Serves as the container for all stat elements
-      #   - Can contain any combination of figure, title, value, description and actions
+      #   - Can contain any combination of figure, title, value, description
+      #     and actions
       #   - Handles proper spacing between elements
 
       def view_template(&)

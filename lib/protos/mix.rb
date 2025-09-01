@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 module Protos
+  # This class is responsible for safely merging in both user supplied
+  # and default attributes. When a user adds { data: { controller: "foo" }} to
+  # their component. This will merge the value in so that any default
+  # controllers do not get overridden.
   module Mix
-    # DOCS: This class is responsible for safely merging in both user supplied
-    # and default attributes. When a user adds { data: { controller: "foo" }} to
-    # their component. This will merge the value in so that any default
-    # controllers do not get overridden.
-
     module_function
 
     MERGEABLE_ATTRIBUTES = Set.new(%i[class data]).freeze

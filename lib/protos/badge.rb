@@ -47,7 +47,17 @@ module Protos
     }.freeze
 
     # @!attribute [r] type
-    #   @return [Symbol] One of `:default`, `:neutral`, `:success`, `:primary`, `:secondary`, `:accent`, `:info`, `:error`, `:warning`, or `:ghost` for styling.
+    #   @return [Symbol] One of:
+    #    - `:default`
+    #    - `:neutral`
+    #    - `:success`
+    #    - `:primary`
+    #    - `:secondary`
+    #    - `:accent`
+    #    - `:info`
+    #    - `:error`
+    #    - `:warning`
+    #    - `:ghost`
     option :type, type: Styles, default: -> { :default }
 
     # @!attribute [r] outline
@@ -63,7 +73,13 @@ module Protos
     option :soft, default: -> { false }
 
     # @!attribute [r] size
-    #   @return [Symbol] One of `:default`, `:xs`, `:sm`, `:md`, `:lg`, or `:xl` for size.
+    #   @return [Symbol] One of:
+    #     - `:default`
+    #     - `:xs`
+    #     - `:sm`
+    #     - `:md`
+    #     - `:lg`
+    #     - `:xl`
     option :size, type: Sizes, default: -> { :default }
 
     # Renders the badge element.

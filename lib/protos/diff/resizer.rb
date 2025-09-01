@@ -2,7 +2,8 @@
 
 module Protos
   class Diff
-    # The resizer element that allows dragging to adjust the split between diff items
+    # The resizer element that allows dragging to adjust the split between
+    # diff items
     class Resizer < Component
       # Renders the resizer element.
       #

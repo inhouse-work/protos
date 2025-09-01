@@ -41,7 +41,16 @@ module Protos
     }.freeze
 
     # @!attribute [r] position
-    #   @return [Symbol] One of `:top_start`, `:top_center`, `:top_end`, `:middle_start`, `:middle_center`, `:middle_end`, `:bottom_start`, `:bottom_center`, or `:bottom_end` for positioning.
+    #   @return [Symbol] One of:
+    #     -`:top_start`
+    #     - `:top_center`
+    #     - `:top_end`
+    #     - `:middle_start`
+    #     - `:middle_center`
+    #     - `:middle_end`
+    #     - `:bottom_start`
+    #     - `:bottom_center`
+    #     - `:bottom_end`
     option :position,
       type: Positions,
       default: -> { :bottom_end },

@@ -43,7 +43,11 @@ module Protos
     }.freeze
 
     # @!attribute [r] type
-    #   @return [Symbol] One of `:default`, `:boxed`, `:bordered`, or `:lifted` for styling.
+    #   @return [Symbol] One of:
+    #     - `:default`
+    #     - `:boxed`
+    #     - `:bordered`
+    #     - `:lifted`
     option :type,
       default: -> { :default },
       reader: false,

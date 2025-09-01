@@ -2,9 +2,8 @@
 
 module Protos
   class Alert
+    # Area for actions (e.g buttons) within an alert
     class Actions < Component
-      # DOCS: Area for actions (e.g buttons) within an alert
-
       def view_template(&)
         nav(**attrs, &)
       end

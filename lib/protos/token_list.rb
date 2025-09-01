@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 module Protos
+  # A list of utility tokens that can handle parsing and merging sets of
+  # tokens together safely.
   class TokenList
-    # DOCS: A list of utility tokens that can handle parsing and merging sets of
-    # tokens together safely.
-
     attr_reader :tokens
 
     def initialize(tokens = [])

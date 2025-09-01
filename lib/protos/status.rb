@@ -34,7 +34,16 @@ module Protos
     }.freeze
 
     # @!attribute [r] type
-    #   @return [Symbol] One of `:default`, `:accent`, `:error`, `:info`, `:neutral`, `:primary`, `:secondary`, `:success`, or `:warning` for styling.
+    #   @return [Symbol] One of:
+    #     - `:default`
+    #     - `:accent`
+    #     - `:error`
+    #     - `:info`
+    #     - `:neutral`
+    #     - `:primary`
+    #     - `:secondary`
+    #     - `:success`
+    #     - `:warning`
     option :type, type: Types::Styles, default: -> { :primary }
 
     # @!attribute [r] size

@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 module Protos
+  # A class that holds data for a theme. This class is used to safely
+  # merge in user supplied css classes into a default theme.
+  # This is the object that is returned by `css` and used to set slots for
+  # a component style.
   class Theme
-    # DOCS: A class that holds data for a theme. This class is used to safely
-    # merge in user supplied css classes into a default theme.
-    # This is the object that is returned by `css` and used to set slots for
-    # a component style.
-
     class << self
       def merger
         # This could be a class variable to save memory for subclasses being

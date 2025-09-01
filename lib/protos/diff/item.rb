@@ -11,7 +11,8 @@ module Protos
       }.freeze
 
       # @!attribute [r] order
-      #   @return [Symbol] One of `:one` or `:two` to specify which side of the diff this item represents.
+      #   @return [Symbol] One of `:one` or `:two` to specify which side of
+      #     the diff this item represents.
       option :order, type: Order, default: -> { :one }, reader: false
 
       # Renders the diff item container.

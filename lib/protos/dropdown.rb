@@ -34,14 +34,31 @@ module Protos
     autoload :Trigger, "protos/dropdown/trigger"
 
     # @!attribute [r] position
-    #   @return [Symbol] One of `:top`, `:top_start`, `:top_end`, `:right`, `:right_start`, `:right_end`, `:bottom`, `:bottom_start`, `:bottom_end`, `:left`, `:left_start`, or `:left_end` for positioning.
+    #   @return [Symbol] One of:
+    #     - `:top`
+    #     - `:top_start`
+    #     - `:top_end`
+    #     - `:right`
+    #     - `:right_start`
+    #     - `:right_end`
+    #     - `:bottom`
+    #     - `:bottom_start`
+    #     - `:bottom_end`
+    #     - `:left`
+    #     - `:left_start`
+    #     - `:left_end`
     option :position,
       type: Popover::Positions,
       default: -> { :bottom },
       reader: false
 
     # @!attribute [r] trigger
-    #   @return [Symbol, Array<Symbol>] One or more of `:focus`, `:mouseenter`, `:click`, `:focusin`, or `:manual` for trigger events.
+    #   @return [Symbol, Array<Symbol>] One or more of:
+    #     - `:focus`
+    #     - `:mouseenter`
+    #     - `:click`
+    #     - `:focusin`
+    #     - `:manual`
     option :trigger,
       default: -> { :click },
       reader: false,

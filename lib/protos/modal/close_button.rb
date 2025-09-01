@@ -2,20 +2,19 @@
 
 module Protos
   class Modal
+    # A button that closes the modal when clicked.
+    #
+    # @example Basic close button
+    #   modal.close_button { "Close" }
+    #
+    # @example Close button with icon
+    #   modal.close_button { icon(:x_mark) }
+    #
+    # @note This component:
+    #   - Wraps the button in a form with method=dialog
+    #   - Automatically adds the data-action to handle closing via Stimulus
+    #   - Can be placed anywhere within the modal dialog
     class CloseButton < Component
-      # A button that closes the modal when clicked.
-      #
-      # @example Basic close button
-      #   modal.close_button { "Close" }
-      #
-      # @example Close button with icon
-      #   modal.close_button { icon(:x_mark) }
-      #
-      # @note This component:
-      #   - Wraps the button in a form with method=dialog
-      #   - Automatically adds the data-action to handle closing via Stimulus
-      #   - Can be placed anywhere within the modal dialog
-
       def view_template(&block)
         form(method: :dialog, class: css[:form]) do
           button(**attrs, &block)

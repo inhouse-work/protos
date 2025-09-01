@@ -21,7 +21,8 @@ module Protos
     autoload :Item, "protos/list/item"
 
     # @!attribute [r] ordered
-    #   @return [Boolean] Whether to render as an ordered list (ol) instead of unordered (ul).
+    #   @return [Boolean] Whether to render as an ordered list (ol) instead of
+    #     unordered (ul).
     option :ordered, Types::Bool, default: -> { false }, reader: false
 
     # Renders the full list element.

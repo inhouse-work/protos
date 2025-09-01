@@ -40,11 +40,15 @@ module Protos
     }.freeze
 
     # @!attribute [r] vertical
-    #   @return [Boolean] Whether to display carousel vertically instead of horizontally.
+    #   @return [Boolean] Whether to display carousel vertically instead
+    #     of horizontally.
     option :vertical, type: Types::Bool, default: -> { false }
 
     # @!attribute [r] snap_to
-    #   @return [Symbol] One of `:none`, `:center`, or `:end` for snap positioning.
+    #   @return [Symbol] One of:
+    #     - `:none`
+    #     - `:center`
+    #     - `:end`
     option :snap_to,
       default: -> { :none },
       reader: false,

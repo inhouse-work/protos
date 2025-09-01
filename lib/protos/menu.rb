@@ -45,7 +45,8 @@ module Protos
       reader: :private
 
     # @!attribute [r] direction
-    #   @return [Symbol] One of `:vertical` or `:horizontal` for layout direction.
+    #   @return [Symbol] One of `:vertical` or `:horizontal` for layout
+    #     direction.
     option :direction,
       type: Directions,
       default: -> { :vertical },

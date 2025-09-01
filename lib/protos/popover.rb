@@ -78,28 +78,56 @@ module Protos
     )
 
     # @!attribute [r] position
-    #   @return [Symbol] One of `:top`, `:top_start`, `:top_end`, `:right`, `:right_start`, `:right_end`, `:bottom`, `:bottom_start`, `:bottom_end`, `:left`, `:left_start`, or `:left_end` for positioning.
+    #   @return [Symbol] One of:
+    #     - `:top`
+    #     - `:top_start`
+    #     - `:top_end`
+    #     - `:right`
+    #     - `:right_start`
+    #     - `:right_end`
+    #     - `:bottom`
+    #     - `:bottom_start`
+    #     - `:bottom_end`
+    #     - `:left`
+    #     - `:left_start`
+    #     - `:left_end`
     option :position,
       type: Positions,
       default: -> { :top },
       reader: false
 
     # @!attribute [r] animation
-    #   @return [Symbol] One of `:fade`, `:shift_away`, `:shift_away_subtle`, `:shift_away_extreme`, `:shift_towards`, `:shift_towards_subtle`, `:shift_towards_extreme`, `:scale`, `:scale_subtle`, `:scale_extreme`, `:perspective`, `:perspective_subtle`, or `:perspective_extreme` for animation style.
+    #   @return [Symbol] One of:
+    #     - `:fade`
+    #     - `:shift_away`
+    #     - `:shift_away_subtle`
+    #     - `:shift_away_extreme`
+    #     - `:shift_towards`
+    #     - `:shift_towards_subtle`
+    #     - `:shift_towards_extreme`
+    #     - `:scale`
+    #     - `:scale_subtle`
+    #     - `:scale_extreme`
+    #     - `:perspective`
+    #     - `:perspective_subtle`
+    #     - `:perspective_extreme`
     option :animation,
       type: Animations,
       default: -> { :fade },
       reader: false
 
     # @!attribute [r] duration
-    #   @return [Integer, Array<Integer>] Duration in milliseconds for show/hide animation. Can be a single value or array of [show, hide] durations.
+    #   @return [Integer, Array<Integer>] Duration in milliseconds for
+    #     show/hide animation. Can be a single value or array of
+    #     [show, hide] durations.
     option :duration,
       type: Types::Integer | Types::Array.of(Types::Integer),
       default: -> { [300, 250] },
       reader: false
 
     # @!attribute [r] hide_on_click
-    #   @return [Boolean, Symbol] Whether to hide popover on click. Can be `true`, `false`, or `:toggle`.
+    #   @return [Boolean, Symbol] Whether to hide popover on click.
+    #     Can be `true`, `false`, or `:toggle`.
     option :hide_on_click,
       type: Types::Bool | Types.Value(:toggle),
       default: -> { true },
@@ -120,7 +148,12 @@ module Protos
       type: Types::Hash
 
     # @!attribute [r] trigger
-    #   @return [Symbol, Array<Symbol>] One or more of `:focus`, `:mouseenter`, `:click`, `:focusin`, or `:manual` for trigger events.
+    #   @return [Symbol, Array<Symbol>] One or more of:
+    #     - `:focus`
+    #     - `:mouseenter`
+    #     - `:click`
+    #     - `:focusin`
+    #     - `:manual`
     option :trigger,
       default: -> { %i[mouseenter focus] },
       reader: false,

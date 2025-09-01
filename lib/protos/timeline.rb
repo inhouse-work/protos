@@ -25,7 +25,8 @@ module Protos
     autoload :Right, "protos/timeline/right"
 
     # @!attribute [r] vertical
-    #   @return [Boolean] Whether to display timeline vertically instead of horizontally.
+    #   @return [Boolean] Whether to display timeline vertically instead of
+    #     horizontally.
     option :vertical, type: Types::Bool, default: -> { false }
 
     # Renders the full timeline element.

@@ -37,7 +37,8 @@ module Protos
     autoload :Content, "protos/drawer/content"
 
     # @!attribute [r] id
-    #   @return [String] Unique identifier for the drawer. Auto-generated if not provided.
+    #   @return [String] Unique identifier for the drawer. Auto-generated if
+    #     not provided.
     option :id,
       reader: false,
       type: Types::Coercible::String,

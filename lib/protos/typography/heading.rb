@@ -2,10 +2,9 @@
 
 module Protos
   module Typography
+    # A heading component that encapsulates all heading levels by their
+    # size and level.
     class Heading < Protos::Component
-      # DOCS: A heading component that encapsulates all heading levels by their
-      # size and level.
-
       Sizes = Types::Coercible::Symbol.enum(:xs, :sm, :md, :lg, :xl)
       Levels = Types::Integer.enum(1, 2, 3, 4, 5, 6)
 

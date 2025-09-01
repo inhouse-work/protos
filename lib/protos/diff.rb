@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 module Protos
-  # A diff component for comparing two items side by side with a resizable divider
+  # A diff component for comparing two items side by side with a resizable
+  # divider
   #
   # @example Basic diff comparison
   #   Protos::Diff.new do |diff|

@@ -15,7 +15,8 @@ module Protos
     autoload :Step, "protos/steps/step"
 
     # @!attribute [r] vertical
-    #   @return [Boolean] Whether to display steps vertically instead of horizontally.
+    #   @return [Boolean] Whether to display steps vertically instead of
+    #     horizontally.
     option :vertical, type: Types::Bool, default: -> { false }
 
     # Renders the full steps element.

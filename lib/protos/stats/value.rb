@@ -2,20 +2,19 @@
 
 module Protos
   class Stats
+    # The numeric value of the statistic.
+    #
+    # @example Basic value
+    #   stats.value { "1,234" }
+    #
+    # @example With currency
+    #   stats.value { "$1,234.56" }
+    #
+    # @note This component:
+    #   - Typically appears below the title
+    #   - Should contain the primary numeric value
+    #   - Is often styled larger/bolder than other elements
     class Value < Component
-      # The numeric value of the statistic.
-      #
-      # @example Basic value
-      #   stats.value { "1,234" }
-      #
-      # @example With currency
-      #   stats.value { "$1,234.56" }
-      #
-      # @note This component:
-      #   - Typically appears below the title
-      #   - Should contain the primary numeric value
-      #   - Is often styled larger/bolder than other elements
-
       def view_template(&)
         div(**attrs, &)
       end

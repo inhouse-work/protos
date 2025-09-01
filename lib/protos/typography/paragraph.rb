@@ -2,9 +2,8 @@
 
 module Protos
   module Typography
+    # A paragraph of text
     class Paragraph < Component
-      # DOCS: A paragraph of text
-
       option :margin, default: -> { true }
 
       def view_template(&)

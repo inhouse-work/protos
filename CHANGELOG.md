@@ -5,6 +5,8 @@
   load any html from template elements which forces tests that would otherwise
   be fine to have to load javascript.
 - Improves how tables print by breaking after or before rows instead of within.
+- Allows `Protos::Accordion` to override their input type to be a `:checkbox`
+  (default is `:radio`)
 
 ## [1.0.1] - 2025-03-01
 

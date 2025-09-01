@@ -9,27 +9,49 @@ module Protos
     autoload :Actions, "protos/alert/actions"
     autoload :Icon, "protos/alert/icon"
 
-    Styles = Types::Coercible::Symbol.enum(
+    Colors = Types::Coercible::Symbol.enum(
       :info,
       :success,
       :warning,
       :error
     )
 
-    STYLES = {
+    Variants = Types::Coercible::Symbol.enum(
+      :default,
+      :outline,
+      :dash,
+      :soft
+    )
+
+    COLORS = {
       info: "alert-info",
       error: "alert-error",
       warning: "alert-warning",
       success: "alert-success"
     }.freeze
 
+    VARIANTS = {
+      default: "",
+      outline: "alert-outline",
+      dash: "alert-dash",
+      soft: "alert-soft"
+    }.freeze
+
     # @!attribute [r] type
-    #  @return [Symbol] One of:
-    #    - `:info`
-    #    - `:success`
-    #    - `:warning`
-    #    - `:error`
-    option :type, type: Styles, default: -> { :info }, reader: false
+    # @return [Symbol] One of:
+    #   - `:info`
+    #   - `:success`
+    #   - `:warning`
+    #   - `:error`
+    option :color, type: Colors, default: -> { :info }
+
+    # @!attribute [r] variant
+    # @return [Symbol] One of:
+    #   - `:default`
+    #   - `:outline`
+    #   - `:dash`
+    #   - `:soft`
+    option :variant, type: Variants, default: -> { :default }
 
     # Renders the alert container element.
     #
@@ -61,12 +83,12 @@ module Protos
 
     def theme
       {
-        container: ["alert", style]
+        container: [
+          "alert",
+          COLORS.fetch(color),
+          VARIANTS.fetch(variant)
+        ]
       }
-    end
-
-    def style
-      STYLES.fetch(@type)
     end
   end
 end

@@ -3,27 +3,33 @@
 module Protos
   class TailwindMerge
     DEFAULTS = ::TailwindMerge::Config::DEFAULTS
+
     DAISY_CLASS_GROUPS = {
-      alert: [
-        alert: Protos::Alert::Styles.values.map(&:to_s)
+      alert_colors: [
+        { alert: Protos::Alert::Colors.values.map(&:to_s) }
       ],
-      mask: [
+      alert_variants: [
+        { alert: Protos::Alert::Variants.values.map(&:to_s) }
+      ],
+      mask_shapes: [
         mask: Protos::Avatar::MaskShapes.values.map(&:to_s)
       ],
-      avatar: [
+      avatar_indicators: [
         avatar: Protos::Avatar::Indicators.values.map(&:to_s)
       ],
-      badge: [
+      badge_styles: [
         badge: Protos::Badge::Styles.values.map(&:to_s)
       ],
-      card: [
+      card_sizes: [
         card: Protos::Card::Sizes.values.map(&:to_s)
       ],
-      carousel: [
+      carousel_positions: [
         carousel: Protos::Carousel::Positions.values.map(&:to_s)
       ],
-      "chat-bubble": [
-        { "chat-bubble": Protos::ChatBubble::Positions.values.map(&:to_s) },
+      chat_bubble_positions: [
+        { "chat-bubble": Protos::ChatBubble::Positions.values.map(&:to_s) }
+      ],
+      chat_bubble_styles: [
         {
           "chat-bubble": Types::Styles.values.map(&:to_s)
         }

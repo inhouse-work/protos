@@ -2,6 +2,12 @@
 
 module Protos
   # @see https://daisyui.com/components/button/
+  #
+  # @example Basic button
+  #   render Protos::Button.new { "Click me" }
+  #
+  # @example Primary large button
+  #   render Protos::Button.new(color: :primary, size: :lg) { "Submit" }
   class Button < Component
     Variants = Types::Coercible::Symbol.enum(
       :default,

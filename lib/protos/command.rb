@@ -6,7 +6,7 @@ module Protos
   # clicking the overlay rather than a specific close button.
   #
   # @example Basic command palette
-  #   Protos::Command.new do |command|
+  #   render Protos::Command.new do |command|
   #     command.trigger { "Open Command Palette" }
   #     command.dialog do
   #       command.input { icon("search") }
@@ -22,7 +22,7 @@ module Protos
   #   end
   #
   # @example Command palette with custom placeholder
-  #   Protos::Command.new do |command|
+  #   render Protos::Command.new do |command|
   #     command.trigger { button(class: "btn") { "⌘K" } }
   #     command.dialog do
   #       command.input(placeholder: "Search commands...") { icon("search") }

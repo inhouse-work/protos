@@ -4,7 +4,7 @@ RSpec.describe Protos::Component do
   before do
     stub_const(
       "BaseComponent", Class.new(Protos::Component) do
-        option :some_property, reader: false, default: -> { "default" }
+        option :some_property, default: -> { "default" }
       end
     )
 

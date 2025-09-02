@@ -7,7 +7,7 @@ module Protos
   # @see https://daisyui.com/components/hero/
   #
   # @example Basic hero with content
-  #   Protos::Hero.new do |hero|
+  #   render Protos::Hero.new do |hero|
   #     hero.content do
   #       div(class: "text-center") do
   #         h1(class: "text-5xl font-bold") { "Hello there" }
@@ -18,7 +18,7 @@ module Protos
   #   end
   #
   # @example Hero with background image and overlay
-  #   Protos::Hero.new(
+  #   render Protos::Hero.new(
   #     style: "background-image: url(
   #       https://img.daisyui.com/images/stock/photo-123.jpg
   #     );"

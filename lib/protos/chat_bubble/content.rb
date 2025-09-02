@@ -18,19 +18,9 @@ module Protos
       }.freeze
 
       # @!attribute [r] type
-      #   @return [Symbol] One of:
-      #     - `:default`
-      #     - `:accent`
-      #     - `:error`
-      #     - `:info`
-      #     - `:neutral`
-      #     - `:primary`
-      #     - `:secondary`
-      #     - `:success`
-      #     - `:warning`
+      # @return [Types::Colors] The color/style of the chat bubble content.
       option :type,
         default: -> { :default },
-        reader: false,
         type: Types::Colors
 
       # Renders the chat bubble content element.

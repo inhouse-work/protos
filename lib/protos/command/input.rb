@@ -5,9 +5,8 @@ module Protos
     # The search input for the command palette
     class Input < Component
       # @!attribute [r] placeholder
-      #   @return [String] Placeholder text for the input field.
+      # @return [String] Placeholder text for the input field.
       option :placeholder,
-        reader: :private,
         default: -> {
           "Type a command or search..."
         }

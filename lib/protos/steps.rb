@@ -6,7 +6,7 @@ module Protos
   # @see https://daisyui.com/components/steps/
   #
   # @example
-  #   Protos::Steps.new(vertical: true) do |steps|
+  #   render Protos::Steps.new(vertical: true) do |steps|
   #     steps.step(type: :primary) { "Step 1" }
   #     steps.step(type: :primary) { "Step 2" }
   #     steps.step { "Step 3" }
@@ -15,8 +15,8 @@ module Protos
     autoload :Step, "protos/steps/step"
 
     # @!attribute [r] vertical
-    #   @return [Boolean] Whether to display steps vertically instead of
-    #     horizontally.
+    # @return [Boolean] Whether to display steps vertically instead of
+    #   horizontally.
     option :vertical, type: Types::Bool, default: -> { false }
 
     # Renders the full steps element.

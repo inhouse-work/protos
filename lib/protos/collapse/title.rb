@@ -10,7 +10,6 @@ module Protos
       #     element for toggling.
       option :input_id,
         type: Types::String | Types::Integer | Types::Nil,
-        reader: false,
         default: -> { }
 
       # Renders the collapse title element.

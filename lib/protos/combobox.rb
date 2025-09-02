@@ -6,7 +6,7 @@ module Protos
   # Comboboxes use popovers and command to create the list of options.
   #
   # @example Basic combobox
-  #   Protos::Combobox.new(position: :bottom) do |combobox|
+  #   render Protos::Combobox.new(position: :bottom) do |combobox|
   #     combobox.trigger { input(type: :text, placeholder: "Select option...") }
   #     combobox.content do
   #       combobox.list do
@@ -18,7 +18,7 @@ module Protos
   #   end
   #
   # @example Combobox with groups and search
-  #   Protos::Combobox.new do |combobox|
+  #   render Protos::Combobox.new do |combobox|
   #     combobox.trigger { input(type: :text, placeholder: "Search users...") }
   #     combobox.content do
   #       combobox.input { icon("search") }
@@ -39,15 +39,9 @@ module Protos
   #   end
   class Combobox < Popover
     # @!attribute [r] trigger
-    #   @return [Symbol, Array<Symbol>] One or more of:
-    #     - `:focus`
-    #     - `:mouseenter`
-    #     - `:click`
-    #     - `:focusin`
-    #     - `:manual`
+    # @return [Popover::Triggers, Array<Popover::Triggers>]
     option :trigger,
       default: -> { :click },
-      reader: false,
       type: Popover::Triggers | Types::Array.of(Popover::Triggers)
 
     # Renders the combobox trigger element.

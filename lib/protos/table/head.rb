@@ -18,7 +18,6 @@ module Protos
       #   @return [Symbol] Text alignment - :left, :center or :right
       option :align,
         type: Types::Coercible::Symbol.enum(:left, :center, :right),
-        reader: false,
         default: -> { :left }
 
       def view_template(&)

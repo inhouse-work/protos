@@ -21,7 +21,7 @@ module Protos
         badge: Protos::Badge::Styles.values.map(&:to_s)
       ],
       card_sizes: [
-        card: Protos::Card::Sizes.values.map(&:to_s)
+        card: Protos::Types::Sizes.values.map(&:to_s)
       ],
       carousel_positions: [
         carousel: Protos::Carousel::Positions.values.map(&:to_s)

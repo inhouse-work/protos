@@ -5,14 +5,14 @@ module Protos
   # borders, border radius, etc.
   #
   # @example Basic unordered list
-  #   Protos::List.new do |list|
+  #   render Protos::List.new do |list|
   #     list.item { "First item" }
   #     list.item { "Second item" }
   #     list.item { "Third item" }
   #   end
   #
   # @example Ordered list
-  #   Protos::List.new(ordered: true) do |list|
+  #   render Protos::List.new(ordered: true) do |list|
   #     list.item { "Step 1: Do this" }
   #     list.item { "Step 2: Then this" }
   #     list.item { "Step 3: Finally this" }
@@ -21,9 +21,9 @@ module Protos
     autoload :Item, "protos/list/item"
 
     # @!attribute [r] ordered
-    #   @return [Boolean] Whether to render as an ordered list (ol) instead of
-    #     unordered (ul).
-    option :ordered, Types::Bool, default: -> { false }, reader: false
+    # @return [Boolean] Whether to render as an ordered list (ol) instead of
+    #   unordered (ul).
+    option :ordered, Types::Bool, default: -> { false }
 
     # Renders the full list element.
     #

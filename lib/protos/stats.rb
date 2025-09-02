@@ -6,7 +6,7 @@ module Protos
   # @see https://daisyui.com/components/stat/
   #
   # @example
-  #   Protos::Stats.new do |stats|
+  #   render Protos::Stats.new do |stats|
   #     stats.stat do
   #       stats.title { "Total Page Views" }
   #       stats.value { "89,400" }

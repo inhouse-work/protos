@@ -6,14 +6,14 @@ module Protos
   # @see https://daisyui.com/components/menu/
   #
   # @example Basic vertical menu
-  #   Protos::Menu.new(size: :lg) do |menu|
+  #   render Protos::Menu.new(size: :lg) do |menu|
   #     menu.item { a(href: "/home") { "Home" } }
   #     menu.item { a(href: "/about") { "About" } }
   #     menu.item { a(href: "/contact") { "Contact" } }
   #   end
   #
   # @example Horizontal menu
-  #   Protos::Menu.new(direction: :horizontal, size: :md) do |menu|
+  #   render Protos::Menu.new(direction: :horizontal, size: :md) do |menu|
   #     menu.item { a(href: "/dashboard") { "Dashboard" } }
   #     menu.item { a(href: "/settings") { "Settings" } }
   #     menu.item { a(href: "/logout") { "Logout" } }
@@ -38,19 +38,16 @@ module Protos
     autoload :Item, "protos/menu/item"
 
     # @!attribute [r] size
-    #   @return [Symbol] One of `:xs`, `:sm`, `:md`, `:lg`, or `:xl` for size.
+    # @return [Sizes]
     option :size,
       type: Sizes,
-      default: -> { :md },
-      reader: :private
+      default: -> { :md }
 
     # @!attribute [r] direction
-    #   @return [Symbol] One of `:vertical` or `:horizontal` for layout
-    #     direction.
+    # @return [Direction]
     option :direction,
       type: Directions,
-      default: -> { :vertical },
-      reader: :private
+      default: -> { :vertical }
 
     # Renders the full menu element.
     #
@@ -74,8 +71,8 @@ module Protos
       {
         container: [
           "menu",
-          DIRECTIONS[direction],
-          SIZES[size]
+          DIRECTIONS.fetch(@direction),
+          SIZES.fetch(@size)
         ]
       }
     end

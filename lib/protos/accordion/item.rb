@@ -10,7 +10,7 @@ module Protos
         type: Types::String | Types::Integer | Types::Nil
 
       # @!attribute [r] input_type
-      #   @return [Symbol] One of `:radio` or `:checkbox` for input type.
+      #   @return [Collapse::InputTypes]
       option :input_type,
         type: Collapse::InputTypes,
         default: -> { :radio }

@@ -6,7 +6,7 @@ module Protos
   # @see https://daisyui.com/components/table/
   #
   # @example
-  #   Protos::Table.new(size: :lg, striped: true) do |table|
+  #   render Protos::Table.new(size: :lg, striped: true) do |table|
   #     table.caption { "My Table Caption" }
   #     table.head do
   #       table.header { "Header 1" }
@@ -48,22 +48,21 @@ module Protos
     }.freeze
 
     # @!attribute [r] pin_rows
-    #   @return [Boolean] Whether rows should be pinned (sticky).
+    # @return [Boolean] Whether rows should be pinned (sticky).
     option :pin_rows, default: -> { false }, type: Types::Bool
 
     # @!attribute [r] pin_columns
-    #   @return [Boolean] Whether columns should be pinned (sticky).
+    # @return [Boolean] Whether columns should be pinned (sticky).
     option :pin_columns, default: -> { false }, type: Types::Bool
 
     # @!attribute [r] striped
-    #   @return [Boolean] Whether to use zebra-striping on rows.
+    # @return [Boolean] Whether to use zebra-striping on rows.
     option :striped, default: -> { false }, type: Types::Bool
 
     # @!attribute [r] size
-    #   @return [Symbol] One of `:xs`, `:sm`, `:md`, or `:lg` for size.
+    # @return [Sizes]
     option :size,
       default: -> { :md },
-      reader: false,
       type: Sizes
 
     # Renders the full table element.

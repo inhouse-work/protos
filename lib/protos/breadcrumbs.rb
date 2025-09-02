@@ -6,14 +6,14 @@ module Protos
   # @see https://daisyui.com/components/breadcrumbs/
   #
   # @example Basic breadcrumbs
-  #   Protos::Breadcrumbs.new do |breadcrumbs|
+  #   render Protos::Breadcrumbs.new do |breadcrumbs|
   #     breadcrumbs.crumb { a(href: "/") { "Home" } }
   #     breadcrumbs.crumb { a(href: "/products") { "Products" } }
   #     breadcrumbs.crumb { "Current Page" }
   #   end
   #
   # @example Breadcrumbs with custom separator
-  #   Protos::Breadcrumbs.new(class: "text-sm") do |breadcrumbs|
+  #   render Protos::Breadcrumbs.new(class: "text-sm") do |breadcrumbs|
   #     breadcrumbs.crumb { a(href: "/") { "Home" } }
   #     breadcrumbs.crumb { ">" }
   #     breadcrumbs.crumb { a(href: "/products") { "Products" } }

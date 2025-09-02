@@ -8,7 +8,7 @@ module Protos
   # @see https://daisyui.com/components/chat/
   #
   # @example Basic chat bubble
-  #   Protos::ChatBubble.new(align: :start) do |chat|
+  #   render Protos::ChatBubble.new(align: :start) do |chat|
   #     chat.image { avatar(src: "user.jpg") }
   #     chat.header { "John Doe" }
   #     chat.content { "Hello, how are you?" }
@@ -16,7 +16,7 @@ module Protos
   #   end
   #
   # @example Chat bubble with different alignment and styling
-  #   Protos::ChatBubble.new(align: :end) do |chat|
+  #   render Protos::ChatBubble.new(align: :end) do |chat|
   #     chat.content(type: :primary) { "I'm doing great, thanks!" }
   #     chat.footer { "12:46 PM • Delivered" }
   #   end
@@ -37,10 +37,9 @@ module Protos
     }.freeze
 
     # @!attribute [r] align
-    #   @return [Symbol] One of `:start` or `:end` for message alignment.
+    # @return [Positions]
     option :align,
       default: -> { :start },
-      reader: false,
       type: Positions
 
     # Renders the chat bubble container element.
@@ -77,15 +76,11 @@ module Protos
 
     private
 
-    def align
-      ALIGNMENTS.fetch(@align)
-    end
-
     def theme
       {
-        container: %W[
-          chat
-          #{align}
+        container: [
+          "chat",
+          ALIGNMENTS.fetch(@align)
         ]
       }
     end

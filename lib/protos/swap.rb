@@ -7,7 +7,7 @@ module Protos
   # @see https://daisyui.com/components/swap/
   #
   # @example
-  #   Protos::Swap.new do |swap|
+  #   render Protos::Swap.new do |swap|
   #     swap.on { "Content when on" }
   #     swap.off { "Content when off" }
   #   end

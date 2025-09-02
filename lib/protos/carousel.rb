@@ -7,14 +7,17 @@ module Protos
   # @see https://daisyui.com/components/carousel/
   #
   # @example Basic horizontal carousel
-  #   Protos::Carousel.new(snap_to: :center) do |carousel|
+  #   render Protos::Carousel.new(snap_to: :center) do |carousel|
   #     carousel.item { img(src: "image1.jpg", alt: "Image 1") }
   #     carousel.item { img(src: "image2.jpg", alt: "Image 2") }
   #     carousel.item { img(src: "image3.jpg", alt: "Image 3") }
   #   end
   #
   # @example Vertical carousel with actions
-  #   Protos::Carousel.new(vertical: true, snap_to: :center) do |carousel|
+  #   render Protos::Carousel.new(
+  #     vertical: true,
+  #     snap_to: :center
+  #   ) do |carousel|
   #     carousel.item { div(class: "h-64 bg-primary") { "Slide 1" } }
   #     carousel.item { div(class: "h-64 bg-secondary") { "Slide 2" } }
   #     carousel.item { div(class: "h-64 bg-accent") { "Slide 3" } }
@@ -40,18 +43,14 @@ module Protos
     }.freeze
 
     # @!attribute [r] vertical
-    #   @return [Boolean] Whether to display carousel vertically instead
-    #     of horizontally.
+    # @return [Boolean] Whether to display carousel vertically instead
+    #   of horizontally.
     option :vertical, type: Types::Bool, default: -> { false }
 
     # @!attribute [r] snap_to
-    #   @return [Symbol] One of:
-    #     - `:none`
-    #     - `:center`
-    #     - `:end`
+    # @return [Positions]
     option :snap_to,
       default: -> { :none },
-      reader: false,
       type: Positions
 
     # Renders the full carousel element.
@@ -76,15 +75,11 @@ module Protos
 
     private
 
-    def snap_to
-      SNAP_POINTS.fetch(@snap_to)
-    end
-
     def theme
       {
         container: [
           "carousel",
-          snap_to,
+          SNAP_POINTS.fetch(@snap_to),
           ("carousel-vertical" if vertical)
         ]
       }

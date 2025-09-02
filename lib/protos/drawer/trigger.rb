@@ -7,14 +7,14 @@ module Protos
     class Trigger < Component
       # @!attribute [r] input_id
       #   @return [String] The ID of the associated checkbox input for toggling.
-      option :input_id, reader: false, type: Types::String
+      option :input_id, type: Types::String
 
       # Renders the drawer trigger element.
       #
       # @yield The content block for the trigger (usually button text or icon).
       # @return [nil] outputs to the @buffer
       def view_template(&)
-        label(for: @input_id, **attrs, &)
+        label(for: input_id, **attrs, &)
       end
 
       private

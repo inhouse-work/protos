@@ -8,7 +8,7 @@ module Protos
   # @see https://daisyui.com/components/drawer/
   #
   # @example Basic drawer
-  #   Protos::Drawer.new do |drawer|
+  #   render Protos::Drawer.new do |drawer|
   #     drawer.content do
   #       div(class: "p-4") do
   #         h1 { "Main Content" }
@@ -37,10 +37,9 @@ module Protos
     autoload :Content, "protos/drawer/content"
 
     # @!attribute [r] id
-    #   @return [String] Unique identifier for the drawer. Auto-generated if
-    #     not provided.
+    # @note Auto-generated if not provided.
+    # @return [String] Unique identifier for the drawer.
     option :id,
-      reader: false,
       type: Types::Coercible::String,
       default: -> { "drawer-#{SecureRandom.hex(4)}" }
 

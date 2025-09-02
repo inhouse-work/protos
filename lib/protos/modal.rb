@@ -5,7 +5,7 @@ module Protos
   # will open a fullscreen modal, usually with a close button.
   #
   # @example Basic modal
-  #   Protos::Modal.new do |modal|
+  #   render Protos::Modal.new do |modal|
   #     modal.trigger { "Open Modal" }
   #     modal.dialog do
   #       h2 { "Modal Title" }
@@ -15,7 +15,7 @@ module Protos
   #   end
   #
   # @example Modal with form
-  #   Protos::Modal.new do |modal|
+  #   render Protos::Modal.new do |modal|
   #     modal.trigger { button { "Edit Profile" } }
   #     modal.dialog do
   #       form do

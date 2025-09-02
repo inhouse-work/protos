@@ -16,8 +16,8 @@ module Protos
         xl: "text-4xl font-bold md:text-5xl"
       }.freeze
 
-      option :size, type: Sizes, default: -> { "md" }, reader: false
-      option :level, type: Levels, default: -> { 1 }, reader: false
+      option :size, type: Sizes, default: -> { "md" }
+      option :level, type: Levels, default: -> { 1 }
 
       def view_template(&)
         send(element, **attrs, &)
@@ -28,20 +28,14 @@ module Protos
       def theme
         {
           container: [
-            size,
-            "scroll-m-20",
-            "tracking-tight",
-            "transition-colors"
+            "scroll-m-20 tracking-tight transition-colors",
+            SIZES.fetch(@size.to_sym)
           ]
         }
       end
 
-      def size
-        SIZES.fetch(@size.to_sym)
-      end
-
       def element
-        %i[h1 h2 h3 h4 h5 h6][@level - 1]
+        %i[h1 h2 h3 h4 h5 h6][level - 1]
       end
     end
   end

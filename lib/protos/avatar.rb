@@ -6,17 +6,17 @@ module Protos
   # @see https://daisyui.com/components/avatar/
   #
   # @example Basic avatar
-  #   Protos::Avatar.new do
+  #   render Protos::Avatar.new do
   #     img(src: "user.jpg", alt: "User avatar")
   #   end
   #
   # @example Avatar with indicator
-  #   Protos::Avatar.new(indicator: :online) do
+  #   render Protos::Avatar.new(indicator: :online) do
   #     img(src: "user.jpg", alt: "User avatar")
   #   end
   #
   # @example Avatar with shape mask
-  #   Protos::Avatar.new(shape: :circle) do
+  #   render Protos::Avatar.new(shape: :circle) do
   #     img(src: "user.jpg", alt: "User avatar")
   #   end
   class Avatar < Component
@@ -70,29 +70,20 @@ module Protos
     }.freeze
 
     # @!attribute [r] placeholder
-    #   @return [Boolean] Whether to show placeholder styling.
+    # @return [Boolean] Whether to show placeholder styling.
     option :placeholder, type: Types::Bool, default: -> { false }
 
     # @!attribute [r] indicator
-    #   @return [Symbol] One of:
-    #     - `:none`
-    #     - `:online`
-    #     - `:offline`
+    # @return [Indicators]
     option :indicator,
       type: Indicators,
-      default: -> { :none },
-      reader: false
+      default: -> { :none }
 
     # @!attribute [r] shape
-    #   @return [Symbol] One of:
-    #     - `:none`
-    #     - `:squircle`
-    #     - `:heart`
-    #     - `:hexagon`
+    # @return [MaskShapes]
     option :shape,
       type: MaskShapes,
-      default: -> { :none },
-      reader: false
+      default: -> { :none }
 
     # Renders the avatar container element.
     #

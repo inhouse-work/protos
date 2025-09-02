@@ -6,7 +6,7 @@ module Protos
   # @see https://daisyui.com/components/tab/
   #
   # @example
-  #   Protos::Tabs.new(type: :boxed, size: :lg) do |tabs|
+  #   render Protos::Tabs.new(type: :boxed, size: :lg) do |tabs|
   #     tabs.tab(active: true) { "Tab 1" }
   #     tabs.tab { "Tab 2" }
   #     tabs.tab(disabled: true) { "Tab 3" }
@@ -43,21 +43,15 @@ module Protos
     }.freeze
 
     # @!attribute [r] type
-    #   @return [Symbol] One of:
-    #     - `:default`
-    #     - `:boxed`
-    #     - `:bordered`
-    #     - `:lifted`
+    # @return [Styles]
     option :type,
       default: -> { :default },
-      reader: false,
       type: Styles
 
     # @!attribute [r] size
-    #   @return [Symbol] One of `:xs`, `:sm`, `:md`, or `:lg` for size.
+    # @return [Sizes]
     option :size,
       default: -> { :md },
-      reader: false,
       type: Sizes
 
     # Renders the full tabs element.
@@ -76,14 +70,6 @@ module Protos
 
     private
 
-    def size
-      SIZES.fetch(@size)
-    end
-
-    def type
-      STYLES.fetch(@type)
-    end
-
     def default_attrs
       {
         role: :tablist
@@ -92,10 +78,10 @@ module Protos
 
     def theme
       {
-        container: %W[
-          tabs
-          #{size}
-          #{type}
+        container: [
+          "tabs",
+          SIZES.fetch(@size),
+          STYLES.fetch(@type)
         ]
       }
     end

@@ -7,7 +7,7 @@ module Protos
   # @see https://daisyui.com/components/collapse/
   #
   # @example Basic collapse with checkbox
-  #   Protos::Collapse.new(icon: :plus) do |collapse|
+  #   render Protos::Collapse.new(icon: :plus) do |collapse|
   #     collapse.title { "Click to expand" }
   #     collapse.content do
   #       p { "This content is hidden until expanded." }
@@ -15,7 +15,7 @@ module Protos
   #   end
   #
   # @example Radio button collapse group
-  #   Protos::Collapse.new(
+  #   render Protos::Collapse.new(
   #     input_type: :radio,
   #     input_name: "accordion"
   #   ) do |collapse|
@@ -31,7 +31,7 @@ module Protos
   #   end
   #
   # @example Collapse with initial state
-  #   Protos::Collapse.new(state: :open, icon: :arrow) do |collapse|
+  #   render Protos::Collapse.new(state: :open, icon: :arrow) do |collapse|
   #     collapse.title { "Already expanded" }
   #     collapse.content { "This starts open" }
   #   end
@@ -60,26 +60,23 @@ module Protos
     )
 
     # @!attribute [r] state
-    #   @return [Symbol] One of `:default`, `:open`, or `:close` for initial
-    #     state.
-    option :state, type: States, default: -> { :default }, reader: false
+    # @return [States]
+    option :state, type: States, default: -> { :default }
 
     # @!attribute [r] icon
-    #   @return [Symbol] One of `:arrow` or `:plus` for the collapse icon style.
-    option :icon, type: Icons, default: -> { :arrow }, reader: false
+    # @return [Icons]
+    option :icon, type: Icons, default: -> { :arrow }
 
     # @!attribute [r] input_type
-    #   @return [Symbol] One of `:radio` or `:checkbox` for the input mechanism.
+    # @return [InputTypes]
     option :input_type,
       type: InputTypes,
-      default: -> { :checkbox },
-      reader: false
+      default: -> { :checkbox }
 
     # @!attribute [r] input_name
-    #   @return [String, Integer] Name/ID for the input element.
-    #     Auto-generated if not provided.
+    # @return [String, Integer] Name/ID for the input element.
+    # @note Auto-generated if not provided.
     option :input_name,
-      reader: false,
       default: -> { "collapse-#{SecureRandom.hex(4)}" },
       type: Types::String | Types::Integer
 
@@ -91,9 +88,9 @@ module Protos
       div(**attrs) do
         if @input_type
           input(
-            type: @input_type,
-            id: @input_name,
-            name: @input_name,
+            type: input_type,
+            id: input_name,
+            name: input_name,
             autocomplete: :off,
             aria_label: "Toggle accordion",
             # form: "" prevents the radio button from being submitted if its
@@ -109,7 +106,7 @@ module Protos
     #
     # @param (see Protos::Collapse::Title#initialize)
     # @return [nil]
-    def title(*, **, &) = render Title.new(*, input_id: @input_name, **, &)
+    def title(*, **, &) = render Title.new(*, input_id: input_name, **, &)
 
     # Renders the collapse content (hidden until expanded).
     #

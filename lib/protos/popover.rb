@@ -14,13 +14,13 @@ module Protos
   # conveniently by the typed options listed below.
   #
   # @example Basic popover
-  #   Protos::Popover.new(position: :bottom) do |popover|
+  #   render Protos::Popover.new(position: :bottom) do |popover|
   #     popover.trigger { "Click me" }
   #     popover.content { "This is the popover content!" }
   #   end
   #
   # @example With custom animation and trigger
-  #   Protos::Popover.new(
+  #   render Protos::Popover.new(
   #     position: :right,
   #     animation: :scale,
   #     trigger: :click,
@@ -78,85 +78,48 @@ module Protos
     )
 
     # @!attribute [r] position
-    #   @return [Symbol] One of:
-    #     - `:top`
-    #     - `:top_start`
-    #     - `:top_end`
-    #     - `:right`
-    #     - `:right_start`
-    #     - `:right_end`
-    #     - `:bottom`
-    #     - `:bottom_start`
-    #     - `:bottom_end`
-    #     - `:left`
-    #     - `:left_start`
-    #     - `:left_end`
+    # @return [Positions]
     option :position,
       type: Positions,
-      default: -> { :top },
-      reader: false
+      default: -> { :top }
 
     # @!attribute [r] animation
-    #   @return [Symbol] One of:
-    #     - `:fade`
-    #     - `:shift_away`
-    #     - `:shift_away_subtle`
-    #     - `:shift_away_extreme`
-    #     - `:shift_towards`
-    #     - `:shift_towards_subtle`
-    #     - `:shift_towards_extreme`
-    #     - `:scale`
-    #     - `:scale_subtle`
-    #     - `:scale_extreme`
-    #     - `:perspective`
-    #     - `:perspective_subtle`
-    #     - `:perspective_extreme`
+    # @return [Animations]
     option :animation,
       type: Animations,
-      default: -> { :fade },
-      reader: false
+      default: -> { :fade }
 
     # @!attribute [r] duration
-    #   @return [Integer, Array<Integer>] Duration in milliseconds for
-    #     show/hide animation. Can be a single value or array of
-    #     [show, hide] durations.
+    # @return [Integer, Array<Integer>] Duration in milliseconds for
+    #   show/hide animation. Can be a single value or array of
+    #   [show, hide] durations.
     option :duration,
       type: Types::Integer | Types::Array.of(Types::Integer),
-      default: -> { [300, 250] },
-      reader: false
+      default: -> { [300, 250] }
 
     # @!attribute [r] hide_on_click
-    #   @return [Boolean, Symbol] Whether to hide popover on click.
-    #     Can be `true`, `false`, or `:toggle`.
+    # @return [Boolean, Symbol] Whether to hide popover on click.
+    #   Can be `true`, `false`, or `:toggle`.
     option :hide_on_click,
       type: Types::Bool | Types.Value(:toggle),
-      default: -> { true },
-      reader: false
+      default: -> { true }
 
     # @!attribute [r] z_index
-    #   @return [Integer] Z-index value for the popover.
+    # @return [Integer] Z-index value for the popover.
     option :z_index,
       type: Types::Integer,
-      default: -> { 9999 },
-      reader: false
+      default: -> { 9999 }
 
     # @!attribute [r] options
-    #   @return [Hash] Additional tippy.js options to pass through.
+    # @return [Hash] Additional tippy.js options to pass through.
     option :options,
       default: -> { {} },
-      reader: false,
       type: Types::Hash
 
     # @!attribute [r] trigger
-    #   @return [Symbol, Array<Symbol>] One or more of:
-    #     - `:focus`
-    #     - `:mouseenter`
-    #     - `:click`
-    #     - `:focusin`
-    #     - `:manual`
+    # @return [Triggers, Array<Triggers>]
     option :trigger,
       default: -> { %i[mouseenter focus] },
-      reader: false,
       type: Triggers | Types::Array.of(Triggers)
 
     # Renders the popover container element.

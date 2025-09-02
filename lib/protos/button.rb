@@ -60,20 +60,29 @@ module Protos
     }.freeze
 
     # @!attribute [r] color
+    # @return [Types::Colors]
     option :color, type: Types::Colors, default: -> { :default }
     # @!attribute [r] variant
+    # @return [Variants]
     option :variant, type: Variants, default: -> { :default }
     # @!attribute [r] shape
+    # @return [Shapes]
     option :shape, type: Shapes, default: -> { :default }
     # @!attribute [r] size
+    # @return [Types::Sizes]
     option :size, type: Types::Sizes, default: -> { :default }
     # @!attribute [r] wide
+    # @return [Boolean] Whether the button should take full width.
     option :wide, type: Types::Bool, default: -> { false }
     # @!attribute [r] block
+    # @return [Boolean] Whether the button should be displayed as a
+    #   block element.
     option :block, type: Types::Bool, default: -> { false }
     # @!attribute [r] active
+    # @return [Boolean] Whether the button is in an active state.
     option :active, type: Types::Bool, default: -> { false }
     # @!attribute [r] disabled
+    # @return [Boolean] Whether the button is disabled.
     option :disabled, type: Types::Bool, default: -> { false }
 
     def view_template(&)

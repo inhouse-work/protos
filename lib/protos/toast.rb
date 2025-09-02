@@ -7,7 +7,7 @@ module Protos
   # @see https://daisyui.com/components/toast/
   #
   # @example
-  #   Protos::Toast.new(position: :top_center) do |toast|
+  #   render Protos::Toast.new(position: :top_center) do |toast|
   #     div(class: "alert alert-success") do
   #       span { "Success message!" }
   #       toast.close_button { "×" }
@@ -41,20 +41,10 @@ module Protos
     }.freeze
 
     # @!attribute [r] position
-    #   @return [Symbol] One of:
-    #     -`:top_start`
-    #     - `:top_center`
-    #     - `:top_end`
-    #     - `:middle_start`
-    #     - `:middle_center`
-    #     - `:middle_end`
-    #     - `:bottom_start`
-    #     - `:bottom_center`
-    #     - `:bottom_end`
+    # @return [Positions]
     option :position,
       type: Positions,
-      default: -> { :bottom_end },
-      reader: false
+      default: -> { :bottom_end }
 
     # Renders the toast element.
     #
@@ -78,17 +68,11 @@ module Protos
       }
     end
 
-    def position
-      POSITIONS.fetch(@position)
-    end
-
     def theme
       {
-        container: %W[
-          #{position}
-          toast
-          [&:not([open])]:hidden
-          bg-transparent
+        container: [
+          "toast [&:not([open])]:hidden bg-transparent",
+          POSITIONS.fetch(@position)
         ]
       }
     end

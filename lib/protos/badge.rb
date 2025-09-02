@@ -6,13 +6,13 @@ module Protos
   # @see https://daisyui.com/components/badge/
   #
   # @example Basic badge
-  #   Protos::Badge.new { "New" }
+  #   render Protos::Badge.new { "New" }
   #
   # @example Colored badge with outline
-  #   Protos::Badge.new(type: :primary, outline: true) { "Featured" }
+  #   render Protos::Badge.new(type: :primary, outline: true) { "Featured" }
   #
   # @example Small badge with icon
-  #   Protos::Badge.new(size: :sm) do
+  #   render Protos::Badge.new(size: :sm) do
   #     icon("star")
   #     span { "Popular" }
   #   end
@@ -47,39 +47,23 @@ module Protos
     }.freeze
 
     # @!attribute [r] type
-    #   @return [Symbol] One of:
-    #    - `:default`
-    #    - `:neutral`
-    #    - `:success`
-    #    - `:primary`
-    #    - `:secondary`
-    #    - `:accent`
-    #    - `:info`
-    #    - `:error`
-    #    - `:warning`
-    #    - `:ghost`
+    # @return [Styles]
     option :type, type: Styles, default: -> { :default }
 
     # @!attribute [r] outline
-    #   @return [Boolean] Whether to use outline style.
+    # @return [Boolean] Whether to use outline style.
     option :outline, default: -> { false }
 
     # @!attribute [r] dashed
-    #   @return [Boolean] Whether to use dashed border style.
+    # @return [Boolean] Whether to use dashed border style.
     option :dashed, default: -> { false }
 
     # @!attribute [r] soft
-    #   @return [Boolean] Whether to use soft color style.
+    # @return [Boolean] Whether to use soft color style.
     option :soft, default: -> { false }
 
     # @!attribute [r] size
-    #   @return [Symbol] One of:
-    #     - `:default`
-    #     - `:xs`
-    #     - `:sm`
-    #     - `:md`
-    #     - `:lg`
-    #     - `:xl`
+    # @return [Sizes]
     option :size, type: Sizes, default: -> { :default }
 
     # Renders the badge element.

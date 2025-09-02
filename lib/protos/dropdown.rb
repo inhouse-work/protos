@@ -10,7 +10,7 @@ module Protos
   # tricky to get right and we felt the dependency tradeoff was worthwhile.
   #
   # @example Basic dropdown
-  #   Protos::Dropdown.new(position: :bottom) do |dropdown|
+  #   render Protos::Dropdown.new(position: :bottom) do |dropdown|
   #     dropdown.trigger { "Options" }
   #     dropdown.menu do |menu|
   #       menu.item { a(href: "/profile") { "Profile" } }
@@ -20,7 +20,10 @@ module Protos
   #   end
   #
   # @example Dropdown with custom trigger and positioning
-  #   Protos::Dropdown.new(position: :right, trigger: :hover) do |dropdown|
+  #   render Protos::Dropdown.new(
+  #     position: :right,
+  #     trigger: :hover
+  #   ) do |dropdown|
   #     dropdown.trigger { button(class: "btn") { "Actions" } }
   #     dropdown.menu do |menu|
   #       menu.item { "Edit" }
@@ -34,34 +37,15 @@ module Protos
     autoload :Trigger, "protos/dropdown/trigger"
 
     # @!attribute [r] position
-    #   @return [Symbol] One of:
-    #     - `:top`
-    #     - `:top_start`
-    #     - `:top_end`
-    #     - `:right`
-    #     - `:right_start`
-    #     - `:right_end`
-    #     - `:bottom`
-    #     - `:bottom_start`
-    #     - `:bottom_end`
-    #     - `:left`
-    #     - `:left_start`
-    #     - `:left_end`
+    # @return [Popover::Positions]
     option :position,
       type: Popover::Positions,
-      default: -> { :bottom },
-      reader: false
+      default: -> { :bottom }
 
     # @!attribute [r] trigger
-    #   @return [Symbol, Array<Symbol>] One or more of:
-    #     - `:focus`
-    #     - `:mouseenter`
-    #     - `:click`
-    #     - `:focusin`
-    #     - `:manual`
+    # @return [Popover::Triggers, Array<Popover::Triggers>]
     option :trigger,
       default: -> { :click },
-      reader: false,
       type: Popover::Triggers | Types::Array.of(Popover::Triggers)
 
     # Renders a dropdown item.

@@ -40,7 +40,7 @@ module Protos
         error: "step-error"
       }.freeze
 
-      option :type, reader: false, type: Types::Colors, default: -> { :default }
+      option :type, type: Types::Colors, default: -> { :default }
 
       def view_template(&)
         li(**attrs, &)

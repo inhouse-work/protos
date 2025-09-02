@@ -12,7 +12,6 @@ module Protos
       }.freeze
 
       option :side,
-        reader: false,
         type: Sides,
         default: -> { :bottom }
 

@@ -4,12 +4,12 @@ module Protos
   # A status component
   #
   # @example
-  #   Protos::Status.new(type: :success, size: :lg) { "Active" }
+  #   render Protos::Status.new(type: :success, size: :lg) { "Active" }
   #
   # @example With different types
-  #   Protos::Status.new(type: :error) { "Error" }
-  #   Protos::Status.new(type: :warning) { "Warning" }
-  #   Protos::Status.new(type: :info) { "Info" }
+  #   render Protos::Status.new(type: :error) { "Error" }
+  #   render Protos::Status.new(type: :warning) { "Warning" }
+  #   render Protos::Status.new(type: :info) { "Info" }
   class Status < Component
     STYLES = {
       default: "",
@@ -23,9 +23,8 @@ module Protos
       warning: "status-warning"
     }.freeze
 
-    Sizes = Types::Coercible::Symbol.enum(:xs, :sm, :md, :lg, :xl)
-
     SIZES = {
+      default: "status-md",
       xs: "status-xs",
       sm: "status-sm",
       md: "status-md",
@@ -34,21 +33,12 @@ module Protos
     }.freeze
 
     # @!attribute [r] type
-    #   @return [Symbol] One of:
-    #     - `:default`
-    #     - `:accent`
-    #     - `:error`
-    #     - `:info`
-    #     - `:neutral`
-    #     - `:primary`
-    #     - `:secondary`
-    #     - `:success`
-    #     - `:warning`
+    # @return [Types::Colors]
     option :type, type: Types::Colors, default: -> { :primary }
 
     # @!attribute [r] size
-    #   @return [Symbol] One of `:xs`, `:sm`, `:md`, `:lg`, or `:xl` for size.
-    option :size, type: Sizes, default: -> { :md }
+    # @return [Sizes]
+    option :size, type: Types::Sizes, default: -> { :default }
 
     # Renders the status element.
     #

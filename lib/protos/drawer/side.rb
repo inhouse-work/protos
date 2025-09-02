@@ -7,7 +7,7 @@ module Protos
     class Side < Component
       # @!attribute [r] input_id
       #   @return [String] The ID of the associated checkbox input for toggling.
-      option :input_id, reader: false, type: Types::String
+      option :input_id, type: Types::String
 
       # Renders the drawer side panel.
       #
@@ -16,7 +16,7 @@ module Protos
       def view_template
         aside(**attrs) do
           label(
-            for: @input_id,
+            for: input_id,
             aria_label: "close sidebar",
             class: css[:toggle]
           )

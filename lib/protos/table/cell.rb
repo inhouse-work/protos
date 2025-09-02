@@ -12,7 +12,6 @@ module Protos
 
       option :align,
         type: Types::Coercible::Symbol.enum(:left, :center, :right),
-        reader: false,
         default: -> { :left }
 
       def view_template(&)

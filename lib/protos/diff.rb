@@ -5,7 +5,7 @@ module Protos
   # divider
   #
   # @example Basic diff comparison
-  #   Protos::Diff.new do |diff|
+  #   render Protos::Diff.new do |diff|
   #     diff.item_one do
   #       img(src: "image1.jpg", alt: "Before")
   #     end
@@ -16,7 +16,7 @@ module Protos
   #   end
   #
   # @example Text diff comparison
-  #   Protos::Diff.new do |diff|
+  #   render Protos::Diff.new do |diff|
   #     diff.item_one do
   #       div(class: "p-4") do
   #         h3 { "Original Text" }

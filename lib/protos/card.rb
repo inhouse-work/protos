@@ -6,7 +6,7 @@ module Protos
   # @see https://daisyui.com/components/card/
   #
   # @example Basic card
-  #   Protos::Card.new do |card|
+  #   render Protos::Card.new do |card|
   #     card.image { img(src: "image.jpg", alt: "Card image") }
   #     card.body do
   #       card.title { "Card Title" }
@@ -18,7 +18,7 @@ module Protos
   #   end
   #
   # @example Card with side image
-  #   Protos::Card.new(image_side: true) do |card|
+  #   render Protos::Card.new(image_side: true) do |card|
   #     card.image { img(src: "image.jpg", alt: "Side image", class: "w-32") }
   #     card.body do
   #       card.title { "Card with Side Image" }
@@ -31,15 +31,6 @@ module Protos
     autoload :Actions, "protos/card/actions"
     autoload :Image, "protos/card/image"
 
-    Sizes = Types::Coercible::Symbol.enum(
-      :default,
-      :xs,
-      :sm,
-      :md,
-      :lg,
-      :xl
-    )
-
     SIZES = {
       default: "card-md",
       xs: "card-xs",
@@ -50,37 +41,29 @@ module Protos
     }.freeze
 
     # @!attribute [r] size
-    #   @return [Symbol] One of:
-    #     - `:default`
-    #     - `:xs`
-    #     - `:sm`
-    #     - `:md`
-    #     - `:lg`
-    #     - `:xl`
-    option :size, type: Sizes, default: -> { :default }, reader: :private
+    # @return [Types::Sizes]
+    option :size, type: Types::Sizes, default: -> { :default }
 
     # @!attribute [r] image_side
-    #   @return [Boolean] Whether to display image on the side
-    #     (horizontal layout).
+    # @return [Boolean] Whether to display image on the side
+    #   (horizontal layout).
     option :image_side,
       type: Types::Bool,
-      default: -> { false },
-      reader: :private
+      default: -> { false }
 
     # @!attribute [r] image_full
-    #   @return [Boolean] Whether image should take full width/height of card.
+    # @return [Boolean] Whether image should take full width/height of card.
     option :image_full,
       type: Types::Bool,
-      default: -> { false },
-      reader: :private
+      default: -> { false }
 
     # @!attribute [r] border
-    #   @return [Boolean] Whether to show card border.
-    option :border, type: Types::Bool, default: -> { true }, reader: :private
+    # @return [Boolean] Whether to show card border.
+    option :border, type: Types::Bool, default: -> { true }
 
     # @!attribute [r] dashed
-    #   @return [Boolean] Whether to use dashed border style.
-    option :dashed, type: Types::Bool, default: -> { false }, reader: :private
+    # @return [Boolean] Whether to use dashed border style.
+    option :dashed, type: Types::Bool, default: -> { false }
 
     # Renders the card container element.
     #
@@ -120,7 +103,7 @@ module Protos
       {
         container: [
           "card",
-          SIZES[size],
+          SIZES.fetch(size),
           ("card-border" if border),
           ("card-dash" if dashed),
           ("image-full" if image_full),

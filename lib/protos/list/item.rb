@@ -6,8 +6,8 @@ module Protos
     # work for list items, including border radius. E.g. only the first and
     # last items will have border radius on the top and bottom.
     class Item < Component
-      option :wrap, Types::Bool, default: -> { false }, reader: :private
-      option :grow, Types::Bool, default: -> { false }, reader: :private
+      option :wrap, Types::Bool, default: -> { false }
+      option :grow, Types::Bool, default: -> { false }
 
       def view_template(&)
         li(**attrs, &)

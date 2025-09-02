@@ -28,15 +28,15 @@ module Protos
     autoload :Item, "protos/accordion/item"
 
     # @!attribute [r] input_name
-    #   @return [String] Name/ID for the accordion radio group. Auto-generated
-    #     if not provided.
+    # @note Auto generated when not provided.
+    # @return [String] Name/ID for the accordion radio group.
     option :input_name,
       default: -> { "accordion-#{SecureRandom.hex(4)}" },
       type: Types::String
 
     # @!attribute [r] input_type
-    # @return [Symbol] One of `:radio` or `:checkbox` for accordion behavior.
-    #   Use `:radio` for traditional accordion (only one open at a time)
+    # @note Use `:radio` for traditional accordion (only one open at a time)
+    # @return [Collapse::InputTypes]
     option :input_type,
       type: Collapse::InputTypes,
       default: -> { :radio }

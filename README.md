@@ -502,8 +502,8 @@ module Ui
 
     option :title, default: -> {}
     option :ordered, default: -> { false }
-    option :items, default: -> { [] }, reader: false
-    option :actions, default: -> { [] }, reader: false
+    option :items, default: -> { [] }
+    option :actions, default: -> { [] }
 
     def view_template
       article(**attrs) do
@@ -585,9 +585,9 @@ module Ui
     end
 
     option :title, default: -> {}
-    option :collection, default: -> { [] }, reader: false
-    option :columns, default: -> { [] }, reader: false
-    option :actions, default: -> { [] }, reader: false
+    option :collection, default: -> { [] }
+    option :columns, default: -> { [] }
+    option :actions, default: -> { [] }
 
     def view_template
       article(**attrs) do

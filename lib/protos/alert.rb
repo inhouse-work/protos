@@ -4,12 +4,22 @@ module Protos
   # A component that displays messages (usually from flashes). These can
   # be used in combination with Protos::Toast to have popup notifications.
   #
+  # @example
+  #   render Protos::Alert.new(color: :success) do |alert|
+  #     alert.icon { "✔️" }
+  #     span { "Operation successful!" }
+  #     alert.actions do
+  #       button(class: "btn btn-sm") { "Undo" }
+  #     end
+  #   end
+  #
   # @see https://daisyui.com/components/alert/
   class Alert < Component
     autoload :Actions, "protos/alert/actions"
     autoload :Icon, "protos/alert/icon"
 
     Colors = Types::Coercible::Symbol.enum(
+      :default,
       :info,
       :success,
       :warning,
@@ -29,6 +39,7 @@ module Protos
     )
 
     COLORS = {
+      default: "",
       info: "alert-info",
       error: "alert-error",
       warning: "alert-warning",
@@ -48,25 +59,15 @@ module Protos
     }.freeze
 
     # @!attribute [r] type
-    # @return [Symbol] One of:
-    #   - `:info`
-    #   - `:success`
-    #   - `:warning`
-    #   - `:error`
-    option :color, type: Colors, default: -> { :info }
+    # @return [Colors]
+    option :color, type: Colors, default: -> { :default }
 
     # @!attribute [r] variant
-    # @return [Symbol] One of:
-    #   - `:default`
-    #   - `:outline`
-    #   - `:dash`
-    #   - `:soft`
+    # @return [Variants]
     option :variant, type: Variants, default: -> { :default }
 
     # @!attribute [r] direction
-    # @return [Symbol] One of:
-    #   - `:horizontal`
-    #   - `:vertical`
+    # @return [Directions]
     option :direction, type: Directions, default: -> { :horizontal }
 
     # Renders the alert container element.

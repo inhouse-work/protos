@@ -6,6 +6,8 @@ module Protos
     autoload :OpenButton, "protos/floating_action_button/open_button"
     autoload :CloseButton, "protos/floating_action_button/close_button"
 
+    option :flower, type: Types::Bool, default: -> { false }
+
     def view_template(&)
       div(**attrs, &)
     end
@@ -31,7 +33,10 @@ module Protos
 
     def theme
       {
-        container: "fab"
+        container: [
+          "fab",
+          ("fab-flower" if flower)
+        ]
       }
     end
   end

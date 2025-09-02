@@ -5,7 +5,7 @@ RSpec.describe Protos::FloatingActionButton do
 
   context "with a main action" do
     before do
-      render described_class.new do |fba|
+      render described_class.new(flower: true) do |fba|
         fba.open_button { "Click me" }
         fba.main_action { "Main Action" }
         fba.action { "Action 1" }
@@ -16,6 +16,7 @@ RSpec.describe Protos::FloatingActionButton do
     context "styles" do
       it { is_expected.to have_css(".fab") }
       it { is_expected.to have_css(".fab-main-action") }
+      it { is_expected.to have_css(".fab-flower") }
     end
 
     context "content" do

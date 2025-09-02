@@ -24,6 +24,8 @@ module Protos
       :circle
     )
 
+    Elements = Types::Coercible::Symbol.enum(:button, :a)
+
     COLORS = {
       default: "",
       primary: "btn-primary",
@@ -84,9 +86,12 @@ module Protos
     # @!attribute [r] disabled
     # @return [Boolean] Whether the button is disabled.
     option :disabled, type: Types::Bool, default: -> { false }
+    # @!attribute [r] element
+    # @return [Elements] The HTML element to use for the button.
+    option :element, type: Elements, default: -> { :button }
 
     def view_template(&)
-      button(**attrs, &)
+      send(element, **attrs, &)
     end
 
     private

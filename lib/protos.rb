@@ -32,6 +32,7 @@ module Protos
   autoload :Command, "protos/command"
   autoload :Diff, "protos/diff"
   autoload :Drawer, "protos/drawer"
+  autoload :FloatingActionButton, "protos/floating_action_button"
   autoload :Hero, "protos/hero"
   autoload :List, "protos/list"
   autoload :Menu, "protos/menu"

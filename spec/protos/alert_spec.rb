@@ -10,11 +10,19 @@ RSpec.describe Protos::Alert do
     end
   end
 
-  it { is_expected.to have_css(".alert") }
-  it { is_expected.to have_css(".alert-info") }
-  it { is_expected.to have_css(".alert-soft") }
-  it { is_expected.to have_css(".alert-horizontal") }
-  it { is_expected.to have_content("alert") }
-  it { is_expected.to have_css("div[role=alert]") }
-  it { is_expected.to have_content("X") }
+  context "styles" do
+    it { is_expected.to have_css(".alert") }
+    it { is_expected.to have_css(".alert-info") }
+    it { is_expected.to have_css(".alert-soft") }
+    it { is_expected.to have_css(".alert-horizontal") }
+  end
+
+  context "accessibility" do
+    it { is_expected.to have_css("div[role=alert]") }
+  end
+
+  context "content" do
+    it { is_expected.to have_content("alert") }
+    it { is_expected.to have_content("X") }
+  end
 end

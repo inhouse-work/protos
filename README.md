@@ -700,6 +700,7 @@ Here is a list that we don't yet have components for:
 - [ ] Calendar
 - [ ] Checkbox
 - [ ] File input
+- [ ] Hover gallery
 - [ ] Indicator
 - [ ] Join
 - [ ] Kbd
@@ -715,6 +716,7 @@ Here is a list that we don't yet have components for:
 - [ ] Stack
 - [ ] Text input
 - [ ] Textarea
+- [ ] Theme controller
 - [ ] Toggle
 - [ ] Tooltip
 

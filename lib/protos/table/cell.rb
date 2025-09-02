@@ -2,7 +2,7 @@
 
 module Protos
   class Table
-    # DOCS: A single cell in a table
+    # A single cell in a table
     class Cell < Component
       ALLIGNMENT = {
         left: "text-left",

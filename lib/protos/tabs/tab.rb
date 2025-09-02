@@ -2,9 +2,8 @@
 
 module Protos
   class Tabs
+    # A single tab in a tabs component
     class Tab < Component
-      # DOCS: A single tab in a tabs component
-
       option :active, default: -> { false }
       option :disabled, default: -> { false }
 

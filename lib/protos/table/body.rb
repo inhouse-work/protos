@@ -2,7 +2,7 @@
 
 module Protos
   class Table
-    # DOCS: The main content area of a table (tbody element) that contains
+    # The main content area of a table (tbody element) that contains
     # the data rows.
     #
     # @example Basic usage

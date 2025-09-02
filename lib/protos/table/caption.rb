@@ -2,7 +2,7 @@
 
 module Protos
   class Table
-    # DOCS: The caption of a table
+    # The caption of a table
     class Caption < Component
       Sides = Types::Coercible::Symbol.enum(:bottom, :top)
 

@@ -2,7 +2,7 @@
 
 module Protos
   class Table
-    # DOCS: The footer section of a table (tfoot element) that typically
+    # The footer section of a table (tfoot element) that typically
     # contains summary rows.
     #
     # @example Basic usage

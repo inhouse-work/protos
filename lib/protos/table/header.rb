@@ -2,7 +2,7 @@
 
 module Protos
   class Table
-    # DOCS: The header section of a table that contains column headers.
+    # The header section of a table that contains column headers.
     # This wraps one or more Protos::Table::Head components in a thead
     # element.
     #

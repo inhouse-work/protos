@@ -2,7 +2,7 @@
 
 module Protos
   class Table
-    # DOCS: A table row (tr element) that contains cells of data.
+    # A table row (tr element) that contains cells of data.
     #
     # @example Basic usage
     #   table.row do

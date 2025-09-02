@@ -2,7 +2,7 @@
 
 module Protos
   class Table
-    # DOCS: A table header cell (th element) that represents a column header.
+    # A table header cell (th element) that represents a column header.
     # Can be aligned left, center or right.
     #
     # @example With alignment

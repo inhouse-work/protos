@@ -14,6 +14,7 @@ RSpec.describe Protos::Mix do
         {
           class: "bar",
           data: {
+            format: "something",
             controller: "something",
             list: [1, 2]
           }
@@ -21,6 +22,7 @@ RSpec.describe Protos::Mix do
         {
           class: "baz",
           data: {
+            format: "other",
             controller: "other",
             list: [3]
           }
@@ -29,6 +31,7 @@ RSpec.describe Protos::Mix do
 
       expect(result[:class]).to eq("bar baz")
       expect(result[:data]).to eq(
+        format: "other",
         controller: "something other",
         list: [1, 2, 3]
       )

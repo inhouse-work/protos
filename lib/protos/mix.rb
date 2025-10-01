@@ -9,6 +9,7 @@ module Protos
     module_function
 
     MERGEABLE_ATTRIBUTES = Set.new(%i[class data]).freeze
+    MERGABLE_KEYS = Set.new(%i[class controller]).freeze
 
     def call(old_hash, *hashes)
       hashes
@@ -25,7 +26,12 @@ module Protos
         next new if top_level && !MERGEABLE_ATTRIBUTES.include?(key)
 
         case [old, new]
-        in String, String then "#{old} #{new}"
+        in String, String
+          if MERGABLE_KEYS.include?(key)
+            "#{old} #{new}"
+          else
+            new
+          end
         in Array, Array then old + new
         in Hash, Hash then merge(old, new)
         else new

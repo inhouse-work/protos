@@ -38,62 +38,20 @@ end
 ```
 
 But how can we sometimes render this `Navbar` with a different background color?
+What about the `h3`, I want that to be extra large on this one page.
 
-It would be nice to have our components take a class like any other element:
+It would be nice to have our components take a class like other basic elements:
 
 ```ruby
 render Navbar.new(class: "bg-primary")
 ```
 
 Unfortunately `class` is a special keyword in Ruby, so we need to do some
-awkward handling to use it like this:
+awkward handling to use it like this.
 
-```ruby
-class Navbar
-  def initialize(**options)
-    # Keyword `class` is a special word in Ruby so we have to awkwardly unwrap
-    # like this instead of using keyword arguments
-    @classes = options[:class]
-  end
-
-  def view_template
-    header(class: "#{@classes} flex items-center justify-between") do
-      h3 { "My site" }
-      button { "Log out" }
-    end
-  end
-end
-```
-
-Now we can pass in a style to our container, but what about overriding the style
-of the `h3` tag?
-
-```ruby
-class Navbar
-  def initialize(**options)
-    # Keyword `class` is a special word in Ruby so we have to awkwardly unwrap
-    # like this instead of using keyword arguments
-    @container_classes = options[:class]
-    @title_classes = options[:title_class]
-  end
-
-  def view_template
-    header(class: "#{@classes} flex items-center justify-between") do
-      h3(class: @title_classes) { "My site" }
-      button { "Log out" }
-    end
-  end
-end
-```
-
-Eventually everyone makes a kind of ad-hoc system for specifying styles.
-
-It gets more complicated when you have attributes like a data-controller. How do
-you give a good experience letting people using your components to add their own
-controllers while your component depends on one already?
-
-This library is an attempt to make this kind of developer experience while
-making reusable components more convention over configuration.
+These are the kind of quality of life improvements that `protos` gives you out
+of the box. Protos makes it easy to override deep hierarchies of components
+without having to modify the original.
 
 ## Protos::Component
 
@@ -116,14 +74,6 @@ that can be easily overridden using some ergonomic conventions.
 Components are styled with `css` slots that get their values from a simple hash
 we call a `theme`.
 
-You define a `theme` for your component by defining a `#theme` method that
-returns a hash.
-
-Users of your components can override, merge, or remove parts of your theme by
-passing in their own as an argument to the component. Another nice benefit is
-that your markup doesn't get overwhelmed horizontally with your css classes.
-
-
 ```ruby
 class List < Protos::Component
   def view_template
@@ -142,10 +92,18 @@ class List < Protos::Component
 end
 ```
 
+
+You define a `theme` for your component by defining a `#theme` method that
+returns a hash.
+
+Users of your components can override, merge, or remove parts of your theme by
+passing in their own as an argument to the component. Another nice benefit is
+that your markup doesn't get overwhelmed horizontally with your css classes.
+
 Using a theme and css slots allows us to easily override any part of a component
 when we render.
 
-Here we are passing in our own theme. The default behavior is to add these
+Here we are passing in our own theme. The default behavior is to __add__ these
 styles on to the theme, rather than replacing them.
 
 ```ruby
@@ -157,8 +115,9 @@ render List.new(
 )
 ```
 
-When the component is rendered the `tailwind_merge` gem will also prune any
-duplicate unneeded styles.
+When the component is rendered the
+[`tailwind_merge`](https://github.com/gjtorikian/tailwind_merge)
+gem will also prune any duplicate unneeded styles.
 
 For example even though the themes `list` key would be added together to become
 `space-y-4 space-y-8`, the `tailwind_merge` gem will prune it down to just
@@ -170,6 +129,8 @@ For example even though the themes `list` key would be added together to become
   <li class="font-bold text-2xl bg-red-500">Item 2</li>
 </ul>
 ```
+
+### Overriding and negating styles
 
 We can override the slot entirely by using a `!` at the end of the key:
 
@@ -187,8 +148,8 @@ The css slot `css[:item]` would be overridden rather than merged:
 <li class="bg-red-500">Item 1</li>
 ```
 
-We can also negate a certain class or classes from the slot by putting a `!` 
-at the start of the key:
+We can also __negate__ a certain class or classes from the slot by putting a `!`
+at the __start__ of the key:
 
 ```ruby
 render List.new(
@@ -204,7 +165,7 @@ The new `css[:item]` slot would be:
 <li class="font-bold">Item 1</li>
 ```
 
-Slots can also take multiple arguments, and even inline styles:
+`css` slots can also take multiple keys, and even inline styles:
 
 ```ruby
 class ListItem < Protos::Component
@@ -218,23 +179,24 @@ This combines the styles together, removing any duplicates.
 
 ### Attrs and default attrs
 
-By convention, all components spread in an `attrs` hash on their outermost
-element of the component. There is no rule for this, but it makes them feel more
-naturally like native html elements when you render them.
+By convention, all components __should__ spread in an `attrs` hash on their
+outermost element of the component. There is no hard rule for this, but it makes
+them feel more naturally like native html elements when you render them.
 
-By doing this we enable 3 main conveniences:
+By doing this:
+
 1. We can pass a `class` keyword when initializing the component which will be
    merged safely into the `css[:container]` slot
-2. We can pass any html attributes we want to the element such as `id`, `data`
-   etc and it will just work
-3. We can add default attributes that are safely merged with any provided to the
-   component when its being initialized
+2. We can pass any html attributes we want to the element like `id`, `data`
+   etc and it will __just work__
+3. We can easily add `default_attrs` that are safely merged with any provided
+   to the component when its being initialized
 
 ```ruby
 class List < Protos::Component
   def view_template
     ul(**attrs) do
-      # ...
+      li { "Item 1"}
     end
   end
 
@@ -256,14 +218,16 @@ end
 ```
 
 `#attrs` returns a hash which will by default merge the `class` keyword into the
-`css[:container]` slot which we define in our theme. The `ul` elements class
-would be `space-y-4` as that is the `css[:container]` on our theme.
+`css[:container]` slot. The `ul` elements class would be `space-y-4` as that is
+the `css[:container]` on our theme.
 
-Special html options (`class`, `data`) will be safely merged. 
+Special html options (`class`, `data-controller`) will be safely merged, as in
+we won't override the components existing `data-controller` but add our own in
+addition.
 
-For examples, the component above defines a list controller. If we passed our
-own controller into data when we initialize, the component's data-controller
-attribute would be appended to:
+For example, the component above uses a `data-controller` of `list`. If we
+passed our own controller into data when we initialize, the component's
+`data-controller` attribute would be appended.
 
 ```ruby
 render List.new(
@@ -285,7 +249,7 @@ overriding their core behavior or having to modify/override their class.
 Components extend
 [`Dry::Initializer`](https://dry-rb.org/gems/dry-initializer/3.1/)
 which lets us easily add new positional arguments with `param` or keyword
-arguments with `option`
+arguments with `option` that work great with inheritance.
 
 ```ruby
 class List < Protos::Component
@@ -386,11 +350,9 @@ npx tailwindcss init
 ```
 
 Then we need to add the protos path to the `content` of our tailwind config
-so tailwind will read the styles defined in the Protos gem.
-
-Protos also uses semantic spacing such as `p-sm` or `m-md` instead of set
-numbers so you can easily choose the spacing you want. So we will need to extend
-`spacing` in your theme.
+so tailwind will read the styles defined in the Protos gem. This is because the
+protos components have tailwindcss classes which tailwind needs to be made aware
+of to bundle them in with our own css.
 
 ```js
 // tailwind.config.js
@@ -416,6 +378,9 @@ Then in your `application.css` you can import the tailwind config:
 @plugin "daisyui";
 ```
 
+To get the built in interactivity like dropdowns, popovers and comboboxes you
+will need to add the `protos-stimulus` library.
+
 Add [`protos-stimulus`](https://github.com/inhouse-work/protos-stimulus)
 to your packages:
 
@@ -432,7 +397,7 @@ import "protos-stimulus"
 Then you can use the components in your apps.
 
 ```ruby
-Protos::Card.new(class: "bg-base-100") do |card|
+render Protos::Card.new(class: "bg-base-100") do |card|
   card.body(class: "gap-sm") do
     card.title(class: "font-bold") { "Hello world" }
     span { "This is some more content" }
@@ -445,8 +410,20 @@ end
 
 ## Building your own components
 
-You can override components simply by redefining sub-classing the class in your
-own app:
+```ruby
+module Components
+  class Swap < ApplicationComponent
+    def view_template
+      render Protos::Swap.new do |c|
+        # ....
+      end
+    end
+  end
+end
+```
+
+You could also choose to subclass an existing component, but its usually
+recommended to use these atoms in your own components.
 
 ```ruby
 module Components
@@ -461,21 +438,6 @@ module Components
       super.merge({
         input: ["block", "bg-red-500"]
       })
-    end
-  end
-end
-```
-
-But its much better to avoid the sub-classing and just render the component
-inside of your own:
-
-```ruby
-module Components
-  class Swap < ApplicationComponent
-    def view_template
-      render Protos::Swap.new do |c|
-        # ....
-      end
     end
   end
 end

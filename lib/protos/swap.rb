@@ -15,6 +15,8 @@ module Protos
     autoload :On, "protos/swap/on"
     autoload :Off, "protos/swap/off"
 
+    option :input_options, type: Types::Hash, default: -> { {} }
+
     # Renders the full swap element.
     #
     # @yield The content block to define the on and off states.
@@ -26,7 +28,8 @@ module Protos
           class: css[:input],
           autocomplete: :off,
           form: "",
-          aria_label: "swap"
+          aria_label: "swap",
+          **input_options
         )
         yield if block_given?
       end

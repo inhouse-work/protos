@@ -4,7 +4,7 @@ RSpec.describe Protos::Swap do
   subject { page }
 
   before do
-    render described_class.new do |swap|
+    render described_class.new(input_options: { value: "bob" }) do |swap|
       swap.on { "Swap on" }
       swap.off { "Swap off" }
     end
@@ -23,5 +23,6 @@ RSpec.describe Protos::Swap do
 
   context "accessibility" do
     it { is_expected.to have_css("input[aria-label=swap]") }
+    it { is_expected.to have_field(type: :checkbox, with: "bob") }
   end
 end

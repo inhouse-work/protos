@@ -8,8 +8,11 @@ module Protos
     class Tokens
       # @param tokens [Array<String>]
       def initialize(tokens)
-        @tokens = {}
-        tokens.each { |token| @tokens[token] = true }
+        @tokens = Hash.new do |hash, key|
+          hash[key] = true
+        end
+
+        tokens.each { @tokens[it] }
       end
 
       # @return [Boolean]
@@ -30,7 +33,7 @@ module Protos
       # @param other [Array<String>]
       # @return [void]
       def merge(other)
-        other.each { @tokens[it] = true }
+        other.each { @tokens[it] }
       end
 
       # @return [void]

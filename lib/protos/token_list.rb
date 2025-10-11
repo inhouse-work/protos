@@ -15,11 +15,13 @@ module Protos
     def empty? = @tokens.empty?
     def to_s = @tokens.join(" ")
 
+    # @param tokens [String,Array<String>]
     def remove(tokens)
       @tokens.subtract(parse(tokens))
       self
     end
 
+    # @param tokens [String,Array<String>]
     def add(tokens)
       @tokens.merge(parse(tokens))
       self
@@ -34,7 +36,7 @@ module Protos
 
     def parse(tokens)
       case tokens
-      when Array then tokens
+      when Array then tokens.flatten
       when String then tokens.split
       else
         raise ArgumentError, "Invalid tokens: #{tokens}, must be either " \

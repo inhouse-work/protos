@@ -244,6 +244,35 @@ That would output both controllers to the DOM element:
 This makes it very convenient to add functionality to basic components without
 overriding their core behavior or having to modify/override their class.
 
+You can also change the attributes or your theme after initialization using
+`with_attrs` and `with_theme`:
+
+```ruby
+list = List.new
+render list.with_attrs(id: "my-list").with_theme(item: "text-red-500")
+```
+
+This can make it easy to pass your components as arguments to other components
+and still be able to change their styles:
+
+```ruby
+class ListItem < Protos::Component
+  param :other_component
+
+  def view_template
+    li(**attrs) do
+      render other_component.with_theme(container: "join-item")
+    end
+  end
+
+  def theme
+    {
+      container: "join"
+    }
+  end
+end
+```
+
 ### Params and options
 
 Components extend

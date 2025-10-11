@@ -2,36 +2,39 @@
 
 require "protos"
 require "ruby-prof"
+require "ruby-prof-speedscope"
 
 require_relative "support/protos_table"
 require_relative "support/phlex_table"
 
-def output_result(result) # rubocop:disable Style/TopLevelMethodDefinition
-  flat_printer = RubyProf::FlatPrinter.new(result)
-  flat_printer.print(File.open("tmp/profile-table-flat.txt", "w+"))
+TMP_DIR = File.expand_path("../tmp", __dir__)
+FileUtils.mkdir_p(TMP_DIR)
 
-  graph_printer = RubyProf::GraphHtmlPrinter.new(result)
-  graph_printer.print(File.open("tmp/profile-table-graph.html", "w+"))
+def output_result(result, name)
+  flat_path       = File.join(TMP_DIR, "profile-#{name}-flat.txt")
+  graph_path      = File.join(TMP_DIR, "profile-#{name}-graph.html")
+  speedscope_path = File.join(TMP_DIR, "profile-#{name}-speedscope.json")
 
-  call_stack_printer = RubyProf::CallStackPrinter.new(result)
-  call_stack_printer.print(
-    File.open(
-      "tmp/profile-table-call-stack.html",
-      "w+"
-    )
-  )
+  File.open(flat_path, "w")       { |f| RubyProf::FlatPrinter.new(result).print(f) }
+  File.open(graph_path, "w")      { |f| RubyProf::GraphHtmlPrinter.new(result).print(f) }
+  File.open(speedscope_path, "w") { |f| RubyProf::SpeedscopePrinter.new(result).print(f) }
+
+  puts "Profile results written to:"
+  puts "  Flat:       #{flat_path}"
+  puts "  Graph:      #{graph_path}"
+  puts "  Speedscope: #{speedscope_path}"
+  puts
+  puts "Open #{speedscope_path} in https://www.speedscope.app"
 end
 
 namespace :profile do
   desc "Run Protos::Table and Phlex::Table profile"
   task :table do
     result = RubyProf::Profile.profile do
-      100.times do
-        ProtosTable.new.call
-      end
+      100.times { ProtosTable.call }
     end
 
-    output_result(result)
+    output_result(result, "table")
   end
 
   desc "Run Protos::Attributes profile"
@@ -42,6 +45,6 @@ namespace :profile do
       attributes.merge(data: { controller: "bar" })
     end
 
-    output_result(result)
+    output_result(result, "attributes")
   end
 end

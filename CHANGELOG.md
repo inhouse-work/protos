@@ -7,6 +7,14 @@
 - Improves how tables print by breaking after or before rows instead of within.
 - Allows `Protos::Accordion` to override their input type to be a `:checkbox`
   (default is `:radio`)
+- Adds `Protos::FloatingActionButton`
+- Adds `direction` option to `Protos::Alert`
+- Adds `input_options` to `Protos::Swap` to allow customizing the hidden input
+- Fixes an issue with merging attributes where it was overriding instead of
+  adding
+- Adds `#with_theme` and `#with_attrs` methods to all components to allow
+  customization after initialization
+
 
 ## [1.0.1] - 2025-03-01
 

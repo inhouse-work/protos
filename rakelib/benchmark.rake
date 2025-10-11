@@ -10,6 +10,18 @@ require_relative "support/phlex_table"
 
 namespace :benchmark do
   namespace :ips do
+    desc "Run Protos::Mix ips benchmarks"
+    task :mix do
+      Benchmark.ips do |x|
+        x.report("Protos::Mix") do
+          Protos::Mix.call(
+            { data: { controller: "foo" } },
+            { data: { controller: "bar" } }
+          )
+        end
+      end
+    end
+
     desc "Run Protos::Table and Phlex::Table ips benchmarks"
     task :table do
       Benchmark.ips do |x|

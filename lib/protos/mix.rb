@@ -8,32 +8,29 @@ module Protos
   module Mix
     module_function
 
-    MERGEABLE_ATTRIBUTES = Set.new(%i[class data]).freeze
-    MERGABLE_KEYS = Set.new(%i[class controller]).freeze
+    MERGEABLE_ATTRIBUTES = %i[class data].freeze
+    MERGABLE_KEYS = %i[class controller].freeze
 
     def call(old_hash, *hashes)
       hashes
         .compact
         .each_with_object(old_hash) do |new_hash, result|
-          merge(result, new_hash, top_level: true)
+          merge(result, new_hash)
         end
     end
 
-    def merge(old_hash, new_hash, top_level: false) # rubocop:disable Metrics/PerceivedComplexity
+    def merge(old_hash, new_hash)
       old_hash.merge!(new_hash) do |key, old, new|
-        next old unless new
-        next old if old == new
-        next new if top_level && !MERGEABLE_ATTRIBUTES.include?(key)
-
-        case [old, new]
-        in String, String
+        case [old, new].freeze
+        in [String, String]
           if MERGABLE_KEYS.include?(key)
             "#{old} #{new}"
           else
             new
           end
-        in Array, Array then old + new
-        in Hash, Hash then merge(old, new)
+        in [Array, Array] then old + new
+        in [Hash, Hash] then merge(old, new)
+        in [_, nil] then old
         else new
         end
       end

@@ -37,6 +37,21 @@ namespace :profile do
     output_result(result, "table")
   end
 
+  desc "Run Protos::Mix profile"
+  task :mix do
+    random_hashes = Array.new(100) do
+      { data: { controller: ("a".."z").to_a.sample(8).join } }
+    end
+
+    result = RubyProf::Profile.profile do
+      random_hashes.each_cons(2) do |hash_a, hash_b|
+        Protos::Mix.call(hash_a, hash_b)
+      end
+    end
+
+    output_result(result, "mix")
+  end
+
   desc "Run Protos::Attributes profile"
   task :attributes do
     attributes = Protos::Attributes.new(data: { controller: "foo" })

@@ -15,6 +15,8 @@ module Protos
       end
     end
 
+    # @param theme [Hash{Symbol=>String,Array<String>}]
+    # @param tailwind_merge [Boolean] Whether or not to use tailwind-merge
     def initialize(theme = {}, tailwind_merge: true, **kwargs)
       @should_merge = tailwind_merge
 
@@ -31,11 +33,16 @@ module Protos
 
     # Key can be a symbol or string, they will be merged together for the final
     # css class.
+    #
     # - A symbol will be used to fetch a `TokenList` from the theme at that key.
     # - A string is used as a plain css value
+    #
+    # @param keys [Array<Symbol,String>]
+    # @return [String, nil]
     def [](*keys)
       symbols, strings = keys.partition { |key| key.instance_of?(Symbol) }
-      values = @theme.values_at(*symbols).map!(&:to_s).reject(&:empty?)
+      values = @theme.values_at(*symbols).map!(&:to_s)
+      values.reject!(&:empty?)
       values.concat(strings) unless strings.empty?
 
       return nil if values.empty?
@@ -44,21 +51,32 @@ module Protos
       self.class.merger.merge(values)
     end
 
-    def key?(key)
-      @theme.key?(key)
-    end
+    # @param key [Symbol]
+    # @return [Boolean]
+    def key?(key) = @theme.key?(key)
 
+    # @param key [Symbol]
+    # @param value [String,Array<String>]
+    # @return [void]
     def add(key, value)
       return if value.nil?
 
       @theme[key].add(value)
     end
 
+    # @param key [Symbol]
+    # @param value [String,Array<String>]
+    # @return [void]
     def remove(key, value)
+      return unless @theme.key?(key)
+
       token_list = @theme[key].remove(value)
       @theme.delete(key) if token_list.empty?
     end
 
+    # @param key [Symbol]
+    # @param value [String,Array<String>]
+    # @return [void]
     def set(key, value)
       return if value.nil?
 
@@ -69,17 +87,22 @@ module Protos
       end
     end
 
+    # @param hash [Hash{Symbol=>String,Array<String>}]
+    # @return [Theme]
     def merge(hash)
-      return self unless hash
+      return self if hash.nil?
 
       hash.each do |key, value|
-        next add(key, value) if key?(key.to_sym)
-        # Handle negation
-        next remove(key[1..].to_sym, value) if key.start_with?("!")
-        # handle override
-        next set(key[..-2].to_sym, value) if key.end_with?("!")
+        next if value.nil?
 
-        set(key.to_sym, value)
+        case key
+        when /\A!(.+)\z/ # Negation
+          remove(Regexp.last_match(1).to_sym, value)
+        when /\A(.+)!+\z/ # Override
+          set(Regexp.last_match(1).to_sym, value)
+        else
+          add(key.to_sym, value)
+        end
       end
 
       self

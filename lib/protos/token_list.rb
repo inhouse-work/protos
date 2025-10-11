@@ -6,17 +6,14 @@ module Protos
   class TokenList
     attr_reader :tokens
 
+    autoload :Tokens, "protos/token_list/tokens"
+
     def initialize(tokens = [])
-      @tokens = Set.new(tokens)
+      @tokens = Tokens.new(tokens)
     end
 
-    def empty?
-      @tokens.empty?
-    end
-
-    def to_s
-      @tokens.join(" ")
-    end
+    def empty? = @tokens.empty?
+    def to_s = @tokens.join(" ")
 
     def remove(tokens)
       @tokens.subtract(parse(tokens))

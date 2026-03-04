@@ -110,6 +110,13 @@ module Protos
       type: Types::Integer,
       default: -> { 9999 }
 
+    # @!attribute [r] delay
+    # @return [Integer, Array<Integer>] Delay in milliseconds before
+    #   showing/hiding popover.
+    option :delay,
+      type: Types::Integer | Types::Array.of(Types::Integer),
+      default: -> { [0, 0] }
+
     # @!attribute [r] options
     # @return [Hash] Additional tippy.js options to pass through.
     option :options,
@@ -155,6 +162,7 @@ module Protos
       opts[:duration] = @duration
       opts[:hideOnClick] = @hide_on_click
       opts[:zIndex] = @z_index
+      opts[:delay] = @delay
       opts[:trigger] = Array(@trigger).flatten.map(&:to_s).join(" ")
       opts.merge(@options)
     end

@@ -8,6 +8,7 @@ RSpec.describe Protos::Popover do
       duration: [200, 200],
       hide_on_click: :toggle,
       z_index: 10,
+      delay: [100, 100],
       trigger: %i[mouseenter focus]
     )
   end
@@ -26,6 +27,7 @@ RSpec.describe Protos::Popover do
         duration: [200, 200],
         hideOnClick: "toggle",
         zIndex: 10,
+        delay: [100, 100],
         trigger: "mouseenter focus"
       }
     )

@@ -30,6 +30,6 @@ RSpec.describe Protos::Avatar do
 
   it "renders the style" do
     expect(page).to have_css(".avatar")
-    expect(page).to have_css(".placeholder")
+    expect(page).to have_css(".avatar-placeholder")
   end
 end

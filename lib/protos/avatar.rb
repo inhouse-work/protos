@@ -110,7 +110,7 @@ module Protos
         container: [
           "avatar",
           indicator,
-          ("placeholder" if placeholder)
+          ("avatar-placeholder" if placeholder)
         ],
         figure: shape
       }

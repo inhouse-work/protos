@@ -126,9 +126,16 @@ module Protos
       }
     end
 
+    def tabindex
+      return false if @input_type == :checkbox
+      return false if @input_type == :radio
+
+      0
+    end
+
     def default_attrs
       {
-        tabindex: 0
+        tabindex:
       }
     end
   end

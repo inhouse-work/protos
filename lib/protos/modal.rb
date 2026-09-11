@@ -33,6 +33,8 @@ module Protos
     autoload :Dialog, "protos/modal/dialog"
     autoload :Trigger, "protos/modal/trigger"
 
+    option :close_on_backdrop_click, default: -> { true }
+
     # Renders the modal container element.
     #
     # @yield The content block to define trigger and dialog.
@@ -65,7 +67,9 @@ module Protos
       {
         data: {
           controller: "protos--modal",
-          action: "click->protos--modal#backdropClose"
+          action: [
+            ("click->protos--modal#backdropClose" if close_on_backdrop_click)
+          ]
         }
       }
     end

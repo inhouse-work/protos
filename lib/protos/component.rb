@@ -52,7 +52,7 @@ module Protos
     # Adds non-defined options to the html_options hash
     def initialize(*, **kwargs, &)
       super
-      @html_options = extract_html_options(kwargs)
+      @html_options = extract_html_options(kwargs) || EMPTY_HASH
     end
 
     # Allows overriding the theme of an instance after initialization.

@@ -52,9 +52,7 @@ module Protos
     # Adds non-defined options to the html_options hash
     def initialize(*, **kwargs, &)
       super
-      defined_keys = self.class.dry_initializer.definitions.keys
-      extra_keys = kwargs.keys - defined_keys
-      @html_options = kwargs.slice(*extra_keys)
+      @html_options = extract_html_options(kwargs)
     end
 
     # Allows overriding the theme of an instance after initialization.
@@ -84,11 +82,39 @@ module Protos
     # @param overrides [Hash] HTML attribute overrides to merge
     # @return [self] Returns self for chaining
     def with_attrs(overrides = {})
-      @html_options = @html_options.merge(overrides)
+      @html_options = html_options.merge(overrides)
       self
     end
 
     private
+
+    # Extracts the keyword arguments that are the above not declared
+    # component options.
+    #
+    # Most components don't receive any, so we avoid allocating the
+    # intermediate `defined_keys`/`extra_keys` arrays and the sliced hash
+    # unless an unknown key is actually found.
+    #
+    # @param kwargs [Hash]
+    # @return [Hash, nil]
+    def extract_html_options(kwargs)
+      return if kwargs.empty?
+
+      definitions = self.class.dry_initializer.definitions
+      html_options = nil
+
+      kwargs.each do |key, value|
+        next if definitions.key?(key)
+
+        (html_options ||= {})[key] = value
+      end
+
+      html_options
+    end
+
+    def html_options
+      @html_options || EMPTY_HASH
+    end
 
     # Merged attributes like `data-controller`, `aria-*`, `id`, etc.
     def attrs
@@ -104,16 +130,17 @@ module Protos
     def build_attrs(...)
       defaults = default_attrs
       container = css[:container]
+      attributes = html_options
 
       # Performance optimization: if there are no overrides and no defaults,
       # return an empty hash or just the container class.
-      if @html_options.empty? && (defaults.nil? || defaults.empty?)
+      if attributes.empty? && (defaults.nil? || defaults.empty?)
         return container ? { class: container } : EMPTY_HASH
       end
 
       Attributes
         .new(...)
-        .merge(defaults, @html_options, container ? { class: container } : nil)
+        .merge(defaults, attributes, container ? { class: container } : nil)
     end
 
     # Build the final theme from all the overriding parts

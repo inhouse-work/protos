@@ -12,28 +12,29 @@ module Protos
     MERGABLE_KEYS = %i[class controller].freeze
 
     def call(old_hash, *hashes)
-      hashes
-        .compact
-        .each_with_object(old_hash) do |new_hash, result|
-          merge(result, new_hash)
-        end
+      hashes.each { |new_hash| merge(old_hash, new_hash) unless new_hash.nil? }
+      old_hash
     end
 
     def merge(old_hash, new_hash)
-      old_hash.merge!(new_hash) do |key, old, new|
-        case [old, new].freeze
-        in [String, String]
-          if MERGABLE_KEYS.include?(key)
-            "#{old} #{new}"
-          else
-            new
-          end
-        in [Array, Array] then old + new
-        in [Hash, Hash] then merge(old, new)
-        in [_, nil] then old
-        else new
-        end
+      old_hash.merge!(new_hash) { |key, old, new| merge_value(key, old, new) }
+    end
+
+    def merge_value(key, old, new)
+      return old if new.nil?
+
+      if old.is_a?(String) && new.is_a?(String)
+        return merge_string(key, old, new)
       end
+
+      return old + new if old.is_a?(Array) && new.is_a?(Array)
+      return merge(old, new) if old.is_a?(Hash) && new.is_a?(Hash)
+
+      new
+    end
+
+    def merge_string(key, old, new)
+      MERGABLE_KEYS.include?(key) ? "#{old} #{new}" : new
     end
   end
 end

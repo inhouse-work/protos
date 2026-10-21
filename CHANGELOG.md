@@ -26,6 +26,7 @@
 - Adds `#with_theme` and `#with_attrs` methods to all components to allow
   customization after initialization
 - Adds option for `close_on_backdrop_click` for `Protos::Modal`
+- Improves the performance of `Protos::Mix` by avoiding per-key allocations
 
 
 ## [1.0.1] - 2025-03-01

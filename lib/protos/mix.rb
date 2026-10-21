@@ -23,18 +23,18 @@ module Protos
     def merge_value(key, old, new)
       return old if new.nil?
 
-      if old.is_a?(String) && new.is_a?(String)
-        return merge_string(key, old, new)
+      # Performance optimization: Would be nicer to write this with pattern
+      # matching but performance was 1.35x slower with it.
+      case old
+      when String
+        new.is_a?(String) && MERGABLE_KEYS.include?(key) ? "#{old} #{new}" : new
+      when Array
+        new.is_a?(Array) ? old + new : new
+      when Hash
+        new.is_a?(Hash) ? merge(old, new) : new
+      else
+        new
       end
-
-      return old + new if old.is_a?(Array) && new.is_a?(Array)
-      return merge(old, new) if old.is_a?(Hash) && new.is_a?(Hash)
-
-      new
-    end
-
-    def merge_string(key, old, new)
-      MERGABLE_KEYS.include?(key) ? "#{old} #{new}" : new
     end
   end
 end

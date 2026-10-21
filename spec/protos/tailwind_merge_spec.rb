@@ -20,6 +20,58 @@ RSpec.describe Protos::TailwindMerge do
     end
   end
 
+  describe "DAISY_CLASS_GROUPS" do
+    # These are hard-coded in the library so that building the merger does not
+    # autoload every component. This spec keeps them in sync with the enums.
+    it "matches the component enums" do
+      groups = described_class::DAISY_CLASS_GROUPS
+
+      expect(groups[:alert_colors]).to eq(
+        [{ alert: Protos::Alert::Colors.values.map(&:to_s) }]
+      )
+      expect(groups[:alert_variants]).to eq(
+        [{ alert: Protos::Alert::Variants.values.map(&:to_s) }]
+      )
+      expect(groups[:mask_shapes]).to eq(
+        [{ mask: Protos::Avatar::MaskShapes.values.map(&:to_s) }]
+      )
+      expect(groups[:avatar_indicators]).to eq(
+        [{ avatar: Protos::Avatar::Indicators.values.map(&:to_s) }]
+      )
+      expect(groups[:badge_styles]).to eq(
+        [{ badge: Protos::Badge::Styles.values.map(&:to_s) }]
+      )
+      expect(groups[:card_sizes]).to eq(
+        [{ card: Protos::Types::Sizes.values.map(&:to_s) }]
+      )
+      expect(groups[:carousel_positions]).to eq(
+        [{ carousel: Protos::Carousel::Positions.values.map(&:to_s) }]
+      )
+      expect(groups[:chat_bubble_positions]).to eq(
+        [{ "chat-bubble": Protos::ChatBubble::Positions.values.map(&:to_s) }]
+      )
+      expect(groups[:chat_bubble_styles]).to eq(
+        [{ "chat-bubble": Protos::Types::Colors.values.map(&:to_s) }]
+      )
+      expect(groups[:menu]).to eq(
+        [{ menu: Protos::Menu::Sizes.values.map(&:to_s) }]
+      )
+      expect(groups[:table]).to eq(
+        [{ table: Protos::Table::Sizes.values.map(&:to_s) }]
+      )
+      expect(groups[:tab]).to eq(
+        [{ tab: Protos::Tabs::Sizes.values.map(&:to_s) }]
+      )
+      expect(groups[:caption]).to eq(
+        [{ caption: Protos::Table::Caption::Sides.values.map(&:to_s) }]
+      )
+      expect(groups[:swap]).to eq([{ swap: %w[on off] }])
+      expect(groups[:step]).to eq(
+        [{ step: Protos::Types::Colors.values.map(&:to_s) }]
+      )
+    end
+  end
+
   describe "#merge" do
     it "merges with daisyui context" do
       merged = subject.merge(%w[card-sm card-md])

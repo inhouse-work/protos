@@ -17,53 +17,113 @@ module Protos
       def cache_size = @cache_size || DEFAULT_CACHE_SIZE
     end
 
+    # WARNING: These lists are intentionally hard-coded instead of derived from
+    # the component enums. Referencing `Protos::Alert::Colors` and friends here
+    # forces every component constant to autoload when the merger is built,
+    # which adds boot time and memory even for apps that never render them.
+    #
+    # Keep them in sync with the component enums. The accompanying spec in
+    # `spec/protos/tailwind_merge_spec.rb` asserts that both sides match.
     DAISY_CLASS_GROUPS = {
       alert_colors: [
-        { alert: Protos::Alert::Colors.values.map(&:to_s) }
+        { alert: %w[default info success warning error] }
       ],
       alert_variants: [
-        { alert: Protos::Alert::Variants.values.map(&:to_s) }
+        { alert: %w[default outline dash soft] }
       ],
       mask_shapes: [
-        { mask: Protos::Avatar::MaskShapes.values.map(&:to_s) }
+        {
+          mask: %w[
+            none
+            squircle
+            heart
+            hexagon
+            hexagon2
+            decagon
+            pentagon
+            diamond
+            square
+            circle
+            star
+            star2
+            triangle
+            triangle2
+            triangle3
+            triangle4
+            half1
+            half2
+          ]
+        }
       ],
       avatar_indicators: [
-        { avatar: Protos::Avatar::Indicators.values.map(&:to_s) }
+        { avatar: %w[none online offline] }
       ],
       badge_styles: [
-        { badge: Protos::Badge::Styles.values.map(&:to_s) }
+        {
+          badge: %w[
+            default
+            primary
+            secondary
+            accent
+            info
+            success
+            warning
+            error
+            ghost
+          ]
+        }
       ],
       card_sizes: [
-        { card: Protos::Types::Sizes.values.map(&:to_s) }
+        { card: %w[default xs sm md lg xl] }
       ],
       carousel_positions: [
-        { carousel: Protos::Carousel::Positions.values.map(&:to_s) }
+        { carousel: %w[none center end] }
       ],
       chat_bubble_positions: [
-        { "chat-bubble": Protos::ChatBubble::Positions.values.map(&:to_s) }
+        { "chat-bubble": %w[start end] }
       ],
       chat_bubble_styles: [
         {
-          "chat-bubble": Types::Colors.values.map(&:to_s)
+          "chat-bubble": %w[
+            default
+            primary
+            secondary
+            accent
+            info
+            success
+            warning
+            error
+          ]
         }
       ],
       menu: [
-        { menu: Protos::Menu::Sizes.values.map(&:to_s) }
+        { menu: %w[xs sm md lg xl] }
       ],
       table: [
-        { table: Protos::Table::Sizes.values.map(&:to_s) }
+        { table: %w[xs sm md lg] }
       ],
       tab: [
-        { tab: Protos::Tabs::Sizes.values.map(&:to_s) }
+        { tab: %w[xs sm md lg] }
       ],
       caption: [
-        { caption: Protos::Table::Caption::Sides.values.map(&:to_s) }
+        { caption: %w[bottom top] }
       ],
       swap: [
         { swap: %w[on off] }
       ],
       step: [
-        { step: Types::Colors.values.map(&:to_s) }
+        {
+          step: %w[
+            default
+            primary
+            secondary
+            accent
+            info
+            success
+            warning
+            error
+          ]
+        }
       ]
     }.freeze
 

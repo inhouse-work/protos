@@ -21,6 +21,7 @@ module Protos
     # @param tailwind_merge [Boolean] Whether or not to use tailwind-merge
     def initialize(theme = {}, tailwind_merge: true, **kwargs)
       @should_merge = tailwind_merge
+      @cache = {}
 
       @theme = Hash.new do |hash, key|
         hash[key] = TokenList.new
@@ -42,15 +43,15 @@ module Protos
     # @param keys [Array<Symbol,String>]
     # @return [String, nil]
     def [](*keys)
-      symbols, strings = keys.partition { |key| key.instance_of?(Symbol) }
-      values = @theme.values_at(*symbols).map!(&:to_s)
-      values.reject!(&:empty?)
-      values.concat(strings) unless strings.empty?
+      # Performance optimization: Use the cache for a single key, but not for
+      # multiple keys to be economical. The cache is cleared when the theme
+      # is modified.
+      if keys.length == 1
+        key = keys.first
+        return @cache.fetch(key) { @cache[key] = resolve_key(key) }
+      end
 
-      return nil if values.empty?
-      return values unless @should_merge
-
-      self.class.merger.merge(values)
+      resolve_keys(keys)
     end
 
     # @param key [Symbol]
@@ -64,6 +65,7 @@ module Protos
       return if value.nil?
 
       @theme[key].add(value)
+      @cache.clear
     end
 
     # @param key [Symbol]
@@ -74,6 +76,7 @@ module Protos
 
       token_list = @theme[key].remove(value)
       @theme.delete(key) if token_list.empty?
+      @cache.clear
     end
 
     # @param key [Symbol]
@@ -87,6 +90,8 @@ module Protos
       else
         @theme[key].add(value)
       end
+
+      @cache.clear
     end
 
     # @param hash [Hash{Symbol=>String,Array<String>}]
@@ -109,5 +114,42 @@ module Protos
 
       self
     end
+
+    private
+
+    def resolve_keys(keys)
+      symbols, strings = keys.partition { |key| key.instance_of?(Symbol) }
+      values = @theme.values_at(*symbols).map!(&:to_s)
+      values.reject!(&:empty?)
+      values.concat(strings)
+      resolve_values(values)
+    end
+
+    def resolve_values(values)
+      return nil if values.empty?
+      return values unless @should_merge
+      return values.first if values.length == 1 && !merge?(values.first)
+
+      self.class.merger.merge(values)
+    end
+
+    def resolve_key(key)
+      value = key.instance_of?(Symbol) ? theme_value(key) : key.to_s
+
+      return nil if value.empty?
+      return [value] unless @should_merge
+      return value unless merge?(value)
+
+      self.class.merger.merge(value)
+    end
+
+    def theme_value(key)
+      token_list = @theme.fetch(key, nil)
+      token_list ? token_list.to_s : ""
+    end
+
+    # Performance optimization: A single class can't conflict with anything,
+    # so tailwind-merge would just return it unchanged.
+    def merge?(value) = value.match?(/\s/)
   end
 end

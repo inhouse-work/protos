@@ -1,5 +1,7 @@
 ## [Unreleased (1.1.0)]
 
+- Skips tailwind-merge for single-class slots, memoizes resolved theme values,
+  and allows configuring the merger cache size (default 1,000).
 - Reuses frozen default hashes and arrays for component options to avoid
   allocating them on every render.
 - Improves rendering performance for components with no extra attributes by

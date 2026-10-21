@@ -4,6 +4,19 @@ module Protos
   class TailwindMerge
     DEFAULTS = ::TailwindMerge::Config::DEFAULTS
 
+    # Override before the first render when a different size is needed:
+    #
+    # @example
+    #   Protos::TailwindMerge.cache_size = 2_000
+    DEFAULT_CACHE_SIZE = 1_000
+
+    class << self
+      attr_writer :cache_size
+
+      # @return [Integer]
+      def cache_size = @cache_size || DEFAULT_CACHE_SIZE
+    end
+
     DAISY_CLASS_GROUPS = {
       alert_colors: [
         { alert: Protos::Alert::Colors.values.map(&:to_s) }
@@ -12,19 +25,19 @@ module Protos
         { alert: Protos::Alert::Variants.values.map(&:to_s) }
       ],
       mask_shapes: [
-        mask: Protos::Avatar::MaskShapes.values.map(&:to_s)
+        { mask: Protos::Avatar::MaskShapes.values.map(&:to_s) }
       ],
       avatar_indicators: [
-        avatar: Protos::Avatar::Indicators.values.map(&:to_s)
+        { avatar: Protos::Avatar::Indicators.values.map(&:to_s) }
       ],
       badge_styles: [
-        badge: Protos::Badge::Styles.values.map(&:to_s)
+        { badge: Protos::Badge::Styles.values.map(&:to_s) }
       ],
       card_sizes: [
-        card: Protos::Types::Sizes.values.map(&:to_s)
+        { card: Protos::Types::Sizes.values.map(&:to_s) }
       ],
       carousel_positions: [
-        carousel: Protos::Carousel::Positions.values.map(&:to_s)
+        { carousel: Protos::Carousel::Positions.values.map(&:to_s) }
       ],
       chat_bubble_positions: [
         { "chat-bubble": Protos::ChatBubble::Positions.values.map(&:to_s) }
@@ -35,30 +48,31 @@ module Protos
         }
       ],
       menu: [
-        menu: Protos::Menu::Sizes.values.map(&:to_s)
+        { menu: Protos::Menu::Sizes.values.map(&:to_s) }
       ],
       table: [
-        table: Protos::Table::Sizes.values.map(&:to_s)
+        { table: Protos::Table::Sizes.values.map(&:to_s) }
       ],
       tab: [
-        tab: Protos::Tabs::Sizes.values.map(&:to_s)
+        { tab: Protos::Tabs::Sizes.values.map(&:to_s) }
       ],
       caption: [
-        caption: Protos::Table::Caption::Sides.values.map(&:to_s)
+        { caption: Protos::Table::Caption::Sides.values.map(&:to_s) }
       ],
       swap: [
-        swap: %w[on off]
+        { swap: %w[on off] }
       ],
       step: [
-        step: Types::Colors.values.map(&:to_s)
+        { step: Types::Colors.values.map(&:to_s) }
       ]
     }.freeze
 
-    def initialize
+    # @param cache_size [Integer]
+    def initialize(cache_size: self.class.cache_size)
       @merger = ::TailwindMerge::Merger.new(
         config: DEFAULTS.merge(
           ignore_empty_cache: true,
-          cache_size: 500,
+          cache_size: cache_size,
           class_groups: DEFAULTS[:class_groups].merge(DAISY_CLASS_GROUPS)
         )
       )

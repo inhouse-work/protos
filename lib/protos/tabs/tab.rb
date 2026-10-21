@@ -4,6 +4,8 @@ module Protos
   class Tabs
     # A single tab in a tabs component
     class Tab < Component
+      DEFAULT_ATTRS = { role: :tab }.freeze
+
       option :active, default: -> { false }
       option :disabled, default: -> { false }
 
@@ -13,11 +15,7 @@ module Protos
 
       private
 
-      def default_attrs
-        {
-          role: :tab
-        }
-      end
+      def default_attrs = DEFAULT_ATTRS
 
       def theme
         {

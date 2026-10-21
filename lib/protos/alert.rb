@@ -15,6 +15,8 @@ module Protos
   #
   # @see https://daisyui.com/components/alert/
   class Alert < Component
+    DEFAULT_ATTRS = { role: "alert" }.freeze
+
     autoload :Actions, "protos/alert/actions"
     autoload :Icon, "protos/alert/icon"
 
@@ -92,11 +94,7 @@ module Protos
 
     private
 
-    def default_attrs
-      {
-        role: "alert"
-      }
-    end
+    def default_attrs = DEFAULT_ATTRS
 
     def theme
       {

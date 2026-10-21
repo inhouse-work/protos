@@ -12,6 +12,8 @@ module Protos
   #     tabs.tab(disabled: true) { "Tab 3" }
   #   end
   class Tabs < Component
+    DEFAULT_ATTRS = { role: :tablist }.freeze
+
     autoload :Tab, "protos/tabs/tab"
 
     Styles = Types::Coercible::Symbol.enum(
@@ -70,11 +72,7 @@ module Protos
 
     private
 
-    def default_attrs
-      {
-        role: :tablist
-      }
-    end
+    def default_attrs = DEFAULT_ATTRS
 
     def theme
       {

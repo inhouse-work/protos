@@ -167,7 +167,7 @@ module Protos
       opts[:hideOnClick] = @hide_on_click
       opts[:zIndex] = @z_index
       opts[:delay] = @delay
-      opts[:trigger] = Array(@trigger).flatten.map(&:to_s).join(" ")
+      opts[:trigger] = Array(@trigger).flatten.join(" ")
       opts.merge(@options)
     end
 

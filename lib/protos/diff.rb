@@ -32,6 +32,8 @@ module Protos
   #     end
   #   end
   class Diff < Component
+    DEFAULT_ATTRS = { tabindex: 0 }.freeze
+
     autoload :Item, "protos/diff/item"
     autoload :Resizer, "protos/diff/resizer"
 
@@ -63,11 +65,7 @@ module Protos
 
     private
 
-    def default_attrs
-      {
-        tabindex: 0
-      }
-    end
+    def default_attrs = DEFAULT_ATTRS
 
     def theme
       {

@@ -1,5 +1,8 @@
 ## [Unreleased (1.1.0)]
 
+- Adds an `as` option to `Protos::Popover::Trigger` and
+  `Protos::Dropdown::Trigger` to render the trigger as an element other than
+  a button.
 - Adds a `as_template` option to `Protos::Dropdown` and `Protos::Popover` to use
   a hidden `div` instead of `template` to contain content. Rack test does not
   load any html from template elements which forces tests that would otherwise

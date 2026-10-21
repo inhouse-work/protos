@@ -745,9 +745,6 @@ Macbook M3 Pro chip.
 Currently this library is 15.6x slower than plain Phlex components. This is due
 to the overhead of themes, attributes and other quality of life improvements.
 
-This may seem like a lot but Phlex is so fast that rendering a large table can
-still be done 4000 times per second with this lib.
-
 ## License
 
 The gem is available as open source under the terms of the

@@ -6,6 +6,8 @@ module Protos
   # This is the object that is returned by `css` and used to set slots for
   # a component style.
   class Theme
+    autoload :Fast, "protos/theme/fast"
+
     class << self
       def merger
         # This could be a class variable to save memory for subclasses being

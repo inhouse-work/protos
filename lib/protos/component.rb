@@ -106,11 +106,23 @@ module Protos
 
     # Build the final theme from all the overriding parts
     def build_theme(...)
+      return Theme::Fast.new(theme) if default_theme?
+
       Theme
         .new(...)
         .merge(theme)
         .merge(@theme_override)
         .merge(container: @container_class)
+    end
+
+    # A theme only needs the slower, mutable `Theme` when there is something
+    # to merge into it. Most components render with their default theme.
+    def default_theme?
+      theme_override_blank? && @container_class.nil?
+    end
+
+    def theme_override_blank?
+      @theme_override.nil? || @theme_override.empty?
     end
 
     def default_attrs

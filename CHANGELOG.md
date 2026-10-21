@@ -1,5 +1,7 @@
 ## [Unreleased (1.1.0)]
 
+- Reuses frozen default hashes and arrays for component options to avoid
+  allocating them on every render.
 - Improves rendering performance for components with no extra attributes by
   skipping the `Attributes` merge pipeline.
 - Improves rendering performance for components using their default theme by

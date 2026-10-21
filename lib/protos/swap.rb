@@ -15,7 +15,9 @@ module Protos
     autoload :On, "protos/swap/on"
     autoload :Off, "protos/swap/off"
 
-    option :input_options, type: Types::Hash, default: -> { {} }
+    option :input_options,
+      type: Types::Hash,
+      default: -> { Component::EMPTY_HASH }
 
     # Renders the full swap element.
     #

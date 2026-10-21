@@ -20,4 +20,22 @@ RSpec.describe Protos::Attributes do
       expect(subject[:foo]).to be_nil
     end
   end
+
+  describe "#merge" do
+    it "merges multiple hashes in order" do
+      attrs = described_class.new(foo: "bar")
+      attrs.merge({ foo: "baz" }, { bar: "qux" }, nil)
+
+      expect(attrs[:foo]).to eq("baz")
+      expect(attrs[:bar]).to eq("qux")
+    end
+
+    it "merges class and data values" do
+      attrs = described_class.new(class: "bar", data: { controller: "one" })
+      attrs.merge({ class: "baz" }, data: { controller: "two" })
+
+      expect(attrs[:class]).to eq("bar baz")
+      expect(attrs[:data]).to eq(controller: "one two")
+    end
+  end
 end

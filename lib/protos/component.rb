@@ -39,8 +39,13 @@ module Protos
   class Component < Phlex::HTML
     extend Dry::Initializer[undefined: false]
 
+    EMPTY_HASH = {}.freeze
+
     # Theme can override the css hash and add additional styles
-    option :theme, as: :theme_override, default: -> { {} }, reader: false
+    option :theme,
+      as: :theme_override,
+      default: -> { EMPTY_HASH },
+      reader: false
     # Class becomes the :container key in the css hash
     option :class, as: :container_class, default: -> { }, reader: false
 
@@ -97,15 +102,24 @@ module Protos
 
     # Build the final attributes from all the overriding parts
     def build_attrs(...)
+      defaults = default_attrs
+      container = css[:container]
+
+      # Performance optimization: if there are no overrides and no defaults,
+      # return an empty hash or just the container class.
+      if @html_options.empty? && (defaults.nil? || defaults.empty?)
+        return container ? { class: container } : EMPTY_HASH
+      end
+
       Attributes
         .new(...)
-        .merge(default_attrs)
-        .merge(@html_options)
-        .merge(class: css[:container])
+        .merge(defaults, @html_options, container ? { class: container } : nil)
     end
 
     # Build the final theme from all the overriding parts
     def build_theme(...)
+      # Performance optimization: if there are no overrides and no container
+      # class, use the faster, immutable `Theme::Fast`.
       return Theme::Fast.new(theme) if default_theme?
 
       Theme
@@ -126,11 +140,11 @@ module Protos
     end
 
     def default_attrs
-      {}
+      EMPTY_HASH
     end
 
     def theme
-      {}
+      EMPTY_HASH
     end
   end
 end

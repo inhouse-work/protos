@@ -1,5 +1,7 @@
 ## [Unreleased (1.1.0)]
 
+- Improves rendering performance for components with no extra attributes by
+  skipping the `Attributes` merge pipeline.
 - Improves rendering performance for components using their default theme by
   resolving theme slots without allocating a `TokenList` for every slot.
 - Adds an `as` option to `Protos::Popover::Trigger` and

@@ -16,13 +16,11 @@ module Protos
       @attrs[key]
     end
 
-    # Merges the provided hash into the existing attributes.
-    # @param hash [Hash] The hash of attributes to merge.
-    # @return [Attributes] Merges the provided hash into the existing
-    def merge(hash)
-      return self unless hash
-
-      @attrs = mix(@attrs, hash)
+    # Merges the provided hashes into the existing attributes.
+    # @param hashes [Array<Hash>] The hashes of attributes to merge.
+    # @return [Attributes] Merges the provided hashes into the existing
+    def merge(*hashes)
+      @attrs = mix(@attrs, *hashes)
       self
     end
 

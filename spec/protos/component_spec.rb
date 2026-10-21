@@ -37,6 +37,12 @@ RSpec.describe Protos::Component do
     end
   end
 
+  it "renders the default theme without extra attributes" do
+    render BaseComponent.new
+
+    expect(page).to have_css("h1.base-component")
+  end
+
   context "with an inherited class" do
     before do
       stub_const(

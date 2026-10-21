@@ -3,6 +3,8 @@
 module Protos
   class Diff
     class Item < Component
+      DEFAULT_ATTRS = { role: :img }.freeze
+
       Order = Types::Coercible::Symbol.enum(:one, :two)
 
       ORDER = {
@@ -24,11 +26,7 @@ module Protos
 
       private
 
-      def default_attrs
-        {
-          role: :img
-        }
-      end
+      def default_attrs = DEFAULT_ATTRS
 
       def theme
         {

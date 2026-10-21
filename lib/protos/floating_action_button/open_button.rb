@@ -3,18 +3,15 @@
 module Protos
   class FloatingActionButton
     class OpenButton < Component
+      DEFAULT_ATTRS = { role: "button", tabindex: "0" }.freeze
+
       def view_template(&)
         div(**attrs, &)
       end
 
       private
 
-      def default_attrs
-        {
-          role: "button",
-          tabindex: "0"
-        }
-      end
+      def default_attrs = DEFAULT_ATTRS
 
       def theme
         {

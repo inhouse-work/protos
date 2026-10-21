@@ -1,5 +1,13 @@
 ## [Unreleased (1.1.0)]
 
+- Skips tailwind-merge for single-class slots, memoizes resolved theme values,
+  and allows configuring the merger cache size (default 1,000).
+- Reuses frozen default hashes and arrays for component options to avoid
+  allocating them on every render.
+- Improves rendering performance for components with no extra attributes by
+  skipping the `Attributes` merge pipeline.
+- Improves rendering performance for components using their default theme by
+  resolving theme slots without allocating a `TokenList` for every slot.
 - Adds an `as` option to `Protos::Popover::Trigger` and
   `Protos::Dropdown::Trigger` to render the trigger as an element other than
   a button.
@@ -18,6 +26,7 @@
 - Adds `#with_theme` and `#with_attrs` methods to all components to allow
   customization after initialization
 - Adds option for `close_on_backdrop_click` for `Protos::Modal`
+- Improves the performance of `Protos::Mix` by avoiding per-key allocations
 
 
 ## [1.0.1] - 2025-03-01

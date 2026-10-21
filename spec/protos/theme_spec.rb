@@ -113,6 +113,33 @@ RSpec.describe Protos::Theme do
 
       expect(theme[:foo, "baz"]).to eq("bar baz")
     end
+
+    it "invalidates the cached value when the theme changes" do
+      theme = described_class.new(foo: "bar")
+      expect(theme[:foo]).to eq("bar")
+
+      theme.add(:foo, "baz")
+
+      expect(theme[:foo]).to eq("bar baz")
+    end
+
+    it "invalidates the cached value when a slot is removed" do
+      theme = described_class.new(foo: "bar baz")
+      expect(theme[:foo]).to eq("bar baz")
+
+      theme.remove(:foo, "bar")
+
+      expect(theme[:foo]).to eq("baz")
+    end
+
+    it "invalidates the cached value when a slot is replaced" do
+      theme = described_class.new(foo: "bar")
+      expect(theme[:foo]).to eq("bar")
+
+      theme.set(:foo, "baz")
+
+      expect(theme[:foo]).to eq("baz")
+    end
   end
 
   describe "#merge" do

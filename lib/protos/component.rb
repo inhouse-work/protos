@@ -39,17 +39,20 @@ module Protos
   class Component < Phlex::HTML
     extend Dry::Initializer[undefined: false]
 
+    EMPTY_HASH = {}.freeze
+
     # Theme can override the css hash and add additional styles
-    option :theme, as: :theme_override, default: -> { {} }, reader: false
+    option :theme,
+      as: :theme_override,
+      default: -> { EMPTY_HASH },
+      reader: false
     # Class becomes the :container key in the css hash
     option :class, as: :container_class, default: -> { }, reader: false
 
     # Adds non-defined options to the html_options hash
     def initialize(*, **kwargs, &)
       super
-      defined_keys = self.class.dry_initializer.definitions.keys
-      extra_keys = kwargs.keys - defined_keys
-      @html_options = kwargs.slice(*extra_keys)
+      @html_options = extract_html_options(kwargs) || EMPTY_HASH
     end
 
     # Allows overriding the theme of an instance after initialization.
@@ -79,11 +82,39 @@ module Protos
     # @param overrides [Hash] HTML attribute overrides to merge
     # @return [self] Returns self for chaining
     def with_attrs(overrides = {})
-      @html_options = @html_options.merge(overrides)
+      @html_options = html_options.merge(overrides)
       self
     end
 
     private
+
+    # Extracts the keyword arguments that are the above not declared
+    # component options.
+    #
+    # Most components don't receive any, so we avoid allocating the
+    # intermediate `defined_keys`/`extra_keys` arrays and the sliced hash
+    # unless an unknown key is actually found.
+    #
+    # @param kwargs [Hash]
+    # @return [Hash, nil]
+    def extract_html_options(kwargs)
+      return if kwargs.empty?
+
+      definitions = self.class.dry_initializer.definitions
+      html_options = nil
+
+      kwargs.each do |key, value|
+        next if definitions.key?(key)
+
+        (html_options ||= {})[key] = value
+      end
+
+      html_options
+    end
+
+    def html_options
+      @html_options || EMPTY_HASH
+    end
 
     # Merged attributes like `data-controller`, `aria-*`, `id`, etc.
     def attrs
@@ -97,15 +128,27 @@ module Protos
 
     # Build the final attributes from all the overriding parts
     def build_attrs(...)
+      defaults = default_attrs
+      container = css[:container]
+      attributes = html_options
+
+      # Performance optimization: if there are no overrides and no defaults,
+      # return an empty hash or just the container class.
+      if attributes.empty? && (defaults.nil? || defaults.empty?)
+        return container ? { class: container } : EMPTY_HASH
+      end
+
       Attributes
         .new(...)
-        .merge(default_attrs)
-        .merge(@html_options)
-        .merge(class: css[:container])
+        .merge(defaults, attributes, container ? { class: container } : nil)
     end
 
     # Build the final theme from all the overriding parts
     def build_theme(...)
+      # Performance optimization: if there are no overrides and no container
+      # class, use the faster, immutable `Theme::Fast`.
+      return Theme::Fast.new(theme) if default_theme?
+
       Theme
         .new(...)
         .merge(theme)
@@ -113,12 +156,22 @@ module Protos
         .merge(container: @container_class)
     end
 
+    # A theme only needs the slower, mutable `Theme` when there is something
+    # to merge into it. Most components render with their default theme.
+    def default_theme?
+      theme_override_blank? && @container_class.nil?
+    end
+
+    def theme_override_blank?
+      @theme_override.nil? || @theme_override.empty?
+    end
+
     def default_attrs
-      {}
+      EMPTY_HASH
     end
 
     def theme
-      {}
+      EMPTY_HASH
     end
   end
 end

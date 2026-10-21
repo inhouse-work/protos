@@ -37,6 +37,42 @@ RSpec.describe Protos::Component do
     end
   end
 
+  it "renders the default theme without extra attributes" do
+    render BaseComponent.new
+
+    expect(page).to have_css("h1.base-component")
+  end
+
+  context "when no HTML options are supplied" do
+    before do
+      stub_const(
+        "HtmlOptionsComponent", Class.new(Protos::Component) do
+          def view_template
+            h1(**attrs) { "hello" }
+          end
+
+          private
+
+          def default_attrs
+            { rel: "noopener" } if @html_options[:target] == "_blank"
+          end
+        end
+      )
+    end
+
+    it "still exposes @html_options as a hash" do
+      render HtmlOptionsComponent.new
+
+      expect(page).to have_css("h1")
+    end
+
+    it "allows with_attrs to be called" do
+      render HtmlOptionsComponent.new.with_attrs(target: "_blank")
+
+      expect(page).to have_css("h1[rel='noopener']")
+    end
+  end
+
   context "with an inherited class" do
     before do
       stub_const(

@@ -14,6 +14,8 @@ module Protos
   #     end
   #   end
   class Toast < Component
+    DEFAULT_ATTRS = { open: true }.freeze
+
     autoload :CloseButton, "protos/toast/close_button"
 
     Positions = Types::Symbol.enum(
@@ -62,11 +64,7 @@ module Protos
 
     private
 
-    def default_attrs
-      {
-        open: true
-      }
-    end
+    def default_attrs = DEFAULT_ATTRS
 
     def theme
       {

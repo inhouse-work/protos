@@ -19,6 +19,8 @@ module Protos
   #     breadcrumbs.crumb { a(href: "/products") { "Products" } }
   #   end
   class Breadcrumbs < Component
+    DEFAULT_ATTRS = { aria_label: "breadcrumbs" }.freeze
+
     autoload :Crumb, "protos/breadcrumbs/crumb"
 
     # Renders the breadcrumbs container element.
@@ -39,11 +41,7 @@ module Protos
 
     private
 
-    def default_attrs
-      {
-        aria_label: "breadcrumbs"
-      }
-    end
+    def default_attrs = DEFAULT_ATTRS
 
     def theme
       {

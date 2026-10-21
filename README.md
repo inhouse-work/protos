@@ -742,11 +742,8 @@ There are also tasks for profiling and exploring memory consumption.
 You can find the latest benchmarks in `benchmarks/`. These were run on a new
 Macbook M3 Pro chip.
 
-Currently this library is 30x slower than plain Phlex components. This is due to
-the overhead of themes, attributes and other quality of life improvements.
-
-This may seem like a lot but Phlex is so fast that rendering a large table can
-still be done 4000 times per second with this lib.
+Currently this library is 15.6x slower than plain Phlex components. This is due
+to the overhead of themes, attributes and other quality of life improvements.
 
 ## License
 

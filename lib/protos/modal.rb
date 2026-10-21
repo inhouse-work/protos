@@ -40,7 +40,7 @@ module Protos
     # @yield The content block to define trigger and dialog.
     # @return [nil] outputs to the @buffer
     def view_template(&)
-      div(**attrs, class: css[:container], &)
+      div(**attrs, &)
     end
 
     # Renders a close button for the modal.

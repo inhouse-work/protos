@@ -89,13 +89,17 @@ module Protos
       type: Animations,
       default: -> { :fade }
 
+    DURATION = [300, 250].freeze
+    DELAY = [0, 0].freeze
+    TRIGGERS = %i[mouseenter focus].freeze
+
     # @!attribute [r] duration
     # @return [Integer, Array<Integer>] Duration in milliseconds for
     #   show/hide animation. Can be a single value or array of
     #   [show, hide] durations.
     option :duration,
       type: Types::Integer | Types::Array.of(Types::Integer),
-      default: -> { [300, 250] }
+      default: -> { DURATION }
 
     # @!attribute [r] hide_on_click
     # @return [Boolean, Symbol] Whether to hide popover on click.
@@ -115,18 +119,18 @@ module Protos
     #   showing/hiding popover.
     option :delay,
       type: Types::Integer | Types::Array.of(Types::Integer),
-      default: -> { [0, 0] }
+      default: -> { DELAY }
 
     # @!attribute [r] options
     # @return [Hash] Additional tippy.js options to pass through.
     option :options,
-      default: -> { {} },
+      default: -> { Component::EMPTY_HASH },
       type: Types::Hash
 
     # @!attribute [r] trigger
     # @return [Triggers, Array<Triggers>]
     option :trigger,
-      default: -> { %i[mouseenter focus] },
+      default: -> { TRIGGERS },
       type: Triggers | Types::Array.of(Triggers)
 
     # Renders the popover container element.
@@ -163,7 +167,7 @@ module Protos
       opts[:hideOnClick] = @hide_on_click
       opts[:zIndex] = @z_index
       opts[:delay] = @delay
-      opts[:trigger] = Array(@trigger).flatten.map(&:to_s).join(" ")
+      opts[:trigger] = Array(@trigger).flatten.join(" ")
       opts.merge(@options)
     end
 

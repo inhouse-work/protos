@@ -133,6 +133,12 @@ module Protos
       default: -> { TRIGGERS },
       type: Triggers | Types::Array.of(Triggers)
 
+    # @!attribute [r] opened
+    # @return [Boolean] Whether the popover window is opened automatically.
+    option :opened,
+      default: -> { false },
+      type: Types::Bool
+
     # Renders the popover container element.
     #
     # @yield The content block to define trigger and content.
@@ -175,7 +181,8 @@ module Protos
       {
         data: {
           controller: "protos--popover",
-          "protos--popover-options-value": JSON.generate(options)
+          "protos--popover-options-value": JSON.generate(options),
+          "protos--popover-opened-value": @opened.to_s
         }
       }
     end

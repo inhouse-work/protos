@@ -9,7 +9,8 @@ RSpec.describe Protos::Popover do
       hide_on_click: :toggle,
       z_index: 10,
       delay: [100, 100],
-      trigger: %i[mouseenter focus]
+      trigger: %i[mouseenter focus],
+      opened: true
     )
   end
 
@@ -34,5 +35,9 @@ RSpec.describe Protos::Popover do
 
     expect(page).to have_css("div[data-controller='protos--popover']")
     expect(page).to have_css("div[data-protos--popover-options-value='#{options}']")
+  end
+
+  it "opens the popover automatically when :opened is true" do
+    expect(page).to have_css("div[data-protos--popover-opened-value='true']")
   end
 end
